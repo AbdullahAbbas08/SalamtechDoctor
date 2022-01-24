@@ -1,5 +1,5 @@
 import { Route } from '@angular/compiler/src/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  
+  @ViewChild('navbarToggler') navbarToggler: ElementRef;
   
   constructor(private router:Router) { }
 
@@ -19,5 +20,17 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('Authorization')
     this.router.navigate(['/Login'])
   }
+
+    //  collapse navbar
+
+    navBarTogglerIsVisible() {
+      return this.navbarToggler.nativeElement.offsetParent !== null;
+    }
+  
+    collapseNav() {
+      if (this.navBarTogglerIsVisible()) {
+        this.navbarToggler.nativeElement.click();
+      }
+    }
 
 }

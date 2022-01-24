@@ -6,7 +6,7 @@
 
       <div class="row main-sidebar">
 
-        <div class="col-2 d-none d-lg-block d-xl-block" style="padding: 0px;">
+        <div class="col-md-2 d-none   d-lg-block d-xl-block" style="padding: 0px;">
           <div class="sidebar-col">
             <div class="sidebar-item">
 
@@ -110,13 +110,153 @@
             </div>
           </div>
 
+
+
+
+
+
+
+
+
+          <div class="d-md-none row col-6 mt-5" >
+            <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+              Button with data-bs-target
+            </button> -->
+
+            <button #navbarToggler class="navbar-toggler navbar-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"   aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            
+            <div class="offcanvas offcanvas-start w-75 pb-0" style="overflow-y: scroll; height: 100%;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+              <div class="sidebar-col " style="  height: 100%;" >
+                <div class="sidebar-item">
+          
+                  <div class="logo">
+                    <img src="../../../assets/img/logo.webp">
+                  </div>
+          
+                  <div class="sidebar-content">
+          
+                    <div class="menu-sidebar">
+                      <ul>
+                        <li id="menu" class="li-Content sub-group-title">
+                          <span>{{ "mainModule.main.menu" | translate }}</span>
+                        </li>
+          
+                        <li (click)="collapseNav()" id="Dashboard" class="li-Content" routerLink="dashboard"  [routerLinkActive]="'OnClick-Style'">
+                          <span>
+                            <!-- <img  src="../../../assets/img/Group 1.png" > -->
+                            <!-- <i id="DashboardIcon" class="fas fa-align-justify"></i> -->
+                          </span>
+                          <span class="li-item" >
+                            {{ "mainModule.main.Dashboard" | translate }}
+                          </span>
+                        </li>
+          
+                        <li (click)="collapseNav()" id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic" [routerLinkActive]="'OnClick-Style'">
+                          <span class="">
+                            <!-- <img id="ClinicsIcon" src="../../../assets/img/Vector.png"> -->
+                          </span>
+                          <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
+                        </li>
+          
+                        <li (click)="collapseNav()" id="Appointments" class="li-Content" routerLink="appointment" [routerLinkActive]="'OnClick-Style'">
+                          <span>
+                            <!-- <img  src="../../../assets/img/appointments/Vector.png" > -->
+                            <!-- <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i> -->
+                          </span>
+                          <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
+                        </li>
+          
+                        <li (click)="collapseNav()" id="Services" class="li-Content" routerLink="service" [routerLinkActive]="'OnClick-Style'">
+                          <span>
+                            <!-- <img src="../../../assets/img/ServiceIcon/Vector.png" > -->
+                            <!-- <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i> -->
+                          </span>
+                          <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
+                        </li>
+          
+                        <li id="Profile" class="li-Content">
+                          <span>
+                            <!-- <img src="../../../assets/img/profileIcon/Group 3.png" > -->
+                            <!-- <i id="ProfileIcon" class="fas fa-user-md" style="font-size: 23px;"></i> -->
+                          </span>
+                          <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
+                        </li>
+          
+                      </ul>
+                    </div>
+          
+                    <hr class="hr-sidebar-main" />
+          
+                    <div class="option-sidebar">
+                      <ul>
+                        <li id="Signup" class="li-Content sub-group-title">
+                          <span>{{ "mainModule.main.option" | translate }}</span>
+                        </li>
+                        <li id="Signup" class="li-Content">
+                          <span>
+                            <img src="../../../assets/img/settings/Group 2.png">
+                          </span>
+                          <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
+                        </li>
+                        <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
+                          <span>
+                            <img src="../../../assets/img/helpIcon/Group 17.png">
+                          </span>
+                          <!-- Help -->
+                          <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
+                        </li>
+                        <li id="Certificates" class="li-Content">
+                          <span>
+                            <img src="../../../assets/img/logoutIcon/Group 18.png">
+                          </span>
+                          <!-- Logout -->
+                          <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
+                        </li>
+                      </ul>
+                    </div>
+          
+                  </div>
+          
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- <div class="container" > -->
           <div class="row">
             <div class="col-12">
-              <router-outlet>
-
-
-              </router-outlet>
+              <router-outlet></router-outlet>
             </div>
           </div>
           <!-- </div> -->
