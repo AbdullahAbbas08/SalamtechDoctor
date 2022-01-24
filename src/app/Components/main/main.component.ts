@@ -18,7 +18,8 @@ export class MainComponent implements OnInit {
 
   RemoveAuth(){
     localStorage.removeItem('Authorization')
-    this.router.navigate(['/Login'])
+    this.router.navigate(['/Login']);
+    window.location.reload();
   }
 
     //  collapse navbar
@@ -30,6 +31,7 @@ export class MainComponent implements OnInit {
     collapseNav() {
       if (this.navBarTogglerIsVisible()) {
         this.navbarToggler.nativeElement.click();
+        
       }
     }
 

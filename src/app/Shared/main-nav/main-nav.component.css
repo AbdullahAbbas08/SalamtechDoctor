@@ -45,7 +45,6 @@
   width: 56px;
   height: 14px;
   opacity: 0.5;
-  font-family: SFUIText;
   font-size: 12px;
   font-weight: 500;
   text-align: end;
@@ -55,7 +54,6 @@
 .card-text{
   width: 116px;
   height: 14px;
-  font-family: SFUIText;
   font-size: 12px;
   font-weight: 500;
   text-align: start;

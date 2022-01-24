@@ -1,9 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* @font-face {
+@font-face {
   font-family: "STC";
-  src: local("STC"), url(./assets/fonts/STCRegular.ttf) format("truetype");
-} */
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Black.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Bold.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-ExtraBold.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-ExtraLight.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Light.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Medium.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Regular.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-SemiBold.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Black.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-BlackItalic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-BoldItalic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Italic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Light.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-LightItalic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-MediumItalic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-Thin.ttf) format("truetype");
+  src: local("STC"), url(./assets/fonts/Poppins/Poppins-ThinItalic.ttf) format("truetype");
+}
 
 
 

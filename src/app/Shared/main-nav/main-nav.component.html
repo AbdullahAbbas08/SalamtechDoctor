@@ -6,12 +6,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse align-baseline " id="navbarSupportedContent">
-      <form class="d-flex serachInput">
+      <!-- <form class="d-flex serachInput">
         <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
-      </form>
-      <ul class="navbar-nav  my-2 mb-lg-0 justify-content-center" style="width: 75%;">
+      </form> -->
+      <div class="col-md-6"></div>
+      <ul class="navbar-nav  my-2 mb-lg-0 justify-content-center align-items-center" style="width: 75%;">
         <li class="nav-item dropdown mx-3">
-          <a class="nav-link dropdown-toggle rounded-pill border px-4" href="#" id="navbarDropdown" role="button"
+          <!-- <a class="nav-link dropdown-toggle rounded-pill border px-4" href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
             langue
           </a>
@@ -22,7 +23,17 @@
             <li>
               <a class="dropdown-item" (click)="ChangeLanguage(DefaultLang)"  >Arabic</a>
             </li>
-          </ul>
+          </ul> -->
+        </li>
+        <li>
+          <div>
+          <a class="nav-item mx-4 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'">English</a>
+          </div>
+        </li>
+        <li>
+          <div>
+          <a class="nav-item mx-4 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">عربى</a>
+          </div>
         </li>
         <li class="nav-item mx-4">
           <div class="msg text-center">
