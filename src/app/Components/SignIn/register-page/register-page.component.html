@@ -7,7 +7,7 @@
             {{ "mainModule.RegisterPage.Signup" | translate }}
           </h5>
 
-          <div class="card-body">
+          <form [formGroup]="RegisterForm" class="card-body">
             <div class="row d-flex justify-content-center">
               <div class="col-12 col-md-10">
                 <div class="row">
@@ -20,7 +20,9 @@
                       </label>
 
                       <div dir="auto" class="form-group">
-                        <input type="text" class="form-control" />
+                        <input  type="text" 
+                                formControlName="FirstName"
+                                class="form-control" />
                       </div>
                     </div>
 
@@ -32,7 +34,9 @@
                       </label>
 
                       <div dir="auto" class="form-group">
-                        <input type="text" class="form-control" />
+                        <input type="text" 
+                                class="form-control"
+                                formControlName="MiddleName" />
                       </div>
                     </div>
 
@@ -44,7 +48,9 @@
                       </label>
 
                       <div dir="auto" class="form-group">
-                        <input type="text" class="form-control" />
+                        <input  type="text" 
+                                class="form-control"
+                                formControlName="LastName" />
                       </div>
                     </div>
 
@@ -56,7 +62,9 @@
                       </label>
 
                       <div dir="auto" class="form-group">
-                        <input type="email" class="form-control" />
+                        <input  type="email" 
+                                class="form-control"
+                                formControlName="Email" />
                       </div>
                     </div>
 
@@ -69,15 +77,16 @@
 
                       <div dir="auto" class="form-group">
                         <input
-                          type="number"
+                          type="text"
+                          formControlName="PhoneNumber"
                           class="form-control"
                           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                          maxlength="10"
-                          minlength="10"
+                          maxlength="11"
+                          minlength="11"
                           [class.icon]="1"
                         />
 
-                        <span class="unit">+20</span>
+                        <span class="unit">+2</span>
                       </div>
                     </div>
 
@@ -91,6 +100,7 @@
                       <div class="form-group form-group-Password">
                         <input
                           type="password"
+                          formControlName="Password"
                           class="form-control"
                           placeholder="***********"
                           id="PasswordLogin"
@@ -118,6 +128,7 @@
                       <div class="form-group form-group-Password">
                         <input
                           type="password"
+                          formControlName="ReEnterPassword"
                           class="form-control"
                           placeholder="***********"
                           id="ReEnterPassword"
@@ -141,6 +152,7 @@
                               (click)="Checkinput()">
 
                               <input  type="checkbox"
+                                      formControlName="checkboxcont"
                                       id="checkboxTermsConditions"
                                       class="Checkbox-Condition" />
 
@@ -161,7 +173,9 @@
                             {{ "mainModule.RegisterPage.Signin" | translate }}
                           </span>
                       </label>
-                      <button class="CreateAccount-btn">
+                      <button [disabled]="RegisterForm.invalid"  
+                              class="CreateAccount-btn"
+                              (click)="Submit()">
                         {{ "mainModule.RegisterPage.CreateAccount" | translate }}
                       </button>
                   </div>
@@ -169,7 +183,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          </form>
+
         </div>
       </div>
     </div>

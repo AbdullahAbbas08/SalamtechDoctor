@@ -1,7 +1,10 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CreateUser } from 'src/Models/create-user';
+import { UserService } from 'src/Service/CreateUser/user.service';
 
 @Component({
   selector: 'app-register-page',
@@ -11,24 +14,33 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterPageComponent implements OnInit {
 
   //#region Declare Variables
-  LoginForm:FormGroup;
+  RegisterForm:FormGroup;
+  CreateUser:CreateUser = new CreateUser();
   //#endregion
 
   //#region constructor
   constructor(private fb:FormBuilder,
               private toastr:ToastrService,
-              private router:Router) {
+              private router:Router,
+              private UserService:UserService) {
   }
   //#endregion
 
   //#region On Init Method
   ngOnInit() {
 
+
      //#region  Register Form Section
-     this.LoginForm = this.fb.group(
+     this.RegisterForm = this.fb.group(
       {
-          // PhoneNumber:['',[Validators.required]],
-          // Password:['',[Validators.required , Validators.minLength(6)]]
+        FirstName:['',[Validators.required]],
+        MiddleName:['',[Validators.required]],
+        LastName:['',[Validators.required]],
+        Email:['aaa@aaa.cpm',[Validators.required]],
+        PhoneNumber:['',[Validators.required]],
+        checkboxcont:['',[Validators.required]],
+        Password:['',[Validators.required , Validators.minLength(6)]],
+        ReEnterPassword:['',[Validators.required , Validators.minLength(6)]],
         });
     //#endregion
 
@@ -47,7 +59,7 @@ export class RegisterPageComponent implements OnInit {
     }
     //#endregion
 
-//#region  Check input Method
+    //#region  Check input Method
 Checkinput(){
   var element = <HTMLInputElement> document.getElementById('checkboxTermsConditions');
   
@@ -57,4 +69,35 @@ Checkinput(){
     element.checked = true;
 }
 //#endregion
+
+  //#region Submit
+  Submit(){
+
+    this.CreateUser.Email = this.RegisterForm.controls.Email.value;
+    this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
+                            this.RegisterForm.controls.MiddleName.value+" "+
+                            this.RegisterForm.controls.LastName.value ;
+
+    this.CreateUser.Password = this.RegisterForm.controls.Password.value;
+    this.CreateUser.Phone = this.RegisterForm.controls.PhoneNumber.value;
+    
+    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value){
+      this.CreateUser.UserTypeId = 2;
+    this.UserService.CreateUser( this.CreateUser).subscribe(
+      (response)=>{
+        console.log(response);
+        localStorage.setItem('Authorization',response.Data.Token)
+        this.router.navigateByUrl("/main");
+      },
+      (err)=>{
+        
+      }
+    )
+    }
+    else
+    {
+      this.toastr.error("Password and Confirm Password not Match","Error !")
+    }
+  }
+  //#endregion
 }
