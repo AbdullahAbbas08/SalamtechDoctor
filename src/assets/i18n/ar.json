@@ -143,6 +143,19 @@
           "ApartmentNumber":"رقم ",
           "Services":"الخدمات",
           "Next":"التالى"
+        },
+        "clinicmanager":{
+          "main":{
+            "AddNewClinic":"أضف عيادة جديدة",
+            "Therearenoaddedclinicyet":"لا توجد عيادات أضيفت حتى الان",
+            "ManageyourallClinicsbyadd":"إدارة العيادات",
+            "Themthrowonepress":"Them throw one press ",
+            "ClinicName":"أسم العيادة",
+            "ClinicNumber":"رقم العيادة",
+            "Appointments":"المواعيد",
+            "Location":"المكان",
+            "Actions":"إعدادات"
+          }
         }
     }
 }

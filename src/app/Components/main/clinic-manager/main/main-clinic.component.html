@@ -3,12 +3,12 @@
     <div class="row d-flex justify-content-center ">
         <img src="../../../../assets/img/NoClinicFound.png" class="NoClinicFound-style">
         <div style="text-align: center;">
-            <span class="NoClinicFound-title">There are no added clinic yet</span>
-            <span class="NoClinicFound-lbl">Manage your all Clinics by add</span>
-            <span class="NoClinicFound-lbl">Them throw one press</span>
+            <span class="NoClinicFound-title"> {{"mainModule.clinicmanager.main.Therearenoaddedclinicyet" | translate}}</span>
+            <span class="NoClinicFound-lbl"> {{"mainModule.clinicmanager.main.ManageyourallClinicsbyadd" | translate}}</span>
+            <span class="NoClinicFound-lbl">{{"mainModule.clinicmanager.main.Themthrowonepress" | translate}}</span>
         </div>
         <div class="AddNewClinic-style">
-            Add New Clinic
+            {{"mainModule.clinicmanager.main.AddNewClinic" | translate}}
         </div>
     </div>
 </div>
@@ -19,7 +19,7 @@
         <div class="col-12" style="padding-left:0px;padding-bottom: 20px;">
             <div class="AddNewClinic-style" routerLink="/clinic">
                 <i class="fas fa-plus"></i>
-                Add New Clinic
+                {{"mainModule.clinicmanager.main.AddNewClinic" | translate}}
             </div>
         </div>
     </div>
@@ -27,29 +27,29 @@
         <div class="col-12 Clinic-block">
             <div class="container">
                 <div class="row Clinic-table-header">
-                    <div class="col-3 ">Clinic Name</div>
-                    <div class="col-3 d-flex justify-content-center">Clinic Number</div>
-                    <div class="col-2 d-flex justify-content-center">Appointments</div>
-                    <div class="col-2 d-flex justify-content-center">Location</div>
-                    <div class="col-2 d-flex justify-content-center">Actions</div>
+                    <div class="col-8 col-md-3 ">{{"mainModule.clinicmanager.main.ClinicName" | translate}}</div>
+                    <div class="d-none d-sm-none d-md-block col-md-3 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.ClinicNumber" | translate}}</div>
+                    <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Appointments" | translate}}</div>
+                    <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Location" | translate}}</div>
+                    <div class="col-4 col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Actions" | translate}}</div>
                 </div>
                 <div *ngFor="let item of ClinicList" class="row Clinic-table">
-                    <div class="col-3 ">
+                    <div class="col-8 col-md-3 ">
                             <img class="Clinic-Logo-Style" 
                                 src="{{IamgeURL}}{{item.Logo}}" 
                                 onerror="this.src='../../../../assets/img/LogoAlternative.png';">
                             {{item.Name}}
                     </div>
-                    <div class="col-3 d-flex justify-content-center">
+                    <div class="d-none d-sm-none d-md-block col-md-3 d-flex justify-content-center">
                         {{item.Phone}}
                     </div>
-                    <div class="col-2 d-flex justify-content-center">
+                    <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center">
                        1 
                     </div>
-                    <div class="col-2 d-flex justify-content-center">
+                    <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center">
                        
                     </div>
-                    <div class="col-2 d-flex justify-content-center">
+                    <div class="col-4 col-md-2 d-flex justify-content-center">
                         <i class="fas fa-map-marker-alt Icon-style map-icon" (click)="openGoogelMapsModal()" ></i>
                          &nbsp;&nbsp;&nbsp;
                         <i class="far fa-edit Icon-style"           (click)="EditDoctorProfile(item.ClinicId)"></i>

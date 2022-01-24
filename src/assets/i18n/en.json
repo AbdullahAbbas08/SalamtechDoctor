@@ -160,6 +160,19 @@
           "NotActive":"Not Active",
           "Interval":"Interval",
           "Update":"Update"
+        },
+        "clinicmanager":{
+          "main":{
+            "AddNewClinic":"Add New Clinic",
+            "Therearenoaddedclinicyet":"There are no added clinic yet",
+            "ManageyourallClinicsbyadd":"Manage your all Clinics by add",
+            "Themthrowonepress":"Them throw one press ",
+            "ClinicName":"Clinic Name",
+            "ClinicNumber":"Clinic Number",
+            "Appointments":"Appointments",
+            "Location":"Location",
+            "Actions":"Settings"
+          }
         }
     }
 }
