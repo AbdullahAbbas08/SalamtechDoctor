@@ -13,10 +13,12 @@ export class LoginService {
 
   culture:string = localStorage.getItem('lang') as string;
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient ) { }
 
 
   login(user:Login):Observable<LoginResponse>{
     return this.http.post<LoginResponse>(`${environment.URL}${this.culture}/User/Login`,user);
   }
+
 }
