@@ -46,7 +46,7 @@ export class ClinicInfoComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.initFrom()
     this.ListOfMobileNumber = [];
 
     //#region multiple select
@@ -71,40 +71,44 @@ export class ClinicInfoComponent implements OnInit {
     this.ClinicInfoModel = new ClinicInfoModel();
 
 
-    //#region  Register Form Section
-    this.ClinicInfoForm = this.fb.group({
-      Name: ['', [Validators.required, Validators.minLength(3)]],
-      NameAr: ['', [Validators.required, Validators.minLength(3)]],
-      clinicLogo: ['', [Validators.required]],
-      Email: ['', [Validators.email, Validators.required]],
-      PhoneNumber: [
-        '',
-        [
-          Validators.required,
-        ],
-      ],
-      PhoneNumber2: [
-        '',
-        [Validators.nullValidator],
-      ],
-      PhoneNumber3: [
-        '',
-        [Validators.nullValidator],
-      ],
-      City: ['', [Validators.required]],
-      Address: ['', [Validators.required]],
-      // Street: ['', [Validators.required]],
-      Area: ['', [Validators.required]],
-      BuildingNumber: ['', [Validators.required]],
-      FloorNumber: ['', [Validators.required]],
-      // ApartmentNumber: ['', [Validators.required]],
-      FixedFee: ['', [Validators.required]],
-      Services: ['', [Validators.nullValidator]],
-    });
 
+  }
 
-    //#endregion
-
+  initFrom(){
+        //#region  Register Form Section
+        this.ClinicInfoForm = this.fb.group({
+          Name: ['', [Validators.required, Validators.minLength(3)]],
+          NameAr: ['', [Validators.required, Validators.minLength(3)]],
+          clinicLogo: ['', [Validators.required]],
+          Email: ['', [Validators.email, Validators.required]],
+          PhoneNumber: [
+            '',
+            [
+              Validators.required,
+            ],
+          ],
+          PhoneNumber2: [
+            '',
+            [Validators.nullValidator],
+          ],
+          PhoneNumber3: [
+            '',
+            [Validators.nullValidator],
+          ],
+          City: ['', [Validators.required]],
+          Address: ['', [Validators.required]],
+          // Street: ['', [Validators.required]],
+          Area: ['', [Validators.required]],
+          BuildingNumber: ['', [Validators.required]],
+          FloorNumber: ['', [Validators.required]],
+          // ApartmentNumber: ['', [Validators.required]],
+          FixedFee: ['', [Validators.required]],
+          Services: ['', [Validators.nullValidator]],
+        });
+    
+    
+        //#endregion
+    
   }
 
 
@@ -242,8 +246,6 @@ export class ClinicInfoComponent implements OnInit {
 
     // formData.append('HealthEntityPhoneDtos',[+this.ClinicInfoForm.controls.PhoneNumber.value,+this.ClinicInfoForm.controls.PhoneNumber2.value,+this.ClinicInfoForm.controls.PhoneNumber3.value] as unknown as Blob)
     formData.append('HealthEntityPhoneDtos', this.ListOfMobileNumber as unknown as Blob)
-
-
     formData.append('Name', this.ClinicInfoForm.controls.Name.value)
     formData.append('NameAr', this.ClinicInfoForm.controls.NameAr.value)
     formData.append('Email', this.ClinicInfoForm.controls.Email.value)
@@ -256,6 +258,8 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('FloorNo', +this.ClinicInfoForm.controls.FloorNumber.value as unknown as Blob)
     formData.append('Inactive', "true")
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
+
+    console.log(this.ClinicInfoForm.value)
 
     this.CreateClinic('en', formData)
 

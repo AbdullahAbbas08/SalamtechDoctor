@@ -3,7 +3,9 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DoctorInfoModel } from 'src/Models/doctor-info-model';
+import { DoctorProfile } from 'src/Models/doctor-profile';
 import { DropDownModel } from 'src/Models/drop-down-model';
+import { GeneralResponseSingleObject } from 'src/Models/general-response-single-object';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +25,21 @@ export class DoctorService {
     )};
   //#endregion
 
-    //#region Get Specialist Id Name
+    //#region Create Profile
     CreateProfile(lang:string , DoctorInfoModel:FormData){
       return this.http.post(`${environment.URL}${this.culture}/Doctor/CreateProfile`,DoctorInfoModel,this.httpOptions);
+    }
+    //#endregion
+
+    //#region Get Doctor Profile
+    GetDoctorProfile():Observable<GeneralResponseSingleObject<DoctorProfile>>{
+      return this.http.get<GeneralResponseSingleObject<DoctorProfile>>(`${environment.URL}${this.culture}/Doctor/GetDoctorProfile`,this.httpOptions);
+    }
+    //#endregion
+
+    //#region Update Profile
+    UpdateProfile(DoctorInfoModel:FormData):Observable<any>{
+      return this.http.post(`${environment.URL}${this.culture}/Doctor/UpdateProfile`,DoctorInfoModel,this.httpOptions);
     }
     //#endregion
 

@@ -1,4 +1,4 @@
-<form #form="ngForm" class="d-block" dir="auto" [formGroup]="ClinicInfoForm">
+<form #form="ngForm" class="d-block" dir="auto" [formGroup]="ClinicInfoForm" *ngIf="initFrom">
 
   <div class="row">
     <!-- Picture Doctor -->
@@ -286,12 +286,12 @@
             "
             class="form-control"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="10"
-            minlength="10"
+            maxlength="11"
+            minlength="11"
 
             [class.icon]="1"
           />
-          <span class="unit">+20</span>
+          <span class="unit">+2</span>
 
         </div>
       </div>
@@ -329,7 +329,7 @@
             minlength="10"
             [class.icon]="1"
           />
-          <span class="unit">+20</span>
+          <span class="unit">+2</span>
         </div>
       </div>
 
@@ -368,7 +368,7 @@
             minlength="10"
             [class.icon]="1"
           />
-          <span class="unit">+20</span>
+          <span class="unit">+2</span>
         </div>
       </div>
 

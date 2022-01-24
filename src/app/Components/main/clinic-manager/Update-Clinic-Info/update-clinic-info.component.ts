@@ -99,7 +99,7 @@ export class UpdateClinicInfoComponent implements OnInit {
       };
 
       this.imgURL = '../../../../assets/img/DoctorImg/Rectangle 2.png';
-      this.ListOfMobileNumber = [];
+      // this.ListOfMobileNumber = [];
       //#endregion
 
       //#region Invoke Methods
@@ -205,8 +205,9 @@ openGoogelMapsModal() {
   //#region submit Clinic
   submitClinic(){
 
+    
     this.formData.append('ClinicId', this.ClinicID as unknown as Blob)
-    this.formData.append('HealthEntityPhoneDtos',JSON.stringify(this.ListOfMobileNumber[0]))
+    this.formData.append('HealthEntityPhoneDtos',JSON.stringify(this.ListOfMobileNumber))
     this.formData.append('Name',this.ClinicToUpdate.Name)
     this.formData.append('NameAr',this.ClinicToUpdate.NameAr)
     this.formData.append('Email',this.ClinicToUpdate.Email)
@@ -219,6 +220,8 @@ openGoogelMapsModal() {
     this.formData.append('FloorNo',this.ClinicToUpdate.FloorNo as unknown as Blob)
     this.formData.append('Inactive',this.ClinicToUpdate.Inactive as unknown as Blob )
    
+    // console.log(this.formData.get("Inactive"))
+
     this.UpdateClinic(this.formData)
   }
   //#endregion
@@ -293,6 +296,9 @@ openGoogelMapsModal() {
 
   //#region Next
   Next(){
+
+    console.log("ListOfMobileNumber : ",this.ListOfMobileNumber)
+    console.log("ListOfMobileNumber in form : ",this.formData.get("HealthEntityPhoneDtos"))
     this.Router.navigate(['main/updateclinic/UpdateClinicGalary/',this.ClinicID]);
   }
   //#endregion

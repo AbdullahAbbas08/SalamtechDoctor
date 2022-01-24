@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DoctorInfoModel } from 'src/Models/doctor-info-model';
+import { DoctorProfile } from 'src/Models/doctor-profile';
 import { DropDownModel } from 'src/Models/drop-down-model';
 import { IdNameList } from 'src/Models/id-name-list';
 import { DoctorService } from 'src/Service/Doctor/doctor.service';
@@ -23,6 +24,7 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_SubSpeciality:IdNameList[];
   DropDownList_SeniorityLevel:IdNameList[];
   DropDownList_GetCountries:IdNameList[];
+  DoctorProfile:DoctorProfile;
   //#endregion
 
   //#region Constructor
@@ -35,7 +37,6 @@ export class DoctorInfoComponent implements OnInit {
   //#region On Init Method
     ngOnInit(): void {
 
-
       //#region Init Values
       document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
       document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -46,9 +47,24 @@ export class DoctorInfoComponent implements OnInit {
       //#endregion
 
       //#region  Register Form Section
+  
+      //#endregion
+
+      //#region call Methods
+      this.GetSpecialistIdName('en');
+      this.SeniorityLevelIdName('en');
+      this.GetCountries('en');
+      this.GetDoctorProfile();
+      //#endregion
+    }
+
+    //#endregion
+
+
+    initForm(){
       this.DoctorInfoForm = this.fb.group(
         {
-            FirstName:['',[Validators.required , Validators.minLength(3)]],
+            FirstName:[this.DoctorProfile?.FirstName||'',[Validators.required , Validators.minLength(3)]],
             FirstNameAr:['',[Validators.required , Validators.minLength(3)]],
             MiddleName:['',[Validators.minLength(3) , Validators.required]],
             MiddleNameAr:['',[Validators.minLength(3) , Validators.required]],
@@ -69,17 +85,7 @@ export class DoctorInfoComponent implements OnInit {
             BiographyAr:['',[Validators.required]],
             Biography:['',[Validators.required]]
           });
-      //#endregion
-
-      //#region call Methods
-      this.GetSpecialistIdName('en');
-      this.SeniorityLevelIdName('en');
-      this.GetCountries('en');
-      //#endregion
     }
-
-    //#endregion
-
 //#region Definition API's
 
   //#region GetSubSpecialistIdName
@@ -152,6 +158,25 @@ GetSpecialistIdName(lang:string)
   }
   //#endregion
 
+  //#region Get Doctor Profile
+  GetDoctorProfile(){
+    this.DoctorService.GetDoctorProfile().subscribe(
+      (response)=>{
+        this.DoctorProfile = response.Data;
+        console.log(this.DoctorProfile);
+        this. initForm();
+      },
+      (err)=>{
+
+      }
+    )
+  }
+  //#endregion
+  //#region 
+  // UpdateProfile(){
+  //   this.DoctorService.UpdateProfile()
+  // }
+  //#endregion
 //#endregion
 
 
@@ -194,6 +219,7 @@ GetSpecialistIdName(lang:string)
     formData.append("DoctorInfoAr", this.DoctorInfoModel.DoctorInfoAr);
     formData.append("profileImage", this.DoctorInfoModel.profileImage);
 
+   console.log(this.DoctorInfoForm.value)
     this.CreateProfile('en',formData);
 
   }
