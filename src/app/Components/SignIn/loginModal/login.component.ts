@@ -69,6 +69,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
       // this.buttonEnable=true;
       this.AuthenticatedUser= res
+      console.log(res);
+      
       localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
       this.toastr.success("Login Successfully ", 'Successfully');
       this.router.navigateByUrl("/main");

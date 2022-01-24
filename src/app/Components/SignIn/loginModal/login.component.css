@@ -90,3 +90,21 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+.nav-tabs[_ngcontent-fbl-c110] .nav-link[_ngcontent-fbl-c110] {
+  color: #00d2ca !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+.nav-tabs[_ngcontent-fbl-c110] .nav-link.active[_ngcontent-fbl-c110] {
+  margin-bottom: -1px !important;
+  background: 0 0 !important;
+  color: rgb(243, 243, 243) !important;
+  background-color: #00d2ca !important;
+  border: none!important;
+  transition: all .85s !important;
+  border-bottom-left-radius: 15px!important;
+  border-bottom-right-radius: 0px!important;
+  box-shadow: inset 8px -8px 10px 0 rgb(139 144 160 / 30%) !important;
+}

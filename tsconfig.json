@@ -6,7 +6,7 @@
     "outDir": "./dist/out-tsc",
     "types": ["googlemaps","jquery"],
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": false,

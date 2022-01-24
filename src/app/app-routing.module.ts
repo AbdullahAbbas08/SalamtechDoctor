@@ -47,10 +47,9 @@ const routes: Routes = [
     {path:'register',component:RegisterPageComponent}
   ] },
 
-  {canActivate: [LoginGuardService],path:'signup',component:SignUpMainComponent ,children:[
-      {path:'',component:SignupComponent },
+  {canActivate: [LogoutGuardService],path:'doctor-profile',component:SignUpMainComponent ,children:[
       {path:'OTP',component:OtpComponent },
-      {path:'doctorinfo',component:DoctorInfoComponent },
+      {path:'',component:DoctorInfoComponent },
       {path:'certificates',component:CertificatesComponent },
       {path:'documents',component:DocumentsComponent },
       {path:'Congratulations',component:CongratulationsComponent },
