@@ -1,0 +1,100 @@
+/*-------------- sidebar start ------------------*/
+.main-sidebar
+{
+    min-height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    /* width: 100%; */
+    /* background-color: red; */
+
+}
+.sidebar-col
+{
+    /* background-color: #f3f3f3; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.sidebar-item
+{
+    /* width: 80%; */
+    height: 100%;
+    /* background-color: #f3f3f3; */
+    margin: 10%;
+}
+
+ul
+{
+    list-style-type:none;
+    margin-top: 50px;
+}
+.li-Content
+{
+    border-inline-start: 2px solid #DCDEE4;
+    color: #A6AAB5;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+    padding: 5px;
+    padding-inline-start: 15px;
+    transition: 1s;
+}
+.li-Content-OnClick-Style
+{
+    border-inline-start: 2px solid #DCDEE4;
+    color: #A6AAB5;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+    padding: 5px;
+    padding-inline-start: 15px;
+    transition: 1s;
+}
+
+ul li span
+{
+    cursor: pointer;
+
+}
+
+.OnClick-Style
+{
+    border-inline-start: 2px solid #262D70;
+    color: #262D70;
+}
+.var-component
+{
+    background-color: white;
+    padding-top: 35px;
+    
+}
+.container-outlet
+{
+    height: 100%;
+}
+.row-outlet
+{
+  /* display: flex;
+  justify-content: center; */
+   min-height: 90%;
+}
+
+/*-------------- Terms-Condition Style Start   ------------------*/
+.row-terms
+{
+    height: 10%;
+}
+.Terms-Condition-style
+{
+    height: 50px;
+    color: #8B90A0;
+    text-align: center;
+}
+.termsCondition-style
+{
+    color:#00d2ca;
+    cursor: pointer;
+}
+/*-------------- Terms-Condition Style End     ------------------*/
+

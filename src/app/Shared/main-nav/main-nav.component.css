@@ -1,0 +1,64 @@
+.main-color {
+  background-color: #f9f9f9;
+}
+.dropdown-menu {
+  background-color: #f9f9f9;
+  min-width: 7rem;
+}
+.serachInput {
+  width: 75%;
+}
+
+.msg {
+  width: 56px;
+  height: 50px;
+  font-size: 19px;
+  color: #00d2ca;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background-color: rgba(0, 210, 202, 0.07);
+}
+
+.notification {
+  width: 56px;
+  height: 50px;
+  font-size: 19px;
+  color: #262d70;
+  padding: 11.9px 16px 11.9px 16px;
+  border-radius: 10px;
+  background-color: rgba(38, 45, 112, 0.04);
+}
+.img-fluid2 {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    align-items: baseline;
+  }
+}
+
+.msyd16 {
+  width: 56px;
+  height: 14px;
+  opacity: 0.5;
+  font-family: SFUIText;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: end;
+  color: #8b90a0;
+}
+
+.card-text{
+  width: 116px;
+  height: 14px;
+  font-family: SFUIText;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: start;
+  color: #8b90a0;
+  border: 0;
+}

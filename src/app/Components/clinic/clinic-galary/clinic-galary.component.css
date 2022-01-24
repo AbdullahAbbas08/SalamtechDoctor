@@ -1,0 +1,79 @@
+.galary-block
+{
+  height: 100%;
+}
+
+.GalayTitle
+{
+  font-size: 22px;
+  font-weight: 500;
+  padding: 5px;
+  margin-bottom: 15px;
+  user-select: none;
+}
+.Galary-unit-block
+{
+  background-color: transparent;
+  margin: 3px;
+  border-radius: 10px;
+  position: relative;
+  margin-bottom: 0px;
+}
+
+.Galary-unit-block img
+{
+  width: 100%;
+  height: 90%;
+}
+
+.open-dialog-btn
+{
+  width: 100%;
+  height: 100%;
+  background-color:#F2F3F9;
+  font-size: 50px;
+  border-radius: 10px;
+  border-color: #ffffff;
+
+}
+
+.next-btn
+{
+    width: 231px;
+    height: 53px;
+    border-radius: 8px;
+    background-color: #262d70;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+}
+.view-delete-card-galary
+{
+  align-items: center;
+  background-color: rgb(201 201 201 / 50%);
+  margin: 3px;
+  margin-top: 0px;
+  border-radius: 0px 0px 10px 10px;
+}
+.delete-view-btn
+{
+  position: relative;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.image-style
+{
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.plus-block
+{
+    width: 95%;
+    height: 95%;
+    margin: 2.5%;
+}

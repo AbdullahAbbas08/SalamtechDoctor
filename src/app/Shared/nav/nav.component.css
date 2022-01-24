@@ -1,0 +1,82 @@
+.navbar-block
+{
+  min-height: 5%;
+}
+/* .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 90%;
+  overflow: auto;
+}
+
+.sidebar p {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+} */
+
+/* .sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+} */
+
+/* div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+} */
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar p {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar p {
+    text-align: center;
+    float: none;
+  }
+}
+
+
+.btn-lang {
+  width: 127px;
+  height: 40px;
+  padding: 5px 12px 5px 2.3px;
+  background-color: #eff0f1;
+  cursor: pointer;
+}
+img.en {
+  width: 45.4px;
+  height: 30px;
+  flex-grow: 0;
+  margin: 0 12.3px 0 0;
+  object-fit: contain;
+}
+
+.btn-lang span
+{
+  font-family: 'SFUIText';
+  color: #97999a;
+  font-size: 14px;
+}
+
+img.logo {
+  width: 114.8px;
+  height: 30px;
+  object-fit: contain;
+}

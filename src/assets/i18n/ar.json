@@ -1,0 +1,148 @@
+{
+    "mainModule":{
+        "welcomeMessege":"مرحبا بكم ",
+        "Home":"الرئيسية",
+        "AboutUs":"عنّا",
+        "ContactUs":"تواصل معنا",
+        "Help":"مساعدة",
+        "signup":{
+            "FirstName":"الأسم الأول",
+            "MiddleName":"الأسم الأوسط",
+            "LastName":"الأسم الأخير",
+            "Email":"البريد الإلكترونى",
+            "PhoneNumber":"الموبايل",
+            "Password":"كلمة السر",
+            "ConfirmPassword":"تأكيد كلمة السر",
+            "Next":"التالى"
+        },
+        "ResendCode":{
+            "verify":"تحقق"
+        },
+        "login":{
+          "LoginAsDoctor":"تسجيل الدخول للدكنور",
+          "PhoneNumber":"رقم الموبيل",
+          "SignIn":"تسجيل الدخول",
+          "DontHaveAnAccount?":"ليس لديك حساب ؟",
+          "createAccount":"انشاء حساب",
+          "ForgetPassword":"نسيت كلمة المرور",
+          "LoginAsPatient":"تسجيل الدخول للمريض"
+        },
+        "LoginPage":{
+          "SignIn":"تسجيل الدخول",
+          "PhoneNumber":"رقم الموبايل",
+          "Password":"كلمة المرور",
+          "ForgetPassword":"نسيت الباسورد ؟ ",
+          "SignInBtn":"سجل دخول "
+        },
+        "RegisterPage":{
+          "Signup":"سجل حساب جديد",
+          "FirstName":"الأسم الاول",
+          "MiddleName":"الاسم الثانى",
+          "LastName":" الاسم الاخير ",
+          "PhoneNumber":"رقم الموبايل",
+          "Email":"البريد الالكترونى",
+          "Password":"كلمة المرور",
+          "ReEnterPassword":"أعد إدخال كلمة المرو",
+          "Terms&Conditions":" الموافقة على الشروط والاحكام",
+          "Terms&ConditionsKeyword":"الشروط والاحكام",
+          "AlreadyHaveAnAccount":"تمتلك حساب بالفعل ؟ ",
+          "Signin":"دخول",
+          "CreateAccount":"تسجيل "
+        },
+        "otp":{
+          "verify":"تحقق",
+          "ResendAgain":"إعادة الإرسال مرة أخرة",
+          "Didntrecivecode":"لم يتم الإرسال ",
+          "EntertheVerificationCode":"أدخل كود التحقق",
+          "Codesentto":"تم إرسال الكود الى ",
+          "Thiscodewillbeexpiredwithin":"يتم الغاء كود التحقق بعد"
+      },
+        "sideBar":{
+          "Signup":"التسجيل",
+          "DoctorInfo":"بيانات الطبيب",
+          "Certificates":"الشهادات",
+          "LegalDocuments":"الأوراق الرسمية",
+          "Congratulations":"تهانينا",
+          "singingUpYouAreApproveOur":"بالتسجيل فأنت موافق علي",
+          "Terms&Conditions":"الشروط والاحكام",
+          "AddClinics":"إضافة عيادة"
+
+        },
+        "main":{
+          "menu":"القائمة",
+          "option":"الإختيارات",
+          "settings":"الإعدادات",
+          "Help":"مساعدة",
+          "Logout":"خروج",
+          "Dashboard":"لوحة التحكم",
+          "Clinics":"العيادات",
+          "Appointments":"المواعيد",
+          "Services":"الخدمات",
+          "Profile":"حسابى"
+        },
+        "DoctorInfo":{
+          "FirstNameAr":"First Name",
+          "MiddleNameAr":"Middle Name",
+          "LastNameAr":"Last Name",
+          "Gender":"أختر الجنس ",
+          "Male":"ذكر",
+          "Female":"أنثى",
+          "Nationality":"الجنسية",
+          "Egypt":"مصر",
+          "Date_of_birth":"تاريخ الميلاد",
+          "Speciality":"المجال",
+          "SubSpeciality":"التخصص",
+          "Seniority":"الدرجه العلمية",
+          "BiographyAr":"Biography",
+          "Biography":"المعلومات الشخصية"
+        },
+        "Documents":{
+          "UploadNationalIdFrontFace":" صورة  الرقم القومى من الوجه",
+          "UploadNationalIdBackFace":"صورة  الرقم القومى من الخلف إن أمكن",
+          "UploadSyndicateFrontFace":"صورة من كارنيه النقابة من الوجه",
+          "UploadSyndicatebackFace":" صورة من كارنيه النقابة من الخلف أن أمكن",
+          "Next":"التالى"
+        },
+        "Clinic":{
+          "sidebarinfo":"بيانات العيادة",
+          "sidebargalary":"صور العيادة",
+          "sidebarschedule":"مواعيد العيادة",
+          "GalayTitle":"معرض الصور"
+        },
+        "Certificate":{
+          "AddNewCertificate":"اضافة شهادة جديده",
+          "NewCertificate":"شهادة جديدة",
+          "Reset":"اعادة ضبط",
+          "Delete":"حذف",
+          "CertificateTitle":"العنوان ",
+          "CertificateTitleAr":"Certificate Title In Engilsh",
+          "Description":"الوصف ",
+          "DescriptionAr":"Certificate Description In Engilsh",
+          "Year":"السنة",
+          "View":"عرض",
+          "Submit":"اضافة",
+          "Save":"حفظ",
+          "Next":"التالي"
+        },
+        "ClinicInfo":{
+          "ChangeLogo":"تغيير صورة البروفايل",
+          "Name":"الأسم",
+          "NameAr":"Name English",
+          "PhoneNumber":"رقم الموبايل",
+          "PhoneNumber2":"رقم موبايل أخر",
+          "PhoneNumber3":"رقم موبايل أخر",
+          "FixedFee":"سعر الكشف",
+          "Location":"المكان(الخريطة)",
+          "PickLocation":"أختر المكان",
+          "City":"المدينة",
+          "Area":"المنطقة",
+          "SelectArea":"أختر المنطقة",
+          "Street":"الشارع",
+          "BuildingNumber":"رقم المبنى",
+          "FloorNumber":"رقم الدور",
+          "ApartmentNumber":"رقم ",
+          "Services":"الخدمات",
+          "Next":"التالى"
+        }
+    }
+}

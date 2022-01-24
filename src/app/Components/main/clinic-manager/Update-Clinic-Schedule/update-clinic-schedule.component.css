@@ -1,0 +1,214 @@
+.Schedule {
+    width: 99px;
+    height: 24px;
+    flex-grow: 0;
+    margin: 31.2px 158px 30.9px 7px;
+    font-size: 22px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.09;
+    letter-spacing: normal;
+    text-align: left;
+    color: #262d70;
+    user-select: none;
+  }
+
+  .Schedule-block
+  {
+    margin-bottom: 15px;
+  }
+
+.day-block
+{
+    padding:10px;
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    user-select: none;
+    cursor: pointer;
+}
+
+/*----------------btn switch start---------------------*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    line-height: 30px;
+    margin-top: 20px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+/*----------------btn switch end------------------------*/
+
+.card-header
+{
+  /* height: 30px; */
+  /* background-color:#F9F9F9; */
+  padding: 10px;
+  font-size: 16px;
+}
+
+.card-body
+{
+  padding: 0px;
+  background-color: rgb(215 208 208 / 20%);
+  border-radius: 8px;
+}
+
+.delete-period
+{
+  color: red;
+  font-weight: 500;
+}
+.lbl-input
+{
+  /* display: block; */
+  width: fit-content;
+  padding-bottom:10px ;
+  color: #8b90a0;
+
+}
+
+.input-style-period
+{
+    border-radius: 5px;
+    padding: 5px;
+    border-width: 1px;
+    padding-right: 50px;
+    padding-left: 15px;
+
+}
+
+.unit {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  font-weight: 500;
+}
+
+.interval
+{
+  padding-right: 92px;
+}
+
+hr
+{
+  position: absolute;
+  top: 68px;
+  left: 0px;
+  width: 96%;
+  margin-left: 2%;
+  height: 2px;
+  background-color: #cbcbcb;
+}
+
+.period-count
+{
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.add-new-peroid-btn
+{
+  margin: 20px;
+  padding: 10px;
+}
+
+.next-btn
+{
+  border-radius: 8px;
+  background-color: #262d70;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 10px;
+  margin-bottom: 15px;
+  border-width: 0px;
+}
+
+.Circle-style
+{
+  font-size: 8px;
+  margin-left: 8px;
+}
+
+.Back-btn
+{
+    margin-top: 15px;
+    padding: 40px;
+    border-width: 0px;
+    background-color: #262D70;
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 17px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.update-Clinic-style
+{
+    background-color: white;
+    padding: 35px;
+    border-radius: 20px;
+}

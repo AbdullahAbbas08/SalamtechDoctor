@@ -1,0 +1,116 @@
+
+.upload-image
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.input-file
+{
+    display: none;
+}
+.input-file-btn
+{
+    width: 100%;
+    height: 250px;
+    border:2px dotted #CCCCCC;
+    background-color: #f9f9f9;
+    border-radius: 15px 15px 0px 0px;
+    border-bottom-width: 0px;
+}
+
+.upload-icon
+{
+    font-size: 40px;
+}
+
+.img-col-block
+{
+
+    text-align: center;
+    position: absolute;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+}
+
+.input-file-btn img
+{
+   position: relative;
+   width: 100%;
+   height: 250px;
+   border-radius: 15px 15px 0px 0px ;
+}
+
+.img-col-block-blure
+{
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.6);
+     z-index:2;
+}
+
+.img-icon
+{
+    text-align: center;
+    font-size: 40px;
+}
+.upload-label
+{
+font-size: 18px;
+padding-top:10px ;
+}
+
+.edit_view
+{
+    width:100%;
+    border:2px dotted #CCCCCC;
+    border-radius: 0px 0px 15px 15px;
+    background-color: #ededed;
+    border-top-width: 0px;
+}
+
+.icon-edit-style
+{
+    font-size: 20px;
+    padding: 5px;
+    padding-top: 10px;
+
+}
+
+.btn-edit , .btn-eye
+{
+    border-width: 0px;
+    background-color: transparent;
+}
+
+.Syndicate-block
+{
+    margin-top: 35px;
+}
+
+.document-title
+{
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.btn-next
+{
+    background-color: #262d70;
+    /* margin-top: 50px; */
+    font-weight: 500;
+    padding: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: white;
+    border-radius: 10px;
+    border-width: 0px;
+    margin-top: 30px;
+}

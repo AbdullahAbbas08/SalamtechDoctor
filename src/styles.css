@@ -1,0 +1,69 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @font-face {
+  font-family: "STC";
+  src: local("STC"), url(./assets/fonts/STCRegular.ttf) format("truetype");
+} */
+
+
+
+html body{
+  overflow-x: hidden;
+}
+
+.container
+{
+  min-height: 100%;
+}
+html, body, .sidebar-col {height:100%;}
+
+/*-------------------validations input start-------------------*/
+.ng-valid[required] , .ng-valid.required
+{
+    border-inline-start:5px solid #42a948;
+}
+.ng-invalid[required] , .ng-invalid.required
+{
+    border-inline-start:5px solid #a94442;
+}
+/*-------------------validations input end  -------------------*/
+
+/*------------------- Disable Select Text Start  -------------------*/
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+/*------------------- Disable Select Text End    -------------------*/
+
+/*------------------ hide arrow in input number start ---------------*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/*------------------ hide arrow in input number End   ---------------*/
+
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}

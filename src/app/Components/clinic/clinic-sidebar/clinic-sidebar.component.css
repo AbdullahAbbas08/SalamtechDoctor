@@ -1,0 +1,93 @@
+/*-------------- sidebar start ------------------*/
+.main-sidebar
+{
+    min-height: 85%;
+    position: relative;
+    /* background-color: red; */
+}
+.sidebar-col
+{
+    background-color: #f3f3f3;
+}
+.sidebar-item
+{
+    width: 80%;
+    height: 80%;
+    background-color: #f3f3f3;
+    /* background-colorgb(3, 2, 2)red; */
+    margin: 10%;
+}
+
+ul
+{
+    /* background-color: saddlebrown; */
+    list-style-type:none;
+    margin-top: 50px;
+}
+.li-Content
+{
+    border-inline-start: 2px solid #DCDEE4;
+    color: #A6AAB5;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+    padding: 5px;
+    padding-inline-start: 15px;
+    transition: 1s;
+}
+.li-Content-OnClick-Style
+{
+    border-inline-start: 2px solid #DCDEE4;
+    color: #A6AAB5;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0px;
+    padding: 5px;
+    padding-inline-start: 15px;
+    transition: 1s;
+}
+
+ul li span
+{
+    cursor: pointer;
+}
+
+.OnClick-Style
+{
+    border-inline-start: 2px solid #262D70;
+    color: #262D70;
+}
+
+.var-component
+{
+    background-color: white;
+    padding-top: 35px;
+}
+
+.container-outlet
+{
+    height: 90%;
+}
+
+.row-outlet
+{
+    min-height: 90%;
+}
+
+/*-------------- Terms-Condition Style Start   ------------------*/
+.Terms-Condition-style
+{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8B90A0;
+    text-align: center;
+}
+.termsCondition-style
+{
+    color:#00d2ca;
+    cursor: pointer;
+}
+/*-------------- Terms-Condition Style End     ------------------*/
+

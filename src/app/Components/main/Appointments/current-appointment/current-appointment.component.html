@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row Appointment-table-header">
+        <div class="col-3">Name</div>
+        <div class="col-2">Date</div>
+        <div class="col-2 ">Time</div>
+        <div class="col-2">Type</div>
+        <div class="col-3">Actions</div>
+    </div>
+
+    <div *ngFor="let item of PatientList| paginate: { itemsPerPage: 2, currentPage: p }" class="row Appointment-table-body">
+        <div class="col-3 padding-row">
+                <img class="Clinic-Logo-Style" 
+                     src="{{IamgeURL}}" 
+                     onerror="this.src='../../../../assets/img/LogoAlternative.png';">
+                {{item.PatientName}}
+        </div>
+        <div class="col-2 padding-row">{{item.AppointmentDate}}</div>
+        <div class="col-2 padding-row">10:15 PM</div>
+        <div class="col-2 padding-row">
+            <img class="type-bg-icon" src="../../../../../assets/img/CallIconVisited.png"> Call
+        </div>
+        <div class="col-3 padding-row">
+            <button class="acrions-btn comunicate-btn">
+                 <img src="../../../../../assets/img/CallIcon.png"> Call
+                </button>
+            <button class="acrions-btn PostReport-btn ">Post Report</button>
+            <button class="acrions-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- <div *ngFor="let item of [].constructor(3); let i = index" class="row Appointment-table-body">
+        <div class="col-3 padding-row">
+                <img class="Clinic-Logo-Style" 
+                     src="{{IamgeURL}}" 
+                     onerror="this.src='../../../../assets/img/LogoAlternative.png';">
+                Name Name {{i}}
+        </div>
+        <div class="col-2 padding-row">20/12/2021</div>
+        <div class="col-2 padding-row">10:15 PM</div>
+        <div class="col-2 padding-row">
+            <img class="type-bg-icon" src="../../../../../assets/img/chatIconVisited.png"> Chat
+        </div>
+        <div class="col-3 padding-row">
+            <button class="acrions-btn comunicate-btn chat-btn"> <img src="../../../../../assets/img/chatIcon.png"> Chat</button>
+            <button class="acrions-btn PostReport-btn ">Post Report</button>
+            <button class="acrions-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    <div *ngFor="let item of [].constructor(3); let i = index" class="row Appointment-table-body">
+        <div class="col-3 padding-row">
+                <img class="Clinic-Logo-Style" 
+                     src="{{IamgeURL}}" 
+                     onerror="this.src='../../../../assets/img/LogoAlternative.png';">
+                Name Name {{i}}
+        </div>
+        <div class="col-2 padding-row">20/12/2021</div>
+        <div class="col-2 padding-row">10:15 PM</div>
+        <div class="col-2 padding-row">
+                <img class="type-bg-icon" src="../../../../../assets/img/locationIconVisited.png"> Location
+        </div>
+        <div class="col-3 padding-row">
+            <button class="acrions-btn comunicate-btn location-btn"> <img src="../../../../../assets/img/locationIcon.png"> Location</button>
+            <button class="acrions-btn  PostReport-btn ">Post Report</button>
+            <button class="acrions-btn  cancel-btn">Cancel</button>
+        </div>
+    </div> -->
+   
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+

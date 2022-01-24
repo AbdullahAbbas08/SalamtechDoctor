@@ -1,0 +1,134 @@
+<div style="min-height: 90%;position: relative;overflow-y: auto;overflow-x: hidden;">
+
+  <div class="" style="height:100% ;position: absolute;overflow-y: auto;overflow-x: hidden;width: 100%;">
+
+    <div class="" style="height:100% ;position: absolute;overflow-y: auto;overflow-x: hidden;width: 100%;">
+
+      <div class="row main-sidebar">
+
+        <div class="col-2 d-none d-lg-block d-xl-block" style="padding: 0px;">
+          <div class="sidebar-col">
+            <div class="sidebar-item">
+
+              <div class="logo">
+                <img src="../../../assets/img/logo.webp">
+              </div>
+
+              <div class="sidebar-content">
+
+                <div class="menu-sidebar">
+                  <ul>
+                    <li id="menu" class="li-Content sub-group-title">
+                      <span>{{ "mainModule.main.menu" | translate }}</span>
+                    </li>
+
+                    <li id="Dashboard" class="li-Content" routerLink="dashboard">
+                      <span>
+                        <!-- <img  src="../../../assets/img/Group 1.png" > -->
+                        <i id="DashboardIcon" class="fas fa-align-justify"></i>
+                      </span>
+                      <span class="li-item">
+                        {{ "mainModule.main.Dashboard" | translate }}
+                      </span>
+                    </li>
+
+                    <li id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic">
+                      <span class="">
+                        <img id="ClinicsIcon" src="../../../assets/img/Vector.png">
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
+                    </li>
+
+                    <li id="Appointments" class="li-Content" routerLink="appointment">
+                      <span>
+                        <!-- <img  src="../../../assets/img/appointments/Vector.png" > -->
+                        <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i>
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
+                    </li>
+
+                    <li id="Services" class="li-Content" routerLink="service">
+                      <span>
+                        <!-- <img src="../../../assets/img/ServiceIcon/Vector.png" > -->
+                        <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i>
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
+                    </li>
+
+                    <li id="Profile" class="li-Content">
+                      <span>
+                        <!-- <img src="../../../assets/img/profileIcon/Group 3.png" > -->
+                        <i id="ProfileIcon" class="fas fa-user-md" style="font-size: 23px;"></i>
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <hr class="hr-sidebar-main" />
+
+                <div class="option-sidebar">
+                  <ul>
+                    <li id="Signup" class="li-Content sub-group-title">
+                      <span>{{ "mainModule.main.option" | translate }}</span>
+                    </li>
+                    <li id="Signup" class="li-Content">
+                      <span>
+                        <img src="../../../assets/img/settings/Group 2.png">
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
+                    </li>
+                    <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
+                      <span>
+                        <img src="../../../assets/img/helpIcon/Group 17.png">
+                      </span>
+                      <!-- Help -->
+                      <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
+                    </li>
+                    <li id="Certificates" class="li-Content">
+                      <span>
+                        <img src="../../../assets/img/logoutIcon/Group 18.png">
+                      </span>
+                      <!-- Logout -->
+                      <span class="li-item">{{ "mainModule.main.Logout" | translate }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-10 var-component ">
+
+          <div class="row">
+            <div class="col-12 p-0">
+              <app-main-nav></app-main-nav>
+            </div>
+          </div>
+
+          <!-- <div class="container" > -->
+          <div class="row">
+            <div class="col-12">
+              <router-outlet>
+
+
+              </router-outlet>
+            </div>
+          </div>
+          <!-- </div> -->
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div style="height: 10%;">
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,1536 @@
+<div class="row" style="min-height: 85%;">
+    <!-- Title  -->
+    <div class="col-12">
+       <label class="Schedule">
+         {{'mainModule.Schedule.Schedule' | translate}}
+       </label>
+    </div>
+    <!-- Schedule Body -->
+    <div style="min-height: 100%;">
+      <div *ngFor="let item of ClinicSchedule;let i=index" class="col-12">
+          <div class="row Schedule-block ">
+            <div class="col" style="position: relative;">
+              <hr>
+            </div>
+            <div id="Saturday" class="col-12">
+                    <!--header  -->
+                    <div class="row" style="margin-bottom: 15px;" >
+                        <div class="col-6 col-md-6 d-flex justify-content-start"
+                             data-bs-toggle="collapse"
+                             [attr.href]="'#multiCollapseExample'+i" role="button"
+                             aria-expanded="false"
+                             aria-controls="multiCollapseExample1" >
+
+                          <div class="col-12 col-md-4 d-flex align-items-center justify-content-center" >
+                            <label (click)="hideborder()" class="day-block" >
+                              {{item.DayName}}
+                          </label>
+                          </div>
+
+                         <div class="col-12 col-md-6 d-flex align-items-center pl-0" style="opacity: 0.4;" >
+                            <i class="fas fa-circle Circle-style" ></i>
+                            <span class="period-count"> {{item.DayPeriodCount}} &nbsp;
+                              {{'mainModule.Schedule.Periods' | translate}}
+                            </span>
+                         </div>
+
+
+                        </div>
+                        <div class="col-6 col-md-6 d-flex justify-content-end">
+
+                            <label class="switch">
+                                <input type="checkbox" [checked]="item.Active">
+                                <span class="slider round"></span>
+                            </label>
+
+                        </div>
+                    </div>
+                    <!-- body -->
+                  <div class="row ">
+                    <div class="col-12" >
+                      <div class="collapse multi-collapse" id="multiCollapseExample{{i}}">
+
+
+                        <!-- Add Default Period If Day Cannot any Period    -->
+                        <div *ngIf="item.DayPeriodCount == 0; else elseBlock">
+                            <div class="card card-body my-3">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="col-12 card-header">
+                                    <div class="row">
+                                      <div class="col-12 col-md-6 ">
+                                        <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                          <label >
+                                             {{'mainModule.Schedule.Period1' | translate}}
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                        <div class="delete-period ">
+                                          <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                            <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                           </span> -->
+                                          <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;">
+                                             {{'mainModule.Schedule.Reset' | translate}}
+                                          </label>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+
+                                    <!-- Period From -->
+                                        <form [formGroup]="PeriodForm"  #PeriodFormRef
+                                              class="row"
+                                              dir="auto">
+
+                                              <!-- row 1 for => DateFrom , DateTo -->
+                                              <div class="col-12">
+                                                <div style="padding: 20px;padding-bottom: 0px;">
+                                                  <label class="lbl-input ">
+                                                     {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                  </label>
+
+                                                  <div class="row">
+
+                                                    <div class="col-12 col-md-5 ">
+                                                      <input type="time"
+                                                              formControlName="DateFrom"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;">
+
+                                                    </div>
+
+                                                    <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                      <!-- <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                         {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                      </label> -->
+                                                    </div>
+
+                                                    <div class="col-12 col-md-5 ">
+                                                      <input type="time"
+                                                              formControlName="DateTo"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;" >
+                                                    </div>
+                                                  </div>
+
+                                                </div>
+                                              </div>
+
+                                              <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                              <div class="col-12">
+
+                                                <div style="padding: 20px;padding-bottom: 0px;">
+                                                  <div class="row" style="margin-bottom: 10px;">
+
+                                                    <!-- DurationMedicalExaminationId -->
+                                                    <div class="col-12 col-md-5" style="margin-bottom: 10px;">
+                                                      <label class="lbl-input">Interval</label>
+                                                      <div style="position: relative;">
+
+                                                        <select (change)="SelectDuration($event)"
+                                                                formControlName="DurationExamination"
+                                                                class="form-select"
+                                                                aria-label="Default select example">
+
+                                                          <option value="">
+                                                            Select Duration  {{'mainModule.Schedule.SelectDuration' | translate}}
+                                                          </option>
+
+                                                          <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                            {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                            </option>
+
+                                                        </select>
+                                                      </div>
+                                                    </div>
+
+                                                    <!-- Fees col -->
+                                                    <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+                                                      <label class="lbl-input ">
+                                                        {{'mainModule.Schedule.Visitfee' | translate}}
+                                                      </label>
+                                                      <div style="position: relative;">
+                                                        <input type="number"
+                                                                formControlName="Fees"
+                                                                class="form-control input-style-period" >
+                                                        <label class="unit">
+                                                           {{'mainModule.Schedule.EGP' | translate}}
+                                                        </label>
+                                                      </div>
+                                                    </div>
+
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              <!-- row 3 for => Submit Btn -->
+                                              <div class="row">
+
+                                                  <div class="col-12 ">
+                                                      <div class="d-flex justify-content-end">
+                                                          <button class="next-btn"
+                                                                  [disabled]="PeriodFormRef.invalid"
+                                                                  (click)="SubmitPeriod(item.DayId , item.Active)" >
+
+                                                             {{'mainModule.Schedule.Submit' | translate}}
+
+                                                          </button>
+                                                      </div>
+                                                  </div>
+
+                                              </div>
+
+                                        </form>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                        </div>
+
+                        <ng-template #elseBlock>
+
+                          <div *ngIf="item.DayId == 1">
+                            <div class="col-12 d-flex   justify-content-end">
+                              <button (click)="AddPeriod(item.DayId)"
+                                      class="btn  px-4 my-3"
+                                      style="background-color: #E9EAF1;  color: #262d70;">
+
+                                      <i class="fa fa-plus"></i>
+                                      <span style="font-weight: 500;"
+                                              (click)="AddNewPeriod(item.DayId)">
+                                         {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                      </span>
+                              </button>
+                            </div>
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                               {{'mainModule.Schedule.Period' | translate}}{{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+
+                                              <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                                <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                              </span> -->
+
+                                              <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                      (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                                 {{'mainModule.Schedule.Reset' | translate}}
+                                              </label>
+
+                                              <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                      style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                      (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                               {{'mainModule.Schedule.Active' | translate}}
+
+                                              </label>
+
+                                              <ng-template #InactiveBlock
+                                                            style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                <span style="cursor:pointer"
+                                                      (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                       {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                </span>
+
+                                              </ng-template>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                    {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
+                                                        >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo" >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                           {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                       {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees"
+                                                      >
+                                                      <label class="unit">
+                                                         {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                              <div class="d-flex justify-content-end">
+                                                  <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                        <button class="next-btn"
+                                                                style="background-color:#198754;"
+                                                                (click)="UpdateNewPeriod( item.DayId ,i )">
+                                                           {{'mainModule.Schedule.Update' | translate}}
+                                                        </button>
+
+                                                  </div>
+
+                                                  <ng-template  #UpdateBlock>
+
+                                                        <button class="next-btn"
+                                                                (click)="SubmitNewPeriod(  item.DayId,i)">
+                                                           {{'mainModule.Schedule.Submit' | translate}}
+                                                        </button>
+
+                                                  </ng-template>
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                              <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                          <div *ngIf="item.DayId == 2">
+                            <div class="col-12 d-flex   justify-content-end">
+                              <button (click)="AddPeriod(item.DayId)"
+                                      class="btn  px-4 my-3"
+                                      style="background-color: #E9EAF1;  color: #262d70;">
+
+                                      <i class="fa fa-plus"></i>
+                                      <span style="font-weight: 500;"
+                                              (click)="AddNewPeriod(item.DayId)">
+                                         {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                      </span>
+
+                              </button>
+                            </div>
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                                {{'mainModule.Schedule.Period' | translate}} {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                          <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                            <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                          </span> -->
+                                            <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                    (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                               {{'mainModule.Schedule.Reset' | translate}}
+                                            </label>
+
+                                              <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                              style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                              (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                               {{'mainModule.Schedule.Active' | translate}}
+
+                                              </label>
+
+                                              <ng-template #InactiveBlock
+                                                            style="color: red;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;">
+
+                                                      <span style="cursor:pointer"
+                                                      (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                           {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                      </span>
+
+                                              </ng-template>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                   {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
+                                                        >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                           {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                            {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                       {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
+                                                      <label class="unit">
+                                                         {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                              <div class="d-flex justify-content-end">
+                                                <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                  <button class="next-btn"
+                                                          style="background-color:#198754;"
+                                                          (click)="UpdateNewPeriod( item.DayId,i)">
+                                                     {{'mainModule.Schedule.Update' | translate}}
+                                                  </button>
+
+                                                </div>
+
+                                            <ng-template  #UpdateBlock>
+
+                                                  <button class="next-btn"
+                                                          (click)="SubmitNewPeriod( item.DayId,i)">
+                                                     {{'mainModule.Schedule.Submit' | translate}}
+                                                  </button>
+
+                                            </ng-template>
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                                    <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+
+                          <div *ngIf="item.DayId == 3">
+
+                              <div class="col-12 d-flex   justify-content-end">
+                                <button (click)="AddPeriod(item.DayId)"
+                                        class="btn  px-4 my-3"
+                                        style="background-color: #E9EAF1;  color: #262d70;">
+
+                                        <i class="fa fa-plus"></i>
+                                        <span style="font-weight: 500;"
+                                                (click)="AddNewPeriod(item.DayId)">
+                                           {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                        </span>
+                                </button>
+
+                              </div>
+
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                                {{'mainModule.Schedule.Period' | translate}} {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                              <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                                <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                              </span> -->
+                                                <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                        (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                                    {{'mainModule.Schedule.Reset' | translate}}
+                                                </label>
+                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                 {{'mainModule.Schedule.Active' | translate}}
+
+                                                </label>
+
+                                                <ng-template #InactiveBlock
+                                                              style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                            <span style="cursor:pointer"
+                                                            (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                                  {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                            </span>
+
+                                                </ng-template>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                   {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
+                                                        >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                           {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                           {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">Visit fee</label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
+                                                      <label class="unit">
+                                                         {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                              <div class="d-flex justify-content-end">
+                                                <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                  <button class="next-btn"
+                                                          style="background-color:#198754;"
+                                                          (click)="UpdateNewPeriod( item.DayId,i)">
+                                                      {{'mainModule.Schedule.Update' | translate}}
+                                                  </button>
+
+                                            </div>
+
+                                            <ng-template  #UpdateBlock>
+
+                                                  <button class="next-btn"
+                                                          (click)="SubmitNewPeriod( item.DayId,i)">
+                                                     {{'mainModule.Schedule.Submit' | translate}}
+                                                  </button>
+
+                                            </ng-template>
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                               <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                               <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                          <div *ngIf="item.DayId == 4">
+
+                              <div class="col-12 d-flex   justify-content-end">
+                                <button (click)="AddPeriod(item.DayId)"
+                                        class="btn  px-4 my-3"
+                                        style="background-color: #E9EAF1;  color: #262d70;">
+
+                                        <i class="fa fa-plus"></i>
+                                        <span style="font-weight: 500;"
+                                                (click)="AddNewPeriod(item.DayId)">
+                                          {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                        </span>
+                                </button>
+
+                              </div>
+
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                              {{'mainModule.Schedule.Period' | translate}} {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                          <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                            <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                          </span> -->
+                                            <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                    (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                               {{'mainModule.Schedule.Reset' | translate}}
+                                            </label>
+
+                                            <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                            style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                            (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                             {{'mainModule.Schedule.Active' | translate}}
+
+                                            </label>
+
+                                            <ng-template #InactiveBlock
+                                                          style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                          <span style="cursor:pointer"
+                                                          (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                               {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                          </span>
+
+                                            </ng-template>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                   {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
+                                                        >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                           {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                           {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                       {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
+                                                      <label class="unit">
+                                                         {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                              <div class="d-flex justify-content-end">
+                                                <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                  <button class="next-btn"
+                                                          style="background-color:#198754;"
+                                                          (click)="UpdateNewPeriod( item.DayId,i)">
+                                                     {{'mainModule.Schedule.Update' | translate}}
+                                                  </button>
+
+                                                </div>
+
+                                                <ng-template  #UpdateBlock>
+
+                                                  <button class="next-btn"
+                                                          (click)="SubmitNewPeriod( item.DayId,i)">
+                                                     {{'mainModule.Schedule.Submit' | translate}}
+                                                  </button>
+
+                                                </ng-template>
+
+                                              </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                               <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                               <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                          <div *ngIf="item.DayId == 5">
+
+                              <div class="col-12 d-flex   justify-content-end">
+                                <button (click)="AddPeriod(item.DayId)"
+                                      class="btn  px-4 my-3"
+                                      style="background-color: #E9EAF1;  color: #262d70;">
+
+                                      <i class="fa fa-plus"></i>
+                                      <span style="font-weight: 500;"
+                                              (click)="AddNewPeriod(item.DayId)">
+                                        {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                      </span>
+
+                              </button>
+                              </div>
+
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                              {{'mainModule.Schedule.Period' | translate}}  {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                              <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                                <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                              </span> -->
+                                                <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                        (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                                   {{'mainModule.Schedule.Reset' | translate}}
+                                                </label>
+                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                 {{'mainModule.Schedule.Active' | translate}}
+
+                                                </label>
+
+                                                <ng-template #InactiveBlock
+                                                              style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                              <span style="cursor:pointer"
+                                                              (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                                    {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                              </span>
+
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                   {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"                                                            >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                            {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">Interval</label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                       {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
+                                                      <label class="unit">
+                                                          {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                                <div class="d-flex justify-content-end">
+                                                  <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                          <button class="next-btn"
+                                                                  style="background-color:#198754;"
+                                                                  (click)="UpdateNewPeriod( item.DayId,i)">
+                                                             {{'mainModule.Schedule.Update' | translate}}
+                                                          </button>
+
+                                                    </div>
+
+                                                    <ng-template  #UpdateBlock>
+
+                                                          <button class="next-btn"
+                                                                  (click)="SubmitNewPeriod( item.DayId,i)">
+                                                              {{'mainModule.Schedule.Submit' | translate}}
+                                                          </button>
+
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                               <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                               <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                          <div *ngIf="item.DayId == 6">
+
+                              <div class="col-12 d-flex   justify-content-end">
+                                <button (click)="AddPeriod(item.DayId)"
+                                      class="btn  px-4 my-3"
+                                      style="background-color: #E9EAF1;  color: #262d70;">
+
+                                      <i class="fa fa-plus"></i>
+                                      <span style="font-weight: 500;"
+                                              (click)="AddNewPeriod(item.DayId)">
+                                        {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                      </span>
+
+                              </button>
+                              </div>
+
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                              {{'mainModule.Schedule.Period' | translate}} {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                              <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                                <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                              </span> -->
+                                                <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                        (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                                   {{'mainModule.Schedule.Reset' | translate}}
+                                                </label>
+                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                  {{'mainModule.Schedule.Active' | translate}}
+
+                                                </label>
+
+                                                <ng-template #InactiveBlock
+                                                              style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                              <span style="cursor:pointer"
+                                                              (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                                   {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                              </span>
+
+                                                </ng-template>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                   {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"                                                            >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                           {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                           {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                       {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
+                                                      <label class="unit">
+                                                          {{'mainModule.Schedule.EGP' | translate}}
+                                                      </label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                                <div class="d-flex justify-content-end">
+
+                                                    <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                      <button class="next-btn"
+                                                              style="background-color:#198754;"
+                                                              (click)="UpdateNewPeriod( item.DayId,i)">
+                                                         {{'mainModule.Schedule.Update' | translate}}
+                                                      </button>
+
+                                                    </div>
+
+                                                    <ng-template  #UpdateBlock>
+
+                                                      <button class="next-btn"
+                                                              (click)="SubmitNewPeriod( item.DayId,i )">
+                                                         {{'mainModule.Schedule.Submit' | translate}}
+                                                      </button>
+
+                                                    </ng-template>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                               <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                               <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                          <div *ngIf="item.DayId == 7">
+
+                              <div class="col-12 d-flex   justify-content-end">
+                                <button (click)="AddPeriod(item.DayId)"
+                                      class="btn  px-4 my-3"
+                                      style="background-color: #E9EAF1;  color: #262d70;">
+
+                                      <i class="fa fa-plus"></i>
+                                      <span style="font-weight: 500;"
+                                              (click)="AddNewPeriod(item.DayId)">
+                                        {{'mainModule.Schedule.AddNewPeriod' | translate}}
+                                      </span>
+                                </button>
+                              </div>
+
+                              <div class="card card-body my-3"  *ngFor="let Period of ClinicScheduleDayList[item.DayId] ;let i = index">
+                                <div class="row">
+                                  <div class="col-12">
+
+                                    <!--row for => Period header   -->
+                                    <div class="col-12 card-header">
+                                      <div class="row">
+                                        <div class="col-12 col-md-6 ">
+                                          <div class="d-flex  justify-content-center justify-content-sm-start ">
+                                            <label >
+                                              {{'mainModule.Schedule.Period' | translate}}  {{i+1}}
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 d-flex   justify-content-center justify-content-sm-end ">
+                                          <div class="delete-period ">
+                                              <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
+                                                <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
+                                              </span> -->
+                                                <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                        (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
+                                                   {{'mainModule.Schedule.Reset' | translate}}
+                                                </label>
+                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
+                                                (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                  {{'mainModule.Schedule.Active' | translate}}
+
+                                                </label>
+
+                                                <ng-template #InactiveBlock
+                                                              style="color: red;padding-left: 15px;padding-right: 15px;user-select: none;">
+
+                                                              <span style="cursor:pointer"
+                                                              (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
+
+                                                                    {{'mainModule.Schedule.NotActive' | translate}}
+
+                                                              </span>
+
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <!--row for => Period Body   -->
+                                    <div class="col-12">
+                                        <div class="row">
+
+                                          <!-- row 1 for=>  TimeFrom , TimeTo -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <label class="lbl-input ">
+                                                    {{'mainModule.Schedule.Operatinghours' | translate}}
+                                                </label>
+                                                <div class="row">
+
+                                                      <!-- TimeFrom col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                              class="form-control input-style-period"
+                                                              style="padding-right: 15px;"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
+                                                              >
+                                                      </div>
+
+                                                      <!-- To label col -->
+                                                      <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
+                                                        <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">
+                                                            {{'mainModule.Schedule.To' | translate}}
+                                                        </label>
+                                                      </div>
+
+                                                      <!-- TimeTo col -->
+                                                      <div class="col-12 col-md-5 ">
+                                                        <input type="time"
+                                                                class="form-control input-style-period"
+                                                                style="padding-right: 15px;"
+                                                                [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo"
+                                                        >
+                                                      </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 2 for = > DurationMedicalExaminationId , Fees   -->
+                                            <div class="col-12">
+                                              <div style="padding: 20px;padding-bottom: 0px;">
+                                                <div class="row" style="margin-bottom: 10px;">
+
+                                                  <!-- DurationMedicalExaminationId -->
+                                                  <div class="col-12 col-md-5"
+                                                        style="margin-bottom: 10px;">
+
+                                                        <label class="lbl-input">
+                                                            {{'mainModule.Schedule.Interval' | translate}}
+                                                        </label>
+
+                                                        <div style="position: relative;">
+                                                          <select (change)="SelectDuration($event)"
+                                                                  class="form-select" aria-label="Default select example">
+
+                                                                <option value="">
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                </option>
+
+                                                          </select>
+                                                        </div>
+
+                                                  </div>
+
+                                                  <!-- Fees col -->
+                                                  <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
+
+                                                    <label class="lbl-input ">
+                                                        {{'mainModule.Schedule.Visitfee' | translate}}
+                                                    </label>
+
+                                                    <div style="position: relative;">
+                                                      <input type="number"
+                                                              class="form-control input-style-period"
+                                                              [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees">
+                                                      <label class="unit">EGP</label>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+
+                                            <!-- row 3 for => Submit Btn -->
+                                            <div class="col-12 ">
+                                                <div class="d-flex justify-content-end">
+
+                                                  <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
+
+                                                          <button class="next-btn"
+                                                                  style="background-color:#198754;"
+                                                                  (click)="UpdateNewPeriod( item.DayId,i)">
+                                                             {{'mainModule.Schedule.Update' | translate}}
+                                                          </button>
+
+                                                    </div>
+
+                                                    <ng-template  #UpdateBlock>
+
+                                                          <button class="next-btn"
+                                                                  (click)="SubmitNewPeriod( item.DayId,i)">
+                                                             {{'mainModule.Schedule.Submit' | translate}}
+                                                          </button>
+
+                                                    </ng-template>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+
+                               <!-- Scroll To This When {{'mainModule.Schedule.AddNewPeriod' | translate}} In This Day  -->
+                               <label id="DisplayNewPeriod{{item.DayId}}"></label>
+                          </div>
+
+                        </ng-template>
+
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom: 15px;">
+      <div class="col-12 d-flex justify-content-center justify-content-sm-end">
+          <button class="Back-btn"
+                  (click)="Back()">
+              Back
+          </button>
+      </div>
+  </div>
+
+</div>

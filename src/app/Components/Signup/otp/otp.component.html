@@ -1,0 +1,38 @@
+<div class="row main-row">
+    <div class="col-12 noselect">
+        <h3 class="title">
+            {{"mainModule.otp.EntertheVerificationCode" | translate }}
+        </h3>
+    </div>
+    <div class="col-12">
+        <div class="CodeSent-style">
+          {{"mainModule.otp.Codesentto" | translate }} <span class="phone-style">{{PhoneNumber}}</span>
+        </div> 
+        <div class="expired-style">
+             {{"mainModule.otp.Thiscodewillbeexpiredwithin" | translate }}
+            <span class="couter-style">{{minute}}:{{second}}</span>
+        </div>   
+    </div>
+    <div class="col-12 code-block-main">
+        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE1" id="codeBox1" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)"></div>
+        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE2" id="codeBox2" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)"></div>
+        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE3" id="codeBox3" type="number" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)"></div>
+        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE4" id="codeBox4" type="number" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)"></div>
+    </div>
+    <div class="col-12 dont-recieve-block">
+        <span> {{ 'mainModule.otp.Didntrecivecode' | translate }}
+            <button class="Resend-block" [disabled]="EnableResendLink" (click)="ResendCode()"> {{ 'mainModule.otp.ResendAgain' | translate }}</button>
+         </span>
+    </div>
+      <!-- Next Button Block -->
+      <div class="col-12">
+        <div class="row" >
+            <button (click)="verify()" 
+                    class="btn next-btn">
+
+                {{ 'mainModule.otp.verify' | translate }}
+            </button>
+            <!-- [disabled]="signupform.invalid"   -->
+        </div>
+    </div>
+</div>

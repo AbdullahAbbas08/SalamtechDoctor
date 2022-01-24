@@ -1,0 +1,180 @@
+
+.main-div
+{
+  min-height: 100%;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.card{
+  background-color: transparent;
+  border-width: 0px;
+  /* background-color: tomato; */
+}
+.card-header
+{
+  padding: 15px;
+  border-radius: 25px 25px 0px 0px;
+  background-color: #00D2CA;
+  color: #fff;
+}
+.card-body
+{
+  background-color: rgb(243, 243, 243);
+  border-radius: 0px 0px 25px 25px ;
+
+}
+.ForgetPassword
+{
+  padding:5px ;
+  color: #2d2570;
+  cursor: pointer;
+}
+
+.form-group-Password
+{
+  margin-bottom: 50px;
+  position: relative;
+}
+
+#PasswordLogin
+{
+  padding-right: 42px;
+}
+.Create-account
+{
+  margin-bottom: 100px;
+  color: #97999a;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.create-account-link
+{
+  font-weight: 500;
+  color: #00D2CA;
+  font-weight: 600;
+
+}
+.Login-link
+{
+  font-weight: 500;
+  color: #262470;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.PhoneNumber-col
+{
+ position: relative;
+}
+
+.card-body input
+{
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 10px;
+}
+.card-body
+{
+  background-color: rgb(240, 240, 240);
+}
+
+.login-btn
+{
+  background-color: #262d70;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  padding-top:10px ;
+  padding-bottom:10px ;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.login-btn label
+{
+  cursor: pointer;
+}
+
+.label-input
+{
+  font-weight: 500;
+  color: #97999a;
+}
+
+.star
+{
+  color: red;
+  font-weight: 500;
+}
+.PhoneNumber-col .form-group
+{
+  position: relative;
+}
+
+.PhoneNumber-col input
+{
+  background-color: white;
+  padding-left: 75px;
+}
+
+.unit {
+  position: absolute;
+  display: block;
+  left: 40px;
+  top: 10px;
+  font-size: 18px;
+  line-height: 17px;
+  /* font-weight: 500; */
+}
+
+.icon {
+  padding-left:65px;
+  background: url("../../../../assets/img/Group512657.png") no-repeat left;
+  background-size: 20px;
+  /* background-color: red; */
+  background-position-x: 10px;
+  content: var("+20");
+}
+
+.icon-rtl {
+  padding-right: 65px;
+  background: url("../../../../assets/img/Group512657.png") no-repeat right;
+  background-size: 20px;
+  content: var("+20");
+}
+
+.eye {
+  position: absolute;
+  display: block;
+  top: 12px;
+  font-size: 15px;
+  line-height: 17px;
+  font-weight: 500;
+  right: 15px;
+  cursor: pointer;
+}
+
+.Checkbox-Condition
+{
+  margin: 5px;
+  display: inline-block;
+  width: fit-content;
+  background-color: blue;
+}
+
+.CreateAccount-btn
+{
+  background-color: #262d70;
+  color: white;
+  padding: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  border-width: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: 500;
+}

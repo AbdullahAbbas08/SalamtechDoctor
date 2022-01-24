@@ -1,0 +1,177 @@
+<div dir="auto" class="main-div container-fluid d-flex justify-content-center align-items-center ">
+  <div class="row" style="height: 100%;" >
+    <div class="col-12 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-9">
+        <div class="card">
+          <h5 class="card-header d-flex justify-content-center">
+            {{ "mainModule.RegisterPage.Signup" | translate }}
+          </h5>
+
+          <div class="card-body">
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-md-10">
+                <div class="row">
+
+                    <!-- First Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.FirstName" | translate }}
+                      </label>
+
+                      <div dir="auto" class="form-group">
+                        <input type="text" class="form-control" />
+                      </div>
+                    </div>
+
+                    <!-- Middle Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.MiddleName" | translate }}
+                      </label>
+
+                      <div dir="auto" class="form-group">
+                        <input type="text" class="form-control" />
+                      </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.LastName" | translate }}
+                      </label>
+
+                      <div dir="auto" class="form-group">
+                        <input type="text" class="form-control" />
+                      </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-12 col-md-6 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.Email" | translate }}
+                      </label>
+
+                      <div dir="auto" class="form-group">
+                        <input type="email" class="form-control" />
+                      </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="col-12 col-md-6 PhoneNumber-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.PhoneNumber" | translate }}
+                      </label>
+
+                      <div dir="auto" class="form-group">
+                        <input
+                          type="number"
+                          class="form-control"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          maxlength="10"
+                          minlength="10"
+                          [class.icon]="1"
+                        />
+
+                        <span class="unit">+20</span>
+                      </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-12 col-md-6 Password-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.Password" | translate }}
+                      </label>
+
+                      <div class="form-group form-group-Password">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="***********"
+                          id="PasswordLogin"
+                        />
+
+                        <span
+                          dir="auto"
+                          class="eye"
+                          (click)="passwordIcon('PasswordLogin')"
+                        >
+                          <i class="far fa-eye text-end" id="togglePassword"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Re-Enter Password -->
+                    <div class="col-12 col-md-6 Password-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{
+                          "mainModule.RegisterPage.ReEnterPassword" | translate
+                        }}
+                      </label>
+
+                      <div class="form-group form-group-Password">
+                        <input
+                          type="password"
+                          class="form-control"
+                          placeholder="***********"
+                          id="ReEnterPassword"
+                        />
+
+                        <span
+                          dir="auto"
+                          class="eye"
+                          (click)="passwordIcon('ReEnterPassword')"
+                        >
+                          <i class="far fa-eye text-end" id="togglePassword"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- Terms & Condition  -->
+                    <div class="col-12">
+
+
+                      <label  class="Create-account"
+                              (click)="Checkinput()">
+
+                              <input  type="checkbox"
+                                      id="checkboxTermsConditions"
+                                      class="Checkbox-Condition" />
+
+                            {{ "mainModule.RegisterPage.Terms&Conditions" | translate }}
+
+                            <span class="create-account-link">
+                                  {{ "mainModule.RegisterPage.Terms&ConditionsKeyword" | translate }}
+                            </span>
+
+                      </label>
+                    </div>
+
+                    <!-- Create Account Button -->
+                  <div class="col-12 d-flex justify-content-end align-items-center">
+                      <label class="label-input" style="text-align: center;">
+                        {{ "mainModule.RegisterPage.AlreadyHaveAnAccount" | translate }}
+                          <span class="Login-link" routerLink="/Login">
+                            {{ "mainModule.RegisterPage.Signin" | translate }}
+                          </span>
+                      </label>
+                      <button class="CreateAccount-btn">
+                        {{ "mainModule.RegisterPage.CreateAccount" | translate }}
+                      </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+{
+    "mainModule":{
+        "welcomeMessege":"you are welcome ",
+        "Home":"Home",
+        "AboutUs":"About Us",
+        "ContactUs":"Contact Us",
+        "Help":"Help",
+        "signup":{
+            "FirstName":"First Name",
+            "MiddleName":"Middle Name",
+            "LastName":"Last Name",
+            "Email":"Email",
+            "PhoneNumber":"Phone Number",
+            "Password":"Password",
+            "ConfirmPassword":"Confirm Password",
+            "Next":"Next"   
+        },
+        "ResendCode":{
+            "verify":"verify"
+        },
+        "login":{
+          "LoginAsDoctor":"Login As Doctor",
+          "PhoneNumber":"Phone Number",
+          "SignIn":"Sign In",
+          "DontHaveAnAccount?":"Don't Have An Account?",
+          "createAccount":"Create Account",
+          "ForgetPassword":"Forget Password?",
+          "LoginAsPatient":"Login As Patient"
+        },
+        "LoginPage":{
+          "SignIn":"Sign In",
+          "PhoneNumber":"Phone Number",
+          "Password":"Password",
+          "ForgetPassword":" Forgotten password ? ",
+          "SignInBtn":"Signin"
+        },
+        "RegisterPage":{
+          "Signup":"Create Account",
+          "FirstName":"First Name",
+          "MiddleName":"Middle Name",
+          "LastName":" Last   Name ",
+          "PhoneNumber":"Phone Number",
+          "Email":"Email",
+          "Password":"Password",
+          "ReEnterPassword":"ReEnter Password",
+          "Terms&Conditions":" By singing up you approve on our",
+          "Terms&ConditionsKeyword":"Terms & Conditions",
+          "AlreadyHaveAnAccount":"Already have an account ?",
+          "Signin":"Signin",
+          "CreateAccount":"Create Account"
+        },
+        "otp":{
+            "verify":"verify",
+            "ResendAgain":"Resend Again",
+            "Didntrecivecode":"Didn’t recive a code ?",
+            "EntertheVerificationCode":"Enter the Verification Code",
+            "Codesentto":"Code sent to",
+            "Thiscodewillbeexpiredwithin":"This code will be expired within "
+        },
+        "sideBar":{
+          "Signup":"Sign Up",
+          "DoctorInfo":"Doctor info",
+          "Certificates":"Certificates",
+          "LegalDocuments":"Legal Documents",
+          "Congratulations":"Congratulations",
+          "singingUpYouAreApproveOur":"singing up you are approve our",
+          "Terms&Conditions":"Terms & Conditions",
+          "AddClinics":"Add Clinics"
+        },
+        "main":{
+          "menu":"MENU",
+          "option":"OPTIONS",
+          "settings":"Settings",
+          "Help":"Help",
+          "Logout":"Logout",
+          "Dashboard":"Dashboard",
+          "Clinics":"Clinics",
+          "Appointments":"Appointments",
+          "Services":"Services",
+          "Profile":"Profile"
+        },
+        "DoctorInfo":{
+          "FirstNameAr":"الأسم الأول",
+          "MiddleNameAr":"الأسم الوسطى",
+          "LastNameAr":"الأسم الأخير",
+          "Gender":"Select Gender",
+          "Male":"Male",
+          "Female":"Female",
+          "Nationality":"Nationality",
+          "Egypt":"Egypt",
+          "Date_of_birth":"Date of birth",
+          "Speciality":"Speciality",
+          "SubSpeciality":"Sub-Speciality",
+          "Seniority":"Seniority",
+          "BiographyAr":"معلومات شخصية",
+          "Biography":"Biography"
+        },
+        "Documents":{
+          "UploadNationalIdFrontFace":"Upload Front Face required",
+          "UploadNationalIdBackFace":"Upload Back Face if Available",
+          "UploadSyndicateFrontFace":"Upload Front Face required",
+          "UploadSyndicatebackFace":" Upload Back if Available",
+          "Next":"Next"
+        },
+        "Clinic":{
+          "sidebarinfo":"Clinic Info",
+          "sidebargalary":"Clinic Galary",
+          "sidebarschedule":"Clinic Schedule",
+          "GalayTitle":"Galary Title"
+        },
+        "Certificate":{
+          "AddNewCertificate":"Add New Certificate",
+          "NewCertificate":"New Certificate",
+          "Reset":"Reset",
+          "Delete":"Delete",
+          "CertificateTitle":"Certificate Title",
+          "CertificateTitleAr":"العنوان بالعربي",
+          "Description":"Description",
+          "DescriptionAr":"الوصف بالعربي",
+          "Year":"Year",
+          "View":"View",
+          "Submit":"Submit",
+          "Save":"Save",
+          "Next":"Next"
+        },
+        "ClinicInfo":{
+          "ChangeLogo":"Change Logo",
+          "Name":"Name",
+          "NameAr":"الإسم بالعربى",
+          "PhoneNumber":"Phone Number",
+          "PhoneNumber2":"Another Phone Number",
+          "PhoneNumber3":"Another Phone Number",
+          "FixedFee":"FixedFee",
+          "Location":"Location (GoogleMap)",
+          "PickLocation":"Pick Location",
+          "City":"City",
+          "Area":"Area",
+          "SelectArea":"Select Area",
+          "Street":"Street",
+          "BuildingNumber":"Building Number",
+          "FloorNumber":"Floor Number",
+          "ApartmentNumber":"Apartment Number",
+          "Services":"Services",
+          "Next":"Next"
+        },
+        "Schedule":{
+          "Schedule":"Schedule",
+          "Periods":"Periods",
+          "Period1":"Period 1",
+          "Reset":"Reset",
+          "Operatinghours":"Operating hours",
+          "SelectDuration":"Select Duration",
+          "Minutes":"Minutes",
+          "Visitfee":"Visit fee",
+          "EGP":"EGP",
+          "Submit":"Submit",
+          "AddNewPeriod":"Add New Period",
+          "Period":"Period",
+          "Active":"Active",
+          "NotActive":"Not Active",
+          "Interval":"Interval",
+          "Update":"Update"
+        }
+    }
+}

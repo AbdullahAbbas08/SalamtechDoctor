@@ -1,0 +1,70 @@
+.container
+{
+    padding: 20px;
+}
+.Appointment-table-header
+{
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+    color: #8b90a0;
+}
+
+.Clinic-Logo-Style
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.padding-row
+{
+    padding-top: 15px;
+}
+
+.acrions-btn
+{
+    background-color: #03bbb4;
+    padding: 6px;
+    border-width: 0px;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #fff;
+    margin-right: 1px;
+    font-weight: 500;
+}
+
+.PostReport-btn
+{
+    background-color: #262d70;
+}
+
+.cancel-btn
+{
+    background-color: #fff;
+    color: red;
+}
+.chat-btn
+{
+    background-color: #81ddd9;
+}
+
+.location
+{
+    background-color: #81ddd9;
+}
+
+.comunicate-btn
+{
+    min-width: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.type-bg-icon
+{
+    width:  18px;
+    height: 18px;
+}

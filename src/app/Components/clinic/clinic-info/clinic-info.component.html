@@ -1,0 +1,514 @@
+<form #form="ngForm" class="d-block" dir="auto" [formGroup]="ClinicInfoForm">
+
+  <div class="row">
+    <!-- Picture Doctor -->
+    <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+      <div class="row img-block just">
+        <div class="col img-col-block">
+          <img src="{{ imgURL }}" />
+        </div>
+      </div>
+      <div class="row ChangeProfilePhoto-block">
+        <div
+          class="col justify-content-center"
+          style="display: flex; align-items: center"
+        >
+          <input
+            type="file"
+            formControlName="clinicLogo"
+            #file
+            accept="image/*"
+            id="getFile"
+            style="display: none"
+            (change)="preview(file.files)"
+          />
+
+          <button onclick="document.getElementById('getFile').click()"
+                  class="changePhoto-btn">
+             {{"mainModule.ClinicInfo.ChangeLogo" | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-12">
+
+      <div class="row">
+
+          <!-- Name -->
+          <div class="col-12 col-md-6">
+            <span class="lbl-Register">
+              {{"mainModule.ClinicInfo.Name" | translate}}
+            </span>
+            <span class="star"> * </span>
+            <div class="input-style">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="Name"
+                [class.is-valid]="
+                  ClinicInfoForm.controls['Name'].valid &&
+                  ClinicInfoForm.controls['Name'].touched
+                "
+                [class.is-invalid]="
+                  ClinicInfoForm.controls['Name'].invalid &&
+                  ClinicInfoForm.controls['Name'].touched
+                "
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="50"
+                minlength="3" />
+            </div>
+          </div>
+
+          <!-- NameAr -->
+          <div class="col-12 col-md-6 textForArabic">
+            <span class="lbl-Register">
+              {{"mainModule.ClinicInfo.NameAr" | translate}}
+            </span>
+            <span class="star"> * </span>
+            <div class="input-style">
+              <input
+                type="text"
+                class="form-control textForArabic"
+                formControlName="NameAr"
+                [class.is-valid]="
+                  ClinicInfoForm.controls['NameAr'].valid &&
+                  ClinicInfoForm.controls['NameAr'].touched
+                "
+                [class.is-invalid]="
+                  ClinicInfoForm.controls['NameAr'].invalid &&
+                  ClinicInfoForm.controls['NameAr'].touched
+                "
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="50"
+                minlength="3"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-12 col-md-6">
+          <span class="lbl-Register">
+            {{"mainModule.signup.Email" | translate}}
+          </span>
+          <span class="star"> * </span>
+          <div dir="auto" class="input-style">
+            <input
+              type="email"
+              formControlName="Email"
+              class="form-control"
+              [class.is-valid]="
+                ClinicInfoForm.controls['Email'].valid &&
+                ClinicInfoForm.controls['Email'].touched
+              "
+              [class.is-invalid]="
+                ClinicInfoForm.controls['Email'].invalid &&
+                ClinicInfoForm.controls['Email'].touched
+              "
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="50"
+              minlength="5"
+            />
+          </div>
+          </div>
+
+          <!-- FixedFee -->
+          <div class="col-12 col-md-6">
+            <span class="lbl-Register">
+              {{"mainModule.ClinicInfo.FixedFee" | translate}}
+            </span>
+            <span class="star"> * </span>
+            <div dir="auto" class="input-style">
+              <input
+
+                formControlName="FixedFee"
+                type="number"
+                style="border-width: 1px; outline: none; display: block"
+                class="form-control"
+                [class.is-valid]="
+                  ClinicInfoForm.controls['FixedFee'].valid &&
+                  ClinicInfoForm.controls['FixedFee'].touched
+                "
+                [class.is-invalid]="
+                  ClinicInfoForm.controls['FixedFee'].invalid &&
+                  ClinicInfoForm.controls['FixedFee'].touched
+                "
+              />
+            </div>
+          </div>
+
+          <!-- city -->
+          <div class="col-12 col-md-6">
+            <span class="lbl-Register">
+              {{"mainModule.ClinicInfo.City" | translate}}
+            </span>
+            <span class="star"> * </span>
+            <select
+              formControlName="City"
+              class="form-select"
+              aria-label="Default select example"
+              (change)="SelectCity($event)"
+            >
+              <option value="" selected disabled>Select City</option>
+
+              <option *ngFor="let item of Cities" value="{{ item.Id }}">
+                {{ item.Name }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Area -->
+          <div class="col-12 col-md-6">
+            <span class="lbl-Register">
+                {{"mainModule.ClinicInfo.Area" | translate}}
+              </span>
+            <span class="star"> * </span>
+            <select
+              formControlName="Area"
+              class="form-select"
+              aria-label="Default select example"
+              (change)="SelectArea($event)"
+            >
+              <option value="" selected disabled>
+                {{"mainModule.ClinicInfo.SelectArea" | translate}}
+              </option>
+
+              <option *ngFor="let item of Areas" value="{{ item.Id }}">
+                {{ item.Name }}
+              </option>
+            </select>
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <!-- Address -->
+    <div class="col-12 col-md-8">
+      <span class="lbl-Register">
+         {{"mainModule.ClinicInfo.Location" | translate}}
+      </span>
+      <!-- <span class="star"> * </span> -->
+      <div class="input-style">
+        <input
+        [(ngModel)]="address"
+          type="text"
+          class="form-control textForArabic"
+          formControlName="Address"
+          [class.is-valid]="
+            ClinicInfoForm.controls['Address'].valid &&
+            ClinicInfoForm.controls['Address'].touched
+          "
+          [class.is-invalid]="
+            ClinicInfoForm.controls['Address'].invalid &&
+            ClinicInfoForm.controls['Address'].touched
+          "
+
+        />
+      </div>
+    </div>
+
+    <!-- location -->
+    <div class="col-12 col-md-4" style="margin-bottom: 20px;">
+
+          <div class="d-flex justify-content-center h-75"
+                style="align-items: center">
+
+                <div class="mt-2">
+
+                    <button class="btn locationButton px-4 mt-1"
+                            (click)="openGoogelMapsModal()">
+
+                          <svg class="mb-1"
+                                width="21"
+                                height="21"
+                                viewBox="0 0 21 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_147_2460)">
+                              <path
+                                d="M10.9128 6.81087C9.07109 6.81087 7.57943 8.30254 7.57943 10.1442C7.57943 11.9859 9.07109 13.4775 10.9128 13.4775C12.7544 13.4775 14.2461 11.9859 14.2461 10.1442C14.2461 8.30254 12.7544 6.81087 10.9128 6.81087ZM18.3628 9.31087C17.9794 5.83587 15.2211 3.07754 11.7461 2.69421V0.977539H10.0794V2.69421C6.60443 3.07754 3.84609 5.83587 3.46276 9.31087H1.74609V10.9775H3.46276C3.84609 14.4525 6.60443 17.2109 10.0794 17.5942V19.3109H11.7461V17.5942C15.2211 17.2109 17.9794 14.4525 18.3628 10.9775H20.0794V9.31087H18.3628ZM10.9128 15.9775C7.68776 15.9775 5.07943 13.3692 5.07943 10.1442C5.07943 6.91921 7.68776 4.31087 10.9128 4.31087C14.1378 4.31087 16.7461 6.91921 16.7461 10.1442C16.7461 13.3692 14.1378 15.9775 10.9128 15.9775Z"
+                                fill="white"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_147_2460">
+                                <rect width="20"
+                                      height="20"
+                                      fill="white"
+                                      transform="translate(0.912109 0.144531)"/>
+                              </clipPath>
+                            </defs>
+                          </svg>
+                          {{"mainModule.ClinicInfo.PickLocation" | translate}}
+                    </button>
+
+                </div>
+
+          </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+      <!-- Phone Number -->
+      <div class="col-12 col-md-4 mb-4">
+        <span class="lbl-Register">
+          {{"mainModule.ClinicInfo.PhoneNumber" | translate}}
+        </span>
+        <span class="star"> * </span>
+        <div dir="auto" class="input-style">
+          <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
+                          <span>+2</span> -->
+
+          <!--  [class.is-valid]="
+          ClinicInfoForm.controls['PhoneNumber'].valid &&
+          ClinicInfoForm.controls['PhoneNumber'].touched
+          "
+          [class.is-invalid]="
+            ClinicInfoForm.controls['PhoneNumber'].invalid &&
+            ClinicInfoForm.controls['PhoneNumber'].touched
+          " -->
+          <input
+            formControlName="PhoneNumber"
+            type="text"
+            style="
+              border-width: 1px;
+              outline: none;
+              display: block;
+              padding-left: 70px;
+            "
+            class="form-control"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            minlength="10"
+
+            [class.icon]="1"
+          />
+          <span class="unit">+20</span>
+
+        </div>
+      </div>
+
+      <!-- Phone Number2 -->
+      <div class="col-12 col-md-4 mb-4">
+        <span class="lbl-Register">
+            {{"mainModule.ClinicInfo.PhoneNumber2" | translate}}
+        </span>
+        <!-- <span class="star"> * </span> -->
+        <div dir="auto" class="input-style">
+          <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
+                          <span>+2</span> -->
+
+          <!-- [class.is-valid]="
+              ClinicInfoForm.controls['PhoneNumber2'].valid &&
+              ClinicInfoForm.controls['PhoneNumber2'].touched
+            "
+            [class.is-invalid]="
+              ClinicInfoForm.controls['PhoneNumber2'].invalid &&
+              ClinicInfoForm.controls['PhoneNumber2'].touched
+            " -->
+          <input
+            formControlName="PhoneNumber2"
+            type="number"
+            style="
+              border-width: 1px;
+              outline: none;
+              display: block;
+              padding-left: 70px;
+            "
+            class="form-control"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            minlength="10"
+            [class.icon]="1"
+          />
+          <span class="unit">+20</span>
+        </div>
+      </div>
+
+      <!-- Phone Number3 -->
+      <div class="col-12 col-md-4 mb-4">
+        <span class="lbl-Register">
+        {{"mainModule.ClinicInfo.PhoneNumber3" | translate}}
+        </span>
+        <!-- <span class="star"> * </span> -->
+        <div dir="auto" class="input-style">
+          <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
+                          <span>+2</span> -->
+
+          <!--
+            [class.is-valid]="
+              ClinicInfoForm.controls['PhoneNumber3'].valid &&
+              ClinicInfoForm.controls['PhoneNumber3'].touched
+            "
+            [class.is-invalid]="
+              ClinicInfoForm.controls['PhoneNumber3'].invalid &&
+              ClinicInfoForm.controls['PhoneNumber3'].touched
+            "
+            -->
+          <input
+            formControlName="PhoneNumber3"
+            type="number"
+            style="
+              border-width: 1px;
+              outline: none;
+              display: block;
+              padding-left: 70px;
+            "
+            class="form-control"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            minlength="10"
+            [class.icon]="1"
+          />
+          <span class="unit">+20</span>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+      <!-- Building Number -->
+      <div class="col-12 col-md-4 mb-4">
+        <span class="lbl-Register">
+        {{"mainModule.ClinicInfo.BuildingNumber" | translate}}
+        </span>
+        <span class="star"> * </span>
+        <div dir="auto" class="input-style">
+          <input
+            formControlName="BuildingNumber"
+            type="number"
+            style="border-width: 1px; outline: none; display: block"
+            class="form-control"
+            [class.is-valid]="
+              ClinicInfoForm.controls['BuildingNumber'].valid &&
+              ClinicInfoForm.controls['BuildingNumber'].touched
+            "
+            [class.is-invalid]="
+              ClinicInfoForm.controls['BuildingNumber'].invalid &&
+              ClinicInfoForm.controls['BuildingNumber'].touched
+            "/>
+
+        </div>
+      </div>
+
+      <!-- FloorNumber -->
+      <div class="col-12 col-md-8 mb-4">
+        <span class="lbl-Register">
+            {{"mainModule.ClinicInfo.FloorNumber" | translate}}
+        </span>
+        <span class="star"> * </span>
+        <div dir="auto" class="input-style">
+          <input
+            formControlName="FloorNumber"
+            type="number"
+            style="border-width: 1px; outline: none; display: block"
+            class="form-control"
+            [class.is-valid]="
+              ClinicInfoForm.controls['FloorNumber'].valid &&
+              ClinicInfoForm.controls['FloorNumber'].touched
+            "
+            [class.is-invalid]="
+              ClinicInfoForm.controls['FloorNumber'].invalid &&
+              ClinicInfoForm.controls['FloorNumber'].touched
+            "
+          />
+        </div>
+      </div>
+
+  </div>
+
+
+  <!-- <div class="row"> -->
+
+    <!-- Street -->
+    <!-- <div class="col-12 col-md-4 mb-4">
+      <span class="lbl-Register">
+         {{"mainModule.ClinicInfo.Street" | translate}}
+      </span>
+      <span class="star"> * </span>
+      <div dir="auto" class="input-style">
+        <input
+          formControlName="Street"
+          type="text"
+          style="border-width: 1px; outline: none; display: block"
+          class="form-control"
+          [class.is-valid]="
+            ClinicInfoForm.controls['Street'].valid &&
+            ClinicInfoForm.controls['Street'].touched
+          "
+          [class.is-invalid]="
+            ClinicInfoForm.controls['Street'].invalid &&
+            ClinicInfoForm.controls['Street'].touched
+          "
+        />
+      </div>
+    </div> -->
+  <!-- </div> -->
+
+  <!-- <div class="row"> -->
+    <!-- ApartmentNumber -->
+    <!-- <div class="col-12 col-md-4 mb-4">
+      <span class="lbl-Register">
+         {{"mainModule.ClinicInfo.ApartmentNumber" | translate}}
+      </span>
+      <span class="star"> * </span>
+      <div dir="auto" class="input-style">
+        <input
+          formControlName="ApartmentNumber"
+          type="number"
+          style="border-width: 1px; outline: none; display: block"
+          class="form-control"
+          [class.is-valid]="
+            ClinicInfoForm.controls['ApartmentNumber'].valid &&
+            ClinicInfoForm.controls['ApartmentNumber'].touched
+          "
+          [class.is-invalid]="
+            ClinicInfoForm.controls['ApartmentNumber'].invalid &&
+            ClinicInfoForm.controls['ApartmentNumber'].touched
+          "
+        />
+      </div>
+    </div> -->
+  <!-- </div> -->
+
+  <div class="row">
+    <!-- Services -->
+    <div class="col-12 mb-4">
+      <span class="lbl-Register">
+          {{"mainModule.ClinicInfo.Services" | translate}}
+      </span>
+      <span class="star"> * </span>
+      <ng-multiselect-dropdown
+        formControlName="Services"
+        [placeholder]="'custom placeholder'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems"
+        (ngModelChange)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)">
+      </ng-multiselect-dropdown>
+    </div>
+  </div>
+
+</form>
+
+<div class="row justify-content-end mt-4">
+  <div class="col-3">
+    <button
+      [disabled]="ClinicInfoForm.invalid"
+      (click)="submitClinic()"
+      class="btn text-white w-100"
+      style="background-color: #262d70">
+      {{"mainModule.ClinicInfo.Next" | translate}}
+    </button>
+  </div>
+</div>

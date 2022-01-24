@@ -1,0 +1,36 @@
+<div class="row main-sidebar" >
+
+    <div class="col-12 col-md-4 col-xl-2 sidebar-col">
+        <div class="sidebar-item">
+            <ul>
+                <li id="Signup"          class="li-Content" ><span>{{'mainModule.sideBar.Signup' | translate}}</span></li>
+                <li id="Doctorinfo" #DoctorinfoRef   class="li-Content" ><span>{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
+                <li id="Certificates"    class="li-Content" ><span>{{'mainModule.sideBar.Certificates' | translate}}</span></li>
+                <li id="LegalDocuments"  class="li-Content" ><span>{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
+                <li id="Congratulations" class="li-Content" ><span>{{'mainModule.sideBar.AddClinics' | translate}}</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class=" col-12 col-md-8 col-xl-10 var-component"  >
+        <div class="container container-outlet"  >
+            <div class="row row-outlet" >
+                <div class="col-12" >
+                    <router-outlet >
+
+
+                    </router-outlet>
+                </div>
+            </div>
+            <div class="row row-terms " >
+                <div class="col-12 Terms-Condition-style"  >
+                        <span class="">
+                          {{'mainModule.sideBar.singingUpYouAreApproveOur' | translate}} <span class="termsCondition-style">{{'mainModule.sideBar.Terms&Conditions' | translate}}</span>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

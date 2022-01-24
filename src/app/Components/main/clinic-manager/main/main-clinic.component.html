@@ -1,0 +1,61 @@
+<!-- No Clinic Found Block -->
+<div *ngIf="tempvar == true;else elseBlock" class="main-clinic d-flex  justify-content-center align-items-center">
+    <div class="row d-flex justify-content-center ">
+        <img src="../../../../assets/img/NoClinicFound.png" class="NoClinicFound-style">
+        <div style="text-align: center;">
+            <span class="NoClinicFound-title">There are no added clinic yet</span>
+            <span class="NoClinicFound-lbl">Manage your all Clinics by add</span>
+            <span class="NoClinicFound-lbl">Them throw one press</span>
+        </div>
+        <div class="AddNewClinic-style">
+            Add New Clinic
+        </div>
+    </div>
+</div>
+
+<!-- Exist Clinic Block -->
+<ng-template #elseBlock>
+    <div class="row ">
+        <div class="col-12" style="padding-left:0px;padding-bottom: 20px;">
+            <div class="AddNewClinic-style" routerLink="/clinic">
+                <i class="fas fa-plus"></i>
+                Add New Clinic
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 Clinic-block">
+            <div class="container">
+                <div class="row Clinic-table-header">
+                    <div class="col-3 ">Clinic Name</div>
+                    <div class="col-3 d-flex justify-content-center">Clinic Number</div>
+                    <div class="col-2 d-flex justify-content-center">Appointments</div>
+                    <div class="col-2 d-flex justify-content-center">Location</div>
+                    <div class="col-2 d-flex justify-content-center">Actions</div>
+                </div>
+                <div *ngFor="let item of ClinicList" class="row Clinic-table">
+                    <div class="col-3 ">
+                            <img class="Clinic-Logo-Style" 
+                                src="{{IamgeURL}}{{item.Logo}}" 
+                                onerror="this.src='../../../../assets/img/LogoAlternative.png';">
+                            {{item.Name}}
+                    </div>
+                    <div class="col-3 d-flex justify-content-center">
+                        {{item.Phone}}
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                       1 
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                       
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                        <i class="fas fa-map-marker-alt Icon-style map-icon" (click)="openGoogelMapsModal()" ></i>
+                         &nbsp;&nbsp;&nbsp;
+                        <i class="far fa-edit Icon-style"           (click)="EditDoctorProfile(item.ClinicId)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,255 @@
+<div class="container mt-3">
+
+    <div class="row ">
+
+        <div class="col-12 d-flex justify-content-end" style="padding: 10px;padding-right: 30px;">
+          <button class="addnewcertificate" [routerLink]="['/Certificates']">
+            {{"mainModule.Certificate.AddNewCertificate" | translate}}
+          </button>
+        </div>
+
+        <!-- history of certificates -->
+        <div *ngIf="submittedCertificate" class="col-12" style="background-color: blue;">
+          <div class=" card-header
+                        d-flex
+                        border-0
+                        mb-2
+                        text-muted
+                        justify-content-between" 
+                        style="background-color: #f9f9f9 !important" *ngFor="let item of submittedCertificate.Data; let i= index">
+            <div (click)="Edit(item.Id)" class="btn col-6 text-start">
+              {{ item.Title }}
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+              <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + i">
+                <span dir="auto" class="eye text-muted">
+                  <i class="far fa-eye mx-1" id="togglePassword"></i>
+                </span>
+              </div>
+
+              <div class="modal fade" id="exampleModal{{i}}" tabindex="-1" aria-labelledby="exampleModal2Label"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <img src="https://salamtech.azurewebsites.net/{{ item.CertificateUrl }}" />
+                  </div>
+                </div>
+              </div>
+              <div class="btn" (click)="DeleteCertificate(item.Id)">
+                <span dir="auto" class="eye text-danger">
+                  <i class="far fa-trash-alt mx-1"></i>
+                </span>
+              </div>
+            </div>
+          </div> 
+        </div>
+
+      <!-- Submit Form -->
+      <form #form="ngForm" class="col-12 d-flex justify-content-start" [formGroup]="CertificateForm">
+
+        <div class="col-12">
+          <div class="card">
+
+            <div class="card-header d-flex border-0 text-muted justify-content-between"
+                  style="background-color: #f9f9f9 !important">
+
+              <div class="btn">
+                {{"mainModule.Certificate.NewCertificate" | translate}}
+              </div>
+
+              <div>
+                <div class="btn px-1" (click)="resetForm()">{{"mainModule.Certificate.Reset" | translate}}</div>
+                <div id="delete" style="display: none;" class="btn text-danger">{{"mainModule.Certificate.Delete" | translate}}</div>
+              </div>
+
+            </div>
+
+            <div class="card-body bg-color">
+              <div class="row">
+
+                <!-- Titlt Input -->
+                <div class="col-6">
+                  <div class="input-group">
+                    <label for="title" class="text-muted">{{"mainModule.Certificate.CertificateTitle" | translate}}<span class="text-danger">*</span></label>
+                    <input id="title" type="text" class="form-control w-100 mt-2 input-style" formControlName="title"
+                      [class.is-valid]="
+                        CertificateForm.controls['title'].valid &&
+                        CertificateForm.controls['title'].touched
+                      " [class.is-invalid]="
+                        CertificateForm.controls['title'].invalid &&
+                        CertificateForm.controls['title'].touched
+                      "  [(ngModel)]="editableCertificate.Title" />
+                  </div>
+                </div>
+
+                <!-- TitltAr Input -->
+                <div dir="auto" class="col-6">
+                  <div class="input-group">
+                    <label for="titleAr" class="text-muted">{{"mainModule.Certificate.CertificateTitleAr" | translate}}<span class="text-danger">*</span></label>
+                    <input id="titleAr" type="text" class="form-control w-100 mt-2 input-style text-right"
+                      formControlName="titleAr" [class.is-valid]="
+                        CertificateForm.controls['titleAr'].valid &&
+                        CertificateForm.controls['titleAr'].touched
+                      " [class.is-invalid]="
+                        CertificateForm.controls['titleAr'].invalid &&
+                        CertificateForm.controls['titleAr'].touched
+                      "  [(ngModel)]="editableCertificate.TitleAr" />
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row mt-3">
+
+                <!--  Description Input -->
+                <div class="col-6">
+                  <div class="form-floating">
+                    <label for="floatingTextarea2" class="position-relative px-0 py-2 text-muted">{{"mainModule.Certificate.Description" | translate}} <span
+                        class="text-danger">*</span></label>
+                    <textarea formControlName="Description" [class.is-valid]="
+                        CertificateForm.controls['Description'].valid &&
+                        CertificateForm.controls['Description'].touched
+                      " [class.is-invalid]="
+                        CertificateForm.controls['Description'].invalid &&
+                        CertificateForm.controls['Description'].touched
+                      " class="form-control"  id="floatingTextarea"
+                      [(ngModel)]="editableCertificate.Description" style="height: 120px"></textarea>
+                  </div>
+                </div>
+
+                <!--  DescriptionAr Input -->
+                <div class="col-6">
+                  <div dir="auto" class="form-floating">
+                    <label for="floatingTextarea2" class="position-relative px-0 py-2 text-muted">{{"mainModule.Certificate.DescriptionAr" | translate}} <span
+                        class="text-danger">*</span></label>
+                    <textarea formControlName="DescriptionAr" [class.is-valid]="
+                        CertificateForm.controls['DescriptionAr'].valid &&
+                        CertificateForm.controls['DescriptionAr'].touched
+                      " [class.is-invalid]="
+                        CertificateForm.controls['DescriptionAr'].invalid &&
+                        CertificateForm.controls['DescriptionAr'].touched
+                      " class="form-control"  id="floatingTextarea2"
+                      [(ngModel)]="editableCertificate.DescriptionAr" style="height: 120px"></textarea>
+                  </div>
+                </div>
+
+              </div>
+
+              <!--  year Input -->
+              <div class="row mt-3">
+                <div class="col-6">
+                  <div class="input-group">
+                    <label for="year">{{"mainModule.Certificate.Year" | translate}}<span class="text-danger">*</span></label>
+                    <input onKeyPress="if(this.value.length==4 ) return false; " formControlName="year" [class.is-valid]="
+                        CertificateForm.controls['year'].valid &&
+                        CertificateForm.controls['year'].touched
+                      " [class.is-invalid]="
+                        CertificateForm.controls['year'].invalid &&
+                        CertificateForm.controls['year'].touched
+                      " id="year" type="number" class="form-control w-100 mt-2 input-style" placeholder="0000"
+                      [(ngModel)]="editableCertificate.Year" />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card-footer bg-light text-muted border-0">
+
+              <div class="row">
+                <div class="">
+                  <div *ngIf="showImgbox" 
+                        class="d-flex bg-color text-muted border p-2 mb-2">
+
+                    <div class="col-6 btn text-start">
+                      {{ imageName }}
+                    </div>
+
+                    <div class="col-6 d-flex justify-content-end">
+
+                      <!-- Button trigger modal -->
+                      <div  class="btn" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#exampleModal2">
+
+                        <span dir="auto" class="eye text-muted">
+                            <i class="far fa-eye mx-1" id="togglePassword"></i>
+                            {{"mainModule.Certificate.View" | translate}}
+                        </span>
+                      </div>
+
+                      <!-- Modal -->
+                      <div  class="modal fade" 
+                            id="exampleModal2" 
+                            tabindex="-1" 
+                            aria-labelledby="exampleModal2Label"
+                            aria-hidden="true">
+
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <img src="{{ imgURL }}" />
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                      <div class="btn" (click)="DeleteImg()">
+                        <span dir="auto" class="eye text-danger">
+                          <i class="far fa-trash-alt mx-1"></i>{{"mainModule.Certificate.Delete" | translate}}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <input  type="file" 
+                          class="btn button-upload px-3 mb-2" 
+                          formControlName="ImageCertificate" 
+                          #file
+                          accept="image/*" 
+                          id="getFile" 
+                          style="display: none" 
+                          (change)="preview(file.files)" />
+
+                  <button *ngIf="!showImgbox" 
+                          onclick="document.getElementById('getFile').click()"
+                          class="btn button-upload px-3 mb-2">
+
+                        <i class="fas fa-upload px-2"></i>
+                        {{ imageName }}
+
+                  </button>
+
+                </div>
+              </div>
+
+              <div class="row justify-content-end mb-2">
+                <div class="col-2">
+                  <button *ngIf="!sendButton" style="padding: 10px" type="button" class="btn mx-2 text-white"
+                    style="background-color: #262d70" (click)="SubmitCertificate()" [disabled]="CertificateForm.invalid">
+                    {{"mainModule.Certificate.Submit" | translate}}
+                  </button>
+                  <button *ngIf="sendButton" style="padding: 10px" type="button" class="btn mx-2 text-white"
+                    style="background-color: #262d70" (click)="SaveCertificate()" [disabled]="CertificateForm.invalid">
+                    {{"mainModule.Certificate.Save" | translate}}
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+
+      <!-- End Submit Form -->
+      <div class="col-12 d-flex justify-content-end mt-5">
+        <div class="col-3">
+          <button class="btn text-white w-100" style="background-color: #262d70" [routerLink]="['signup/certificates']">
+            {{"mainModule.Certificate.Next" | translate}}
+          </button>
+        </div>
+      </div>
+
+    </div>
+</div>

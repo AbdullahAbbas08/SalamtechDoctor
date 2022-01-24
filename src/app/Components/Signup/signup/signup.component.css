@@ -1,0 +1,153 @@
+.main-Shared-place
+{
+    min-height: 85%;
+    /* background-color: tomato; */
+    margin-top:20px;
+}
+.Name-item
+{
+    width: 80%;
+    height: 80%;
+    background-color: red;
+    /* margin: 10%; */
+    margin-top: 0px;
+    /* margin-left: 0px; */
+}
+.lbl-Register
+{
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.input-style
+{
+    /* background-color: black; */
+    font-size: 16px;
+    /* border: 1px solid #C5C7CF; */
+    border-radius: 8px;
+}
+
+.input-style input
+{
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid #C5C7CF;
+    border-radius: 2px;
+    outline: none;
+    padding-right: 35px;
+}
+.input-style-phone
+{
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    border: 0px solid #C5C7CF;
+    border-radius: 8px;
+    outline: none;
+    display: flex;
+    /* border-width: 0px; */
+    position: relative;
+    padding-top: 0px;
+}
+
+.input-group-text{
+
+}
+
+.lbl-Register
+{
+    color: #8B90A0;
+}
+.col-style
+{
+    height: fit-content;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.errspan {
+    float: left;
+    margin-left: 10px;
+    margin-top: -23px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+.errspan-left {
+    float: left;
+    margin-left: 10px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+.Path-5
+{
+    display: inline-block;
+}
+.next-btn
+{
+    width: 231px;
+    height: 53px;
+    border-radius: 8px;
+    background-color: #262d70;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: normal;
+    color: #fff;
+    line-height: 40px;
+}
+
+.star
+{
+color: red;
+font-weight: 500;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.icon {
+    padding-left:65px;
+    background: url("../../../../assets/img/Group512657.png") no-repeat left;
+    background-size: 20px;
+    /* background-color: red; */
+    background-position-x: 10px;
+  }
+
+  .icon-rtl {
+    padding-right: 65px;
+    background: url("../../../../assets/img/Group512657.png") no-repeat right;
+    background-size: 20px;
+    content: var("+20");
+  }
+  
+  .unit {
+    position: absolute;
+    display: block;
+    left: 40px;
+    top: 10px;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 500;
+  }
+
+  .eye {
+    position: absolute;
+    display: block;
+    top: 12px;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 500;
+    right: 15px;
+  }
+

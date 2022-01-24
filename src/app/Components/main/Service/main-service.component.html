@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 path-row">
+            Services > {{ActiveComponent}}
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="row">
+
+        <div class="col-12 shared-menu-bar">
+            <div class="row ">
+
+                    <div id="HomeVisits" class="col-12 
+                                                col-md-3 
+                                                d-flex 
+                                                justify-content-center 
+                                                align-items-center 
+                                                padding-block
+                                                changeCursor" 
+                                         [routerLink]="['/main/service/homevisit']"
+                                         (click)="ChangeTitle('Home Visits')">
+                        Home Visits
+                    </div>
+
+                    <div  id="VideoCall" class=" col-12 
+                                                col-md-3 
+                                                d-flex 
+                                                justify-content-center 
+                                                align-items-center 
+                                                padding-block
+                                                changeCursor"
+                                        [routerLink]="['/main/service/videocall']"
+                                        (click)="ChangeTitle('Video Call')">
+                        Video Call
+                    </div>
+
+                    <div id="Call" class=" col-12 
+                                           col-md-3 
+                                           d-flex 
+                                           justify-content-center 
+                                           align-items-center 
+                                           padding-block
+                                           changeCursor"
+                                    [routerLink]="['/main/service/call']"
+                                    (click)="ChangeTitle('Call')">
+                        Call
+                    </div>
+
+                    <div id="Chat" class=" col-12 
+                                           col-md-3 
+                                           d-flex 
+                                           justify-content-center 
+                                           align-items-center 
+                                           padding-block
+                                           changeCursor"
+                                    [routerLink]="['/main/service/chat']"
+                                    (click)="ChangeTitle('Chat')">
+                        Chat
+                    </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Shared Location => Display Service Components -->
+    <div class="row">
+        <div class="col-12 Shared-Component">
+            <!-- <div class=""> -->
+                <router-outlet>
+
+                </router-outlet>
+            <!-- </div>  -->
+        </div>
+    </div>
+
+</div>
+

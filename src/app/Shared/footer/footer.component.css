@@ -1,0 +1,50 @@
+.appFooter {
+  background-color: #232227;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  height: 10%;
+}
+
+
+
+.copyRights {
+  /* width: 378px;
+  height: 31px; */
+  /* margin: 7px 291px 9px 241px; */
+  font-size: 18px;
+  text-align: end;
+  color: #fff;
+}
+
+img.Path-812 {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  object-fit: contain;
+  background-color: #232227;
+}
+
+img.twitter {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  object-fit: contain;
+  background-color: #232227;
+}
+
+img.facebook {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  object-fit: contain;
+  background-color: #232227;
+}
+
+img.linkedin {
+  width: 36px;
+  height: 36px;
+  margin-right: 8px;
+  object-fit: contain;
+  background-color: #232227;
+}
