@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container-fluid mt-3">
 
     <div class="row ">
 
@@ -68,7 +68,7 @@
               <div class="row">
 
                 <!-- Titlt Input -->
-                <div class="col-6">
+                <div class="col-md-6">
                   <div class="input-group">
                     <label for="title" class="text-muted">{{"mainModule.Certificate.CertificateTitle" | translate}}<span class="text-danger">*</span></label>
                     <input id="title" type="text" class="form-control w-100 mt-2 input-style" formControlName="title"
@@ -83,7 +83,7 @@
                 </div>
 
                 <!-- TitltAr Input -->
-                <div dir="auto" class="col-6">
+                <div dir="auto" class="col-md-6 mt-3">
                   <div class="input-group">
                     <label for="titleAr" class="text-muted">{{"mainModule.Certificate.CertificateTitleAr" | translate}}<span class="text-danger">*</span></label>
                     <input id="titleAr" type="text" class="form-control w-100 mt-2 input-style text-right"
@@ -102,7 +102,7 @@
               <div class="row mt-3">
 
                 <!--  Description Input -->
-                <div class="col-6">
+                <div class="col-md-6">
                   <div class="form-floating">
                     <label for="floatingTextarea2" class="position-relative px-0 py-2 text-muted">{{"mainModule.Certificate.Description" | translate}} <span
                         class="text-danger">*</span></label>
@@ -118,7 +118,7 @@
                 </div>
 
                 <!--  DescriptionAr Input -->
-                <div class="col-6">
+                <div class="col-md-6">
                   <div dir="auto" class="form-floating">
                     <label for="floatingTextarea2" class="position-relative px-0 py-2 text-muted">{{"mainModule.Certificate.DescriptionAr" | translate}} <span
                         class="text-danger">*</span></label>
@@ -137,7 +137,7 @@
 
               <!--  year Input -->
               <div class="row mt-3">
-                <div class="col-6">
+                <div class="col-md-6">
                   <div class="input-group">
                     <label for="year">{{"mainModule.Certificate.Year" | translate}}<span class="text-danger">*</span></label>
                     <input onKeyPress="if(this.value.length==4 ) return false; " formControlName="year" [class.is-valid]="
@@ -161,11 +161,11 @@
                   <div *ngIf="showImgbox" 
                         class="d-flex bg-color text-muted border p-2 mb-2">
 
-                    <div class="col-6 btn text-start">
+                    <div class="col-md-6 btn text-start">
                       {{ imageName }}
                     </div>
 
-                    <div class="col-6 d-flex justify-content-end">
+                    <div class="col-md-6 d-flex justify-content-end">
 
                       <!-- Button trigger modal -->
                       <div  class="btn" 
@@ -222,8 +222,8 @@
                 </div>
               </div>
 
-              <div class="row justify-content-end mb-2">
-                <div class="col-2">
+              <div class="row justify-content-end d-block text-center mb-2">
+                <div class="col-md-2">
                   <button *ngIf="!sendButton" style="padding: 10px" type="button" class="btn mx-2 text-white"
                     style="background-color: #262d70" (click)="SubmitCertificate()" [disabled]="CertificateForm.invalid">
                     {{"mainModule.Certificate.Submit" | translate}}
@@ -243,8 +243,8 @@
       </form>
 
       <!-- End Submit Form -->
-      <div class="col-12 d-flex justify-content-end mt-5">
-        <div class="col-3">
+      <div class="col-12 d-md-flex justify-content-end d-block text-center mt-5">
+        <div class="col-md-3">
           <button class="btn text-white w-100" style="background-color: #262d70" [routerLink]="['signup/certificates']">
             {{"mainModule.Certificate.Next" | translate}}
           </button>

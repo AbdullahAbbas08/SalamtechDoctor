@@ -4,7 +4,7 @@
       <div class="col-12  d-flex justify-content-center align-items-center ">
 
         <div class="col-12 col-md-6">
-          <div class="card">
+          <div class="card modal">
 
             <h5 class="card-header d-flex justify-content-center">
               {{ 'mainModule.LoginPage.SignIn' | translate }}
@@ -74,12 +74,12 @@
                 </div>
 
                 <!-- Create account Link -->
-                <div class="col-12  col-md-8" style="text-align: center;">
+                <button class="col-12  col-md-8 btn" style="text-align: center;" >
                   <label class="Create-account">
                     Don't have an account  ?
-                    <span class="create-account-link" routerLink="/register">Create account</span>
+                    <span class="create-account-link" routerLink="/signup" >Create account</span>
                   </label>
-                </div>
+                </button>
 
               </div>
             </form>

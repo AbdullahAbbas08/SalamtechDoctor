@@ -77,9 +77,9 @@
                           Close
                   </button>
 
-                  <label class="Dont-have-an-account-create-account mt-2">
+                  <label class="Dont-have-an-account-create-account mt-2" data-bs-dismiss="modal" aria-label="Close">
                       {{ 'mainModule.login.DontHaveAnAccount?' | translate }}
-                      <a href=""
+                      <a [routerLink]="['/signup']"
                         style="color: #262d70;">
                         {{ 'mainModule.login.createAccount' | translate }}
                       </a>
@@ -159,9 +159,9 @@
                 </button>
 
                 <!-- create Account Link -->
-                <label class="Dont-have-an-account-create-account mt-2">
+                <label class="Dont-have-an-account-create-account mt-2" data-bs-dismiss="modal" aria-label="Close">
                       {{ 'mainModule.login.DontHaveAnAccount?' | translate }}
-                      <a  href=""
+                      <a  [routerLink]="['/signup']"
                           style="color: #262d70;">
                           {{ 'mainModule.login.createAccount' | translate }}
                       </a>
