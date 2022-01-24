@@ -5,6 +5,8 @@ import { DoctorHomeVisitScheduleResolver } from 'src/Resolver/doctor-home-visit-
 import { DoctorVideoCallScheduleResolver } from 'src/Resolver/doctor-video-call-schedule.resolver';
 import { GalaryResolver } from 'src/Resolver/galary.resolver';
 import { ScheduleResolver } from 'src/Resolver/schedule.resolver';
+import { LoginGuardService } from 'src/Service/guard/Loginguard.service';
+import { LogoutGuardService } from 'src/Service/guard/logoutguard.service';
 import { ClinicGalaryComponent } from './Components/clinic/clinic-galary/clinic-galary.component';
 import { ClinicInfoMainComponent } from './Components/clinic/clinic-info-main.component';
 import { ClinicInfoComponent } from './Components/clinic/clinic-info/clinic-info.component';
@@ -40,12 +42,12 @@ import { SignupComponent } from './Components/Signup/signup/signup.component';
 
 const routes: Routes = [
 
-  {path:'',component:LoginMainComponent,children:[
+  { canActivate: [LoginGuardService],path:'',component:LoginMainComponent,children:[
     {path:'Login',component:LoginPageComponent},
     {path:'register',component:RegisterPageComponent}
   ] },
 
-  {path:'signup',component:SignUpMainComponent ,children:[
+  {canActivate: [LoginGuardService],path:'signup',component:SignUpMainComponent ,children:[
       {path:'',component:SignupComponent },
       {path:'OTP',component:OtpComponent },
       {path:'doctorinfo',component:DoctorInfoComponent },
@@ -62,7 +64,7 @@ const routes: Routes = [
       ]
   },
 
-  { path:'main',component:MainComponent ,
+  { canActivate: [LogoutGuardService],path:'main',component:MainComponent ,
     children:[
 
         {path:'',component:DashboardComponent},
