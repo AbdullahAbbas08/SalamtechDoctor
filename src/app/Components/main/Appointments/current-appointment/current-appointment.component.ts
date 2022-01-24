@@ -43,10 +43,10 @@ export class CurrentAppointmentComponent implements OnInit {
     this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
          this.PatientList = response.Data.Items;
-         console.log( this.PatientList);
+        //  console.log( this.PatientList);
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
       }
     )
   }
