@@ -129,19 +129,19 @@
 
 .icon {
   padding-left:65px;
-  background: url("../../../../assets/img/Group512657.png") no-repeat left;
+  background: url("../../../../assets/img/egyptlogo.png") no-repeat left;
   background-size: 20px;
   /* background-color: red; */
   background-position-x: 10px;
   content: var("+20");
 }
 
-.icon-rtl {
+/* .icon-rtl {
   padding-right: 65px;
   background: url("../../../../assets/img/Group512657.png") no-repeat right;
   background-size: 20px;
   content: var("+20");
-}
+} */
 
 .eye {
   position: absolute;

@@ -130,6 +130,7 @@ getAreas(){
 
 
 
+
   //#region openGoogelMapsModal
   openGoogelMapsModal() {
     const modalRef = this.modalService.open(GoogleMapsComponent, {
@@ -193,6 +194,7 @@ getAreas(){
     })
     this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
 
+
   
    this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
    this.FormInfo.get('CityId').setValue(parseInt(this.FormInfo.get('CityId').value))
@@ -211,5 +213,6 @@ getAreas(){
     }
 
   }
+
 
 }

@@ -30,8 +30,8 @@ export class AppointmentService {
   //#endregion
 
   //#region Ge tHistory Doctor Appointment
-  GetHistoryDoctorAppointment(MaxResultCount:number , SkipCount:number):Observable<GeneralResponseSingleObject<UpdateClinic>>{
-    return this.http.get<GeneralResponseSingleObject<UpdateClinic>>(`${environment.URL}${this.culture}/DoctorAppointment/GetHistoryDoctorAppointment?SkipCount=${SkipCount}&MaxResultCount=${MaxResultCount}`,this.httpOptions);
+  GetHistoryDoctorAppointment(MaxResultCount:number , SkipCount:number):Observable<GeneralResponseAppointment<PatientItem>>{
+    return this.http.get<GeneralResponseAppointment<PatientItem>>(`${environment.URL}${this.culture}/DoctorAppointment/GetHistoryDoctorAppointment?SkipCount=${SkipCount}&MaxResultCount=${MaxResultCount}`,this.httpOptions);
   }
   //#endregion
 

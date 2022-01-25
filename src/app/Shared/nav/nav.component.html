@@ -25,18 +25,18 @@
         <div class="d-flex">
           <app-login></app-login>
 
-          <div *ngIf="DefaultLang == 'en'">
+          <div *ngIf="DefaultLang == 'en'" style="cursor: pointer;">
             <div class="btn-lang" (click)="ChangeLanguage(DefaultLang)">
               <img (click)="ChangeLanguage(DefaultLang)" 
                     src="../../../assets/img/en/en.png"
                     class="en">
-              <span>English</span>
+              <span >English</span>
             </div>
           </div>
-          <div *ngIf="DefaultLang == 'ar'">
+          <div *ngIf="DefaultLang == 'ar'" style="cursor: pointer;">
             <div class="btn-lang" (click)="ChangeLanguage(DefaultLang)">
               <img (click)="ChangeLanguage(DefaultLang)" src="../../../assets/img/ar/arabic-language-code.png" class="en">
-              <span>عربى</span>
+              <span >عربى</span>
             </div>
           </div>
         </div>

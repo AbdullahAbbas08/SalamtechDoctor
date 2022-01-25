@@ -1,28 +1,28 @@
 <div class="container">
     <div class="row Appointment-table-header d-md-flex d-none">
-        <div class="col-3">Name</div>
-        <div class="col-2">Date</div>
-        <div class="col-2 ">Time</div>
-        <div class="col-2">Type</div>
-        <div class="col-3">Actions</div>
+        <div class="col-3 col-lg-3" >Name</div>
+        <div class="col-2  col-lg-2">Date</div>
+        <div class="col-2  col-lg-2">Time</div>
+        <div class="col-2  col-lg-2">Type</div>
+        <div class="col-3 col-lg-3" >Actions</div>
     </div>
 
-    <div *ngFor="let item of PatientList| paginate: { itemsPerPage: 2, currentPage: p }" class="row Appointment-table-body">
-        <div class="col-lg-3 col-12 padding-row">
+    <div *ngFor="let item of PatientList| paginate: { itemsPerPage: 5, currentPage: p }" class="row Appointment-table-body">
+        <div class="col-12 col-lg-3 padding-row">
                 <img class="Clinic-Logo-Style" 
-                     src="{{IamgeURL}}" 
+                     src="{{IamgeURL}}{{item.PatientImage}}" 
                      onerror="this.src='../../../../assets/img/LogoAlternative.png';">
                 {{item.PatientName}}
         </div>
-        <div class="col-lg-2 col-12 padding-row">{{item.AppointmentDate}}</div>
-        <div class="col-lg-2 col-6 padding-row">10:15 PM</div>
-        <div class="col-lg-2 col-6 padding-row">
+        <div class="col-5 col-lg-2 padding-row">{{item.AppointmentDate | date}}</div>
+        <div class="col-4 col-lg-2 padding-row">{{ item.AppointmentDate | date:'shortTime' }}</div>
+        <div class="col-3 col-lg-2 padding-row">
             <img class="type-bg-icon" src="../../../../../assets/img/CallIconVisited.png"> Call
         </div>
-        <div class="col-lg-3 col-12 padding-row">
+        <div class="col-12 col-lg-3 padding-row d-flex justify-content-between">
             <button class="acrions-btn comunicate-btn">
                  <img src="../../../../../assets/img/CallIcon.png"> Call
-                </button>
+            </button>
             <button class="acrions-btn PostReport-btn ">Post Report</button>
             <button class="acrions-btn cancel-btn">Cancel</button>
         </div>
