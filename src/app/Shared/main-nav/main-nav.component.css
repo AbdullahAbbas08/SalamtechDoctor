@@ -48,7 +48,7 @@
   font-size: 12px;
   font-weight: 500;
   text-align: end;
-  color: #8b90a0;
+  color: black !important;
 }
 
 .card-text{
@@ -57,6 +57,6 @@
   font-size: 12px;
   font-weight: 500;
   text-align: start;
-  color: #8b90a0;
+  color: #727685 !important;
   border: 0;
 }

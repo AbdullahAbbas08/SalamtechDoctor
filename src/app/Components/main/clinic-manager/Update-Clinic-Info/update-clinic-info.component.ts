@@ -31,7 +31,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   Cities;
   Areas;
   countries
-
+  phones
   constructor(
     private modalService: NgbModal,
     private lookupService: LookupsService,
@@ -63,6 +63,11 @@ export class UpdateClinicInfoComponent implements OnInit {
       this.getCity()
       this.getAreas()
       this.getCountry()
+
+      this.phones = this.clinicInfo.HealthEntityPhoneDtos;
+      for (let num of this.phones) {
+        this.addPhone(num)
+      }
     })
   }
 
@@ -88,6 +93,7 @@ export class UpdateClinicInfoComponent implements OnInit {
 
 
   public get phones_control() {
+
     return (this.FormInfo.get('HealthEntityPhoneDtos') as FormArray).controls;
   }
 

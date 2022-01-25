@@ -43,7 +43,7 @@
 
               <div class="row img-block just" >
                 <div class="col img-col-block">
-                  <img src="{{ imgURL }}" />
+                  <img [src]=" clinicInfo.imgURL?clinicInfo.imgURL:imgURL " />
                 </div>
               </div>
 
