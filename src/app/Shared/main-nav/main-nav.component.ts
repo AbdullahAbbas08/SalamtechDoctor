@@ -9,7 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class MainNavComponent implements OnInit {
 
   DefaultLang:string |null;
-
+  name;
+  email;
   constructor(private translate:TranslateService) { 
     if(localStorage.getItem("lang") !=null){
       this.DefaultLang = localStorage.getItem("lang");
@@ -33,6 +34,9 @@ export class MainNavComponent implements OnInit {
       this.translate.use(this.DefaultLang);
     }
     //#endregion
+
+    this.name=localStorage.getItem('name');
+    this.email=localStorage.getItem('email')
 
   }
   //#endregion

@@ -53,8 +53,6 @@
     padding-top: 0px;
   }
 
-  .input-group-text {
-  }
 
   .lbl-Register {
     color: #8b90a0;
@@ -153,12 +151,7 @@
         margin-bottom: 1px;
     }
 
-    .ChangeProfilePhoto-block
-    {
-        /* height: 30%; */
-        /* background-color: hotpink; */
-    }
-
+   
     .img-col-block
     {
         text-align: center;
