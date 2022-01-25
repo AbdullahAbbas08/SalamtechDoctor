@@ -45,34 +45,15 @@ export class LoginComponent implements OnInit {
   }
   //#endregion
 
-  // //#region check Form Method
-  // checkForm(){
-  //   let Phone= this.loginDoctorForm.Phone
-  //   let Password=this.loginDoctorForm.Password
-
-  //   if(Phone ?.length>0 && Password?.length>0){
-  //     this.buttonEnable=false;
-  //   }else{
-  //     this.buttonEnable=true
-  //   }
-  // }
-  // //#endregion
-
   //#region Login Method
   LoginDoctor(){
     this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
-    // this.loginDoctorForm.Phone ='0'+this.loginDoctorForm.Phone;
     this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
-    console.log(" this.loginDoctorForm.Phone :", this.loginDoctorForm.Phone)
-    console.log(" this.loginDoctorForm.Password :", this.loginDoctorForm.Password)
-
     this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
-      // this.buttonEnable=true;
-      this.AuthenticatedUser= res
-      console.log(res);
-      
+      this.AuthenticatedUser= res      
       localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
       this.toastr.success("Login Successfully ", 'Successfully');
+      this.GetDoctorProfile();
       this.router.navigateByUrl("/main");
       window.setInterval(() => {
         window.location.reload();
@@ -81,6 +62,22 @@ export class LoginComponent implements OnInit {
     (err)=>{
       console.log(err)
     })
+  }
+  //#endregion
+
+
+  //#region Get Doctor Profile
+  GetDoctorProfile(){
+    this.loginService.GetDoctorProfile().subscribe(
+      (response)=>{
+        localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
+        localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
+        localStorage.setItem("logo",response.Data.Image);
+      },
+      (err)=>{
+
+      }
+    )
   }
   //#endregion
 

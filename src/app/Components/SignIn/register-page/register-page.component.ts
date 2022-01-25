@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CreateUser } from 'src/Models/create-user';
 import { UserService } from 'src/Service/CreateUser/user.service';
+import { LoginService } from 'src/Service/login.service';
 
 @Component({
   selector: 'app-register-page',
@@ -22,7 +23,8 @@ export class RegisterPageComponent implements OnInit {
   constructor(private fb:FormBuilder,
               private toastr:ToastrService,
               private router:Router,
-              private UserService:UserService) {
+              private UserService:UserService,
+              private loginService:LoginService,) {
   }
   //#endregion
 
@@ -87,8 +89,7 @@ Checkinput(){
       (response)=>{
         console.log(response);
         localStorage.setItem('Authorization',response.Data.Token)
-        localStorage.setItem('name',this.CreateUser.Name)
-        localStorage.setItem('email',this.CreateUser.Email)
+        this.GetDoctorProfile();
 
         this.router.navigate(["/main"]);
         window.location.reload();
@@ -104,4 +105,20 @@ Checkinput(){
     }
   }
   //#endregion
+
+  //#region Get Doctor Profile
+  GetDoctorProfile(){
+    this.loginService.GetDoctorProfile().subscribe(
+      (response)=>{
+        localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
+        localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
+        localStorage.setItem("logo",response.Data.Image);
+      },
+      (err)=>{
+
+      }
+    )
+  }
+  //#endregion
+
 }

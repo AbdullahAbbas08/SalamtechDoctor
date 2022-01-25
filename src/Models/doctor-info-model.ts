@@ -16,4 +16,5 @@ export class DoctorInfoModel {
     DoctorInfo: string;
     DoctorInfoAr: string;
     profileImage: File;
+    Image:string;
 }

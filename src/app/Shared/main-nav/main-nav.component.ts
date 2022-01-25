@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main-nav',
@@ -11,10 +12,13 @@ export class MainNavComponent implements OnInit {
   DefaultLang:string |null;
 
   name;
-  email;
+  logo;
+  IamgeURL:string;
+
   constructor(private translate:TranslateService) { 
     if(localStorage.getItem("lang") !=null){
       this.DefaultLang = localStorage.getItem("lang");
+
     }else{
       this.DefaultLang='en'
     }
@@ -23,21 +27,23 @@ export class MainNavComponent implements OnInit {
   //#region On Init Method
   ngOnInit(): void {
 
+    this.IamgeURL = environment.ImagesURL;
 
     //#region Init Variables Scope
     if(this.DefaultLang === 'ar'){
 
       document.getElementsByTagName('html')[0].setAttribute("dir","rtl");
       this.translate.use(this.DefaultLang);
+      this.name=localStorage.getItem('NameArabic');
+
     }else{
       this.DefaultLang = 'en';
       document.getElementsByTagName('html')[0].setAttribute("dir","ltr");
       this.translate.use(this.DefaultLang);
+      this.name=localStorage.getItem('NameEnglish');
     }
     //#endregion
-
-    this.name=localStorage.getItem('name');
-    this.email=localStorage.getItem('email')
+    this.logo = localStorage.getItem("logo")
 
   }
   //#endregion
