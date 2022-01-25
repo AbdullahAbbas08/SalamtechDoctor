@@ -9,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class MainNavComponent implements OnInit {
 
   DefaultLang:string |null;
+  UserName:String;
+  UserEmail:String;
 
   constructor(private translate:TranslateService) { 
     if(localStorage.getItem("lang") !=null){
@@ -21,6 +23,8 @@ export class MainNavComponent implements OnInit {
   //#region On Init Method
   ngOnInit(): void {
 
+    this.UserName = localStorage.getItem("UserName");
+    this.UserEmail = localStorage.getItem("UserEmail");
 
     //#region Init Variables Scope
     if(this.DefaultLang === 'ar'){
