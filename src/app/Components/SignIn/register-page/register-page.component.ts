@@ -87,7 +87,11 @@ Checkinput(){
       (response)=>{
         console.log(response);
         localStorage.setItem('Authorization',response.Data.Token)
-        this.router.navigateByUrl("/main");
+        localStorage.setItem('name',this.CreateUser.Name)
+        localStorage.setItem('email',this.CreateUser.Email)
+
+        this.router.navigate(["/main"]);
+        window.location.reload();
       },
       (err)=>{
         
