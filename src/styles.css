@@ -84,3 +84,17 @@ html {
   width: 0;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
+
+/* pagination */
+
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #00d2ca !important;
+    color: #fefefe;
+    cursor: default;
+    border-radius: 50% !important;
+}
+.ngx-pagination {
+  padding: 20px 0px !important;
+  text-align: center !important;
+}

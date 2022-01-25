@@ -10,7 +10,7 @@
         <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
       </form> -->
       <div class="col-md-6"></div>
-      <ul class="navbar-nav  my-2 mb-lg-0 justify-content-center align-items-center" style="width: 75%;">
+      <ul class="navbar-nav  my-2 mb-lg-0 d-md-flex d-block  justify-content-center align-items-center" style="width: 75%;">
         <li class="nav-item dropdown mx-3">
           <!-- <a class="nav-link dropdown-toggle rounded-pill border px-4" href="#" id="navbarDropdown" role="button"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,39 +25,38 @@
             </li>
           </ul> -->
         </li>
-        <li>
+        <li class=" mt-md-0 mt-3">
           <div>
           <a class="nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'">English</a>
           </div>
         </li>
-        <li>
+        <li class=" mt-md-0 mt-3">
           <div>
           <a class="nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">عربى</a>
           </div>
         </li>
-        <li class="nav-item mx-2">
+        <li class="nav-item mx-2 mt-md-0 mt-3">
           <div class="msg text-center">
             <i class="far fa-comments"></i>
           </div>
         </li>
 
-        <li class="nav-item mx-2">
+        <li class="nav-item mx-2 mt-md-0 mt-2">
           <div class="notification text-center">
             <i class="far fa-bell"></i>
           </div>
         </li>
 
-        <li class="nav-item mx-2">
+        <li class="nav-item mx-2 mt-md-0 mt-2">
           <div class="card  border-0">
             <div class="row g-0 main-color">
               <div class="col-md-4">
-                <img src="assets/img/Group 512657@2x.png" class="img-fluid2 rounded-start" alt="..." />
+                <img src="{{ImageURL}}{{logo}}" class="img-fluid2 rounded-start" alt="..." />
               </div>
               <div class="col-md-8">
                 <div class="">
 
                   <p class="card-text mb-0 mt-2 mx-2">{{name}}</p>
-                  <small class="mx-2 msyd16"> {{email}}</small>
                 </div>
               </div>
             </div>
