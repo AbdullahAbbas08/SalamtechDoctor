@@ -96,6 +96,7 @@ export class UpdateClinicInfoComponent implements OnInit {
     const control = new FormControl(x);
     this.phones_control.push(control);
   }
+
   deleteFromGroup(index: number) {
     const del = this.FormInfo.get('HealthEntityPhoneDtos') as FormArray;
     del.removeAt(index);
@@ -175,6 +176,7 @@ getAreas(){
       this.imgURL = reader.result;
     };
     this.FormInfo.get('clinicLogo').setValue(files[0]);
+    // console.log(this.FormInfo.get('clinicLogo'));
   }
   //#endregion
 
@@ -192,10 +194,8 @@ getAreas(){
         this.deleteFromGroup(index)
       }
     })
-    this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
 
-
-  
+   this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
    this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
    this.FormInfo.get('CityId').setValue(parseInt(this.FormInfo.get('CityId').value))
    this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
@@ -203,7 +203,27 @@ getAreas(){
    
     // console.log(this.FormInfo.value);
     if(this.FormInfo.valid){
-      this.ClinicService.UpdateDoctorClinic(this.FormInfo.value).subscribe((res)=>{
+
+      //#region Create Form Data
+      let formData = new FormData();   
+      formData.append("ClinicId",this.FormInfo.get('ClinicId').value as unknown as Blob)
+      formData.append("CityId",  this.FormInfo.get('CityId').value as unknown as Blob)
+      formData.append("CountryId", this.FormInfo.get('CountryId').value as unknown as Blob)
+      formData.append("AreaId",  this.FormInfo.get('AreaId').value as unknown as Blob)
+      formData.append("Name",  this.FormInfo.get('Name').value as unknown as Blob)
+      formData.append("NameAr",  this.FormInfo.get('NameAr').value as unknown as Blob)
+      formData.append("Email",  this.FormInfo.get('Email').value as unknown as Blob)
+      formData.append("Address",  this.FormInfo.get('Address').value as unknown as Blob)
+      formData.append("FixedFee",  this.FormInfo.get('FixedFee').value as unknown as Blob)
+      formData.append("clinicLogo",  this.FormInfo.get('clinicLogo').value as unknown as Blob)
+      formData.append("Latitude",  this.FormInfo.get('Latitude').value as unknown as Blob)
+      formData.append("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
+      formData.append("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
+      formData.append("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
+      formData.append("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
+      //#endregion
+     
+      this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         console.log(res);
         this.Router.navigate(['clinic/gallary/',this.clinicId]);
        },

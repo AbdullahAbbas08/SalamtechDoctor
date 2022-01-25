@@ -27,6 +27,14 @@ export class ClinicInfoService {
     )};
   //#endregion
 
+  //#region Options
+  httpOptions2 = {
+    headers: new HttpHeaders({
+        'Authorization':  `Bearer ${this.auth}`,
+      }
+    )};
+  //#endregion
+
   //#region Create Clinic
   CreateClinic(lang:string,ClinicInfo:FormData):Observable<GeneralResponseSingleObject<ClinicId>>{
     return this.http.post<GeneralResponseSingleObject<ClinicId>>(`${environment.URL}${this.culture}/DoctorClinic/CreateDoctorClinic`,ClinicInfo,this.httpOptions);
@@ -35,7 +43,7 @@ export class ClinicInfoService {
 
   //#region Update Doctor Clinic
   UpdateDoctorClinic(ClinicInfo:FormData):Observable<any>{
-    return this.http.post(`${environment.URL}${this.culture}/DoctorClinic/UpdateDoctorClinic`,ClinicInfo,this.httpOptions);
+    return this.http.post(`${environment.URL}${this.culture}/DoctorClinic/UpdateDoctorClinic`,ClinicInfo,this.httpOptions2);
   }
   //#endregion
 
