@@ -43,8 +43,8 @@
 }
 .Create-account
 {
-  margin-bottom: 100px;
-  color: #97999a;
+  margin-bottom: 50px;
+  color: #727685;
   font-weight: 500;
   cursor: pointer;
   text-align: center;
@@ -101,7 +101,7 @@
 .label-input
 {
   font-weight: 500;
-  color: #97999a;
+  color: #727685;
 }
 
 .star

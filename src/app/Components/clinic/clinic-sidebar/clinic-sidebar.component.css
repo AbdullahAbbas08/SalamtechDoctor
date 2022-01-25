@@ -27,7 +27,7 @@ ul
 .li-Content
 {
     border-inline-start: 2px solid #DCDEE4;
-    color: #A6AAB5;
+    color: #727685;
     font-size: 18px;
     font-weight: 500;
     margin: 0px;
@@ -38,7 +38,7 @@ ul
 .li-Content-OnClick-Style
 {
     border-inline-start: 2px solid #DCDEE4;
-    color: #A6AAB5;
+    color: #727685;
     font-size: 18px;
     font-weight: 500;
     margin: 0px;
@@ -81,7 +81,7 @@ ul li span
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #8B90A0;
+    color: #727685;
     text-align: center;
 }
 .termsCondition-style

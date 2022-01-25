@@ -104,9 +104,9 @@
         },
         "Clinic":{
           "sidebarinfo":"Clinic Info",
-          "sidebargalary":"Clinic Galary",
+          "sidebargalary":"Clinic Gallery",
           "sidebarschedule":"Clinic Schedule",
-          "GalayTitle":"Galary Title"
+          "GalayTitle":"Gallery Title"
         },
         "Certificate":{
           "AddNewCertificate":"Add New Certificate",

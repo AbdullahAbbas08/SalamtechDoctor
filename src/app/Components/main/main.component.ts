@@ -18,6 +18,8 @@ export class MainComponent implements OnInit {
 
   RemoveAuth(){
     localStorage.removeItem('Authorization')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
     this.router.navigate(['/Login']);
     window.location.reload();
   }

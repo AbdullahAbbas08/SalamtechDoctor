@@ -67,6 +67,8 @@ export class LoginPageComponent implements OnInit {
        
     
         this.loginService.login(this.LoginObj).subscribe((res)=>{
+          console.log(res);
+          
           // this.buttonEnable=true;
           this.AuthenticatedUser= res
           localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
