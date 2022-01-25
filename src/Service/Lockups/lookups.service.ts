@@ -27,6 +27,11 @@ export class LookupsService {
 
     )};
   //#endregion
+      //#region Get Cities
+      GetCountries(lang:string):Observable<GeneralResponse<City>>{
+        return this.http.get<GeneralResponse<City>>(`${environment.URL}${this.culture}/LookUp/GetCountries`,this.httpOptions);
+      }
+      //#endregion CreateDoctorDocuments
 
     //#region Get Cities
     GetCities(lang:string):Observable<GeneralResponse<City>>{

@@ -1,141 +1,161 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { GoogleMapsComponent } from 'src/app/Shared/google-maps/google-maps.component';
-import { environment } from 'src/environments/environment';
-import { Area } from 'src/Models/Area';
-import { City } from 'src/Models/City';
-import { ClinicInfoModel } from 'src/Models/clinicInfoModel';
-import { Coordinates } from 'src/Models/Coordinates';
-import { IdNameList } from 'src/Models/id-name-list';
-import { UpdateClinic } from 'src/Models/update-clinic';
-import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
-import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { Component, OnInit } from "@angular/core";
+import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { GoogleMapsComponent } from "src/app/Shared/google-maps/google-maps.component";
+import { environment } from "src/environments/environment";
+import { Area } from "src/Models/Area";
+import { City } from "src/Models/City";
+import { ClinicInfoModel } from "src/Models/clinicInfoModel";
+import { Coordinates } from "src/Models/Coordinates";
+import { IdNameList } from "src/Models/id-name-list";
+import { UpdateClinic } from "src/Models/update-clinic";
+import { ClinicInfoService } from "src/Service/ClinicInfo/clinic-info.service";
+import { LookupsService } from "src/Service/Lockups/lookups.service";
 
 @Component({
-  selector: 'app-update-clinic-info',
-  templateUrl: './update-clinic-info.component.html',
-  styleUrls: ['./update-clinic-info.component.css']
+  selector: "app-update-clinic-info",
+  templateUrl: "./update-clinic-info.component.html",
+  styleUrls: ["./update-clinic-info.component.css"],
 })
 export class UpdateClinicInfoComponent implements OnInit {
+  FormInfo: FormGroup;
 
-  //#region Declare Variables
-  coordinates: Coordinates;
-  address:string
-  Cities: City[];
-  Areas: Area[];
-  ClinicInfoModel: ClinicInfoModel;
-  CountryId:any
-  Services:IdNameList[]
-  dropdownList:any = [];
-  selectedItems:IdNameList[] = [];
-  selectedItemsIds:number[] = [];
-  dropdownSettings:IDropdownSettings = {};
-  ClinicToUpdate:UpdateClinic;
-  ClinicID:any;
-  CitiesList:{[Id:number]:City}={};
-  AreaList:{[Id:number]:Area}={};
- formData = new FormData();  
- ListOfMobileNumber:string[]; 
+  formData = new FormData();
+  coordinates;
+  ClinicToUpdate: any;
+  clinicId;
+  clinicInfo;
+  Cities;
+  Areas;
+  countries
 
-  //#endregion
+  constructor(
+    private modalService: NgbModal,
+    private lookupService: LookupsService,
+    private ClinicService: ClinicInfoService,
+    private Router: Router,
+    private route: ActivatedRoute,
+    private builder:FormBuilder
+  ) {
+    this.route.paramMap.subscribe(param=>{
+      this.clinicId=param.get('ID');
+      this.getClinicInfo( this.clinicId)
 
-  //#region constructor
-    constructor( private modalService: NgbModal,
-                  private lookupService: LookupsService,
-                  private ClinicService:ClinicInfoService,
-                  private Router:Router,
-                  private route: ActivatedRoute) {
-        
+    })
     this.coordinates = {} as Coordinates;
+
   }
-  //#endregion
 
-  //#region On Init Method
-    ngOnInit(): void {
+  ngOnInit(): void {
+    this.imgURL = "../../../../assets/img/DoctorImg/Rectangle 2.png";
 
-      //#region Init Values
+   
+  }
 
-      document.getElementById('Dashboard')?.classList.remove('OnClick-Style');
-      document.getElementById('DashboardIcon')?.classList.remove('calender-visited');
-      document.getElementById('Clinics')?.classList.remove('OnClick-Style');
-      document.getElementById('ClinicsIcon')?.classList.remove('OnClick-Style');
-      document.getElementById('Services')?.classList.remove('OnClick-Style');
-      document.getElementById('ServiceIcon')?.classList.remove('calender-visited');
-      document.getElementById('Profile')?.classList.add('OnClick-Style');
-      document.getElementById('ProfileIcon')?.classList.add('calender-visited');
+  getClinicInfo(id){
+    this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
+      this.clinicInfo=res.Data
+      console.log(res.Data);
+      this.initForm()
+      this.getCity()
+      this.getAreas()
+      this.getCountry()
+    })
+  }
+
+  initForm(){
+    this.FormInfo=this.builder.group({
+      ClinicId :[this.clinicId , Validators.required],
+      HealthEntityPhoneDtos: new FormArray([]),
+      Name :[this.clinicInfo?.Name||'' , Validators.required],
+      NameAr:[this.clinicInfo?.NameAr||'' , Validators.required],
+      Email:[this.clinicInfo?.Email||'' , Validators.required],
+      CountryId :[parseInt(this.clinicInfo?.CountryId) ||'' , Validators.required],
+      CityId :[parseInt(this.clinicInfo?.CityId) ||'' , Validators.required],
+      AreaId :[parseInt(this.clinicInfo?.AreaId) ||'' , Validators.required],
+      Address :[this.clinicInfo?.Address ||'' , Validators.required],
+      Latitude:[this.clinicInfo?.Latitude||''],
+      Longitude:[this.clinicInfo?.Longitude||''],
+      BlockNo:[this.clinicInfo?.BlockNo||''  ],
+      FloorNo:[this.clinicInfo?.FloorNo||''  ],
+      FixedFee :[this.clinicInfo?.FixedFee ||'' , Validators.required],
+      clinicLogo:[this.clinicInfo?.imgURL||''],
+    })
+  }
 
 
-      this.dropdownSettings = {
-        singleSelection: false,
-        idField: 'Id',
-        textField: 'Name',
-        selectAllText: 'Select All',
-        unSelectAllText: 'UnSelect All',
-        itemsShowLimit: 3,
-        allowSearchFilter: true
-      };
+  public get phones_control() {
+    return (this.FormInfo.get('HealthEntityPhoneDtos') as FormArray).controls;
+  }
 
-      this.ClinicID = this.route.snapshot.paramMap.get('ID');
 
-      this.ClinicToUpdate ={
-          Logo                    :"",
-          HealthEntityPhoneDtos   :[],
-          Name                    :"",
-          NameAr                  :"",
-          Email                   :"",
-          CountryId               :-1,
-          CityId                  :-1,
-          AreaId                  :-1,
-          Address                 :"",
-          Latitude                :"",
-          Longitude               :"",
-          BlockNo                 :-1,
-          FloorNo                 :-1,
-          FixedFee                :-1,
-          Inactive                :false
-      };
+  addPhone(x?) {
+    const control = new FormControl(x);
+    this.phones_control.push(control);
+  }
+  deleteFromGroup(index: number) {
+    const del = this.FormInfo.get('HealthEntityPhoneDtos') as FormArray;
+    del.removeAt(index);
+  }
 
-      this.imgURL = '../../../../assets/img/DoctorImg/Rectangle 2.png';
-      this.ListOfMobileNumber = [];
-      //#endregion
 
-      //#region Invoke Methods
-      this.GetServices();
-      this.GetDoctorClinicByClinicId(this.ClinicID);
-      this.getCities();
-      this.getAreas();
-      //#endregion
-      
-    }
-//#endregion
+  getCountry(){
+    this.lookupService.GetCountries('en').subscribe(
+      (response)=>{
+        this.countries =  response.Data;
+        // console.log(this.countries);
+    })
+  }
+  
+getCity(){
+  this.lookupService.GetCities('en').subscribe(
+    (response)=>{
+      this.Cities =  response.Data;
+      // console.log(this.Cities);
+  })
+}
+getAreas(){
+  this.lookupService.GetAreas('en').subscribe(
+    (response)=>{
+      this.Areas =  response.Data;
+      // console.log(this.Areas);
+  })
+}
+
+
+
+
+
 
   //#region openGoogelMapsModal
-openGoogelMapsModal() {
-  const modalRef = this.modalService.open(GoogleMapsComponent, {
-    scrollable: true,modalDialogClass:"modal-xl modal-dialog-centered modal-dialog-scrollable"
-  });
-  let data = {
-    prop1: 'Some Data',
-    prop2: 'From Parent Component',
-    prop3: 'This Can be anything',
-  };
+  openGoogelMapsModal() {
+    const modalRef = this.modalService.open(GoogleMapsComponent, {
+      scrollable: true,
+      modalDialogClass:
+        "modal-xl modal-dialog-centered modal-dialog-scrollable",
+    });
+    let data = {
+      prop1: "Some Data",
+      prop2: "From Parent Component",
+      prop3: "This Can be anything",
+    };
 
-  modalRef.componentInstance.fromParent = data;
-  modalRef.result.then(
-    (result) => {
-      this.ClinicToUpdate.Address = result.address;
-    },
-    (reason) => {}
-  );
-}
-//#endregion
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(
+      (result) => {
+        this.ClinicToUpdate.Address = result.address;
+      },
+      (reason) => {}
+    );
+  }
+
 
   //#region review AND File FormData image from input file
   public imagePath: any;
-  imgURL: any = '../../../../assets/img/DoctorImg/Rectangle 2.png';
+  imgURL: any = "../../../../assets/img/DoctorImg/Rectangle 2.png";
   public message: string;
 
   preview(files: any) {
@@ -143,7 +163,7 @@ openGoogelMapsModal() {
 
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
+      this.message = "Only images are supported.";
       return;
     }
 
@@ -153,148 +173,43 @@ openGoogelMapsModal() {
     reader.onload = (_event) => {
       this.imgURL = reader.result;
     };
-
-    this.formData.append('clinicLogo',files[0])
+    this.FormInfo.get('clinicLogo').setValue(files[0]);
   }
   //#endregion
 
-  //#region git Services
-  GetServices() {
-    this.lookupService.GetServices('en').subscribe(
-      (res) => {
-        this.Services = res.Data;
-    this.dropdownList = this.Services
 
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-  //#endregion
 
-  //#region Selectedcity
-  SelectCity(event:any){
-    this.ClinicToUpdate.CityId=event.target.value;
-  }
-  //#endregion
 
-  //#region SelectedArea
-  SelectArea(event:any){
-    this.ClinicToUpdate.AreaId = event.target.value; 
-  }
-  //#endregion
-
-  //#region Update Clinic
-  UpdateClinic(ClinicForm:FormData){
-    this.ClinicService.UpdateDoctorClinic(ClinicForm).subscribe((res)=>{
-     this.Router.navigate(['clinic/gallary/',this.ClinicID]);
-    },
-    (err)=>{
-      console.log(err)
-    })
-  }
-  //#endregion
-
-  //#region resset form
-  ressetform(form:NgForm){
-    form.reset()
-  }
-  //#endregion
-
-  //#region submit Clinic
   submitClinic(){
+    let arr = [];
+    // console.log(this.addressForm.value);
+    this.phones_control.map((phone , index) => {
+      if (phone.value !== null) {
+        arr.push(phone.value)
+      }
+      else {
+        this.deleteFromGroup(index)
+      }
+    })
+    this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
 
-    this.formData.append('ClinicId', this.ClinicID as unknown as Blob)
-    this.formData.append('HealthEntityPhoneDtos',JSON.stringify(this.ListOfMobileNumber[0]))
-    this.formData.append('Name',this.ClinicToUpdate.Name)
-    this.formData.append('NameAr',this.ClinicToUpdate.NameAr)
-    this.formData.append('Email',this.ClinicToUpdate.Email)
-    this.formData.append('CountryId',this.ClinicToUpdate.CountryId as unknown as Blob)
-    this.formData.append('CityId',this.ClinicToUpdate.CityId as unknown as Blob)
-    this.formData.append('AreaId',this.ClinicToUpdate.AreaId as unknown as Blob)
-    this.formData.append('FixedFee',this.ClinicToUpdate.FixedFee as unknown as Blob)
-    this.formData.append('Address',this.ClinicToUpdate.Address)
-    this.formData.append('BlockNo',this.ClinicToUpdate.BlockNo as unknown as Blob)
-    this.formData.append('FloorNo',this.ClinicToUpdate.FloorNo as unknown as Blob)
-    this.formData.append('Inactive',this.ClinicToUpdate.Inactive as unknown as Blob )
+  
+   this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
+   this.FormInfo.get('CityId').setValue(parseInt(this.FormInfo.get('CityId').value))
+   this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
+   this.FormInfo.get('AreaId').setValue(parseInt(this.FormInfo.get('AreaId').value))
    
-    this.UpdateClinic(this.formData)
+    // console.log(this.FormInfo.value);
+    if(this.FormInfo.valid){
+      this.ClinicService.UpdateDoctorClinic(this.FormInfo.value).subscribe((res)=>{
+        console.log(res);
+        this.Router.navigate(['clinic/gallary/',this.clinicId]);
+       },
+       (err)=>{
+         console.log(err)
+       })
+    }
+
   }
-  //#endregion
-
-  //#region onItemSelect
-  onItemSelect(item: any) {
-    // console.log(this.selectedItems)
-  }
-  //#endregion
-
-  //#region onSelectAll
-  onSelectAll(items: any) {
-    // console.log(items);
-  }
-  //#endregion
- 
-  //#region Consume API's
-
-      //#region Get Doctor Clinic By Clinic Id
-       GetDoctorClinicByClinicId(ID:number){
-        this.ClinicService.GetDoctorClinicByClinicId(ID).subscribe(
-          (response)=>{
-            this.ClinicToUpdate = response.Data;
-            this.imgURL = environment.ImagesURL+response.Data.Logo;
-
-            response.Data.HealthEntityPhoneDtos.forEach((element: string) => {
-              this.ListOfMobileNumber.push(element);
-            });
-
-            console.log("HealthEntityPhoneDtos : ",response.Data.HealthEntityPhoneDtos)
-
-          },
-          (err)=>{
-            console.log(err)
-          }
-        )
-      }
-      //#endregion
-
-      //#region get Cities
-      getCities(){
-        this.lookupService.GetCities('en').subscribe(
-          (response)=>{
-            this.Cities =  response.Data;
-            response.Data.forEach(element => {
-              this.CitiesList[element.Id] = element;
-            });
-          },
-          (err)=>{
-            
-          })
-      }
-      //#endregion
-
-      //#region get Areas
-      getAreas(){
-        this.lookupService.GetAreas('en').subscribe(
-          (response)=>{
-            this.Areas = response.Data;
-            response.Data.forEach(element => {
-              this.AreaList[element.Id] = element;
-            });
-          },
-          (err)=>{
-
-          }
-        )
-      }
-      //#endregion
-
-  //#endregion
-
-  //#region Next
-  Next(){
-    this.Router.navigate(['main/updateclinic/UpdateClinicGalary/',this.ClinicID]);
-  }
-  //#endregion
 
 }

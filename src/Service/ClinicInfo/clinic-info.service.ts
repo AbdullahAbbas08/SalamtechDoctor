@@ -34,8 +34,8 @@ export class ClinicInfoService {
   //#endregion
 
   //#region Update Doctor Clinic
-  UpdateDoctorClinic(ClinicInfo:FormData):Observable<GeneralResponseSingleObject<ClinicId>>{
-    return this.http.post<GeneralResponseSingleObject<ClinicId>>(`${environment.URL}${this.culture}/DoctorClinic/UpdateDoctorClinic`,ClinicInfo,this.httpOptions);
+  UpdateDoctorClinic(ClinicInfo:FormData):Observable<any>{
+    return this.http.post(`${environment.URL}${this.culture}/DoctorClinic/UpdateDoctorClinic`,ClinicInfo,this.httpOptions);
   }
   //#endregion
 
@@ -45,4 +45,9 @@ export class ClinicInfoService {
   }
   //#endregion
 
+    // //#region Get Doctor Clinic By Clinic Id
+    // GetDoctorClinic():Observable<any>{
+    //   return this.http.get(`${environment.URL}${this.culture}/DoctorClinic/GetDoctorClinics`,this.httpOptions);
+    // }
+    // //#endregion
 }

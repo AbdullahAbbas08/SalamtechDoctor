@@ -112,7 +112,7 @@
 
   .icon {
     padding-left: 65px;
-    background: url("../../../../assets/img/egyptlogo.png") no-repeat left;
+    background: url("../../../../../assets/img/egyptlogo.png") no-repeat left;
     background-size: 20px;
     /* background-color: red; */
     background-position-x: 10px;

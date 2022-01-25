@@ -11,6 +11,31 @@
 
     <div class="col-12 d-block" dir="auto">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <form [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
         <div class="row">
 
           <!-- Picture Doctor -->
@@ -36,6 +61,7 @@
           </div>
 
           <div class="col-lg-8 col-md-12">
+            
 
             <div class="row">
 
@@ -44,7 +70,7 @@
                 <span class="lbl-Register">Name</span>
                 <span class="star"> * </span>
                 <div class="input-style">
-                  <input type="text" [(ngModel)]="ClinicToUpdate.Name" class="form-control"
+                  <input type="text"  class="form-control" formControlName="Name"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     maxlength="10" minlength="3" />
                 </div>
@@ -55,7 +81,7 @@
                 <span class="lbl-Register">NameAr</span>
                 <span class="star"> * </span>
                 <div class="input-style">
-                  <input type="text" [(ngModel)]="ClinicToUpdate.NameAr" class="form-control textForArabic"
+                  <input type="text"   class="form-control textForArabic" formControlName="NameAr"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     maxlength="10" minlength="3" />
                 </div>
@@ -68,7 +94,7 @@
                   }}</span>
                 <span class="star"> * </span>
                 <div dir="auto" class="input-style">
-                  <input type="email" [(ngModel)]="ClinicToUpdate.Email"
+                  <input type="email"  formControlName="Email"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     maxlength="50" minlength="5" />
                 </div>
@@ -80,9 +106,24 @@
                 <span class="star"> * </span>
                 <div dir="auto" class="input-style">
 
-                  <input type="number" [(ngModel)]="ClinicToUpdate.FixedFee"
+                  <input type="number"  formControlName="FixedFee"
                     style="border-width: 1px; outline: none; display: block" class="form-control" />
                 </div>
+              </div>
+
+               <!-- country -->
+               <div class="col-12 col-md-6" >
+                <span class="lbl-Register">Country</span>
+                <span class="star"> * </span>
+                <select class="form-select"
+                        aria-label="Default select example" 
+                        style="margin-bottom: 20px;" 
+                        formControlName="CountryId">
+                        <option [value]="this.clinicInfo?.CountryId" selected>{{countries?.Name}}</option>
+                        <option *ngFor="let item of countries" value="{{ item.Id }}">
+                          {{ item.Name }}
+                        </option>  
+                </select>
               </div>
 
                <!-- city -->
@@ -90,32 +131,17 @@
                 <span class="lbl-Register">City</span>
                 <span class="star"> * </span>
                 <select class="form-select"
-                        aria-label="Default select example"
-                        (change)="SelectCity($event)"
-                        style="margin-bottom: 20px;">
-
-                  <option value="" selected>{{CitiesList[ClinicToUpdate.CityId].Name}}</option>
-                  <option *ngFor="let item of Cities" value="{{ item.Id }}">
-                    {{ item.Name }}
-                  </option>
+                        aria-label="Default select example" 
+                        style="margin-bottom: 20px;" 
+                        formControlName="CityId">
+                        <option [value]="this.clinicInfo?.CityId" selected>{{Cities?.Name}}</option>
+                        <option *ngFor="let item of Cities" value="{{ item.Id }}">
+                          {{ item.Name }}
+                        </option>  
                 </select>
               </div>
 
-              <!-- Area -->
-              <div class="col-12 col-md-6" >
-                <span class="lbl-Register"> Area </span>
-                <span class="star"> * </span>
-                <select class="form-select"
-                        aria-label="Default select example"
-                        (change)="SelectArea($event)"
-                        style="margin-bottom: 20px;">
-
-                      <option value="" selected>{{AreaList[ClinicToUpdate.AreaId].Name}}</option>
-                      <option *ngFor="let item of Areas" value="{{ item.Id }}">
-                        {{ item.Name }}
-                      </option>
-                </select>
-              </div>
+              
             </div>
           </div>
           
@@ -128,7 +154,7 @@
             <span class="lbl-Register">Location (GoogleMap)</span>
             <!-- <span class="star"> * </span> -->
             <div class="input-style">
-              <input [(ngModel)]="ClinicToUpdate.Address" type="text" dir="auto" class="form-control textForArabic" />
+              <input formControlName="Address" type="text" dir="auto" class="form-control textForArabic" />
             </div>
           </div>
 
@@ -160,97 +186,83 @@
 
         </div>
 
-        <div class="row">
+        <div class="row" formArrayName="HealthEntityPhoneDtos">
 
           <!-- Phone Number -->
-          <div class="col-12 col-md-4 mb-4">
-            <span class="lbl-Register">Phone Number</span>
-            <span class="star"> * </span>
+          <span class="lbl-Register">Phone Number</span>
+          <span class="star"> * </span>
+         <div class=" col-12 col-md-4 mb-4 row" *ngFor="let phone of phones_control; let i = index">
+          <div  class="col-10" >
             <div dir="auto" class="input-style">
               <input type="number"
                       style=" border-width: 1px;
                               outline: none;
                               display: block;
                               padding-left: 70px;"
-                      class="form-control"
-
-                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                      maxlength="10"
-                      minlength="10"
-                      [class.icon]="1"
-                      [(ngModel)]="ListOfMobileNumber[0]" />
+                      class="form-control" 
+                      [formControlName]="i" 
+                      >
 
               <span class="unit">+20</span>
             </div>
           </div>
-
-          <!-- Phone Number2 -->
-          <div class="col-12 col-md-4 mb-4">
-            <span class="lbl-Register">Phone Number2</span>
-            <div dir="auto" class="input-style">
-
-              <input type="number"
-                      style=" border-width: 1px;
-                              outline: none;
-                              display: block;
-                              padding-left: 70px;"
-                        class="form-control"
-                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                        maxlength="10"
-                        minlength="10"
-                        [class.icon]="1"
-                        [(ngModel)]="ListOfMobileNumber[1]" />
-
-              <span class="unit">+20</span>
-            </div>
+            
+              <div class="col-2 px-0">
+                <button class="btn btn-outline-danger  input-group-append" type="button" id="button-addon2"
+                (click)="deleteFromGroup(i)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+              </div>
+            
+         </div>
+          <div class="col-md-3 ">
+            <button class=" locationButton mb-3 border-0" (click)="addPhone()">
+              add phone
+             </button>
           </div>
-
-          <!-- Phone Number3 -->
-          <div class="col-12 col-md-4 mb-4">
-            <span class="lbl-Register">Phone Number3</span>
-            <div dir="auto" class="input-style">
-
-              <input type="number"
-                      style=" border-width: 1px;
-                              outline: none;
-                              display: block;
-                              padding-left: 70px;"
-                      class="form-control"
-                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                      maxlength="10"
-                      minlength="10"
-                      [class.icon]="1"
-                      [(ngModel)]="ListOfMobileNumber[2]" />
-              <span class="unit">+20</span>
-            </div>
-          </div>
-
         </div>
 
         <div class="row">
+           <!-- Area -->
+           <div class="col-12 col-md-4 mb-4" >
+            <span class="lbl-Register"> Area </span>
+            <span class="star"> * </span>
+            <select class="form-select"
+                    aria-label="Default select example" 
+                    style="margin-bottom: 20px;"
+                    formControlName="AreaId" type="number">
+                    <option [value]="this.clinicInfo?.AreaId" selected>{{Areas?.Name}}</option>
+                    <option *ngFor="let item of Areas" value="{{ item.Id }}" >
+                      {{ item.Name }}
+                    </option>   
+            </select>
+          </div>
           <!-- Building Number -->
           <div class="col-12 col-md-4 mb-4">
             <span class="lbl-Register">Building Number</span>
-            <span class="star"> * </span>
             <div dir="auto" class="input-style">
-              <input type="number" [(ngModel)]="ClinicToUpdate.BlockNo"
+              <input type="number"  formControlName="BlockNo"
                 style="border-width: 1px; outline: none; display: block" class="form-control" />
             </div>
           </div>
 
           <!-- FloorNumber -->
-          <div class="col-12 col-md-8 mb-4">
+          <div class="col-12 col-md-4 mb-4">
             <span class="lbl-Register">Floor Number</span>
-            <span class="star"> * </span>
             <div dir="auto" class="input-style">
 
-              <input type="number" [(ngModel)]="ClinicToUpdate.BlockNo"
+              <input type="number"  formControlName="FloorNo"
                 style="border-width: 1px; outline: none; display: block" class="form-control" />
 
             </div>
           </div>
+         
 
-        </div>
+        </div> 
+      </form>
+
+
+
 
     </div>
 
@@ -259,15 +271,11 @@
 
         <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end" >
           <button (click)="submitClinic()" class="SaveChanges-btn" style="background-color: #262d70" >
-            Save Changes
-          </button>
-        </div>
-
-        <div class="col-12 col-md-2 d-flex justify-content-center justify-content-sm-start" >
-          <button (click)="Next()" class="Next-btn" style="background-color: #262d70;margin-top: 2px;" >
             Next
           </button>
         </div>
+
+       
 
       </div>
     </div>
