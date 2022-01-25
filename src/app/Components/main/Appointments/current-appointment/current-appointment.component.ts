@@ -22,7 +22,6 @@ export class CurrentAppointmentComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
-
     //#region  Init Values
     this.IamgeURL = environment.ImagesURL;
     document.getElementById('Current')?.classList.add('visited-appointemt-component');
@@ -43,10 +42,15 @@ export class CurrentAppointmentComponent implements OnInit {
     this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
          this.PatientList = response.Data.Items;
-        //  console.log( this.PatientList);
+         let re = /\*/gi;
+         
+         this.PatientList.forEach(element => {
+            element.PatientName = element.PatientName.replace(re, " ");
+            let s= (element.PatientName.split(" ", 2)).toString();
+            element.PatientName = (s.replace(","," "));
+        });
       },
       (err)=>{
-        // console.log(err);
       }
     )
   }
@@ -54,9 +58,5 @@ export class CurrentAppointmentComponent implements OnInit {
 
 //#endregion
 
-// ChangePage(event:any){
-//   console.log(event);
-//   this.p = event;
-// }
 
 }
