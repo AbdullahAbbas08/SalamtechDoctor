@@ -6,6 +6,7 @@ import { DoctorInfoModel } from 'src/Models/doctor-info-model';
 import { DoctorProfile } from 'src/Models/doctor-profile';
 import { DropDownModel } from 'src/Models/drop-down-model';
 import { GeneralResponseSingleObject } from 'src/Models/general-response-single-object';
+import { UpdateProfile } from 'src/Models/update-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class DoctorService {
     //#endregion
 
     //#region Update Profile
-    UpdateProfile(DoctorInfoModel:FormData):Observable<any>{
+    UpdateProfile(DoctorInfoModel:UpdateProfile):Observable<any>{
       return this.http.post(`${environment.URL}${this.culture}/Doctor/UpdateProfile`,DoctorInfoModel,this.httpOptions);
     }
     //#endregion

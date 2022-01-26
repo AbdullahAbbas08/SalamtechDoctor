@@ -93,7 +93,9 @@
           "SubSpeciality":"Sub-Speciality",
           "Seniority":"Seniority",
           "BiographyAr":"معلومات شخصية",
-          "Biography":"Biography"
+          "Biography":"Biography",
+          "Update":"Update",
+          "back":"back"
         },
         "Documents":{
           "UploadNationalIdFrontFace":"Upload Front Face required",
@@ -159,7 +161,8 @@
           "Active":"Active",
           "NotActive":"Not Active",
           "Interval":"Interval",
-          "Update":"Update"
+          "Update":"Update",
+          "Finish":"Finish"
         },
         "clinicmanager":{
           "main":{

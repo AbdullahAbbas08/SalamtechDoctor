@@ -27,6 +27,8 @@ import { ChatComponent } from './Components/main/Service/chat/chat.component';
 import { HomeVisitComponent } from './Components/main/Service/home-visit/home-visit.component';
 import { MainServiceComponent } from './Components/main/Service/main-service.component';
 import { VideoCallComponent } from './Components/main/Service/video-call/video-call.component';
+import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/updata-doctor-data.component';
+import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/update-doctor-info/update-doctor-info.component';
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { LoginPageComponent } from './Components/SignIn/login-page/login-page.component';
 import { RegisterPageComponent } from './Components/SignIn/register-page/register-page.component';
@@ -51,6 +53,13 @@ const routes: Routes = [
   {path:'doctor-profile',component:SignUpMainComponent ,children:[
       {path:'OTP',component:OtpComponent },
       {path:'',component:DoctorInfoComponent },
+      {path:'certificates',component:CertificatesComponent },
+      {path:'documents',component:DocumentsComponent },
+      {path:'Congratulations',component:CongratulationsComponent },
+  ] },
+
+  {path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
+      {path:'',component:UpdateDoctorInfoComponent },
       {path:'certificates',component:CertificatesComponent },
       {path:'documents',component:DocumentsComponent },
       {path:'Congratulations',component:CongratulationsComponent },

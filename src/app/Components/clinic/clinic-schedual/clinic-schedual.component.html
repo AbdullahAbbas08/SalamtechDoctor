@@ -154,6 +154,9 @@
                                                       <div style="position: relative;">
                                                         <input type="number"
                                                                 formControlName="Fees"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                maxlength="4"
+                                                                minlength="1"
                                                                 class="form-control input-style-period" >
                                                         <label class="unit">
                                                            {{'mainModule.Schedule.EGP' | translate}}
@@ -334,6 +337,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees"
                                                       >
@@ -523,6 +529,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
                                                       <label class="unit">
@@ -710,6 +719,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
                                                       <label class="unit">
@@ -901,6 +913,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
                                                       <label class="unit">
@@ -1088,6 +1103,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
                                                       <label class="unit">
@@ -1277,6 +1295,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
                                                       <label class="unit">
@@ -1468,6 +1489,9 @@
 
                                                     <div style="position: relative;">
                                                       <input type="number"
+                                                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                      maxlength="4"
+                                                      minlength="1"
                                                               class="form-control input-style-period"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees">
                                                       <label class="unit">EGP</label>
@@ -1528,7 +1552,7 @@
       <div class="col-12 d-flex justify-content-center justify-content-sm-end">
           <button class="Back-btn"
                   (click)="Back()">
-              Back
+                {{'mainModule.Schedule.Finish' | translate}}
           </button>
       </div>
   </div>

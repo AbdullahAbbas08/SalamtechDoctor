@@ -94,7 +94,9 @@
           "SubSpeciality":"التخصص",
           "Seniority":"الدرجه العلمية",
           "BiographyAr":"Biography",
-          "Biography":"المعلومات الشخصية"
+          "Biography":"المعلومات الشخصية",
+          "Update":"تعديل",
+          "back":"رجوع"
         },
         "Documents":{
           "UploadNationalIdFrontFace":" صورة  الرقم القومى من الوجه",
@@ -143,6 +145,25 @@
           "ApartmentNumber":"رقم ",
           "Services":"الخدمات",
           "Next":"التالى"
+        },
+        "Schedule":{
+          "Schedule":"مواعيد",
+          "Periods":"فترات",
+          "Period1":"فترة 1",
+          "Reset":"إعادة",
+          "Operatinghours":"فترات العمل",
+          "SelectDuration":"أختر الفترة",
+          "Minutes":"دقائق",
+          "Visitfee":"تكلفة الزيارة",
+          "EGP":"ج.م",
+          "Submit":"تسجيل",
+          "AddNewPeriod":"أضف فترة",
+          "Period":"فترة",
+          "Active":"متاح",
+          "NotActive":"غير متاح",
+          "Interval":"فترات",
+          "Update":"تحديث",
+          "Finish":"إنهاء"
         },
         "clinicmanager":{
           "main":{

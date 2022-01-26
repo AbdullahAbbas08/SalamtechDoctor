@@ -13,6 +13,7 @@ import { Coordinates } from "src/Models/Coordinates";
 import { IdNameList } from "src/Models/id-name-list";
 import { UpdateClinic } from "src/Models/update-clinic";
 import { ClinicInfoService } from "src/Service/ClinicInfo/clinic-info.service";
+import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { LookupsService } from "src/Service/Lockups/lookups.service";
 
 @Component({
@@ -50,9 +51,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.imgURL = "../../../../assets/img/DoctorImg/Rectangle 2.png";
-
-   
+    this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
   }
 
   getClinicInfo(id){
@@ -124,6 +123,7 @@ getCity(){
       // console.log(this.Cities);
   })
 }
+
 getAreas(){
   this.lookupService.GetAreas('en').subscribe(
     (response)=>{
@@ -241,4 +241,7 @@ getAreas(){
   }
 
 
+
+
+ 
 }

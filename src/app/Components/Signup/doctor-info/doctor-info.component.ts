@@ -60,7 +60,6 @@ export class DoctorInfoComponent implements OnInit {
     //#endregion
 
 
-
     initForm(){
       this.DoctorInfoForm = this.fb.group(
         {
@@ -86,6 +85,7 @@ export class DoctorInfoComponent implements OnInit {
             Biography:['',[Validators.required]]
           });
     }
+    
 //#region Definition API's
 
   //#region GetSubSpecialistIdName
@@ -163,6 +163,7 @@ GetSpecialistIdName(lang:string)
   //#region Get Doctor Profile
 
   //#endregion
+
   //#region 
   // UpdateProfile(){
   //   this.DoctorService.UpdateProfile()

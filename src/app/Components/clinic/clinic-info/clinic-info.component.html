@@ -125,6 +125,10 @@
                 type="number"
                 style="border-width: 1px; outline: none; display: block"
                 class="form-control"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="4"
+                minlength="1"
+
                 [class.is-valid]="
                   ClinicInfoForm.controls['FixedFee'].valid &&
                   ClinicInfoForm.controls['FixedFee'].touched

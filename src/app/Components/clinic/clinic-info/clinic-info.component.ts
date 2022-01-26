@@ -40,6 +40,7 @@ export class ClinicInfoComponent implements OnInit {
     private ClinicService: ClinicInfoService,
     private Router: Router) {
     this.coordinates = {} as Coordinates;
+
   }
 
 
@@ -214,9 +215,12 @@ export class ClinicInfoComponent implements OnInit {
       // console.log("ClinicId : ",this.ClinicId.ClinicId)
       // this.ClinicService.ClinicID = res.Data.ClinicId;
       //  this.Router.navigateByUrl("clinic/gallary")/ClinicId
-      this.Router.navigate(['clinic/gallary/', res.Data.ClinicId]);
+      // localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
+      // console.log(" res.Data.ClinicId : ", res.Data.ClinicId)
+      this.Router.navigate(['/clinic/gallary/', res.Data.ClinicId]);
     },
       (err) => {
+        console.log(err)
       })
   }
   //#endregion
@@ -258,8 +262,6 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('FloorNo', +this.ClinicInfoForm.controls.FloorNumber.value as unknown as Blob)
     formData.append('Inactive', "true")
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
-
-    console.log(this.ClinicInfoForm.value)
 
     this.CreateClinic('en', formData)
 

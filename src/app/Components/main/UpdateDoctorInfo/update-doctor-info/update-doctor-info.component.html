@@ -4,7 +4,7 @@
       <div class="col-lg-4 col-md-12  col-sm-12 mb-4">
         <div class="row img-block just">
           <div class="col img-col-block">
-            <img src="{{imgURL}}" />
+            <img src="{{url_img}}" />
           </div>
         </div>
         <div class="row ChangeProfilePhoto-block ">
@@ -15,7 +15,7 @@
                    accept="image/*" id="getFile" style="display:none"
                   (change)="preview(file.files)">
 
-            <button onclick="document.getElementById('getFile').click()"
+            <button disabled
                     class="changePhoto-btn">
               Change Profile Photo
             </button>
@@ -32,15 +32,9 @@
             </span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control" formControlName="FirstName" [class.is-valid]="
-                  DoctorInfoForm.controls['FirstName'].valid &&
-                  DoctorInfoForm.controls['FirstName'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['FirstName'].invalid &&
-                  DoctorInfoForm.controls['FirstName'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+              <label class="form-control" >
+                  {{DoctorProfile.FirstName}}
+              </label>
             </div>
           </div>
 
@@ -51,15 +45,11 @@
               }}</span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control textForArabic" formControlName="FirstNameAr" [class.is-valid]="
-                  DoctorInfoForm.controls['FirstNameAr'].valid &&
-                  DoctorInfoForm.controls['FirstNameAr'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['FirstNameAr'].invalid &&
-                  DoctorInfoForm.controls['FirstNameAr'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.FirstNameAr}}
+                    </label>
+                  </div>
             </div>
           </div>
 
@@ -70,15 +60,11 @@
               }}</span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control" formControlName="MiddleName" [class.is-valid]="
-                  DoctorInfoForm.controls['MiddleName'].valid &&
-                  DoctorInfoForm.controls['MiddleName'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['MiddleName'].invalid &&
-                  DoctorInfoForm.controls['MiddleName'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.MiddelName}}
+                    </label>
+                  </div>
             </div>
           </div>
 
@@ -89,15 +75,11 @@
               }}</span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control textForArabic" formControlName="MiddleNameAr" [class.is-valid]="
-                  DoctorInfoForm.controls['MiddleNameAr'].valid &&
-                  DoctorInfoForm.controls['MiddleNameAr'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['MiddleNameAr'].invalid &&
-                  DoctorInfoForm.controls['MiddleNameAr'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.MiddelNameAr}}
+                    </label>
+                  </div>
             </div>
           </div>
 
@@ -108,15 +90,11 @@
               }}</span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control" formControlName="LastName" [class.is-valid]="
-                  DoctorInfoForm.controls['LastName'].valid &&
-                  DoctorInfoForm.controls['LastName'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['LastName'].invalid &&
-                  DoctorInfoForm.controls['LastName'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.LastName}}
+                    </label>
+                  </div>
             </div>
           </div>
 
@@ -127,15 +105,11 @@
               }}</span>
             <span class="star"> * </span>
             <div class="input-style">
-              <input type="text" class="form-control textForArabic" formControlName="LastNameAr" [class.is-valid]="
-                  DoctorInfoForm.controls['LastNameAr'].valid &&
-                  DoctorInfoForm.controls['LastNameAr'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['LastNameAr'].invalid &&
-                  DoctorInfoForm.controls['LastNameAr'].touched
-                "
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.LastNameAr}}
+                    </label>
+                  </div>
             </div>
           </div>
         </div>
@@ -149,18 +123,14 @@
           "mainModule.DoctorInfo.Gender" | translate
           }}</span>
         <span class="star"> * </span>
-        <select formControlName="Gender"
-                (change)="SelectGender($event)"
-                class="form-select"
-                aria-label="Default select example">
-          <option value="" selected disabled >{{ "mainModule.DoctorInfo.Gender" | translate }}</option>
-          <option value="1">
-            {{ "mainModule.DoctorInfo.Male" | translate }}
-          </option>
-          <option value="2">
-            {{ "mainModule.DoctorInfo.Female" | translate }}
-          </option>
-        </select>
+        <div class="input-style">
+            <label class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock">
+               Male
+            </label>
+            <ng-template #elseblock>
+                Female
+            </ng-template>
+          </div>
       </div>
 
       <!-- Nationality -->
@@ -169,17 +139,11 @@
           {{ "mainModule.DoctorInfo.Nationality" | translate }}
         </span>
         <span class="star"> * </span>
-        <select formControlName="Country"
-                (change)="SelectCountries($event)"
-                class="form-select"
-                aria-label="Default select example">
-          <option value="" selected disabled>
-            {{ "mainModule.DoctorInfo.Egypt" | translate }}
-          </option>
-          <option *ngFor="let item of DropDownList_GetCountries" value={{item.Id}}>
-            {{item.Name}}
-            </option>
-        </select>
+        <div class="input-style">
+            <label class="form-control">
+               Egypt
+            </label>
+          </div>
       </div>
 
       <!-- Date_of_birth -->
@@ -190,16 +154,10 @@
             }}</span>
           <span class="star"> * </span>
           <div class="input-style">
-            <input type="date" formControlName="DateOfBirth" class="form-control" [class.is-valid]="
-                DoctorInfoForm.controls['DateOfBirth'].valid &&
-                DoctorInfoForm.controls['DateOfBirth'].touched
-              " [class.is-invalid]="
-                DoctorInfoForm.controls['DateOfBirth'].invalid &&
-                DoctorInfoForm.controls['DateOfBirth'].touched
-              "
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              maxlength="10" minlength="3" />
-          </div>
+            <label class="form-control">
+                {{date}}
+             </label>
+        </div>
         </div>
       </div>
     </div>
@@ -248,17 +206,12 @@
           "mainModule.DoctorInfo.Seniority" | translate
           }}</span>
         <span class="star"> * </span>
-        <select formControlName="Seniority"
-                (change)="SelectSeniority($event)"
-                class="form-select"
-                aria-label="Default select example">
-          <option value="" selected disabled>
-            {{ "mainModule.DoctorInfo.Seniority" | translate }}
-          </option>
-          <option *ngFor="let item of DropDownList_SeniorityLevel" value={{item.Id}}>
-            {{item.Name}}
-            </option>
-        </select>
+        <div class="input-style">
+            <label class="form-control">
+                <!-- {{Seniority}} -->
+                specialist
+             </label>
+        </div>
       </div>
     </div>
 
@@ -277,8 +230,8 @@
       <!-- BiographyAr -->
       <div class="col-12 col-md-6">
         <div class="form-floating textForArabic">
-          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register"><span class="star"> * </span>{{
-            "mainModule.DoctorInfo.BiographyAr" | translate }}</label>
+          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register"><span class="star"> * </span>
+            {{"mainModule.DoctorInfo.BiographyAr" | translate }}</label>
           <textarea formControlName='BiographyAr' class="form-control textForArabic" placeholder="Leave a comment here" id="floatingTextarea2"
             style="height: 120px"></textarea>
         </div>
@@ -286,10 +239,15 @@
     </div>
   </form>
 
-  <div class="row justify-content-end mt-4 ">
-    <div class="col-3">
+  <div class="row justify-content-end mt-4  ">
+    <div class="col-2">
       <button  class="btn text-white w-100" style="background-color: #262d70" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm.valid">
-        Next
+          {{"mainModule.DoctorInfo.Update" | translate }}
+      </button>
+    </div>
+    <div class="col-2">
+      <button  class="btn text-white w-100" style="background-color: #262d70" (click)="back()" >
+          {{"mainModule.DoctorInfo.back" | translate }}
       </button>
     </div>
   </div>

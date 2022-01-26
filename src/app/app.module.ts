@@ -52,6 +52,9 @@ import { RegisterPageComponent } from './Components/SignIn/register-page/registe
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { DashboardComponent } from './Components/main/Dashboard/dashboard/dashboard.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/update-doctor-info/update-doctor-info.component';
+import { SidebarComponent } from './Components/main/UpdateDoctorInfo/sidebar/sidebar.component';
+import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/updata-doctor-data.component';
 
 
 // AoT requires an exported function for factories
@@ -100,6 +103,9 @@ export function CreateTranslateLoader(http: HttpClient) {
     RegisterPageComponent,
     LoginMainComponent,
     DashboardComponent,
+    UpdateDoctorInfoComponent,
+    SidebarComponent,
+    UpdataDoctorDataComponent,
   ],
   imports: [
     HttpClientModule,
