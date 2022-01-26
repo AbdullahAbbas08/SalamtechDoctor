@@ -15,7 +15,6 @@ import { SignupService } from 'src/Service/signup/signup.service';
 })
 export class DoctorInfoComponent implements OnInit {
 
-
   //#region  Declare Variables
   DoctorInfoForm : FormGroup ;
   DropDownModel:DropDownModel;
@@ -23,8 +22,7 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_Speciality:IdNameList[];
   DropDownList_SubSpeciality:IdNameList[];
   DropDownList_SeniorityLevel:IdNameList[];
-  DropDownList_GetCountries:IdNameList[];
-  DoctorProfile:DoctorProfile;
+  DropDownList_GetCountries:IdNameList[]; 
   //#endregion
 
   //#region Constructor
@@ -37,6 +35,7 @@ export class DoctorInfoComponent implements OnInit {
   //#region On Init Method
     ngOnInit(): void {
 
+      this.initForm()
       //#region Init Values
       document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
       document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -54,29 +53,30 @@ export class DoctorInfoComponent implements OnInit {
       this.GetSpecialistIdName('en');
       this.SeniorityLevelIdName('en');
       this.GetCountries('en');
-      this.GetDoctorProfile();
+   
       //#endregion
     }
 
     //#endregion
 
 
+
     initForm(){
       this.DoctorInfoForm = this.fb.group(
         {
-            FirstName:[this.DoctorProfile?.FirstName||'',[Validators.required , Validators.minLength(3)]],
+            FirstName:['',[Validators.required , Validators.minLength(3)]],
             FirstNameAr:['',[Validators.required , Validators.minLength(3)]],
             MiddleName:['',[Validators.minLength(3) , Validators.required]],
             MiddleNameAr:['',[Validators.minLength(3) , Validators.required]],
             LastName:['',[Validators.minLength(3) , Validators.required]],
             LastNameAr:['',[Validators.minLength(3) , Validators.required]],
             ImageDoctor:['',[ Validators.required]],
-            Email:['',[Validators.email , Validators.required]],
-            PhoneNumber:['',[Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
-            Password:['',[Validators.required , Validators.minLength(6)]],
-            ConfirmPassword:['',[Validators.required ]],
+            // Email:['',[Validators.email , Validators.required]],
+            // PhoneNumber:['',[Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
+            // Password:['',[Validators.required , Validators.minLength(6)]],
+            // ConfirmPassword:['',[Validators.required ]],
             Gender:['',[Validators.required ]],
-            Nationality:['',[Validators.required ]],
+            // Nationality:['',[Validators.required ]],
             Country:['',[Validators.required ]],
             DateOfBirth:['',[Validators.required ]],
             Speciality:['',[Validators.required]],
@@ -107,7 +107,7 @@ export class DoctorInfoComponent implements OnInit {
   {
     this.DoctorService.CreateProfile(lang ,_DoctorInfoModel ).subscribe(
       (response)=>{
-       this.router.navigateByUrl('signup/certificates');
+       this.router.navigateByUrl('/doctor-profile/certificates');
       },
       (err)=>{
         // console.log(err);
@@ -125,7 +125,7 @@ GetSpecialistIdName(lang:string)
       this.DropDownList_Speciality = this.DropDownModel.Data;
       // console.log(this.DropDownList);
     },
-    (err)=>{}
+    (err)=>{ console.log(err)}
   )
 }
 //#endregion
@@ -138,7 +138,7 @@ GetSpecialistIdName(lang:string)
         this.DropDownList_SeniorityLevel = response.Data;
       },
       (err)=>{
-        // console.log(err);
+        console.log(err);
       }
     )
   }
@@ -152,25 +152,14 @@ GetSpecialistIdName(lang:string)
         this.DropDownList_GetCountries = response.Data;
       },
       (err)=>{
-        // console.log(err);
+        console.log(err);
       }
     )
   }
   //#endregion
 
   //#region Get Doctor Profile
-  GetDoctorProfile(){
-    this.DoctorService.GetDoctorProfile().subscribe(
-      (response)=>{
-        this.DoctorProfile = response.Data;
-        console.log(this.DoctorProfile);
-        this. initForm();
-      },
-      (err)=>{
 
-      }
-    )
-  }
   //#endregion
   //#region 
   // UpdateProfile(){
@@ -219,7 +208,6 @@ GetSpecialistIdName(lang:string)
     formData.append("DoctorInfoAr", this.DoctorInfoModel.DoctorInfoAr);
     formData.append("profileImage", this.DoctorInfoModel.profileImage);
 
-   console.log(this.DoctorInfoForm.value)
     this.CreateProfile('en',formData);
 
   }

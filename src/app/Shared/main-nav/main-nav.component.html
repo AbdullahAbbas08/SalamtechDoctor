@@ -10,20 +10,14 @@
         <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" />
       </form> -->
       <div class="col-md-6"></div>
-      <ul class="navbar-nav  my-2 mb-lg-0 d-md-flex d-block  justify-content-center align-items-center" style="width: 75%;">
-        <li class="nav-item dropdown mx-3">
-          <!-- <a class="nav-link dropdown-toggle rounded-pill border px-4" href="#" id="navbarDropdown" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            langue
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a class="dropdown-item" (click)="ChangeLanguage(DefaultLang)" >English</a>
-            </li>
-            <li>
-              <a class="dropdown-item" (click)="ChangeLanguage(DefaultLang)"  >Arabic</a>
-            </li>
-          </ul> -->
+     <div class="col-md-6">
+      <ul class="navbar-nav  my-2 mb-lg-0 d-md-flex d-block  justify-content-center align-items-center" >
+        <li class="nav-item   mx-3">
+          <span>
+            <img src="../../../assets/img/logoutIcon/Group 18.png">
+          </span>
+          <!-- Logout -->
+          <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
         </li>
         <li class=" mt-md-0 mt-3">
           <div>
@@ -50,12 +44,12 @@
         <li class="nav-item mx-2 mt-md-0 mt-2">
           <div class="card  border-0">
             <div class="row g-0 main-color">
-              <div class="col-md-4">
-                <img src="{{IamgeURL}}{{logo}}" class="img-fluid2 rounded-start" alt="..." />
+              <div class="col-md-4" >
+                <img src="{{IamgeURL}}{{logo}}" class="img-fluid2 rounded-start"
+                onerror="this.src='../../../../assets/img/user-img.jpg';"  />
               </div>
               <div class="col-md-8">
                 <div class="">
-
                   <p class="card-text mb-0 mt-2 mx-2">{{name}}</p>
                 </div>
               </div>
@@ -63,6 +57,7 @@
           </div>
         </li>
       </ul>
+     </div>
     </div>
   </div>
 </nav>

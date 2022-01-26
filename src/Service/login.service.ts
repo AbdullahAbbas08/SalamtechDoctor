@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from './../Models/Login';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -16,7 +16,17 @@ export class LoginService {
   culture:string = localStorage.getItem('lang') as string;
 
 
-  constructor(private http:HttpClient ) { }
+  auth:string =localStorage.getItem('Authorization') as string;
+
+  constructor(private http:HttpClient) { }
+
+    //#region Options
+    httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization':  `Bearer ${this.auth}`
+        })};
+    //#endregion
+  
 
 
   login(user:Login):Observable<LoginResponse>{
@@ -24,7 +34,7 @@ export class LoginService {
   }
 
   GetDoctorProfile():Observable<GeneralResponseSingleObject<DoctorInfoModel>>{
-    return this.http.get<GeneralResponseSingleObject<DoctorInfoModel>>(`${environment.URL}${this.culture}/Doctor/GetDoctorProfile`);
+    return this.http.get<GeneralResponseSingleObject<DoctorInfoModel>>(`${environment.URL}${this.culture}/Doctor/GetDoctorProfile` , this.httpOptions);
   }
 
 

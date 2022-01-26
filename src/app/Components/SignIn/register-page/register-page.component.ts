@@ -38,7 +38,7 @@ export class RegisterPageComponent implements OnInit {
         FirstName:['',[Validators.required]],
         MiddleName:['',[Validators.required]],
         LastName:['',[Validators.required]],
-        Email:['aaa@aaa.cpm',[Validators.required]],
+        Email:['',[Validators.required]],
         PhoneNumber:['',[Validators.required]],
         checkboxcont:['',[Validators.required]],
         Password:['',[Validators.required , Validators.minLength(6)]],
@@ -87,15 +87,17 @@ Checkinput(){
       this.CreateUser.UserTypeId = 2;
     this.UserService.CreateUser( this.CreateUser).subscribe(
       (response)=>{
-        console.log(response);
+        // console.log(response);
         localStorage.setItem('Authorization',response.Data.Token)
-        this.GetDoctorProfile();
-
-        this.router.navigate(["/main"]);
-        window.location.reload();
+        // this.GetDoctorProfile();
+        let auth=localStorage.getItem('Authorization')        
+        if(auth){
+          this.router.navigate(["/doctor-profile"]);
+        }
+        // window.location.reload();
       },
       (err)=>{
-        
+        console.log(err)
       }
     )
     }
