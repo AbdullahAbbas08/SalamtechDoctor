@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Certificate } from 'src/Models/certificate';
 import { CertificateResponse } from 'src/Models/certificateResponse';
 import { CertificateService } from 'src/Service/Certificate/certificate.service';
+import { LoginService } from 'src/Service/login.service';
 
 @Component({
   selector: 'app-certificates',
@@ -23,11 +24,11 @@ export class CertificatesComponent implements OnInit {
 
   editableCertificate:Certificate
 
-  constructor(private fb:FormBuilder ,private certificateService:CertificateService) { }
+  constructor(private fb:FormBuilder ,private certificateService:CertificateService , private loginService:LoginService) { }
 
   ngOnInit(): void {
 
-
+    this.GetDoctorProfile();
     //#region Sidebar style
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -179,5 +180,18 @@ export class CertificatesComponent implements OnInit {
       )
     },
     (err)=>{console.log(err)})
+  }
+
+  GetDoctorProfile(){
+    this.loginService.GetDoctorProfile().subscribe(
+      (response)=>{
+        localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
+        localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
+        localStorage.setItem("logo",response.Data.Image);
+      },
+      (err)=>{
+
+      }
+    )
   }
 }
