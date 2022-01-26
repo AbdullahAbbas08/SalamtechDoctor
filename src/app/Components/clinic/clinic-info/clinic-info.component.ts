@@ -134,7 +134,7 @@ export class ClinicInfoComponent implements OnInit {
 
   //#region review AND File FormData image from input file
   public imagePath: any;
-  imgURL: any = '../../../../assets/img/DoctorImg/Rectangle 2.png';
+  imgURL: any = '../../../../assets/img/DoctorImg/avatar.png';
   public message: string;
 
   preview(files: any) {

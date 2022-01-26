@@ -22,10 +22,10 @@
           "LoginAsDoctor":"Login As Doctor",
           "PhoneNumber":"Phone Number",
           "SignIn":"Sign In",
-          "DontHaveAnAccount?":"Don't Have An Account?",
+          "DontHaveAnAccount?":"Don't Have an Account?",
           "createAccount":"Create Account",
           "ForgetPassword":"Forget Password?",
-          "LoginAsPatient":"Login As Patient"
+          "LoginAsPatient":"Login as Patient"
         },
         "LoginPage":{
           "SignIn":"Sign In",
@@ -61,7 +61,7 @@
           "Signup":"Sign Up",
           "DoctorInfo":"Doctor info",
           "Certificates":"Certificates",
-          "LegalDocuments":"Legal Documents",
+          "LegalDocuments":"Legal Docs",
           "Congratulations":"Congratulations",
           "singingUpYouAreApproveOur":"singing up you are approve our",
           "Terms&Conditions":"Terms & Conditions",

@@ -80,7 +80,7 @@ export class MainNavComponent implements OnInit {
   GetDoctorProfile(){
     this.loginService.GetDoctorProfile().subscribe(
       (response)=>{
-        console.log(response);
+        // console.log(response);
         
         localStorage.setItem("NameEnglish",response.Data.FirstName + ' ' + response.Data.MiddelName + ' ' + response.Data.LastName);
         localStorage.setItem("NameArabic",response.Data.FirstNameAr+ ' ' + response.Data.MiddelNameAr + ' ' + response.Data.LastNameAr);

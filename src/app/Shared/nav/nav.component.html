@@ -25,17 +25,15 @@
           <app-login></app-login>
 
           <div *ngIf="DefaultLang == 'en'" style="cursor: pointer;">
-            <div class="btn-lang" (click)="ChangeLanguage(DefaultLang)">
-              <img (click)="ChangeLanguage(DefaultLang)" 
-                    src="./assets/img/en/en.png"
-                    class="en">
-              <span >English</span>
+            <div class="btn-lang p-2 rounded" (click)="ChangeLanguage(DefaultLang)">
+              
+              English 
             </div>
           </div>
           <div *ngIf="DefaultLang == 'ar'" style="cursor: pointer;">
-            <div class="btn-lang" (click)="ChangeLanguage(DefaultLang)">
-              <img (click)="ChangeLanguage(DefaultLang)" src="./assets/img/ar/arabic-language-code.png" class="en">
-              <span >عربى</span>
+            <div class="btn-lang p-2 rounded" (click)="ChangeLanguage(DefaultLang)">
+              
+            عربى 
             </div>
           </div>
         </div>

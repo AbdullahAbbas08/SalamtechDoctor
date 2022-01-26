@@ -15,7 +15,6 @@ export class MainComponent implements OnInit {
   constructor(private router:Router , private loginService:LoginService) { }
 
   ngOnInit(): void {
-    this.GetDoctorProfile()
   }
 
   RemoveAuth(){
@@ -40,17 +39,6 @@ export class MainComponent implements OnInit {
     }
 
     
-    GetDoctorProfile(){
-      this.loginService.GetDoctorProfile().subscribe(
-        (response)=>{
-          localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
-          localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
-          localStorage.setItem("logo",response.Data.Image);
-        },
-        (err)=>{
-  
-        }
-      )
-    }
+   
 
 }
