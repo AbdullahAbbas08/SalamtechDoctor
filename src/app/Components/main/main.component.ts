@@ -1,6 +1,7 @@
 import { Route } from '@angular/compiler/src/core';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/Service/login.service';
 
 @Component({
   selector: 'app-main',
@@ -11,9 +12,10 @@ export class MainComponent implements OnInit {
   
   @ViewChild('navbarToggler') navbarToggler: ElementRef;
   
-  constructor(private router:Router) { }
+  constructor(private router:Router , private loginService:LoginService) { }
 
   ngOnInit(): void {
+    this.GetDoctorProfile()
   }
 
   RemoveAuth(){
@@ -35,6 +37,20 @@ export class MainComponent implements OnInit {
         this.navbarToggler.nativeElement.click();
         
       }
+    }
+
+    
+    GetDoctorProfile(){
+      this.loginService.GetDoctorProfile().subscribe(
+        (response)=>{
+          localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
+          localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
+          localStorage.setItem("logo",response.Data.Image);
+        },
+        (err)=>{
+  
+        }
+      )
     }
 
 }

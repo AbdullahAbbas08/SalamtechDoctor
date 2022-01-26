@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IdNameList } from 'src/Models/id-name-list';
 import { DocumentService } from 'src/Service/Documents/document.service';
+import { LoginService } from 'src/Service/login.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-documents',
@@ -19,13 +23,14 @@ export class DocumentsComponent implements OnInit {
   //#region Constructor
 constructor(
   private fb:FormBuilder ,
-  private DocumentService:DocumentService
+  private DocumentService:DocumentService,
+  private loginService:LoginService,
+  private router:Router
 ) { }
 //#endregion
 
   //#region On Init Method
   ngOnInit(): void {
-
       //#region Init variables
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -141,5 +146,27 @@ constructor(
       this.CreateDoctorDocuments('en',formData)
     }
     //#endregion
+
+
+    next(){
+
+      
+      
+      Swal.fire({
+        title: 'Great',
+        text: "Welcome to Salamtech. We will review your request and update your account soon",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Done',
+        cancelButtonText: 'Add New Clinic',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/main'])
+        } else   {
+          this.router.navigate(['/clinic'])
+        }
+      })
+    }
 
 }

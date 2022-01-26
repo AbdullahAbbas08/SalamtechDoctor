@@ -173,7 +173,7 @@
                 (change)="SelectCountries($event)"
                 class="form-select"
                 aria-label="Default select example">
-          <option value="" selected>
+          <option value="" selected disabled>
             {{ "mainModule.DoctorInfo.Egypt" | translate }}
           </option>
           <option *ngFor="let item of DropDownList_GetCountries" value={{item.Id}}>

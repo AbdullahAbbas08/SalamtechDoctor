@@ -9,7 +9,7 @@
         </div>
 
         <!-- history of certificates -->
-        <div *ngIf="submittedCertificate" class="col-12" style="background-color: blue;">
+        <div *ngIf="submittedCertificate" class="col-12 my-3"  >
           <div class=" card-header
                         d-flex
                         border-0
@@ -68,7 +68,7 @@
               <div class="row">
 
                 <!-- Titlt Input -->
-                <div class="col-md-6">
+                <div class="col-md-6 mt-3">
                   <div class="input-group">
                     <label for="title" class="text-muted">{{"mainModule.Certificate.CertificateTitle" | translate}}<span class="text-danger">*</span></label>
                     <input id="title" type="text" class="form-control w-100 mt-2 input-style" formControlName="title"

@@ -12,21 +12,21 @@
       <div class="col-md-6"></div>
      <div class="col-md-6">
       <ul class="navbar-nav  my-2 mb-lg-0 d-md-flex d-block  justify-content-center align-items-center" >
-        <li class="nav-item   mx-3">
+        <li class="nav-item  notification mx-3">
           <span>
             <img src="../../../assets/img/logoutIcon/Group 18.png">
           </span>
           <!-- Logout -->
-          <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
+          <span class="btn li-item" (click)=" RemoveAuth()"> {{ "mainModule.main.Logout" | translate }}</span>
         </li>
         <li class=" mt-md-0 mt-3">
           <div>
-          <a class="nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'">English</a>
+          <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'">English</a>
           </div>
         </li>
         <li class=" mt-md-0 mt-3">
           <div>
-          <a class="nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">عربى</a>
+          <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">عربى</a>
           </div>
         </li>
         <li class="nav-item mx-2 mt-md-0 mt-3">

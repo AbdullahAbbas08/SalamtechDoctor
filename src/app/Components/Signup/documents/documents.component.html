@@ -225,8 +225,8 @@
       <div class="col-12 d-flex justify-content-end">
          <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#nextbtn'" >
           <span dir="auto">
-            <button class="btn-next"
-                   [routerLink]="['/main']">
+            <button class="btn-next" (click)="next()"
+                   >
              {{"mainModule.Documents.Next" | translate }}
           </button>
           </span>

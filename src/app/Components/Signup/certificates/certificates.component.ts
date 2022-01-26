@@ -28,7 +28,7 @@ export class CertificatesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetDoctorProfile();
+
     //#region Sidebar style
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -182,16 +182,5 @@ export class CertificatesComponent implements OnInit {
     (err)=>{console.log(err)})
   }
 
-  GetDoctorProfile(){
-    this.loginService.GetDoctorProfile().subscribe(
-      (response)=>{
-        localStorage.setItem("NameEnglish",response.Data.FirstName + response.Data.MiddelName + response.Data.LastName);
-        localStorage.setItem("NameArabic",response.Data.FirstNameAr + response.Data.MiddelNameAr + response.Data.LastNameAr);
-        localStorage.setItem("logo",response.Data.Image);
-      },
-      (err)=>{
-
-      }
-    )
-  }
+ 
 }

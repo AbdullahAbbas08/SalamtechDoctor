@@ -51,7 +51,7 @@ import { LoginPageComponent } from './Components/SignIn/login-page/login-page.co
 import { RegisterPageComponent } from './Components/SignIn/register-page/register-page.component';
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { DashboardComponent } from './Components/main/Dashboard/dashboard/dashboard.component';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 // AoT requires an exported function for factories
@@ -122,7 +122,8 @@ export function CreateTranslateLoader(http: HttpClient) {
       defaultLanguage:'en'}),
       BrowserAnimationsModule,
       ToastrModule.forRoot(), // ToastrModule added
-       NgxPaginationModule
+       NgxPaginationModule,
+       SweetAlert2Module.forRoot()
     ],
     //
   providers: [InterceptorsProvider],

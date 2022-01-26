@@ -93,10 +93,12 @@ export class DoctorInfoComponent implements OnInit {
   {
     this.DoctorService.GetSubSpecialistIdName(lang ,specialListId ).subscribe(
       (response)=>{
+        console.log(response);
+        
         this.DropDownList_SubSpeciality = response.Data;
       },
       (err)=>{
-        // console.log(err);
+        console.log(err);
       }
     )
   }
@@ -250,7 +252,7 @@ GetSpecialistIdName(lang:string)
 
     //#region review AND File FormData image from input file
     public imagePath: any;
-    imgURL: any = "../../../../assets/img/DoctorImg/Rectangle 2.png";
+    imgURL: any = "../../../../assets/img/DoctorImg/avatar.png";
     public message: string;
 
     preview(files:any) {

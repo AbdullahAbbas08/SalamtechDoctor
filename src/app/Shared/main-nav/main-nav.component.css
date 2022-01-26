@@ -5,9 +5,7 @@
   background-color: #f9f9f9;
   min-width: 7rem;
 }
-.serachInput {
-  width: 75%;
-}
+
 
 .msg {
   width: 56px;
@@ -19,8 +17,7 @@
   background-color: rgba(0, 210, 202, 0.07);
 }
 
-.notification {
-  width: 56px;
+.notification { 
   height: 50px;
   font-size: 19px;
   color: #262d70;
