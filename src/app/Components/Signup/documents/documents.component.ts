@@ -56,14 +56,7 @@ constructor(
 
   //#region Consume API's
 
-    //#region Submit Method
-    SubmitDocuments()
-    {
-      
-    document.getElementById('Congratulations')?.classList.add('OnClick-Style');
 
-    }
-    //#endregion
 
     //#region Legal Document Method
       GetLegalDocument(lang:string)
