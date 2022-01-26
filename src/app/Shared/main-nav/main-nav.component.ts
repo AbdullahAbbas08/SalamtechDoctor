@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { LoginService } from 'src/Service/login.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -15,7 +17,7 @@ export class MainNavComponent implements OnInit {
   logo;
   IamgeURL:string;
 
-  constructor(private translate:TranslateService) { 
+  constructor(private translate:TranslateService , private loginService:LoginService , private router:Router) { 
     if(localStorage.getItem("lang") !=null){
       this.DefaultLang = localStorage.getItem("lang");
 
@@ -26,7 +28,7 @@ export class MainNavComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
-
+    this.GetDoctorProfile();
     this.IamgeURL = environment.ImagesURL;
 
     //#region Init Variables Scope
@@ -75,5 +77,27 @@ export class MainNavComponent implements OnInit {
   }
   //#endregion
 
+  GetDoctorProfile(){
+    this.loginService.GetDoctorProfile().subscribe(
+      (response)=>{
+        console.log(response);
+        
+        localStorage.setItem("NameEnglish",response.Data.FirstName + ' ' + response.Data.MiddelName + ' ' + response.Data.LastName);
+        localStorage.setItem("NameArabic",response.Data.FirstNameAr+ ' ' + response.Data.MiddelNameAr + ' ' + response.Data.LastNameAr);
+        localStorage.setItem("logo",response.Data.Image);
+      },
+      (err)=>{
+
+      }
+    )
+  }
+
+  RemoveAuth(){
+    localStorage.removeItem('Authorization')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
+    this.router.navigate(['/Login']);
+    window.location.reload();
+  }
 
 }

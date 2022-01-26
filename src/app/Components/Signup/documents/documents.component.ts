@@ -59,6 +59,7 @@ constructor(
     //#region Submit Method
     SubmitDocuments()
     {
+      
     document.getElementById('Congratulations')?.classList.add('OnClick-Style');
 
     }
