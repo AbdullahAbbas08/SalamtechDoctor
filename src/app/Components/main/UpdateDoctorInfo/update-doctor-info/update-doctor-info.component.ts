@@ -140,7 +140,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
       (response) => {
         // this.router.navigateByUrl("/doctor-profile/certificates");
         // console.log(response)
-        this.toaster.success("Doctor Info Updated Successfully","Successfully")
+        this.toaster.success("Doctor Info Updated Successfully","Successfully");
+        this.router.navigate(['update-doctor-profile/certificates'])
       },
       (err) => {
         // console.log(err);

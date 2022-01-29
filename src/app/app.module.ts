@@ -55,6 +55,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/update-doctor-info/update-doctor-info.component';
 import { SidebarComponent } from './Components/main/UpdateDoctorInfo/sidebar/sidebar.component';
 import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/updata-doctor-data.component';
+import { UpdateDoctorCertificatesComponent } from './Components/main/UpdateDoctorInfo/update-doctor-certificates/update-doctor-certificates.component';
 
 
 // AoT requires an exported function for factories
@@ -106,6 +107,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     UpdateDoctorInfoComponent,
     SidebarComponent,
     UpdataDoctorDataComponent,
+    UpdateDoctorCertificatesComponent,
   ],
   imports: [
     HttpClientModule,
