@@ -16,8 +16,9 @@ export class DocumentsComponent implements OnInit {
 
   //#region Declare variables
   DocumentsForm:FormGroup
-  Upload_Image:boolean;
-  LegalDocumentList:IdNameList[];
+  // Upload_Image:boolean;
+  LegalDocumentList;
+  Documents;
   //#endregion
 
   //#region Constructor
@@ -37,23 +38,11 @@ constructor(
     document.getElementById('Certificates')?.classList.add('OnClick-Style');
     document.getElementById('LegalDocuments')?.classList.add('OnClick-Style');
 
-    this.Upload_Image = false;
-    this.LegalDocumentList = [{"Name":'',"Id":0},{"Name":'',"Id":0},{"Name":'',"Id":0}];
-    //#endregion
 
-      //#region  Register Form Section
-      this.DocumentsForm = this.fb.group(
-        {
-          NationalIDFront:['',[Validators.required]],
-          NationalIDBack:['',[Validators.nullValidator]],
-          SyndicateFront:['',[Validators.required]],
-          SyndicateBack:['',[Validators.nullValidator]],
-          ProfessionCertificate:['',[Validators.required]],
-          });
-      //#endregion
 
       //#region Invoke Method's
     this.GetLegalDocument('en');
+    this.GetDocuments('en')
     //#endregion
 
     }
@@ -69,12 +58,46 @@ constructor(
         this.DocumentService.GetLegalDocument(lang ).subscribe(
           (response)=>{
             this.LegalDocumentList = response.Data;
-            // console.log(this.LegalDocumen tList[0].Name)
+            console.log(this.LegalDocumentList)
           },
           (err)=>{ }
         )
       }
       //#endregion
+
+         
+
+         //#region  Document Method
+         GetDocuments(lang:string)
+         {
+           this.DocumentService.GetDocuments(lang ).subscribe(
+             (response)=>{
+               this.Documents = response.Data;
+               console.log(this.Documents)
+             },
+             (err)=>{ }
+           )
+         }
+         //#endregion
+
+          //#region delete Document Method
+          DeleteDocument(lang:string , id)
+          {
+            console.log(id);
+            
+            this.DocumentService.DeleteDocuments(lang , id).subscribe(
+              (response)=>{
+               console.log(response);
+               this.GetDocuments('en')
+              },
+              (err)=>{ 
+                console.log(err);
+                
+              }
+            )
+          }
+          //#endregion
+
 
   //#region Doctor Documents
   CreateDoctorDocuments(lang:string , Model:FormData)
@@ -82,9 +105,12 @@ constructor(
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
       console.log(response);
+      this. GetLegalDocument('en')
+      this.GetDocuments('en')
       },
       (err)=>{
         console.log(err);
+        this.GetDocuments('en')
       }
     )
   }
@@ -93,57 +119,31 @@ constructor(
 //#endregion
 
   //#region review AND File FormData image from input file
-    public imagePath: any;
-    imgFront: any = null  ;
-    imgBack: any  = null;
-    SyndicateFront:any=null;
-    SyndicateBack:any=null;
-    ImgCertificate:any=null;
     public message: string;
 
-    preview(files:any , typeImg:number , ID:number) {
+    preview(files:any  , id) {
+      console.log(id);
+      console.log(files);
+      
+      
       const formData = new FormData();
       if (files.length === 0)
-        return;
+        return ;
 
       var mimeType = files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";
-        return;
+        return ;
       }
-
       var reader = new FileReader();
-      this.imagePath = files;
       reader.readAsDataURL(files[0]);
-      reader.onload = (_event) =>
-      {
-        if(typeImg == 1)
-        {
-          this.imgFront = reader.result;
-        }
-        if(typeImg == 2)
-        {
-          this.imgBack = reader.result;
-        }
-        if(typeImg == 3)
-        {
-          this.SyndicateFront = reader.result;
-        }
-        if(typeImg == 4)
-        {
-          this.SyndicateBack = reader.result;
-        }
-        if(typeImg == 5)
-        {
-          this.ImgCertificate = reader.result;
-        }
-      }
-      this.Upload_Image = true;
-
-      formData.append('LegalDocumentTypeId', ID as unknown as Blob);
+     
+      formData.append('LegalDocumentTypeId', id );
       formData.append('document',files[0] );
       console.log(formData)
       this.CreateDoctorDocuments('en',formData)
+      this.GetDocuments('en')
+
     }
     //#endregion
 
