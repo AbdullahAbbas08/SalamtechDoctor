@@ -35,6 +35,10 @@
                       class="form-control "
                       style="border-color: #8b90a0!important;"
                       type="text"
+                      oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                      maxlength="11"
+                      minlength="11"
+                      [class.icon]="1"
                       name="Phone"
                       placeholder="Please Enter Mobile Number ... "
                       required >
