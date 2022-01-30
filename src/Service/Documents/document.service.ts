@@ -28,7 +28,17 @@ export class DocumentService {
     GetLegalDocument(lang:string):Observable<DropDownModel>{
       return this.http.get<DropDownModel>(`${environment.URL}${this.culture}/LookUp/GetLegalDocument`,this.httpOptions);
     }
-    //#endregion CreateDoctorDocuments
+
+
+        //#region Get Document
+        GetDocuments(lang:string):Observable<DropDownModel>{
+          return this.http.get<DropDownModel>(`${environment.URL}${this.culture}/Doctor/GetDoctorDocuments`,this.httpOptions);
+        }
+       
+           //#region delete Document
+           DeleteDocuments(lang:string , DocumentId:number):Observable<any>{
+            return this.http.delete(`${environment.URL}${this.culture}/Doctor/DeleteDoctorDocument?DocumentId=${DocumentId}` ,this.httpOptions);
+          }
 
     //#region Create Documents
     CreateDoctorDocuments(lang:string , Documents:FormData){

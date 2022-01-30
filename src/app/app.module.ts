@@ -59,6 +59,8 @@ import { UpdateDoctorCertificatesComponent } from './Components/main/UpdateDocto
 import { PatientProfileComponent } from './Components/main/Appointments/emr/Patient-Profile/patient-profile.component';
 import { EmrComponent } from './Components/main/Appointments/emr/emr.component';
 import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Profile/emr-profile.component';
+import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
+import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 
 
 // AoT requires an exported function for factories
@@ -114,6 +116,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     EmrComponent,
     PatientProfileComponent,
     EmrProfileComponent,
+    UpdateDoctorDocsComponent,
   ],
   imports: [
     HttpClientModule,

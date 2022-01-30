@@ -32,6 +32,7 @@ import { MainServiceComponent } from './Components/main/Service/main-service.com
 import { VideoCallComponent } from './Components/main/Service/video-call/video-call.component';
 import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/updata-doctor-data.component';
 import { UpdateDoctorCertificatesComponent } from './Components/main/UpdateDoctorInfo/update-doctor-certificates/update-doctor-certificates.component';
+import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/update-doctor-info/update-doctor-info.component';
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { LoginPageComponent } from './Components/SignIn/login-page/login-page.component';
@@ -64,6 +65,7 @@ const routes: Routes = [
   {path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
       {path:'',component:UpdateDoctorInfoComponent },
       {path:'certificates',component:UpdateDoctorCertificatesComponent },
+      {path:'documents',component:UpdateDoctorDocsComponent },
   ] },
 
   { path:'clinic',component:ClinicInfoMainComponent ,
@@ -118,7 +120,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes , {
-    useHash:true,
+    // useHash:true,
     anchorScrolling: 'enabled',
     scrollPositionRestoration: 'enabled',
     relativeLinkResolution: 'legacy'

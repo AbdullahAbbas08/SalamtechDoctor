@@ -1,270 +1,60 @@
-<form dir="auto" [formGroup]="DocumentsForm" >
-
-    <div class="row">
-        <div class="col-12 document-title" >{{LegalDocumentList[0].Name}}</div>
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12  mt-1 col-md-6  ">
-                      <div class="upload-image" >
-                        <input type='file'
-                                formControlName="NationalIDFront"
-                               #file
-                               accept="image/*" id="getFile1" style="display:none"
-                              (change)="preview(file.files , 1 , LegalDocumentList[0].Id)">
-
-                        <button onclick="document.getElementById('getFile1').click()" class="input-file-btn">
-                            <div [hidden]="imgFront == null">
-                                <img src="{{imgFront}}" [hidden]="Upload_Image == false"  />
-
-                            </div>
-                        </button>
-                        <div onclick="document.getElementById('getFile1').click()" class="col img-col-block" [hidden]="Upload_Image == true && imgFront != null">
-                              <i  class="fas fa-cloud-upload-alt img-icon"></i><br>
-                              <label class="upload-label">
-                                {{"mainModule.Documents.UploadNationalIdFrontFace" | translate }} 
-                              </label>
-                          </div>
-                      </div>
-                      <div  class="edit_view upload-image" >
-                        <button class="btn-edit" onclick="document.getElementById('getFile1').click()" ><i class="far fa-edit icon-edit-style"></i></button>
-                        <!--Modal   -->
-                          <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#imgFrontID'" >
-                            <span dir="auto">
-                              <i class="far fa-eye icon-edit-style" id="togglePassword"></i>
-                            </span>
-                          </div>
-
-                          <div class="modal fade" id="imgFrontID" tabindex="-1" aria-labelledby="exampleModal2Label"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                <img src="{{ imgFront }}" />
-                              </div>
-                            </div>
-                          </div>
-                        <!-- End Modal -->
-                    </div>
-                </div>
-                <div class="col-12 mt-1 col-md-6  ">
-                    <div class="upload-image" >
-                      <input type='file'
-                              formControlName="NationalIDBack"
-                             #file2
-                             accept="image/*" id="getFile2" style="display:none"
-                            (change)="preview(file2.files , 2, LegalDocumentList[0].Id)">
-
-                      <button onclick="document.getElementById('getFile2').click()" class="input-file-btn">
-                        <div [hidden]="imgBack == null">
-                            <img src="{{imgBack}}" [hidden]="Upload_Image == false" />
-                        </div>
-                      </button>
-                      <div onclick="document.getElementById('getFile2').click()" class="col img-col-block" [hidden]="Upload_Image == true && imgBack != null ">
-                          <i  class="fas fa-cloud-upload-alt img-icon"></i><br>
-                          <label class="upload-label">
-                             {{"mainModule.Documents.UploadNationalIdBackFace" | translate }}
-                          </label>
-                        </div>
-                    </div>
-                    <div  class="edit_view upload-image" >
-                     <button class="btn-edit" onclick="document.getElementById('getFile2').click()"><i class="far fa-edit icon-edit-style"></i></button>
-
-                       <!--Modal   -->
-                       <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#imgBackID'" >
-                        <span dir="auto">
-                          <i class="far fa-eye icon-edit-style" id="togglePassword"></i>
-                        </span>
-                      </div>
-
-                      <div class="modal fade" id="imgBackID" tabindex="-1" aria-labelledby="exampleModal2Label"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <img src="{{ imgBack }}" />
-                          </div>
-                        </div>
-                      </div>
-                    <!-- End Modal -->
-
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Syndicate-block  -->
-    <div class="row Syndicate-block">
-        <div class="col-12 document-title">{{LegalDocumentList[1].Name}}  </div>
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12  mt-1 col-md-6  ">
-                      <div class="upload-image" >
-                        <input type='file'
-                                formControlName="SyndicateFront"
-                               #file3
-                               accept="image/*" id="getFile3" style="display:none"
-                              (change)="preview(file3.files , 3, LegalDocumentList[1].Id)">
-
-                        <button onclick="document.getElementById('getFile3').click()" class="input-file-btn">
-                            <div [hidden]="SyndicateFront == null">
-                                <img src="{{SyndicateFront}}" [hidden]="Upload_Image == false" />
-                            </div>
-                        </button>
-                        <div onclick="document.getElementById('getFile3').click()" class="col img-col-block" [hidden]="Upload_Image == true && SyndicateFront != null">
-                            <i  class="fas fa-cloud-upload-alt img-icon"></i><br>
-                            <label class="upload-label">
-                                {{"mainModule.Documents.UploadSyndicateFrontFace" | translate }}
-                            </label>
-                          </div>
-                      </div>
-                      <div  class="edit_view upload-image" >
-                        <button class="btn-edit" onclick="document.getElementById('getFile3').click()" ><i class="far fa-edit icon-edit-style"></i></button>
-                        <!-- <button class="btn-eye"><i class="far fa-eye  icon-edit-style"></i></button> -->
-                         <!--Modal   -->
-                         <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#imgSyndicateID'" >
-                          <span dir="auto">
-                            <i class="far fa-eye icon-edit-style" id="togglePassword"></i>
-                          </span>
-                        </div>
-
-                        <div class="modal fade" id="imgSyndicateID" tabindex="-1" aria-labelledby="exampleModal2Label"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <img src="{{ SyndicateFront }}" />
-                            </div>
-                          </div>
-                        </div>
-                      <!-- End Modal -->
-                    </div>
-                </div>
-                <div class="col-12 mt-1 col-md-6  ">
-                    <div class="upload-image" >
-                      <input type='file'
-                              formControlName="SyndicateBack"
-                             #file4
-                             accept="image/*" id="getFile4" style="display:none"
-                            (change)="preview(file4.files , 4,LegalDocumentList[1].Id)">
-
-                      <button onclick="document.getElementById('getFile4').click()" class="input-file-btn">
-                        <div [hidden]="SyndicateBack == null">
-                            <img src="{{SyndicateBack}}" [hidden]="Upload_Image == false" />
-                        </div>
-                      </button>
-                      <div onclick="document.getElementById('getFile4').click()" class="col img-col-block" [hidden]="Upload_Image == true && SyndicateBack != null ">
-                          <i  class="fas fa-cloud-upload-alt img-icon"></i><br>
-                          <label class="upload-label">
-                            {{"mainModule.Documents.UploadSyndicatebackFace" | translate }}
-                          </label>
-                        </div>
-                    </div>
-                    <div  class="edit_view upload-image" >
-                     <button class="btn-edit" onclick="document.getElementById('getFile4').click()"><i class="far fa-edit icon-edit-style"></i></button>
-                      <!-- <button class="btn-eye">
-                        <i class="far fa-eye  icon-edit-style"></i>
-                      </button> -->
-
-                        <!--Modal   -->
-                        <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#imgSyndicateBackID'" >
-                          <span dir="auto">
-                            <i class="far fa-eye icon-edit-style" id="togglePassword"></i>
-                          </span>
-                        </div>
-
-                        <div class="modal fade" id="imgSyndicateBackID" tabindex="-1" aria-labelledby="exampleModal2Label"
-                          aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <img src="{{ SyndicateBack }}" />
-                            </div>
-                          </div>
-                        </div>
-                      <!-- End Modal -->
-
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Profession Certificate -->
-    <!-- <div class="row Syndicate-block" *ngIf="LegalDocumentList.length != 2">
-        <div class="col-12 document-title" >{{LegalDocumentList[2].Name}} </div>
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12 mt-1 col-md-6  ">
-                      <div class="upload-image" >
-                        <input type='file'
-                                formControlName="ProfessionCertificate"
-                               #file5
-                               accept="image/*" id="getFile5" style="display:none"
-                              (change)="preview(file5.files , 5,LegalDocumentList[2].Id)">
-
-                        <button onclick="document.getElementById('getFile5').click()" class="input-file-btn">
-                            <div [hidden]="ImgCertificate == null">
-                                <img src="{{ImgCertificate}}" [hidden]="Upload_Image == false" />
-                            </div>
-                        </button>
-                        <div onclick="document.getElementById('getFile5').click()" class="col img-col-block" [hidden]="Upload_Image == true && ImgCertificate != null">
-                            <i  class="fas fa-cloud-upload-alt img-icon"></i><br>
-                            <label class="upload-label">{{"mainModule.Documents.UploadFront" | translate }}</label>
-                          </div>
-                      </div>
-                      <div  class="edit_view upload-image" >
-                        <button class="btn-edit" onclick="document.getElementById('getFile5').click()" ><i class="far fa-edit icon-edit-style"></i></button>
-                        <button class="btn-eye"><i class="far fa-eye  icon-edit-style"></i></button>
-                    </div>
-                </div>
-                <div class="col-12 mt-1 col-md-6  ">
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end">
-         <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#nextbtn'" >
-          <span dir="auto">
-            <button class="btn-next" (click)="next()"
-                   >
-             {{"mainModule.Documents.Next" | translate }}
-          </button>
-          </span>
-        </div>
+<form dir="auto" >
+  <div class="row">
+    <div class="col-md-6" *ngFor="let legalDoc of LegalDocumentList , let i=index">
+      <div class=" document-title">{{ legalDoc.Name }}</div>
+      
+      <div class=" mt-2">
+        <label class="input-file-btn text-center"  [for]="'file'+legalDoc.Id">
+            <input
+          type="file"
+          #file
+          accept="image/*"
+          [id]="'file'+legalDoc.Id"
+          class="d-none"
+          (change)="preview(file.files, legalDoc.Id)"
+          />
+          <span > <i class="fas fa-cloud-upload-alt img-icon"></i><br /></span>
+        </label>
+      </div>
 
-        <div class="modal fade" id="nextbtn" tabindex="-1" aria-labelledby="exampleModal2Label"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <img src="{{ imgFront }}" />
-            </div>
+      <div class="col-12 mt-2" *ngIf="Documents">
+        <div  *ngFor="let doc of Documents">
+          <div class="row" *ngIf="doc.LegalDocumentTypeId === legalDoc.Id">
+          
+           <div class="card w-75 mt-2">
+            <img class="img-fluid w-75 mx-auto"
+            src="https://salamtech.azurewebsites.net/{{ doc.DocumentUrl }}"
+          />
+          <div class="btn" (click)="DeleteDocument('en', doc.Id)">
+            <span dir="auto" class="eye text-danger">
+              <i class="far fa-trash-alt mx-1"></i>
+            </span>
+          </div>
+           </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <div
+        class="btn"
+        data-bs-toggle="modal"
+        [attr.data-bs-target]="'#nextbtn'"
+      >
+        <span dir="auto">
+          <button class="btn-next" (click)="next()">
+            {{ "mainModule.Documents.Next" | translate }}
+          </button>
+        </span>
+      </div>
+
+    </div>
+  </div>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

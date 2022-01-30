@@ -6,14 +6,14 @@ import { DocumentService } from 'src/Service/Documents/document.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  selector: 'app-update-doctor-docs',
+  templateUrl: './update-doctor-docs.component.html',
+  styleUrls: ['./update-doctor-docs.component.css']
 })
-export class DocumentsComponent implements OnInit {
+export class UpdateDoctorDocsComponent implements OnInit {
 
+ 
   //#region Declare variables
   DocumentsForm:FormGroup
   // Upload_Image:boolean;
@@ -154,18 +154,10 @@ constructor(
       
       Swal.fire({
         title: 'Great',
-        text: "Welcome to Salamtech. We will review your request and update your account soon",
+        text: "Your profile has updated successfully",
         icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'Done',
-        cancelButtonText: 'Add New Clinic',
-        reverseButtons: true
       }).then((result) => {
-        if (result.isConfirmed) {
           this.router.navigate(['/main'])
-        } else   {
-          this.router.navigate(['/clinic'])
-        }
       })
     }
 
