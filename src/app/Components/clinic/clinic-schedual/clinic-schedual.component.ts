@@ -10,6 +10,7 @@ import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clinic-schedual',
@@ -107,7 +108,17 @@ export class ClinicSchedualComponent implements OnInit {
             // console.log( this.DayList);
           },
           (err)=>{
-            console.log(err);
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -125,7 +136,17 @@ export class ClinicSchedualComponent implements OnInit {
                   // console.log("dsdsd : ", this.DurationMedicalExaminationList[element.Id]);
               });
             },(err)=>{
-              console.log(err);
+              Swal.fire({
+                title: 'Error !',
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: 'OK',
+                cancelButtonText:"OK",
+                reverseButtons: true
+              })
             })
 
           
@@ -141,7 +162,17 @@ export class ClinicSchedualComponent implements OnInit {
             console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
-
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -154,7 +185,17 @@ export class ClinicSchedualComponent implements OnInit {
             this.ClinicScheduleDayList[DayId] = response.Data;
           },
           (err)=>{
-            console.log(err)
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -181,7 +222,17 @@ export class ClinicSchedualComponent implements OnInit {
 
           },
           (err)=>{
-            console.log(err)
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -196,7 +247,17 @@ export class ClinicSchedualComponent implements OnInit {
             window.location.reload();
           },
           (err)=>{
-            console.log(err)
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -209,7 +270,17 @@ export class ClinicSchedualComponent implements OnInit {
               // console.log(respose)
             },
             (err)=>{
-              console.log(err)
+              Swal.fire({
+                title: 'Error !',
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: 'OK',
+                cancelButtonText:"OK",
+                reverseButtons: true
+              })
             }
           )
         }

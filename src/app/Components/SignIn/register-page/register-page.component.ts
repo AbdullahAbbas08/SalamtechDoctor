@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CreateUser } from 'src/Models/create-user';
 import { UserService } from 'src/Service/CreateUser/user.service';
 import { LoginService } from 'src/Service/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-page',
@@ -112,7 +113,17 @@ Checkinput(){
         // window.location.reload();
       },
       (err)=>{
-        console.log(err)
+        Swal.fire({
+          title: 'Error !',
+          text: err.error.Message,
+          icon: 'error',
+          showCancelButton: true,
+          showConfirmButton:false,
+          cancelButtonColor:"#f00",
+          confirmButtonText: 'OK',
+          cancelButtonText:"OK",
+          reverseButtons: true
+        })
       }
     )
     }
