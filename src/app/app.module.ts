@@ -56,6 +56,7 @@ import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/up
 import { SidebarComponent } from './Components/main/UpdateDoctorInfo/sidebar/sidebar.component';
 import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/updata-doctor-data.component';
 import { UpdateDoctorCertificatesComponent } from './Components/main/UpdateDoctorInfo/update-doctor-certificates/update-doctor-certificates.component';
+import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 
 
 // AoT requires an exported function for factories
@@ -108,6 +109,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     SidebarComponent,
     UpdataDoctorDataComponent,
     UpdateDoctorCertificatesComponent,
+    UpdateDoctorDocsComponent,
   ],
   imports: [
     HttpClientModule,

@@ -4,7 +4,6 @@
   <div class="row">
     <div class="col-md-6" *ngFor="let legalDoc of LegalDocumentList , let i=index">
       <div class=" document-title">{{ legalDoc.Name }}</div>
-      <div class=" document-title">{{ 'file'+legalDoc.Id }}</div>
       
       <div class=" mt-2">
         <label class="input-file-btn text-center"  [for]="'file'+legalDoc.Id">

@@ -1,0 +1,61 @@
+
+
+<form dir="auto" >
+    <div class="row">
+      <div class="col-md-6" *ngFor="let legalDoc of LegalDocumentList , let i=index">
+        <div class=" document-title">{{ legalDoc.Name }}</div>
+        
+        <div class=" mt-2">
+          <label class="input-file-btn text-center"  [for]="'file'+legalDoc.Id">
+              <input
+            type="file"
+            #file
+            accept="image/*"
+            [id]="'file'+legalDoc.Id"
+            class="d-none"
+            (change)="preview(file.files, legalDoc.Id)"
+            />
+            <span > <i class="fas fa-cloud-upload-alt img-icon"></i><br /></span>
+          </label>
+        </div>
+  
+        <div class="col-12 mt-2" *ngIf="Documents">
+          <div  *ngFor="let doc of Documents">
+            <div class="row" *ngIf="doc.LegalDocumentTypeId === legalDoc.Id">
+            
+             <div class="card w-75 mt-2">
+              <img class="img-fluid w-75 mx-auto"
+              src="https://salamtech.azurewebsites.net/{{ doc.DocumentUrl }}"
+            />
+            <div class="btn" (click)="DeleteDocument('en', doc.Id)">
+              <span dir="auto" class="eye text-danger">
+                <i class="far fa-trash-alt mx-1"></i>
+              </span>
+            </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <div
+          class="btn"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#nextbtn'"
+        >
+          <span dir="auto">
+            <button class="btn-next" (click)="next()">
+              {{ "mainModule.Documents.Next" | translate }}
+            </button>
+          </span>
+        </div>
+  
+      </div>
+    </div>
+  </form>
+  
