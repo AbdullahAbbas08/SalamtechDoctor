@@ -74,10 +74,9 @@
     position: absolute;
     display: block;
     left: 15px;
-    top: 10px;
-    font-size: 15px;
+    top: 12px;
+    font-size: 18px;
     line-height: 17px;
-    font-weight: 500;
   }
 
   .eye {
@@ -97,20 +96,6 @@
   position: relative;
 }
 
-.post-report
-{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    background-color: #262d70;
-    padding-bottom: 5px;
-    color: #fff;
-    border-width: 0px;
-    /* border: 0px solid; */
-    border-radius: 10px;
-    font-size: 20px;
-}
-
 .cancel
 {
     background-color: transparent;
@@ -118,4 +103,16 @@
     color: red;
     font-size: 20px;
     margin-right: 5px;
+}
+
+.post-report
+{
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+  border-radius: 5px;
+  border-width: 0px;
+  font-weight: 500;
+
 }
