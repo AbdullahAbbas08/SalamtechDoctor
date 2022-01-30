@@ -10,7 +10,7 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
 export class EmrComponent implements OnInit {
 
   constructor(private router:Router,private route:ActivatedRoute,private AppointmentService:AppointmentService) { 
-    this.AppointmentService.EMRID =Number(this.route.snapshot.paramMap.get('emrID'))
+    this.AppointmentService.EMRID = Number(this.route.snapshot.paramMap.get('emrID'))
   }
 
   ngOnInit(): void {
@@ -19,13 +19,14 @@ export class EmrComponent implements OnInit {
 
   //#region GoToPatientProfile =>  Method
   GoToPatientProfile(){
-    this.router.navigateByUrl("/main/emr/"+this.route.snapshot.paramMap.get('emrID')+"/patient-profile");
+    // this.router.navigateByUrl("/main/emr/"+this.route.snapshot.paramMap.get('emrID')+"/patient-profile");
+    this.router.navigate(['/main/emr/patient-profile',this.route.snapshot.paramMap.get('emrID')])
   }
   //#endregion 
 
   //#region GoToEmrProfile =>  Method
   GoToEmrProfile(){
-     this.router.navigateByUrl("/main/emr/"+this.route.snapshot.paramMap.get('emrID')+"/emr-profile");
+    this.router.navigate(['/main/emr/emr-profile',this.route.snapshot.paramMap.get('emrID')])
   }
   //#endregion GoToEmrProfile
 
