@@ -1,15 +1,16 @@
-<div class="container">
+<div class="container mt-5">
+
     <div class="row">
         <div class="col-12 path-row">
-            Services > Appointments
+            {{"mainModule.main.Services" | translate}} > {{"mainModule.main.Appointments" | translate}}
         </div>
     </div>
-
+    
     <!-- Status Bar -->
     <div class="row">
-
+    
         <div class="col-12 ">
-
+    
             <div class="row">
                 <div class="col-md-9 shared-menu-bar">
                     <div class="row ">
@@ -21,7 +22,8 @@
                                                     align-items-center 
                                                     padding-block
                                                     changeCursor" 
-                                                (click)="GoToPatientProfile()">
+                                                    [routerLink]="['/main/emr/patient-profile' , id]"
+                                                >
                         {{'mainModule.EMR.PatientProfile'|translate}}           
                         </div>
     
@@ -32,7 +34,8 @@
                                                align-items-center 
                                                padding-block
                                                changeCursor"
-                                               (click)="GoToEmrProfile()">
+                                               [routerLink]="['/main/emr/emr-profile', id]"
+                                               >
                         {{'mainModule.EMR.EMRProfile'|translate}}  
                         </div>
     
@@ -45,12 +48,12 @@
                 </div>
             </div>
         </div>
-
+    
     </div>
 
     <!-- Shared Location => Display Service Components -->
     <div class="row">
-        <div class="col-12 Shared-Component">
+        <div class="col-12 ">
             <!-- <div class=""> -->
                 <router-outlet>
 

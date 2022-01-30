@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class PatientProfileComponent implements OnInit {
 
   //#region Declare Variables
+  id;
   PatientProfileForm : FormGroup ;
 
   //#endregion
@@ -21,7 +22,14 @@ export class PatientProfileComponent implements OnInit {
   constructor(private route:ActivatedRoute , 
               private AppointmentService:AppointmentService,
               private fb:FormBuilder ,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal) { 
+                this.route.paramMap.subscribe(param=>{
+                  this.id=param.get('emrID')
+                  console.log(this.id);
+                  
+                 })
+                 
+              }
 
   ngOnInit(): void {
 

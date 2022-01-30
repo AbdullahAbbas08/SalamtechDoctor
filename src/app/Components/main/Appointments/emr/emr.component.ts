@@ -8,7 +8,7 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
   styleUrls: ['./emr.component.css']
 })
 export class EmrComponent implements OnInit {
-
+id;
   constructor(private router:Router,private route:ActivatedRoute,private AppointmentService:AppointmentService) { 
     this.AppointmentService.EMRID = Number(this.route.snapshot.paramMap.get('emrID'))
   }
@@ -29,5 +29,6 @@ export class EmrComponent implements OnInit {
     this.router.navigate(['/main/emr/emr-profile',this.route.snapshot.paramMap.get('emrID')])
   }
   //#endregion GoToEmrProfile
+
 
 }
