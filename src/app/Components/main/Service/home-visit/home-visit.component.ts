@@ -10,6 +10,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { DoctorService } from 'src/Service/DoctorService/doctor-service.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -111,7 +112,17 @@ export class HomeVisitComponent implements OnInit {
             // console.log( this.DayList);
           },
           (err)=>{
-            console.log(err);
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -129,7 +140,17 @@ export class HomeVisitComponent implements OnInit {
                   // console.log("dsdsd : ", this.DurationMedicalExaminationList[element.Id]);
               });
             },(err)=>{
-              console.log(err);
+              Swal.fire({
+                title: 'Error !',
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: 'OK',
+                cancelButtonText:"OK",
+                reverseButtons: true
+              })
             })
 
           
@@ -158,7 +179,17 @@ export class HomeVisitComponent implements OnInit {
             this.ClinicScheduleDayList[DayId] = response.Data;
           },
           (err)=>{
-            // console.log(err)
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -184,7 +215,17 @@ export class HomeVisitComponent implements OnInit {
 
           },
           (err)=>{
-            console.log(err)
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           }
         )
       }
@@ -200,6 +241,17 @@ export class HomeVisitComponent implements OnInit {
           (err)=>{
             // console.log("err : ",err.error.Message)              
             // this.toastr.error(err.error.Message, 'Errors...!');
+            Swal.fire({
+              title: 'Error !',
+              text: err.error.Message,
+              icon: 'error',
+              showCancelButton: true,
+              showConfirmButton:false,
+              cancelButtonColor:"#f00",
+              confirmButtonText: 'OK',
+              cancelButtonText:"OK",
+              reverseButtons: true
+            })
           },
         )
       }
@@ -213,7 +265,17 @@ export class HomeVisitComponent implements OnInit {
               this.toastr.success('Updated Successfully' , 'Update Operation');
             },
             (err)=>{
-              console.log(err)
+              Swal.fire({
+                title: 'Error !',
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: 'OK',
+                cancelButtonText:"OK",
+                reverseButtons: true
+              })
             }
           )
         }
