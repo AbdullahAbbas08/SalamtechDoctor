@@ -60,6 +60,7 @@ import { PatientProfileComponent } from './Components/main/Appointments/emr/Pati
 import { EmrComponent } from './Components/main/Appointments/emr/emr.component';
 import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Profile/emr-profile.component';
 import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
+import { FielderrorModule } from './Shared/fielderror/fielderror.module';
 
 
 // AoT requires an exported function for factories
@@ -139,7 +140,8 @@ export function CreateTranslateLoader(http: HttpClient) {
       BrowserAnimationsModule,
       ToastrModule.forRoot(), // ToastrModule added
        NgxPaginationModule,
-       SweetAlert2Module.forRoot()
+       SweetAlert2Module.forRoot(),
+       FielderrorModule
     ],
     //
   providers: [InterceptorsProvider],
