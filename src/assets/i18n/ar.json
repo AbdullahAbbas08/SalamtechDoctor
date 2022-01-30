@@ -182,40 +182,41 @@
       "Current": "الحالى",
       "History": "الماضى",
       "current": {
-        "Name": "Name",
-        "Date": "Date",
-        "Time": "Time",
-        "Type": "Type",
-        "Actions": "Actions"
+        "Name": "الاسم",
+        "Date": "التاريخ",
+        "Time": "الوقت",
+        "Type": "النوع",
+        "Actions": "اعدادات"
       },
-      "Call":"Call",
+      "Call":"مكالمة",
       "EMR":"EMR",
-      "Cancel":"Cancel"
+      "Cancel":"أنهاء"
     },
     "EMR": {
       "PatientProfile": "ملف المريض",
       "EMRProfile": "EMR Profile",
       "Patient": {
-        "PatientName": "Patient Name",
-        "Basicdata": "Basic data",
-        "PatientAge": "Patient Age",
-        "PhoneNumber": "Phone Number",
-        "Location": "Location ( From Google )",
-        "PatientComplain": "Patient Complain",
-        "Attachedfiles": "Attached files"
+        "PatientName": "أسم المريض",
+        "Basicdata": "بيانات أساسية",
+        "PatientAge": "عمر المريض ",
+        "PhoneNumber": "رقم الموبايل",
+        "Location": "الموقع ( من الخريطة)",
+        "PatientComplain": "مشكلة المريض",
+        "Attachedfiles": "الاوراق المطلوبة",
+        "ChangePhoto":"تغيير الصورة"
       }
     },
     "Services":{
-      "services":"Services",
-      "HomeVisits":"Home Visits",
-      "VideoCall":"Video Call",
-      "Call":"Call",
-      "Chat":"Chat"
+      "services":"الخدمات",
+      "HomeVisits":"زيارة العيادة",
+      "VideoCall":"مكالمة فيديو",
+      "Call":"مكالمة",
+      "Chat":"دردشة"
     }
   },
   "errorField": {
-    "phone": "Please enter valid phone from 11 number",
-    "password": "Please enter valid password with min length 6 digits",
-    "email": "Please enter valid email "
+    "phone": "من فضلك أدخل رقم موبايل صحيح مكون من 11 رقم",
+    "password": "من فضلك أدخل كلمة مرور ممكونة من 6 ارقام وحروف",
+    "email": "من فضلك ادخل بريد الكترونى صحيح "
   }
 }

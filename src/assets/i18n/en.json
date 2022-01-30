@@ -202,7 +202,8 @@
         "PhoneNumber": "Phone Number",
         "Location": "Location ( From Google )",
         "PatientComplain": "Patient Complain",
-        "Attachedfiles": "Attached files"
+        "Attachedfiles": "Attached files",
+        "ChangePhoto":"Change Photo"
       }
     },
     "Services":{

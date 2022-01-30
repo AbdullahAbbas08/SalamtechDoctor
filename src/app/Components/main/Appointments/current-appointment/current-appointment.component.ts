@@ -50,6 +50,8 @@ export class CurrentAppointmentComponent implements OnInit {
             let s= (element.PatientName.split(" ", 2)).toString();
             element.PatientName = (s.replace(","," "));
         });
+        console.log("data : ",response.Data);
+
       },
       (err)=>{
       }
