@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Login } from 'src/Models/Login';
 import { LoginService } from 'src/Service/login.service';
+import { SweetAlert2LoaderService } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -59,7 +61,18 @@ export class LoginComponent implements OnInit {
       }, 2000);
     },
     (err)=>{
-      console.log(err)
+      Swal.fire({
+        title: 'Error !',
+        text: err.error.Message,
+        icon: 'error',
+        showCancelButton: true,
+        showConfirmButton:false,
+        cancelButtonColor:"#f00",
+        confirmButtonText: 'OK',
+        cancelButtonText:"OK",
+        reverseButtons: true
+      })
+      
     })
   }
   //#endregion
