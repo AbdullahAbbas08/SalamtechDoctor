@@ -1,0 +1,116 @@
+.img-col-block
+{
+    text-align: center;
+}
+
+.img-block .img-col-block img
+{
+   margin: 20px 0px;
+   width: 150px;
+   height: 150px;
+}
+
+.changePhoto-btn
+{
+    padding: 15px 25px;
+    border-radius: 40px;
+    border: 1px solid #c2c4d7;
+    background-color: #e9eaf1;
+    color: #262d70;
+    font-size: 14px;
+}
+
+.Basicdata
+{
+    color: #03BBB4;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.lbl-Register {
+    color: #727685;
+    font-size: 17px;
+  }
+
+  .input-style {
+    /* background-color: black; */
+    font-size: 16px;
+    /* border: 1px solid #C5C7CF; */
+    border-radius: 8px;
+    margin-top: 5px;
+    position: relative;
+
+  }
+
+  .input-style input {
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid #c5c7cf;
+    border-radius: 2px;
+    outline: none;
+    padding-right: 35px;
+    margin-bottom: 20px;
+  }
+  .input-style-phone {
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    border: 0px solid #c5c7cf;
+    border-radius: 8px;
+    outline: none;
+    display: flex;
+    /* border-width: 0px; */
+    position: relative;
+    padding-top: 0px;
+  }
+
+  .unit {
+    position: absolute;
+    display: block;
+    left: 15px;
+    top: 10px;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 500;
+  }
+
+  .eye {
+    position: absolute;
+    display: block;
+    top: 12px;
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 500;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .form-group-Password
+{
+  /* margin-bottom: 50px; */
+  position: relative;
+}
+
+.post-report
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    background-color: #262d70;
+    padding-bottom: 5px;
+    color: #fff;
+    border-width: 0px;
+    /* border: 0px solid; */
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.cancel
+{
+    background-color: transparent;
+    border-width: 0px;
+    color: red;
+    font-size: 20px;
+    margin-right: 5px;
+}

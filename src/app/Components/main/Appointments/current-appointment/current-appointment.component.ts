@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { PatientItem } from 'src/Models/patient-item';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
@@ -17,7 +18,7 @@ export class CurrentAppointmentComponent implements OnInit {
   //#endregion
 
   //#region constructor
-  constructor(private AppointmentService:AppointmentService) { }
+  constructor(private AppointmentService:AppointmentService,private router:Router) { }
   //#endregion
 
   //#region On Init Method
@@ -26,7 +27,6 @@ export class CurrentAppointmentComponent implements OnInit {
     this.IamgeURL = environment.ImagesURL;
     document.getElementById('Current')?.classList.add('visited-appointemt-component');
     document.getElementById('History')?.classList.remove('visited-appointemt-component');
-    document.getElementById('Upcoming')?.classList.remove('visited-appointemt-component');
     //#endregion
   
     //#region Invoke Methods
@@ -39,7 +39,8 @@ export class CurrentAppointmentComponent implements OnInit {
 
   //#region Get Current Doctor Appointment
   GetCurrentDoctorAppointment(MaxResultCount:number,SkipCount:number){
-    this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
+    // this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
+    this.AppointmentService.GetHistoryDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
          this.PatientList = response.Data.Items;
          let re = /\*/gi;
@@ -58,5 +59,9 @@ export class CurrentAppointmentComponent implements OnInit {
 
 //#endregion
 
-
+  //#region EmrProfile Method
+  EmrProfile(emrID:number){
+    this.router.navigate(['/main/emr',emrID])
+  }
+  //#endregion
 }

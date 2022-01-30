@@ -1,0 +1,116 @@
+<div class="container" >
+    <form class="row pt-5" [formGroup]="PatientProfileForm" style="background-color: white;">
+        <!-- Picture Doctor -->
+        <div class="col-12 col-md-3  mb-4">
+            <div class="row img-block just">
+                <div class="col img-col-block">
+                    <img src="{{imgURL}}" />
+                </div>
+            </div>
+            <div class="row ChangeProfilePhoto-block ">
+                <div class="col justify-content-center" style="display: flex; align-items: center">
+                    <input type='file' formControlName="ImagePatient" #file accept="image/*" id="getFile"
+                        style="display:none" (change)="preview(file.files)">
+
+                    <button onclick="document.getElementById('getFile').click()" class="changePhoto-btn">
+                        Change Photo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9">
+            <div class="row">
+
+                <!-- Basicdata -->
+                <div class="col-12 py-3">
+                    <label class="Basicdata">
+                        {{"mainModule.EMR.Patient.Basicdata" | translate }}
+                    </label>
+                </div>
+
+                <!-- PatientName -->
+                <div class="col-12 col-md-6">
+                    <span class="lbl-Register">
+                        {{"mainModule.EMR.Patient.PatientName" | translate }}
+                    </span>
+                    <div class="input-style">
+                        <input type="text" class="form-control" formControlName="PatientName" />
+                    </div>
+                </div>
+
+                <!-- PatientAge -->
+                <div class="col-12 col-md-6">
+                    <span class="lbl-Register">
+                        {{"mainModule.EMR.Patient.PatientAge" | translate }}
+                    </span>
+                    <div class="input-style">
+                        <input type="text" class="form-control" formControlName="PatientAge" />
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="col-12 col-md-6">
+                    <span class="lbl-Register">
+                        {{"mainModule.EMR.Patient.PhoneNumber" | translate }}
+                    </span>
+                    <div dir="auto" class="input-style">
+                        <input formControlName="PhoneNumber" type="text" style=" border-width: 1px;
+                                outline: none;
+                                display: block;
+                                padding-left: 35px;" class="form-control"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxlength="11" minlength="11" [class.icon]="1" />
+                        <span class="unit">+2</span>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="col-12 col-md-6 Password-col">
+                    <label class="lbl-Register">
+                        {{"mainModule.EMR.Patient.Location" | translate }}
+                    </label>
+
+                    <div class="form-group form-group-Password">
+                        <input type="text" formControlName="location" style="padding-right: 35px"
+                            class="form-control" />
+
+                        <span dir="auto" class="eye" (click)="openGoogelMapsModal()">
+                            <i class="fas fa-map-marker-alt" style="color: #8B90A0;"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Patient Complain -->
+                <div class="col-12" style="margin-bottom: 30px;">
+                    <label class="lbl-Register">
+                        {{"mainModule.EMR.Patient.PatientComplain" | translate }}
+                    </label>
+
+                    <div class="input-style">
+                        <textarea formControlName='PatientComplain' class="form-control textForArabic"
+                            placeholder="Leave Complain Here " style="height: 120px">
+                        </textarea>
+                    </div>
+                </div>
+
+                <!-- Attached files -->
+                <!-- <div class="col-12 py-3">
+                    <label class="Basicdata">
+                        {{"mainModule.EMR.Patient.Attachedfiles" | translate }}
+                    </label>
+                </div> -->
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="row bg-info " style="margin-top: 20px;margin-bottom: 50px;">
+    <div class="col-12 d-flex justify-content-end">
+        <div class="col-3 d-flex justify-content-end">
+            <button class="cancel">cancel</button>
+            <button class="post-report">Post Report</button>
+        </div>
+    </div>
+</div>

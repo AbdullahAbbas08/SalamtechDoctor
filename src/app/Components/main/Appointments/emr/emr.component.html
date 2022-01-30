@@ -14,37 +14,26 @@
                 <div class="col-md-9 shared-menu-bar">
                     <div class="row ">
     
-                        <div id="Current" class="col-12
+                        <div id="PatientProfile" class="col-12
                                                     col-md-6 
                                                     d-flex 
                                                     justify-content-center 
                                                     align-items-center 
                                                     padding-block
                                                     changeCursor" 
-                                             [routerLink]="['/main/appointment/current']">
-                             {{'mainModule.appointment.Current'|translate}}           
+                                                (click)="GoToPatientProfile()">
+                        {{'mainModule.EMR.PatientProfile'|translate}}           
                         </div>
     
-                        <!-- <div  id="Upcoming" class=" col-12 
-                                                    col-md-4 
-                                                    d-flex 
-                                                    justify-content-center 
-                                                    align-items-center 
-                                                    padding-block
-                                                    changeCursor"
-                                            [routerLink]="['/main/appointment/upcoming']">
-                        Upcoming
-                        </div> -->
-    
-                        <div id="History" class=" col-12 
+                        <div id="EMRProfile" class=" col-12 
                                                col-md-6 
                                                d-flex 
                                                justify-content-center 
                                                align-items-center 
                                                padding-block
                                                changeCursor"
-                                        [routerLink]="['/main/appointment/history']">
-                         {{'mainModule.appointment.History'|translate}}  
+                                               (click)="GoToEmrProfile()">
+                        {{'mainModule.EMR.EMRProfile'|translate}}  
                         </div>
     
                     </div>

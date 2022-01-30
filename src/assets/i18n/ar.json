@@ -177,6 +177,14 @@
             "Location":"المكان",
             "Actions":"إعدادات"
           }
+        },
+        "appointment":{
+          "Current":"الحالى",
+          "History":"الماضى"
+        },
+        "EMR":{
+          "PatientProfile":"ملف المريض",
+          "EMRProfile":"EMR Profile"
         }
     }
 }

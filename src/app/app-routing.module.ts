@@ -13,6 +13,9 @@ import { ClinicInfoComponent } from './Components/clinic/clinic-info/clinic-info
 import { ClinicSchedualComponent } from './Components/clinic/clinic-schedual/clinic-schedual.component';
 import { AppointmentComponent } from './Components/main/Appointments/appointment.component';
 import { CurrentAppointmentComponent } from './Components/main/Appointments/current-appointment/current-appointment.component';
+import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Profile/emr-profile.component';
+import { EmrComponent } from './Components/main/Appointments/emr/emr.component';
+import { PatientProfileComponent } from './Components/main/Appointments/emr/Patient-Profile/patient-profile.component';
 import { HistoryAppointmentComponent } from './Components/main/Appointments/history-appointment/history-appointment.component';
 import { UpcomingAppointmentComponent } from './Components/main/Appointments/upcoming-appointment/upcoming-appointment.component';
 import { ClinicManagerComponent } from './Components/main/clinic-manager/clinic-manager.component';
@@ -49,7 +52,6 @@ const routes: Routes = [
     {path:'Login',component:LoginPageComponent},
     {path:'register',component:RegisterPageComponent}
   ] },
-
 
   {path:'doctor-profile',component:SignUpMainComponent ,children:[
       {path:'OTP',component:OtpComponent },
@@ -100,13 +102,18 @@ const routes: Routes = [
           {path:'current',component:CurrentAppointmentComponent} ,
           {path:'history',component:HistoryAppointmentComponent} ,
           {path:'upcoming',component:UpcomingAppointmentComponent} ,
-          // {path:'updateclinic/:ID',component:UpdateClinicInfoComponent },
-          // {path:'UpdateClinicGalary/:ClinicId',component:UpdateClinicGalaryComponent, resolve:{Galary:GalaryResolver} },
-          // {path:'UpdateClinicSchedule/:ClinicId',component:UpdateClinicScheduleComponent , resolve:{ClinicSchedule:ScheduleResolver}},
+        ] },
+
+        { path:'emr/:emrID',component:EmrComponent,children:[
+          {path:'',component:EmrProfileComponent } ,
+          {path:'emr-profile',component:EmrProfileComponent } ,
+          {path:'patient-profile',component:PatientProfileComponent} ,
         ] },
     ]
   },
-    
+
+
+ 
 ];
 
 @NgModule({

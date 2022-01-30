@@ -176,6 +176,30 @@
             "Location":"Location",
             "Actions":"Settings"
           }
+        },
+        "appointment":{
+          "Current":"Current",
+          "History":"History",
+          "current":{
+            "Name":"Name",
+            "Date":"Date",
+            "Time":"Time",
+            "Type":"Type",
+            "Actions":"Actions"
+          }
+        },
+        "EMR":{
+          "PatientProfile":"Patient Profile",
+          "EMRProfile":"EMR Profile",
+          "Patient":{
+            "PatientName":"Patient Name",
+            "Basicdata":"Basic data",
+            "PatientAge":"Patient Age",
+            "PhoneNumber":"Phone Number",
+            "Location":"Location ( From Google )",
+            "PatientComplain":"Patient Complain",
+            "Attachedfiles":"Attached files"
+          }
         }
     }
 }

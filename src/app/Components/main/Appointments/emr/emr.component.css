@@ -1,0 +1,67 @@
+.OnClick-Style
+{
+    border-inline-start: 2px solid #262D70;
+    color: #262D70;
+    font-weight: 700;
+}
+
+.shared-menu-bar
+{
+    background-color: #edf1fb;
+    font-size: 16px;
+    color: #262d70;
+    font-weight: 500;
+    user-select: none;
+}
+
+.path-row
+{
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(38, 44, 58, 0.85);
+    padding: 15px;
+    padding-left: 0px;
+}
+
+.Shared-Component
+{
+    /* height:max-content; */
+    background-color:white;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    border-radius: 10px 10px;
+}
+
+.Active-Block
+{
+    background-color: #262d70;
+    color: whitesmoke;
+    border-radius: 10px;
+}
+.changeCursor
+{
+    cursor: pointer;
+}
+
+.padding-block
+{
+    padding: 15px;
+}
+
+.Filter-Btn
+{
+    border: 1px solid #262d70;
+    border-radius: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #f9f9f9;
+}
+
+.visited-appointemt-component
+{
+    background-color: #262d70;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 18px;
+}

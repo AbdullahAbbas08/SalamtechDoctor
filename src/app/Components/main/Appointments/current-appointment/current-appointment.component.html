@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row Appointment-table-header d-md-flex d-none">
-    <div class="col-3 col-lg-3">Name</div>
-    <div class="col-2 col-lg-2">Date</div>
-    <div class="col-2 col-lg-2">Time</div>
-    <div class="col-2 col-lg-2">Type</div>
-    <div class="col-3 col-lg-3">Actions</div>
+    <div class="col-3 col-lg-3"> {{'mainModule.appointment.current.Name'|translate}} </div>
+    <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Date'|translate}}</div>
+    <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Time'|translate}}</div>
+    <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Type'|translate}}</div>
+    <div class="col-3 col-lg-3"> {{'mainModule.appointment.current.Actions'|translate}}</div>
   </div>
 
   <div
@@ -32,13 +32,13 @@
         class="type-bg-icon"
           src="../../../../../assets/img/CallIconVisited.png"
       />
-      Call
+      Call 
     </div>
     <div class="col-12 col-lg-3 padding-row d-flex justify-content-between">
       <button class="acrions-btn comunicate-btn">
         <img src="../../../../../assets/img/CallIcon.png" /> Call
       </button>
-      <button class="acrions-btn PostReport-btn">EMR</button>
+      <button class="acrions-btn PostReport-btn" (click)="EmrProfile(item.PatientId)">EMR</button>
       <button class="acrions-btn cancel-btn">Cancel</button>
     </div>
     <hr class="mt-3" />
