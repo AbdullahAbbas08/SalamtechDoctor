@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
      //#region  Register Form Section
      this.LoginForm = this.fb.group(
       {
-          PhoneNumber:['',[Validators.required]],
+          PhoneNumber:['',[Validators.required  , Validators.minLength(11) ,  Validators.maxLength(12)]],
           Password:['',[Validators.required , Validators.minLength(6)]]
         });
     //#endregion
@@ -47,33 +47,46 @@ export class LoginComponent implements OnInit {
   }
   //#endregion
 
+
+  isFieldValid(field): boolean {
+    return (
+      !this.LoginForm.get(field).valid && this.LoginForm.get(field).touched
+    )
+  }
+
+
   //#region Login Method
   LoginDoctor(){
-    this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
-    this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
-    this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
-      this.AuthenticatedUser= res      
-      localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
-      this.toastr.success("Login Successfully ", 'Successfully');
-      this.router.navigateByUrl("/main");
-      window.setInterval(() => {
-        window.location.reload();
-      }, 2000);
-    },
-    (err)=>{
-      Swal.fire({
-        title: 'Error !',
-        text: err.error.Message,
-        icon: 'error',
-        showCancelButton: true,
-        showConfirmButton:false,
-        cancelButtonColor:"#f00",
-        confirmButtonText: 'OK',
-        cancelButtonText:"OK",
-        reverseButtons: true
+    if(this.LoginForm.valid){
+      this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
+      this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
+      this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
+        this.AuthenticatedUser= res      
+        localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
+        this.toastr.success("Login Successfully ", 'Successfully');
+        this.router.navigateByUrl("/main");
+        window.setInterval(() => {
+          window.location.reload();
+        }, 2000);
+      },
+      (err)=>{
+        Swal.fire({
+          title: 'Error !',
+          text: err.error.Message,
+          icon: 'error',
+          showCancelButton: true,
+          showConfirmButton:false,
+          cancelButtonColor:"#f00",
+          confirmButtonText: 'OK',
+          cancelButtonText:"OK",
+          reverseButtons: true
+        })
+        
       })
-      
-    })
+    }
+    else{
+      this.LoginForm.markAllAsTouched()
+    }
   }
   //#endregion
 
