@@ -1,289 +1,312 @@
-
-  <div class="row ">
-    <div class="col-12" style="padding-left:0px;padding-bottom: 20px;">
-      <div style="font-size: 16px;font-weight: 500;">
-        Clinics > Clinic Info
-      </div>
+<div class="row">
+  <div class="col-12" style="padding-left: 0px; padding-bottom: 20px">
+    <div style="font-size: 16px; font-weight: 500">
+      {{ "mainModule.Clinic.clinic" | translate}} > {{ "mainModule.Clinic.sidebarinfo"| translate }}
     </div>
   </div>
+</div>
 
-  <div class="row update-Clinic-style">
-
-    <div class="col-12 d-block" dir="auto">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <form [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
-        <div class="row">
-
-          <!-- Picture Doctor -->
-          <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
-
-              <div class="row img-block just" >
-                <div class="col img-col-block">
-                  <img [src]=" clinicInfo.imgURL?clinicInfo.imgURL:imgURL " />
-                </div>
-              </div>
-
-              <div class="row ChangeProfilePhoto-block" >
-                <div class="col justify-content-center" style="display: flex; align-items: center">
-                  <input type="file" #file accept="image/*" id="getFile" style="display: none"
-                    (change)="preview(file.files)" />
-
-                  <button onclick="document.getElementById('getFile').click()" class="changePhoto-btn"  >
-                    Change Logo
-                  </button>
-                </div>
-              </div>
-
-          </div>
-
-          <div class="col-lg-8 col-md-12">
-            
-
-            <div class="row">
-
-              <!-- Name -->
-              <div class="col-12 col-md-6">
-                <span class="lbl-Register">Name</span>
-                <span class="star"> * </span>
-                <div class="input-style">
-                  <input type="text"  class="form-control" formControlName="Name"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength="10" minlength="3" />
-                </div>
-              </div>
-
-              <!-- NameAr -->
-              <div class="col-12 col-md-6 textForArabic">
-                <span class="lbl-Register">NameAr</span>
-                <span class="star"> * </span>
-                <div class="input-style">
-                  <input type="text"   class="form-control textForArabic" formControlName="NameAr"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength="10" minlength="3" />
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="col-12 col-md-6">
-                <span class="lbl-Register">{{
-                  "mainModule.signup.Email" | translate
-                  }}</span>
-                <span class="star"> * </span>
-                <div dir="auto" class="input-style">
-                  <input type="email"  formControlName="Email"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength="50" minlength="5" />
-                </div>
-              </div>
-
-              <!-- FixedFee -->
-              <div class="col-12 col-md-6">
-                <span class="lbl-Register">FixedFee</span>
-                <span class="star"> * </span>
-                <div dir="auto" class="input-style">
-
-                  <input type="number"  formControlName="FixedFee"
-                    style="border-width: 1px; outline: none; display: block" class="form-control" />
-                </div>
-              </div>
-
-               <!-- country -->
-               <div class="col-12 col-md-6" >
-                <span class="lbl-Register">Country</span>
-                <span class="star"> * </span>
-                <select class="form-select"
-                        aria-label="Default select example" 
-                        style="margin-bottom: 20px;" 
-                        formControlName="CountryId">
-                        <option [value]="this.clinicInfo?.CountryId" selected>{{countries?.Name}}</option>
-                        <option *ngFor="let item of countries" value="{{ item.Id }}">
-                          {{ item.Name }}
-                        </option>  
-                </select>
-              </div>
-
-               <!-- city -->
-               <div class="col-12 col-md-6" >
-                <span class="lbl-Register">City</span>
-                <span class="star"> * </span>
-                <select class="form-select"
-                        aria-label="Default select example" 
-                        style="margin-bottom: 20px;" 
-                        formControlName="CityId">
-                        <option [value]="this.clinicInfo?.CityId" selected>{{Cities?.Name}}</option>
-                        <option *ngFor="let item of Cities" value="{{ item.Id }}">
-                          {{ item.Name }}
-                        </option>  
-                </select>
-              </div>
-
-              
+<div class="row update-Clinic-style">
+  <div class="col-12 d-block" dir="auto">
+    <form [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
+      <div class="row">
+        <!-- Picture Doctor -->
+        <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
+          <div class="row img-block just">
+            <div class="col img-col-block">
+              <img [src]="clinicInfo.imgURL ? clinicInfo.imgURL : imgURL" />
             </div>
           </div>
-          
+
+          <div class="row ChangeProfilePhoto-block">
+            <div
+              class="col justify-content-center"
+              style="display: flex; align-items: center"
+            >
+              <input
+                type="file"
+                #file
+                accept="image/*"
+                id="getFile"
+                style="display: none"
+                (change)="preview(file.files)"
+              />
+
+              <button
+                onclick="document.getElementById('getFile').click()"
+                class="changePhoto-btn"
+              >
+              {{ "mainModule.ClinicInfo.ChangeLogo" | translate}}
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="row" >
-
-          <!-- Address -->
-          <div class="col-12 col-md-8">
-            <span class="lbl-Register">Location (GoogleMap)</span>
-            <!-- <span class="star"> * </span> -->
-            <div class="input-style">
-              <input formControlName="Address" type="text" dir="auto" class="form-control textForArabic" />
-            </div>
-          </div>
-
-          <div class="col-12 col-md-4" style="margin-bottom: 20px;">
-            <span class="lbl-Register"></span>
-            <div  class="d-flex justify-content-center"
-                  style="align-items: center;">
-
-                  <button class="btn locationButton" (click)="openGoogelMapsModal()">
-                      <svg class="mb-1" width="21" height="21" viewBox="0 0 21 21" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_147_2460)">
-                          <path
-                            d="M10.9128 6.81087C9.07109 6.81087 7.57943 8.30254 7.57943 10.1442C7.57943 11.9859 9.07109 13.4775 10.9128 13.4775C12.7544 13.4775 14.2461 11.9859 14.2461 10.1442C14.2461 8.30254 12.7544 6.81087 10.9128 6.81087ZM18.3628 9.31087C17.9794 5.83587 15.2211 3.07754 11.7461 2.69421V0.977539H10.0794V2.69421C6.60443 3.07754 3.84609 5.83587 3.46276 9.31087H1.74609V10.9775H3.46276C3.84609 14.4525 6.60443 17.2109 10.0794 17.5942V19.3109H11.7461V17.5942C15.2211 17.2109 17.9794 14.4525 18.3628 10.9775H20.0794V9.31087H18.3628ZM10.9128 15.9775C7.68776 15.9775 5.07943 13.3692 5.07943 10.1442C5.07943 6.91921 7.68776 4.31087 10.9128 4.31087C14.1378 4.31087 16.7461 6.91921 16.7461 10.1442C16.7461 13.3692 14.1378 15.9775 10.9128 15.9775Z"
-                            fill="white" />
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_147_2460">
-                            <rect width="20" height="20" fill="white" transform="translate(0.912109 0.144531)" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-                      Pick Location
-                  </button>
-
+        <div class="col-lg-8 col-md-12">
+          <div class="row">
+            <!-- Name -->
+            <div class="col-12 col-md-6">
+              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Name" | translate}}</span>
+              <span class="star"> * </span>
+              <div class="input-style">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Name"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="10"
+                  minlength="3"
+                />
+              </div>
             </div>
 
-          </div>
+            <!-- NameAr -->
+            <div class="col-12 col-md-6 textForArabic">
+              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.NameAr" | translate}}</span>
+              <span class="star"> * </span>
+              <div class="input-style">
+                <input
+                  type="text"
+                  class="form-control textForArabic"
+                  formControlName="NameAr"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="10"
+                  minlength="3"
+                />
+              </div>
+            </div>
 
+            <!-- Email -->
+            <div class="col-12 col-md-6">
+              <span class="lbl-Register">{{
+                "mainModule.signup.Email" | translate
+              }}</span>
+              <span class="star"> * </span>
+              <div dir="auto" class="input-style">
+                <input
+                  type="email"
+                  formControlName="Email"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="50"
+                  minlength="5"
+                />
+              </div>
+            </div>
+
+            <!-- FixedFee -->
+            <div class="col-12 col-md-6">
+              <span class="lbl-Register">{{ "mainModule.ClinicInfo.FixedFee" | translate}}</span>
+              <span class="star"> * </span>
+              <div dir="auto" class="input-style">
+                <input
+                  type="number"
+                  formControlName="FixedFee"
+                  style="border-width: 1px; outline: none; display: block"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <!-- country -->
+            <div class="col-12 col-md-6">
+              <span class="lbl-Register">{{ "mainModule.DoctorInfo.Egypt" | translate}}</span>
+              <span class="star"> * </span>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                style="margin-bottom: 20px"
+                formControlName="CountryId"
+              >
+                <option [value]="this.clinicInfo?.CountryId" selected>
+                  {{ countries?.Name }}
+                </option>
+                <option *ngFor="let item of countries" value="{{ item.Id }}">
+                  {{ item.Name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- city -->
+            <div class="col-12 col-md-6">
+              <span class="lbl-Register">{{ "mainModule.ClinicInfo.City" | translate}}</span>
+              <span class="star"> * </span>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                style="margin-bottom: 20px"
+                formControlName="CityId"
+              >
+                <option [value]="this.clinicInfo?.CityId" selected>
+                  {{ Cities?.Name }}
+                </option>
+                <option *ngFor="let item of Cities" value="{{ item.Id }}">
+                  {{ item.Name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Address -->
+        <div class="col-12 col-md-8">
+          <span class="lbl-Register">{{ "mainModule.ClinicInfo.Location" | translate}}</span>
+          <!-- <span class="star"> * </span> -->
+          <div class="input-style">
+            <input
+              formControlName="Address"
+              type="text"
+              dir="auto"
+              class="form-control textForArabic"
+            />
+          </div>
         </div>
 
-        <div class="row" formArrayName="HealthEntityPhoneDtos">
+        <div class="col-12 col-md-4" style="margin-bottom: 20px">
+          <span class="lbl-Register"></span>
+          <div
+            class="d-flex justify-content-center"
+            style="align-items: center"
+          >
+            <button class="btn locationButton" (click)="openGoogelMapsModal()">
+              <svg
+                class="mb-1"
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_147_2460)">
+                  <path
+                    d="M10.9128 6.81087C9.07109 6.81087 7.57943 8.30254 7.57943 10.1442C7.57943 11.9859 9.07109 13.4775 10.9128 13.4775C12.7544 13.4775 14.2461 11.9859 14.2461 10.1442C14.2461 8.30254 12.7544 6.81087 10.9128 6.81087ZM18.3628 9.31087C17.9794 5.83587 15.2211 3.07754 11.7461 2.69421V0.977539H10.0794V2.69421C6.60443 3.07754 3.84609 5.83587 3.46276 9.31087H1.74609V10.9775H3.46276C3.84609 14.4525 6.60443 17.2109 10.0794 17.5942V19.3109H11.7461V17.5942C15.2211 17.2109 17.9794 14.4525 18.3628 10.9775H20.0794V9.31087H18.3628ZM10.9128 15.9775C7.68776 15.9775 5.07943 13.3692 5.07943 10.1442C5.07943 6.91921 7.68776 4.31087 10.9128 4.31087C14.1378 4.31087 16.7461 6.91921 16.7461 10.1442C16.7461 13.3692 14.1378 15.9775 10.9128 15.9775Z"
+                    fill="white"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_147_2460">
+                    <rect
+                      width="20"
+                      height="20"
+                      fill="white"
+                      transform="translate(0.912109 0.144531)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+              Pick Location
+            </button>
+          </div>
+        </div>
+      </div>
 
-          <!-- Phone Number -->
-          <span class="lbl-Register">Phone Number</span>
-          <span class="star"> * </span>
-         <div class=" col-12 col-md-4 mb-4 row" *ngFor="let phone of phones_control; let i = index">
-          <div  class="col-10" >
+      <div class="row" formArrayName="HealthEntityPhoneDtos">
+        <!-- Phone Number -->
+        <span class="lbl-Register">{{ "mainModule.ClinicInfo.PhoneNumber" | translate}}</span>
+        <span class="star"> * </span>
+        <div
+          class="col-12 col-md-4 mb-4 row"
+          *ngFor="let phone of phones_control; let i = index"
+        >
+          <div class="col-10">
             <div dir="auto" class="input-style">
-              <input type="number"
-                      style=" border-width: 1px;
-                              outline: none;
-                              display: block;
-                              padding-left: 70px;"
-
-                      class="form-control" 
-                      [formControlName]="i" 
-                      >
-
+              <input
+                type="number"
+                style="
+                  border-width: 1px;
+                  outline: none;
+                  display: block;
+                  padding-left: 70px;
+                "
+                class="form-control"
+                [formControlName]="i"
+              />
 
               <span class="unit">+2</span>
             </div>
           </div>
 
-            
-              <div class="col-2 px-0">
-                <button class="btn btn-outline-danger  input-group-append" type="button" id="button-addon2"
-                (click)="deleteFromGroup(i)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-              </div>
-            
-         </div>
-          <div class="col-md-3 ">
-            <button class=" locationButton mb-3 border-0" (click)="addPhone()">
-              add phone
-             </button>
+          <div class="col-2 px-0">
+            <button
+              class="btn btn-outline-danger input-group-append"
+              type="button"
+              id="button-addon2"
+              (click)="deleteFromGroup(i)"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </div>
-
         </div>
-
-        <div class="row">
-           <!-- Area -->
-           <div class="col-12 col-md-4 mb-4" >
-            <span class="lbl-Register"> Area </span>
-            <span class="star"> * </span>
-            <select class="form-select"
-                    aria-label="Default select example" 
-                    style="margin-bottom: 20px;"
-                    formControlName="AreaId" type="number">
-                    <option [value]="this.clinicInfo?.AreaId" selected>{{Areas?.Name}}</option>
-                    <option *ngFor="let item of Areas" value="{{ item.Id }}" >
-                      {{ item.Name }}
-                    </option>   
-            </select>
-          </div>
-          <!-- Building Number -->
-          <div class="col-12 col-md-4 mb-4">
-            <span class="lbl-Register">Building Number</span>
-            <div dir="auto" class="input-style">
-              <input type="number"  formControlName="BlockNo"
-                style="border-width: 1px; outline: none; display: block" class="form-control" />
-            </div>
-          </div>
-
-          <!-- FloorNumber -->
-          <div class="col-12 col-md-4 mb-4">
-            <span class="lbl-Register">Floor Number</span>
-            <div dir="auto" class="input-style">
-
-              <input type="number"  formControlName="FloorNo"
-                style="border-width: 1px; outline: none; display: block" class="form-control" />
-
-            </div>
-          </div>
-         
-
-        </div> 
-      </form>
-
-
-
-
-    </div>
-
-    <div class="col-12">
-      <div class="row d-flex justify-content-end">
-
-        <div class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end" >
-          <button (click)="submitClinic()" class="SaveChanges-btn" style="background-color: #262d70" >
-            Next
+        <div class="col-md-3">
+          <button class="locationButton mb-3 border-0" (click)="addPhone()">
+            add phone
           </button>
         </div>
-
-       
-
       </div>
-    </div>
 
+      <div class="row">
+        <!-- Area -->
+        <div class="col-12 col-md-4 mb-4">
+          <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Area" | translate}} </span>
+          <span class="star"> * </span>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            style="margin-bottom: 20px"
+            formControlName="AreaId"
+            type="number"
+          >
+            <option [value]="this.clinicInfo?.AreaId" selected>
+              {{ Areas?.Name }}
+            </option>
+            <option *ngFor="let item of Areas" value="{{ item.Id }}">
+              {{ item.Name }}
+            </option>
+          </select>
+        </div>
+        <!-- Building Number -->
+        <div class="col-12 col-md-4 mb-4">
+          <span class="lbl-Register">{{ "mainModule.ClinicInfo.BuildingNumber" | translate}}</span>
+          <div dir="auto" class="input-style">
+            <input
+              type="number"
+              formControlName="BlockNo"
+              style="border-width: 1px; outline: none; display: block"
+              class="form-control"
+            />
+          </div>
+        </div>
 
+        <!-- FloorNumber -->
+        <div class="col-12 col-md-4 mb-4">
+          <span class="lbl-Register">{{ "mainModule.ClinicInfo.FloorNumber" | translate}}</span>
+          <div dir="auto" class="input-style">
+            <input
+              type="number"
+              formControlName="FloorNo"
+              style="border-width: 1px; outline: none; display: block"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 
+  <div class="col-12">
+    <div class="row d-flex justify-content-end">
+      <div
+        class="col-12 col-md-3 d-flex justify-content-center justify-content-sm-end"
+      >
+        <button
+          (click)="submitClinic()"
+          class="SaveChanges-btn"
+          style="background-color: #262d70"
+        >
+        {{ "mainModule.ClinicInfo.Next" | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

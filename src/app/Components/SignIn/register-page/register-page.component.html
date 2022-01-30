@@ -77,7 +77,7 @@
                       />
                       <app-fielderror 
                       [displayError]="isFieldValid('Email')"
-                      errorMsg="Please enter valid email "
+                      errorMsg="{{'errorField.email' | translate}}"
                     ></app-fielderror>
                     </div>
                   </div>
@@ -103,7 +103,7 @@
                       <span class="unit">+2</span>
                       <app-fielderror 
                       [displayError]="isFieldValid('PhoneNumber')"
-                      errorMsg="Please enter 11 number "
+                      errorMsg="{{'errorField.phone' | translate}}"
                     ></app-fielderror>
                     </div>
                   </div>

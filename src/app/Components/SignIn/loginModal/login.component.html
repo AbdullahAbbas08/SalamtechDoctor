@@ -40,7 +40,7 @@
                       required >
                       <app-fielderror 
                             [displayError]="isFieldValid('PhoneNumber')"
-                            errorMsg="Please enter valid phone from 11 number"
+                            errorMsg="{{'errorField.phone' | translate}}"
                           ></app-fielderror>
                     </div>
 
@@ -66,7 +66,7 @@
                         </div>
                         <app-fielderror 
                           [displayError]="isFieldValid('Password')"
-                          errorMsg="Please enter valid password with min length 6 digits"
+                          errorMsg="{{'errorField.password' | translate}}"
                         ></app-fielderror>
               </div>
 

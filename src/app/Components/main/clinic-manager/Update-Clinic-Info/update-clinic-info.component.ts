@@ -51,12 +51,13 @@ export class UpdateClinicInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
+   
   }
 
   getClinicInfo(id){
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
+      this.clinicInfo.Logo? this.imgURL = this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
       console.log(res.Data);
       this.initForm()
       this.getCity()

@@ -11,6 +11,10 @@ export class EmrProfileComponent implements OnInit {
 
   constructor(private route:ActivatedRoute , private AppointmentService:AppointmentService) { 
     console.log("EmrProfileComponent : ",this.AppointmentService.EMRID)
+    this.route.paramMap.subscribe(param=>{
+      console.log(param.get('emrID'));
+      
+    })
   }
 
   ngOnInit(): void {

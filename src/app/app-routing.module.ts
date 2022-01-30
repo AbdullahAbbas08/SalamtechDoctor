@@ -106,10 +106,10 @@ const routes: Routes = [
           {path:'upcoming',component:UpcomingAppointmentComponent} ,
         ] },
 
-        { path:'emr/:emrID',component:EmrComponent,children:[
-          {path:'',component:EmrProfileComponent } ,
-          {path:'emr-profile',component:EmrProfileComponent } ,
-          {path:'patient-profile',component:PatientProfileComponent} ,
+        { path:'emr',component:EmrComponent,children:[
+          {path:':emrID',component:EmrProfileComponent } ,
+          {path:'emr-profile/:emrID',component:EmrProfileComponent } ,
+          {path:'patient-profile/:emrID',component:PatientProfileComponent} ,
         ] },
     ]
   },

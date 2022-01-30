@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 path-row">
-            Services > {{ActiveComponent}}
+            {{ "mainModule.Services.services" | translate }} > {{ActiveComponent}}
         </div>
     </div>
 
@@ -20,7 +20,7 @@
                                                 changeCursor" 
                                          [routerLink]="['/main/service/homevisit']"
                                          (click)="ChangeTitle('Home Visits')">
-                        Home Visits
+                                         {{ "mainModule.Services.HomeVisits" | translate }}
                     </div>
 
                     <div  id="VideoCall" class=" col-12 
@@ -32,7 +32,7 @@
                                                 changeCursor"
                                         [routerLink]="['/main/service/videocall']"
                                         (click)="ChangeTitle('Video Call')">
-                        Video Call
+                                        {{ "mainModule.Services.VideoCall" | translate }}
                     </div>
 
                     <div id="Call" class=" col-12 
@@ -44,7 +44,7 @@
                                            changeCursor"
                                     [routerLink]="['/main/service/call']"
                                     (click)="ChangeTitle('Call')">
-                        Call
+                                    {{ "mainModule.Services.Call" | translate }}
                     </div>
 
                     <div id="Chat" class=" col-12 
@@ -56,7 +56,7 @@
                                            changeCursor"
                                     [routerLink]="['/main/service/chat']"
                                     (click)="ChangeTitle('Chat')">
-                        Chat
+                                    {{ "mainModule.Services.Chat" | translate }}
                     </div>
 
             </div>

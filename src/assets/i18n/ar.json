@@ -1,190 +1,221 @@
 {
-    "mainModule":{
-        "welcomeMessege":"مرحبا بكم ",
-        "Home":"الرئيسية",
-        "AboutUs":"عنّا",
-        "ContactUs":"تواصل معنا",
-        "Help":"مساعدة",
-        "signup":{
-            "FirstName":"الأسم الأول",
-            "MiddleName":"الأسم الأوسط",
-            "LastName":"الأسم الأخير",
-            "Email":"البريد الإلكترونى",
-            "PhoneNumber":"الموبايل",
-            "Password":"كلمة السر",
-            "ConfirmPassword":"تأكيد كلمة السر",
-            "Next":"التالى"
-        },
-        "ResendCode":{
-            "verify":"تحقق"
-        },
-        "login":{
-          "LoginAsDoctor":"تسجيل الدخول للدكنور",
-          "PhoneNumber":"رقم الموبيل",
-          "SignIn":"تسجيل الدخول",
-          "DontHaveAnAccount?":"ليس لديك حساب ؟",
-          "createAccount":"انشاء حساب",
-          "ForgetPassword":"نسيت كلمة المرور",
-          "LoginAsPatient":"تسجيل الدخول للمريض"
-        },
-        "LoginPage":{
-          "SignIn":"تسجيل الدخول",
-          "PhoneNumber":"رقم الموبايل",
-          "Password":"كلمة المرور",
-          "ForgetPassword":"نسيت الباسورد ؟ ",
-          "SignInBtn":"سجل دخول "
-        },
-        "RegisterPage":{
-          "Signup":"سجل حساب جديد",
-          "FirstName":"الأسم الاول",
-          "MiddleName":"الاسم الثانى",
-          "LastName":" الاسم الاخير ",
-          "PhoneNumber":"رقم الموبايل",
-          "Email":"البريد الالكترونى",
-          "Password":"كلمة المرور",
-          "ReEnterPassword":"أعد إدخال كلمة المرو",
-          "Terms&Conditions":" الموافقة على الشروط والاحكام",
-          "Terms&ConditionsKeyword":"الشروط والاحكام",
-          "AlreadyHaveAnAccount":"تمتلك حساب بالفعل ؟ ",
-          "Signin":"دخول",
-          "CreateAccount":"تسجيل "
-        },
-        "otp":{
-          "verify":"تحقق",
-          "ResendAgain":"إعادة الإرسال مرة أخرة",
-          "Didntrecivecode":"لم يتم الإرسال ",
-          "EntertheVerificationCode":"أدخل كود التحقق",
-          "Codesentto":"تم إرسال الكود الى ",
-          "Thiscodewillbeexpiredwithin":"يتم الغاء كود التحقق بعد"
+  "mainModule": {
+    "welcomeMessege": "مرحبا بكم ",
+    "Home": "الرئيسية",
+    "AboutUs": "عنّا",
+    "ContactUs": "تواصل معنا",
+    "Help": "مساعدة",
+    "signup": {
+      "FirstName": "الأسم الأول",
+      "MiddleName": "الأسم الأوسط",
+      "LastName": "الأسم الأخير",
+      "Email": "البريد الإلكترونى",
+      "PhoneNumber": "الموبايل",
+      "Password": "كلمة السر",
+      "ConfirmPassword": "تأكيد كلمة السر",
+      "Next": "التالى"
+    },
+    "ResendCode": {
+      "verify": "تحقق"
+    },
+    "login": {
+      "LoginAsDoctor": "تسجيل الدخول للدكنور",
+      "PhoneNumber": "رقم الموبيل",
+      "SignIn": "تسجيل الدخول",
+      "DontHaveAnAccount?": "ليس لديك حساب ؟",
+      "createAccount": "انشاء حساب",
+      "ForgetPassword": "نسيت كلمة المرور",
+      "LoginAsPatient": "تسجيل الدخول للمريض"
+    },
+    "LoginPage": {
+      "SignIn": "تسجيل الدخول",
+      "PhoneNumber": "رقم الموبايل",
+      "Password": "كلمة المرور",
+      "ForgetPassword": "نسيت الباسورد ؟ ",
+      "SignInBtn": "سجل دخول "
+    },
+    "RegisterPage": {
+      "Signup": "سجل حساب جديد",
+      "FirstName": "الأسم الاول",
+      "MiddleName": "الاسم الثانى",
+      "LastName": " الاسم الاخير ",
+      "PhoneNumber": "رقم الموبايل",
+      "Email": "البريد الالكترونى",
+      "Password": "كلمة المرور",
+      "ReEnterPassword": "أعد إدخال كلمة المرو",
+      "Terms&Conditions": " الموافقة على الشروط والاحكام",
+      "Terms&ConditionsKeyword": "الشروط والاحكام",
+      "AlreadyHaveAnAccount": "تمتلك حساب بالفعل ؟ ",
+      "Signin": "دخول",
+      "CreateAccount": "تسجيل "
+    },
+    "otp": {
+      "verify": "تحقق",
+      "ResendAgain": "إعادة الإرسال مرة أخرة",
+      "Didntrecivecode": "لم يتم الإرسال ",
+      "EntertheVerificationCode": "أدخل كود التحقق",
+      "Codesentto": "تم إرسال الكود الى ",
+      "Thiscodewillbeexpiredwithin": "يتم الغاء كود التحقق بعد"
+    },
+    "sideBar": {
+      "Signup": "التسجيل",
+      "DoctorInfo": "بيانات الطبيب",
+      "Certificates": "الشهادات",
+      "LegalDocuments": "الأوراق الرسمية",
+      "Congratulations": "تهانينا",
+      "singingUpYouAreApproveOur": "بالتسجيل فأنت موافق علي",
+      "Terms&Conditions": "الشروط والاحكام",
+      "AddClinics": "إضافة عيادة"
+    },
+    "main": {
+      "menu": "القائمة",
+      "option": "الإختيارات",
+      "settings": "الإعدادات",
+      "Help": "مساعدة",
+      "Logout": "خروج",
+      "Dashboard": "لوحة التحكم",
+      "Clinics": "العيادات",
+      "Appointments": "المواعيد",
+      "Services": "الخدمات",
+      "Profile": "حسابى"
+    },
+    "DoctorInfo": {
+      "FirstNameAr": "First Name",
+      "MiddleNameAr": "Middle Name",
+      "LastNameAr": "Last Name",
+      "Gender": "أختر الجنس ",
+      "Male": "ذكر",
+      "Female": "أنثى",
+      "Nationality": "الجنسية",
+      "Egypt": "مصر",
+      "Date_of_birth": "تاريخ الميلاد",
+      "Speciality": "المجال",
+      "SubSpeciality": "التخصص",
+      "Seniority": "الدرجه العلمية",
+      "BiographyAr": "Biography",
+      "Biography": "المعلومات الشخصية",
+      "Update": "تعديل",
+      "back": "رجوع"
+    },
+    "Documents": {
+      "UploadNationalIdFrontFace": " صورة  الرقم القومى من الوجه",
+      "UploadNationalIdBackFace": "صورة  الرقم القومى من الخلف إن أمكن",
+      "UploadSyndicateFrontFace": "صورة من كارنيه النقابة من الوجه",
+      "UploadSyndicatebackFace": " صورة من كارنيه النقابة من الخلف أن أمكن",
+      "Next": "التالى"
+    },
+    "Clinic": {
+      "clinic": "Clinics",
+      "sidebarinfo": "بيانات العيادة",
+      "sidebargalary": "صور العيادة",
+      "sidebarschedule": "مواعيد العيادة",
+      "GalayTitle": "معرض الصور"
+    },
+    "Certificate": {
+      "AddNewCertificate": "اضافة شهادة جديده",
+      "NewCertificate": "شهادة جديدة",
+      "Reset": "اعادة ضبط",
+      "Delete": "حذف",
+      "CertificateTitle": "العنوان ",
+      "CertificateTitleAr": "Certificate Title In Engilsh",
+      "Description": "الوصف ",
+      "DescriptionAr": "Certificate Description In Engilsh",
+      "Year": "السنة",
+      "View": "عرض",
+      "Submit": "اضافة",
+      "Save": "حفظ",
+      "Next": "التالي"
+    },
+    "ClinicInfo": {
+      "ChangeLogo": "تغيير صورة البروفايل",
+      "Name": "الأسم",
+      "NameAr": "Name English",
+      "PhoneNumber": "رقم الموبايل",
+      "PhoneNumber2": "رقم موبايل أخر",
+      "PhoneNumber3": "رقم موبايل أخر",
+      "FixedFee": "سعر الكشف",
+      "Location": "المكان(الخريطة)",
+      "PickLocation": "أختر المكان",
+      "City": "المدينة",
+      "Area": "المنطقة",
+      "SelectArea": "أختر المنطقة",
+      "Street": "الشارع",
+      "BuildingNumber": "رقم المبنى",
+      "FloorNumber": "رقم الدور",
+      "ApartmentNumber": "رقم ",
+      "Services": "الخدمات",
+      "Next": "التالى"
+    },
+    "Schedule": {
+      "Schedule": "مواعيد",
+      "Periods": "فترات",
+      "Period1": "فترة 1",
+      "Reset": "إعادة",
+      "Operatinghours": "فترات العمل",
+      "SelectDuration": "أختر الفترة",
+      "Minutes": "دقائق",
+      "Visitfee": "تكلفة الزيارة",
+      "EGP": "ج.م",
+      "Submit": "تسجيل",
+      "AddNewPeriod": "أضف فترة",
+      "Period": "فترة",
+      "Active": "متاح",
+      "NotActive": "غير متاح",
+      "Interval": "فترات",
+      "Update": "تحديث",
+      "Finish": "إنهاء"
+    },
+    "clinicmanager": {
+      "main": {
+        "AddNewClinic": "أضف عيادة جديدة",
+        "Therearenoaddedclinicyet": "لا توجد عيادات أضيفت حتى الان",
+        "ManageyourallClinicsbyadd": "إدارة العيادات",
+        "Themthrowonepress": "Them throw one press ",
+        "ClinicName": "أسم العيادة",
+        "ClinicNumber": "رقم العيادة",
+        "Appointments": "المواعيد",
+        "Location": "المكان",
+        "Actions": "إعدادات"
+      }
+    },
+    "appointment": {
+      "Current": "الحالى",
+      "History": "الماضى",
+      "current": {
+        "Name": "Name",
+        "Date": "Date",
+        "Time": "Time",
+        "Type": "Type",
+        "Actions": "Actions"
       },
-        "sideBar":{
-          "Signup":"التسجيل",
-          "DoctorInfo":"بيانات الطبيب",
-          "Certificates":"الشهادات",
-          "LegalDocuments":"الأوراق الرسمية",
-          "Congratulations":"تهانينا",
-          "singingUpYouAreApproveOur":"بالتسجيل فأنت موافق علي",
-          "Terms&Conditions":"الشروط والاحكام",
-          "AddClinics":"إضافة عيادة"
-
-        },
-        "main":{
-          "menu":"القائمة",
-          "option":"الإختيارات",
-          "settings":"الإعدادات",
-          "Help":"مساعدة",
-          "Logout":"خروج",
-          "Dashboard":"لوحة التحكم",
-          "Clinics":"العيادات",
-          "Appointments":"المواعيد",
-          "Services":"الخدمات",
-          "Profile":"حسابى"
-        },
-        "DoctorInfo":{
-          "FirstNameAr":"First Name",
-          "MiddleNameAr":"Middle Name",
-          "LastNameAr":"Last Name",
-          "Gender":"أختر الجنس ",
-          "Male":"ذكر",
-          "Female":"أنثى",
-          "Nationality":"الجنسية",
-          "Egypt":"مصر",
-          "Date_of_birth":"تاريخ الميلاد",
-          "Speciality":"المجال",
-          "SubSpeciality":"التخصص",
-          "Seniority":"الدرجه العلمية",
-          "BiographyAr":"Biography",
-          "Biography":"المعلومات الشخصية",
-          "Update":"تعديل",
-          "back":"رجوع"
-        },
-        "Documents":{
-          "UploadNationalIdFrontFace":" صورة  الرقم القومى من الوجه",
-          "UploadNationalIdBackFace":"صورة  الرقم القومى من الخلف إن أمكن",
-          "UploadSyndicateFrontFace":"صورة من كارنيه النقابة من الوجه",
-          "UploadSyndicatebackFace":" صورة من كارنيه النقابة من الخلف أن أمكن",
-          "Next":"التالى"
-        },
-        "Clinic":{
-          "sidebarinfo":"بيانات العيادة",
-          "sidebargalary":"صور العيادة",
-          "sidebarschedule":"مواعيد العيادة",
-          "GalayTitle":"معرض الصور"
-        },
-        "Certificate":{
-          "AddNewCertificate":"اضافة شهادة جديده",
-          "NewCertificate":"شهادة جديدة",
-          "Reset":"اعادة ضبط",
-          "Delete":"حذف",
-          "CertificateTitle":"العنوان ",
-          "CertificateTitleAr":"Certificate Title In Engilsh",
-          "Description":"الوصف ",
-          "DescriptionAr":"Certificate Description In Engilsh",
-          "Year":"السنة",
-          "View":"عرض",
-          "Submit":"اضافة",
-          "Save":"حفظ",
-          "Next":"التالي"
-        },
-        "ClinicInfo":{
-          "ChangeLogo":"تغيير صورة البروفايل",
-          "Name":"الأسم",
-          "NameAr":"Name English",
-          "PhoneNumber":"رقم الموبايل",
-          "PhoneNumber2":"رقم موبايل أخر",
-          "PhoneNumber3":"رقم موبايل أخر",
-          "FixedFee":"سعر الكشف",
-          "Location":"المكان(الخريطة)",
-          "PickLocation":"أختر المكان",
-          "City":"المدينة",
-          "Area":"المنطقة",
-          "SelectArea":"أختر المنطقة",
-          "Street":"الشارع",
-          "BuildingNumber":"رقم المبنى",
-          "FloorNumber":"رقم الدور",
-          "ApartmentNumber":"رقم ",
-          "Services":"الخدمات",
-          "Next":"التالى"
-        },
-        "Schedule":{
-          "Schedule":"مواعيد",
-          "Periods":"فترات",
-          "Period1":"فترة 1",
-          "Reset":"إعادة",
-          "Operatinghours":"فترات العمل",
-          "SelectDuration":"أختر الفترة",
-          "Minutes":"دقائق",
-          "Visitfee":"تكلفة الزيارة",
-          "EGP":"ج.م",
-          "Submit":"تسجيل",
-          "AddNewPeriod":"أضف فترة",
-          "Period":"فترة",
-          "Active":"متاح",
-          "NotActive":"غير متاح",
-          "Interval":"فترات",
-          "Update":"تحديث",
-          "Finish":"إنهاء"
-        },
-        "clinicmanager":{
-          "main":{
-            "AddNewClinic":"أضف عيادة جديدة",
-            "Therearenoaddedclinicyet":"لا توجد عيادات أضيفت حتى الان",
-            "ManageyourallClinicsbyadd":"إدارة العيادات",
-            "Themthrowonepress":"Them throw one press ",
-            "ClinicName":"أسم العيادة",
-            "ClinicNumber":"رقم العيادة",
-            "Appointments":"المواعيد",
-            "Location":"المكان",
-            "Actions":"إعدادات"
-          }
-        },
-        "appointment":{
-          "Current":"الحالى",
-          "History":"الماضى"
-        },
-        "EMR":{
-          "PatientProfile":"ملف المريض",
-          "EMRProfile":"EMR Profile"
-        }
+      "Call":"Call",
+      "EMR":"EMR",
+      "Cancel":"Cancel"
+    },
+    "EMR": {
+      "PatientProfile": "ملف المريض",
+      "EMRProfile": "EMR Profile",
+      "Patient": {
+        "PatientName": "Patient Name",
+        "Basicdata": "Basic data",
+        "PatientAge": "Patient Age",
+        "PhoneNumber": "Phone Number",
+        "Location": "Location ( From Google )",
+        "PatientComplain": "Patient Complain",
+        "Attachedfiles": "Attached files"
+      }
+    },
+    "Services":{
+      "services":"Services",
+      "HomeVisits":"Home Visits",
+      "VideoCall":"Video Call",
+      "Call":"Call",
+      "Chat":"Chat"
     }
+  },
+  "errorField": {
+    "phone": "Please enter valid phone from 11 number",
+    "password": "Please enter valid password with min length 6 digits",
+    "email": "Please enter valid email "
+  }
 }
