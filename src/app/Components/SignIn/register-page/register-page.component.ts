@@ -38,7 +38,7 @@ export class RegisterPageComponent implements OnInit {
         FirstName:['',[Validators.required]],
         MiddleName:['',[Validators.required]],
         LastName:['',[Validators.required]],
-        Email:['',[Validators.required]],
+        Email:['',[Validators.required , Validators.email]],
         PhoneNumber:['',[Validators.required]],
         checkboxcont:['',[Validators.required]],
         Password:['',[Validators.required , Validators.minLength(6)]],
@@ -48,6 +48,21 @@ export class RegisterPageComponent implements OnInit {
 
   }
   //#endregion
+
+
+  isFieldValid(field): boolean {
+    return (
+      !this.RegisterForm.get(field).valid && this.RegisterForm.get(field).touched
+    )
+  }
+
+
+
+
+
+
+
+
 
     //#region Toggle Password Method
     passwordIcon(id:string){
@@ -75,15 +90,15 @@ Checkinput(){
   //#region Submit
   Submit(){
 
-    this.CreateUser.Email = this.RegisterForm.controls.Email.value;
-    this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
-                            this.RegisterForm.controls.MiddleName.value+" "+
-                            this.RegisterForm.controls.LastName.value ;
-
-    this.CreateUser.Password = this.RegisterForm.controls.Password.value;
-    this.CreateUser.Phone = this.RegisterForm.controls.PhoneNumber.value;
     
-    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value){
+    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid){
+      this.CreateUser.Email = this.RegisterForm.controls.Email.value;
+      this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
+                              this.RegisterForm.controls.MiddleName.value+" "+
+                              this.RegisterForm.controls.LastName.value ;
+  
+      this.CreateUser.Password = this.RegisterForm.controls.Password.value;
+      this.CreateUser.Phone = this.RegisterForm.controls.PhoneNumber.value;
       this.CreateUser.UserTypeId = 2;
     this.UserService.CreateUser( this.CreateUser).subscribe(
       (response)=>{
@@ -103,7 +118,7 @@ Checkinput(){
     }
     else
     {
-      this.toastr.error("Password and Confirm Password not Match","Error !")
+      this.RegisterForm.markAllAsTouched()
     }
   }
   //#endregion

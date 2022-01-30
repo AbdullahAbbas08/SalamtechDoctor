@@ -37,7 +37,7 @@
   position: relative;
 }
 
-#PasswordLogin
+#PasswordLogin , #ReEnterPassword
 {
   padding-right: 42px;
 }

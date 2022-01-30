@@ -75,6 +75,10 @@
                         class="form-control"
                         formControlName="Email"
                       />
+                      <app-fielderror 
+                      [displayError]="isFieldValid('Email')"
+                      errorMsg="Please enter valid email "
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -97,6 +101,10 @@
                       />
 
                       <span class="unit">+2</span>
+                      <app-fielderror 
+                      [displayError]="isFieldValid('PhoneNumber')"
+                      errorMsg="Please enter 11 number "
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -192,7 +200,7 @@
                     </label>
                     <div>
                       <button
-                        [disabled]="RegisterForm.invalid"
+                       
                         class="CreateAccount-btn"
                         (click)="Submit()"
                       >
