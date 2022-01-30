@@ -187,7 +187,10 @@
         "Time": "Time",
         "Type": "Type",
         "Actions": "Actions"
-      }
+      },
+      "Call":"Call",
+      "EMR":"EMR",
+      "Cancel":"Cancel"
     },
     "EMR": {
       "PatientProfile": "Patient Profile",
