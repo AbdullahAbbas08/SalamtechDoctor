@@ -8,12 +8,12 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
   styleUrls: ['./emr-profile.component.css']
 })
 export class EmrProfileComponent implements OnInit {
-
+  id;
   constructor(private route:ActivatedRoute , private AppointmentService:AppointmentService) { 
     console.log("EmrProfileComponent : ",this.AppointmentService.EMRID)
     this.route.paramMap.subscribe(param=>{
       console.log(param.get('emrID'));
-      
+      this.id=param.get('emrID');
     })
   }
 
