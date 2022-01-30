@@ -1,26 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-light main-color">
   <div class="container-fluid">
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-  
-    <div class="    ml-md-auto  d-md-flex d-none  align-baseline " id="navbarSupportedContent">
-   
-      
-      <ul class="navbar-nav  my-2 mb-lg-0 d-flex   align-items-center" >
-        <li class="nav-item  notification mx-3">
+
+    <div
+      class="ml-md-auto d-md-flex d-none align-baseline"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav my-2 mb-lg-0 d-flex align-items-center">
+        <li class="nav-item notification mx-3">
           <span>
-            <img src="../../../assets/img/logoutIcon/Group 18.png">
+            <img src="../../../assets/img/logoutIcon/Group 18.png" />
           </span>
           <!-- Logout -->
-          <span class="btn li-item" (click)=" RemoveAuth()"> {{ "mainModule.main.Logout" | translate }}</span>
+          <span class="btn li-item" (click)="RemoveAuth()">
+            {{ "mainModule.main.Logout" | translate }}</span
+          >
         </li>
-        <li class=" mt-md-0 mt-3">
+        <li class="mt-md-0 mt-3">
           <div>
-          <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'">English</a>
+            <a
+              class="btn nav-item mx-2 notification"
+              (click)="ChangeLanguage(DefaultLang)"
+              *ngIf="DefaultLang == 'ar'"
+              >English</a
+            >
           </div>
         </li>
-        <li class=" mt-md-0 mt-3">
+        <li class="mt-md-0 mt-3">
           <div>
-          <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">عربى</a>
+            <a
+              class="btn nav-item mx-2 notification"
+              (click)="ChangeLanguage(DefaultLang)"
+              *ngIf="DefaultLang == 'en'"
+              >عربى</a
+            >
           </div>
         </li>
         <li class="nav-item mx-2 mt-md-0 mt-3">
@@ -36,73 +49,80 @@
         </li>
 
         <li class="nav-item mx-2 mt-md-0 mt-2">
-          <div class="card  border-0">
+          <div class="card border-0">
             <div class="row g-0 main-color">
-              <div class="col-md-4" >
-                <img src="{{IamgeURL}}{{logo}}" class="img-fluid2 rounded-start"
-                onerror="this.src='../../../../assets/img/user-img.jpg';"  />
+              <div class="col-md-4">
+                <img
+                  src="{{ IamgeURL }}{{ logo }}"
+                  class="img-fluid2 rounded-start"
+                  onerror="this.src='../../../../assets/img/user-img.jpg';"
+                />
               </div>
               <div class="col-md-8">
                 <div class="">
-                  <p class="card-text mb-0 mt-2 mx-2">{{name}}</p>
+                  <p class="card-text mb-0 mt-2 mx-2">{{ name }}</p>
                 </div>
               </div>
             </div>
           </div>
         </li>
       </ul>
-    
     </div>
 
-  <div  class="d-md-none text-center">
-    <a class="navbar-brand "><img src="./assets/img/logo.webp" class="logo"></a>
-    <div class="  d-flex flex-wrap align-items-center justify-content-center">
-    <div class="nav-item  notification mx-2 mt-3">
-        <!-- Logout -->
-        <button class="btn " (click)=" RemoveAuth()"> <img src="../../../assets/img/logoutIcon/Group 18.png"></button>
-      </div>
-      <div class=" mt-md-0 mt-3">
-        <div>
-        <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='ar'"  >En </a>
-        </div>
-      </div>
-      <div class=" mt-md-0 mt-3">
-        <div>
-        <a class="btn nav-item mx-2 notification" (click)="ChangeLanguage(DefaultLang)"  *ngIf="DefaultLang=='en'">ع</a>
-        </div>
-      </div>
-      <div class="nav-item mx-2 mt-md-0 mt-3">
-        <div class="msg text-center">
-          <i class="far fa-comments"></i>
-        </div>
-      </div>
 
-      <div class="nav-item mx-2 mt-md-0 mt-2">
-        <div class="notification text-center">
-          <i class="far fa-bell"></i>
-        </div>
-      </div>
 
-      <div class="nav-item mx-2 mt-md-0 mt-2">
-        <div class="card  border-0">
-          <div class="row main-color">
-            <div class="col-4" >
-              <img src="{{IamgeURL}}{{logo}}" class="img-fluid2 rounded-start"
-              onerror="this.src='../../../../assets/img/user-img.jpg';"  />
-            </div>
-            <div class="col-8">
-              <div class="">
-                <p class="card-text mb-0 mt-2 mx-2">{{name}}</p>
-              </div>
-            </div>
+
+
+
+
+    <div class="d-md-none text-center">
+      <a class="navbar-brand"
+        ><img src="./assets/img/logo.webp" class="logo"
+      /></a>
+      <div class="d-flex flex-wrap align-items-center justify-content-center mt-4 "  >
+        <div class="nav-item mx-3"> 
+          <div class="notification text-center">
+            <button class="btn p-0" (click)="RemoveAuth()">
+              <img src="../../../assets/img/logoutIcon/Group 18.png" />
+            </button>
+          </div>
+        </div>
+        <div class="nav-item mx-2 ">
+          <div class="notification text-center">
+            <i class="far fa-bell"></i>
+          </div>
+        </div>
+        
+        <div class=" nav-item mx-2"  *ngIf="DefaultLang == 'ar'"> 
+          <div class="notification text-center"> 
+            <a
+              class=" btn p-0 "
+              (click)="ChangeLanguage(DefaultLang)"
+             
+              >En
+            </a>
+          </div>
+        </div>
+        <div class="nav-item mx-3 "  *ngIf="DefaultLang == 'en'">
+          <div class="notification text-center">
+            <a
+              class=" btn p-0"
+              (click)="ChangeLanguage(DefaultLang)"
+             
+              >ع</a
+            >
+          </div>
+        </div>
+        <div class="nav-item mx-3">
+          <div class="card border-0">
+            <img
+              [src]=" logo  "
+              class="img-fluid2 rounded-start"
+              onerror="this.src='../../../../assets/img/user-img.jpg';"
+            />
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-
-
-
   </div>
 </nav>
