@@ -25,7 +25,7 @@ export class PatientProfileComponent implements OnInit {
               private modalService: NgbModal) { 
                 this.route.paramMap.subscribe(param=>{
                   this.id=param.get('emrID')
-                  console.log(this.id);
+                  // console.log(this.id);
                   
                  })
                  
