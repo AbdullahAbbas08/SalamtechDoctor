@@ -227,7 +227,25 @@
       "HomeVisits":"Home Visits",
       "VideoCall":"Video Call",
       "Call":"Call",
-      "Chat":"Chat"
+      "Chat":"Chat",
+      "Home_Visit":{
+        "Schedule":"Schedule",
+        "Periods":"Periods",
+        "Reset":"Reset",
+        "Operatinghours":"Operating hours",
+        "To":"To",
+        "SelectDuration":"Select Duration",
+        "Minutes":"Minutes",
+        "HomeVisitFees":"Home Visit Fees",
+        "EGP":"EGP",
+        "AddNewPeriod":"Add New Period",
+        "Period":"Period",
+        "Period1":"Period 1",
+        "NotActive":"Not Active",
+        "Update":"Update",
+        "Interval":"Interval",
+        "VisitFees":"Visit Fees"
+      }
     }
   },
   "errorField": {

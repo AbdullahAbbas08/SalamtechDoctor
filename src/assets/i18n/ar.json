@@ -163,7 +163,8 @@
       "NotActive": "غير متاح",
       "Interval": "فترات",
       "Update": "تحديث",
-      "Finish": "إنهاء"
+      "Finish": "إنهاء",
+      "To":"إلى"
     },
     "clinicmanager": {
       "main": {
@@ -226,7 +227,25 @@
       "HomeVisits":"زيارة العيادة",
       "VideoCall":"مكالمة فيديو",
       "Call":"مكالمة",
-      "Chat":"دردشة"
+      "Chat":"دردشة",
+      "Home_Visit":{
+        "Schedule":"مواعيد",
+        "Periods":"فترات",
+        "Reset":"إعادة",
+        "Operatinghours":"ساعات العمل",
+        "To":"To",
+        "SelectDuration":"أختر المدة",
+        "Minutes":"دقيقة",
+        "HomeVisitFees":"سعر الكشف",
+        "EGP":"ج.م",
+        "AddNewPeriod":"أضف فترة",
+        "Period":"فترة",
+        "Period1":"فترة 1",
+        "NotActive":"غير متاح",
+        "Update":"تحديث",
+        "Interval":"فترات",
+        "VisitFees":"سعر الكشف"
+      }
     }
   },
   "errorField": {
