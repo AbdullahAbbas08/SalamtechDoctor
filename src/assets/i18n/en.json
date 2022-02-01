@@ -163,7 +163,8 @@
       "NotActive": "Not Active",
       "Interval": "Interval",
       "Update": "Update",
-      "Finish": "Finish"
+      "Finish": "Finish",
+      "To":"To"
     },
     "clinicmanager": {
       "main": {
