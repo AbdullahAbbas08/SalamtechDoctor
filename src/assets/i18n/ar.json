@@ -235,7 +235,7 @@
         "Periods":"فترات",
         "Reset":"إعادة",
         "Operatinghours":"ساعات العمل",
-        "To":"To",
+        "To":"إلى",
         "SelectDuration":"أختر المدة",
         "Minutes":"دقيقة",
         "HomeVisitFees":"سعر الكشف",
@@ -244,9 +244,11 @@
         "Period":"فترة",
         "Period1":"فترة 1",
         "NotActive":"غير متاح",
+        "Active":"متاح",
         "Update":"تحديث",
         "Interval":"فترات",
-        "VisitFees":"سعر الكشف"
+        "VisitFees":"سعر الكشف",
+        "Submit":"تسجيل"
       }
     }
   },

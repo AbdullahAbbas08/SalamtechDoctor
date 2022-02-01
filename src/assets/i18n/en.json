@@ -244,9 +244,11 @@
         "Period":"Period",
         "Period1":"Period 1",
         "NotActive":"Not Active",
+        "Active":"Active",
         "Update":"Update",
         "Interval":"Interval",
-        "VisitFees":"Visit Fees"
+        "VisitFees":"Visit Fees",
+        "Submit":"Submit"
       }
     }
   },
