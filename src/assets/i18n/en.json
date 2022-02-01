@@ -95,7 +95,8 @@
       "BiographyAr": "معلومات شخصية",
       "Biography": "Biography",
       "Update": "Update",
-      "back": "back"
+      "back": "back",
+      "Leave a comment here":"Leave a comment here"
     },
     "Documents": {
       "UploadNationalIdFrontFace": "Upload Front Face required",
@@ -144,7 +145,8 @@
       "FloorNumber": "Floor Number",
       "ApartmentNumber": "Apartment Number",
       "Services": "Services",
-      "Next": "Next"
+      "Next": "Next",
+      "addphone":"add phone"
     },
     "Schedule": {
       "Schedule": "Schedule",

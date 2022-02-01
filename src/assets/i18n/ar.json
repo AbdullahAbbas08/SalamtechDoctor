@@ -95,7 +95,8 @@
       "BiographyAr": "Biography",
       "Biography": "المعلومات الشخصية",
       "Update": "تعديل",
-      "back": "رجوع"
+      "back": "رجوع",
+      "Leave a comment here":"Leave a comment here"
     },
     "Documents": {
       "UploadNationalIdFrontFace": " صورة  الرقم القومى من الوجه",
@@ -144,7 +145,8 @@
       "FloorNumber": "رقم الدور",
       "ApartmentNumber": "رقم ",
       "Services": "الخدمات",
-      "Next": "التالى"
+      "Next": "التالى",
+      "addphone":"add phone"
     },
     "Schedule": {
       "Schedule": "مواعيد",

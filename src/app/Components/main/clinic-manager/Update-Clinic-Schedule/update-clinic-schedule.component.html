@@ -1,7 +1,7 @@
 <div class="row ">
     <div class="col-12" style="padding-left:0px;padding-bottom: 20px;">
       <div style="font-size: 16px;font-weight: 500;">
-        Clinics > Clinic Schedule
+        {{ "mainModule.main.Clinics" | translate }} > {{ "mainModule.Clinic.sidebarschedule" | translate }}
       </div>
     </div>
   </div>
@@ -10,7 +10,7 @@
     <!-- Title  -->
     <div class="col-12">
        <label class="Schedule">
-        Schedule
+        {{ "mainModule.Schedule.Schedule" | translate }}
        </label> 
     </div>
     <!-- Schedule Body -->
@@ -66,7 +66,7 @@
                                     <div class="col-12 col-md-6 ">
                                       <div class="d-flex  justify-content-center justify-content-sm-start ">
                                         <label >
-                                          Period 1
+                                          {{ "mainModule.Schedule.Period1" | translate }}
                                         </label>
                                       </div>
                                     </div>
@@ -76,7 +76,7 @@
                                           <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
                                          </span> -->
                                         <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;">
-                                          Reset
+                                          {{ "mainModule.Schedule.Reset" | translate }}
                                         </label>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                             <!-- row 1 for => DateFrom , DateTo -->
                                             <div class="col-12">
                                               <div style="padding: 20px;padding-bottom: 0px;">
-                                                <label class="lbl-input ">Operating hours</label>
+                                                <label class="lbl-input ">  {{ "mainModule.Schedule.Operatinghours" | translate }}</label>
 
                                                 <div class="row">
 
@@ -105,7 +105,7 @@
                                                   </div>
 
                                                   <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                    <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                    <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{ "mainModule.Schedule.To" | translate }}</label>
                                                   </div>
 
                                                   <div class="col-12 col-md-5 ">
@@ -127,7 +127,7 @@
 
                                                   <!-- DurationMedicalExaminationId -->
                                                   <div class="col-12 col-md-5" style="margin-bottom: 10px;">
-                                                    <label class="lbl-input">Interval</label>
+                                                    <label class="lbl-input">{{ "mainModule.Schedule.Interval" | translate }}</label>
                                                     <div style="position: relative;">
 
                                                       <select (change)="SelectDuration($event)"
@@ -136,7 +136,7 @@
                                                               aria-label="Default select example">
 
                                                         <option value="">
-                                                          Select Duration
+                                                          {{ "mainModule.Schedule.SelectDuration" | translate }}
                                                         </option>
 
                                                         <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
@@ -149,12 +149,12 @@
 
                                                   <!-- Fees col -->
                                                   <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
-                                                    <label class="lbl-input ">Visit fee</label>
+                                                    <label class="lbl-input "> {{ "mainModule.Schedule.Visitfee" | translate }}</label>
                                                     <div style="position: relative;">
                                                       <input type="number" 
                                                               formControlName="Fees" 
                                                               class="form-control input-style-period" >
-                                                      <label class="unit">EGP</label>
+                                                      <label class="unit"> {{ "mainModule.Schedule.EGP" | translate }}</label>
                                                     </div>                                              
                                                   </div>
 
@@ -171,7 +171,7 @@
                                                                 [disabled]="PeriodFormRef.invalid"
                                                                 (click)="SubmitPeriod(item.DayId , item.Active)" >
 
-                                                          Submit
+                                                                {{'mainModule.Schedule.Submit' | translate}}
                                                           
                                                         </button>
                                                     </div>
@@ -199,7 +199,7 @@
                                     <i class="fa fa-plus"></i>
                                     <span style="font-weight: 500;"
                                             (click)="AddNewPeriod(item.DayId)">
-                                      Add New Period
+                                            {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                     </span> 
 
                             </button>
@@ -214,7 +214,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}} 
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
                                       </div>
@@ -227,14 +227,14 @@
 
                                             <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                     (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                              Reset
+                                                    {{'mainModule.Schedule.Reset' | translate}}
                                             </label>
 
                                             <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                                     style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                     (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                               
-                                            Active
+                                                    {{'mainModule.Schedule.Active' | translate}}
 
                                             </label>
 
@@ -244,7 +244,7 @@
                                               <span style="cursor:pointer" 
                                                     (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
-                                                    Not Active
+                                                    {{'mainModule.Schedule.NotActive' | translate}}
 
                                               </span>
 
@@ -262,7 +262,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -276,7 +276,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -300,7 +300,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -322,14 +322,14 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" 
                                                     >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -344,7 +344,7 @@
                                                       <button class="next-btn"
                                                               style="background-color:#198754;" 
                                                               (click)="UpdateNewPeriod( item.DayId ,i )">
-                                                        Update
+                                                              {{'mainModule.Schedule.Update' | translate}}
                                                       </button>
 
                                                 </div>
@@ -353,7 +353,7 @@
 
                                                       <button class="next-btn" 
                                                               (click)="SubmitNewPeriod(  item.DayId,i)">
-                                                        Submit
+                                                              {{'mainModule.Schedule.Submit' | translate}}
                                                       </button>
 
                                                 </ng-template>
@@ -380,7 +380,7 @@
                                     <i class="fa fa-plus"></i>
                                     <span style="font-weight: 500;"
                                             (click)="AddNewPeriod(item.DayId)">
-                                      Add New Period
+                                            {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                     </span> 
 
                             </button>
@@ -395,7 +395,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}} 
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
                                       </div>
@@ -406,14 +406,14 @@
                                         </span> -->
                                           <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                   (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                            Reset
+                                                  {{'mainModule.Schedule.Reset' | translate}}
                                           </label>
 
                                             <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                             style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                             (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                       
-                                            Active
+                                            {{'mainModule.Schedule.Active' | translate}}
 
                                             </label>
 
@@ -423,7 +423,7 @@
                                                     <span style="cursor:pointer" 
                                                     (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
-                                                        Not Active
+                                                    {{'mainModule.Schedule.NotActive' | translate}}
       
                                                     </span>
 
@@ -440,7 +440,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -454,7 +454,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -479,7 +479,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -501,13 +501,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -522,7 +522,7 @@
                                                 <button class="next-btn" 
                                                         style="background-color:#198754;" 
                                                         (click)="UpdateNewPeriod( item.DayId,i)">
-                                                  Update
+                                                   {{'mainModule.Schedule.Update' | translate}}
                                                 </button>
 
                                               </div>
@@ -531,7 +531,7 @@
 
                                                 <button class="next-btn" 
                                                         (click)="SubmitNewPeriod( item.DayId,i)">
-                                                  Submit
+                                                  {{'mainModule.Schedule.Submit' | translate}}
                                                 </button>
 
                                           </ng-template>
@@ -558,7 +558,7 @@
                                       <i class="fa fa-plus"></i>
                                       <span style="font-weight: 500;"
                                               (click)="AddNewPeriod(item.DayId)">
-                                        Add New Period
+                                              {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                       </span> 
                               </button>
 
@@ -574,7 +574,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}}  
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
                                       </div>
@@ -585,13 +585,13 @@
                                             </span> -->
                                               <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                       (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                                Reset
+                                                {{'mainModule.Schedule.Reset' | translate}}
                                               </label>
                                               <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                               style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                               (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                         
-                                              Active
+                                               {{'mainModule.Schedule.Active' | translate}}
 
                                               </label>
 
@@ -601,7 +601,7 @@
                                                           <span style="cursor:pointer" 
                                                           (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
-                                                              Not Active
+                                                          {{'mainModule.Schedule.NotActive' | translate}}
 
                                                           </span>
 
@@ -619,7 +619,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -633,7 +633,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -658,7 +658,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -680,13 +680,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -701,7 +701,7 @@
                                                 <button class="next-btn"
                                                         style="background-color:#198754;"  
                                                         (click)="UpdateNewPeriod( item.DayId,i)">
-                                                  Update
+                                                        {{'mainModule.Schedule.Update' | translate}}
                                                 </button>
 
                                           </div>
@@ -710,7 +710,7 @@
 
                                                 <button class="next-btn" 
                                                         (click)="SubmitNewPeriod( item.DayId,i)">
-                                                  Submit
+                                                        {{'mainModule.Schedule.Submit' | translate}}
                                                 </button>
 
                                           </ng-template>
@@ -738,7 +738,7 @@
                                       <i class="fa fa-plus"></i>
                                       <span style="font-weight: 500;"
                                               (click)="AddNewPeriod(item.DayId)">
-                                        Add New Period
+                                              {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                       </span>  
                               </button>
 
@@ -754,7 +754,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}}  
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
                                       </div>
@@ -765,14 +765,14 @@
                                         </span> -->
                                           <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                   (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                            Reset
+                                             {{'mainModule.Schedule.Reset' | translate}}
                                           </label>
 
                                           <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                           style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                           (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                     
-                                          Active
+                                           {{'mainModule.Schedule.Active' | translate}}
 
                                           </label>
 
@@ -782,7 +782,7 @@
                                                         <span style="cursor:pointer" 
                                                         (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
     
-                                                            Not Active
+                                                            {{'mainModule.Schedule.NotActive' | translate}}
           
                                                         </span>
 
@@ -800,7 +800,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -814,7 +814,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -839,7 +839,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -861,13 +861,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -882,7 +882,7 @@
                                                 <button class="next-btn"
                                                         style="background-color:#198754;"  
                                                         (click)="UpdateNewPeriod( item.DayId,i)">
-                                                  Update
+                                                   {{'mainModule.Schedule.Update' | translate}}
                                                 </button>
 
                                               </div>
@@ -891,7 +891,7 @@
 
                                                 <button class="next-btn" 
                                                         (click)="SubmitNewPeriod( item.DayId,i)">
-                                                  Submit
+                                                   {{'mainModule.Schedule.Submit' | translate}}
                                                 </button>
 
                                               </ng-template>
@@ -920,7 +920,7 @@
                                     <i class="fa fa-plus"></i>
                                     <span style="font-weight: 500;"
                                             (click)="AddNewPeriod(item.DayId)">
-                                      Add New Period
+                                            {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                     </span> 
 
                             </button>
@@ -936,7 +936,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}} 
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
                                       </div>
@@ -947,13 +947,13 @@
                                             </span> -->
                                               <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                       (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                                Reset
+                                                {{'mainModule.Schedule.Reset' | translate}}
                                               </label>
                                               <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                               style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                               (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                         
-                                              Active
+                                               {{'mainModule.Schedule.Active' | translate}}
 
                                               </label>
 
@@ -963,7 +963,7 @@
                                                             <span style="cursor:pointer" 
                                                             (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
         
-                                                                Not Active
+                                                            {{'mainModule.Schedule.NotActive' | translate}}
               
                                                             </span>
 
@@ -980,7 +980,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -993,7 +993,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -1018,7 +1018,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -1040,13 +1040,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -1061,7 +1061,7 @@
                                                         <button class="next-btn"
                                                                 style="background-color:#198754;"  
                                                                 (click)="UpdateNewPeriod( item.DayId,i)">
-                                                          Update
+                                                                {{'mainModule.Schedule.Update' | translate}}
                                                         </button>
 
                                                   </div>
@@ -1070,7 +1070,7 @@
 
                                                         <button class="next-btn" 
                                                                 (click)="SubmitNewPeriod( item.DayId,i)">
-                                                          Submit
+                                                                {{'mainModule.Schedule.Submit' | translate}}
                                                         </button>
 
                                                   </ng-template>
@@ -1098,7 +1098,7 @@
                                     <i class="fa fa-plus"></i>
                                     <span style="font-weight: 500;"
                                             (click)="AddNewPeriod(item.DayId)">
-                                      Add New Period
+                                            {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                     </span> 
 
                             </button>
@@ -1114,7 +1114,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}}  
+                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
                                       </div>
@@ -1125,13 +1125,13 @@
                                             </span> -->
                                               <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                       (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                                Reset
+                                                 {{'mainModule.Schedule.Reset' | translate}}
                                               </label>
                                               <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                               style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                               (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                         
-                                              Active
+                                              {{'mainModule.Schedule.Active' | translate}}
 
                                               </label>
 
@@ -1141,7 +1141,7 @@
                                                             <span style="cursor:pointer" 
                                                             (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
         
-                                                                Not Active
+                                                            {{'mainModule.Schedule.NotActive' | translate}}
               
                                                             </span>
 
@@ -1159,7 +1159,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -1197,7 +1197,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -1219,13 +1219,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees" >
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -1241,7 +1241,7 @@
                                                     <button class="next-btn"
                                                             style="background-color:#198754;"  
                                                             (click)="UpdateNewPeriod( item.DayId,i)">
-                                                      Update
+                                                      {{'mainModule.Schedule.Update' | translate}}
                                                     </button>
 
                                                   </div>
@@ -1250,7 +1250,7 @@
 
                                                     <button class="next-btn" 
                                                             (click)="SubmitNewPeriod( item.DayId,i )">
-                                                      Submit
+                                                       {{'mainModule.Schedule.Submit' | translate}}
                                                     </button>
 
                                                   </ng-template>
@@ -1280,7 +1280,7 @@
                                     <i class="fa fa-plus"></i>
                                     <span style="font-weight: 500;"
                                             (click)="AddNewPeriod(item.DayId)">
-                                      Add New Period
+                                            {{'mainModule.Schedule.AddNewPeriod' | translate}}
                                     </span> 
                               </button>
                             </div>
@@ -1295,7 +1295,7 @@
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
                                           <label >
-                                            Period {{i+1}}  
+                                            {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
                                       </div>
@@ -1306,13 +1306,13 @@
                                             </span> -->
                                               <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                       (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
-                                                Reset
+                                                {{'mainModule.Schedule.Reset' | translate}}
                                               </label>
                                               <label *ngIf="Period.Inactive == true;else InactiveBlock" 
                                               style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                               (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
                                         
-                                              Active
+                                              {{'mainModule.Schedule.Active' | translate}}
 
                                               </label>
 
@@ -1322,7 +1322,7 @@
                                                             <span style="cursor:pointer" 
                                                             (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
         
-                                                                Not Active
+                                                                {{'mainModule.Schedule.NotActive' | translate}}
               
                                                             </span>
 
@@ -1339,7 +1339,7 @@
                                         <!-- row 1 for=>  TimeFrom , TimeTo -->
                                           <div class="col-12">
                                             <div style="padding: 20px;padding-bottom: 0px;">
-                                              <label class="lbl-input ">Operating hours</label>
+                                              <label class="lbl-input ">{{'mainModule.Schedule.Operatinghours' | translate}}</label>
                                               <div class="row">
     
                                                     <!-- TimeFrom col -->
@@ -1353,7 +1353,7 @@
     
                                                     <!-- To label col -->
                                                     <div class="col-12 col-md-1 justify-content-end justify-content-sm-center ">
-                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">To</label>
+                                                      <label class="lbl-input" style="padding-top: 5px;padding-bottom: 5px;">{{'mainModule.Schedule.To' | translate}}</label>
                                                     </div>
     
                                                     <!-- TimeTo col -->
@@ -1378,7 +1378,7 @@
                                                 <div class="col-12 col-md-5" 
                                                       style="margin-bottom: 10px;">
     
-                                                      <label class="lbl-input">Interval</label>
+                                                      <label class="lbl-input">{{'mainModule.Schedule.Interval' | translate}}</label>
     
                                                       <div style="position: relative;">
                                                         <select (change)="SelectDuration($event)"
@@ -1400,13 +1400,13 @@
                                                 <!-- Fees col -->
                                                 <div class="col-12 col-md-5 offset-md-1" style="margin-bottom: 10px;">
     
-                                                  <label class="lbl-input ">Visit fee</label>
+                                                  <label class="lbl-input ">{{'mainModule.Schedule.Visitfee' | translate}}</label>
     
                                                   <div style="position: relative;">
                                                     <input type="number"  
                                                             class="form-control input-style-period"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].Fees">
-                                                    <label class="unit">EGP</label>
+                                                    <label class="unit">{{'mainModule.Schedule.EGP' | translate}}</label>
                                                   </div> 
                                                 </div>
                                               </div>
@@ -1422,7 +1422,7 @@
                                                         <button class="next-btn"
                                                                 style="background-color:#198754;"  
                                                                 (click)="UpdateNewPeriod( item.DayId,i)">
-                                                          Update
+                                                           {{'mainModule.Schedule.Update' | translate}}
                                                         </button>
 
                                                   </div>
@@ -1431,7 +1431,7 @@
 
                                                         <button class="next-btn" 
                                                                 (click)="SubmitNewPeriod( item.DayId,i)">
-                                                          Submit
+                                                           {{'mainModule.Schedule.Submit' | translate}}
                                                         </button>
 
                                                   </ng-template>
@@ -1464,7 +1464,7 @@
     <div class="col-12 d-flex justify-content-center justify-content-sm-end">
         <button class="Back-btn"
                 (click)="Back()">
-            Back
+                {{'mainModule.DoctorInfo.back' | translate}}
         </button>
     </div>
 </div>
