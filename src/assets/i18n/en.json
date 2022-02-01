@@ -203,7 +203,22 @@
         "Location": "Location ( From Google )",
         "PatientComplain": "Patient Complain",
         "Attachedfiles": "Attached files",
-        "ChangePhoto":"Change Photo"
+        "ChangePhoto":"Change Photo",
+        "Leave Complain Here":"Leave Complain Here",
+        "PostReport":"Post Report"
+      },
+      "profile":{
+        "EMRHistory":"EMR History",
+        "Description":"Description",
+        "RXTitle":"RX Title",
+        "RXDescription":"RX Description",
+        "Instructions":"Instructions",
+        "Documents":"Documents",
+        "View":"View",
+        "Download":"Download",
+        "CurrentEMR":"Current EMR",
+        "AddDescription":"Add Description",
+        "UploadDocumentorReport":"Upload document or report"
       }
     },
     "Services":{

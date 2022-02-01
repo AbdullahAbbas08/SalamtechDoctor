@@ -89,8 +89,8 @@
                     </label>
 
                     <div class="input-style">
-                        <textarea formControlName='PatientComplain' class="form-control textForArabic"
-                            placeholder="Leave Complain Here " style="height: 120px">
+                        <textarea formControlName='PatientComplain' class="form-control textForArabic" 
+                            placeholder=" {{'mainModule.EMR.Patient.Leave Complain Here' | translate }}" style="height: 120px">
                         </textarea>
                     </div>
                 </div>
@@ -113,13 +113,13 @@
                 <button class="post-report"
                         style="background-color: transparent;color: #f00;">
                     <!-- {{ "mainModule.ClinicInfo.Next" | translate}} -->
-                    Cancel
+                    {{"mainModule.appointment.Cancel" | translate }}
               </button>
 
                 <button class="post-report"
                         style="background-color: #262d70" >
                     <!-- {{ "mainModule.ClinicInfo.Next" | translate}} -->
-                    Post Report
+                    {{"mainModule.EMR.Patient.PostReport" | translate }}
               </button>
             </div>
         </div>

@@ -3,7 +3,7 @@
     <!-- <a class="navbar-brand" href="#">Navbar</a> -->
 
     <div
-      class="ml-md-auto d-md-flex d-none align-baseline"
+      class=" d-md-flex d-none align-baseline" [ngClass]="{'ml-md-auto': DefaultLang=='en' , 'mr-md-auto': DefaultLang=='ar'}"
       id="navbarSupportedContent"
     >
       <ul class="navbar-nav my-2 mb-lg-0 d-flex align-items-center">

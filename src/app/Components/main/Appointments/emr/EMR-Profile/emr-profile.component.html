@@ -1,14 +1,14 @@
 <div class="Emr mt-3">
   <div class="box row px-md-5 px-2 py-4">
     <div class="col-md-6 mt-3 history">
-      <h2>EMR History</h2>
+      <h2>{{'mainModule.EMR.profile.EMRHistory' | translate}}</h2>
       <div class="box1 p-4 mt-4">
         <!-- Description -->
         <div class="Description mb-5" *ngFor="let pres of profiledetails?.PatientEmrdetails , let i=index">
-          <h4>Description {{i+1}}</h4>
+          <h4>{{'mainModule.EMR.profile.Description' | translate}} {{i+1}}</h4>
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
-              >RX Title</label
+              >{{'mainModule.EMR.profile.RXTitle' | translate}}</label
             >
             <input
               type="text"
@@ -21,7 +21,7 @@
           </div>
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
-              >RX Description</label
+              >{{'mainModule.EMR.profile.RXDescription' | translate}}</label
             >
             <textarea
               class="form-control"
@@ -37,10 +37,10 @@
 
         <!-- Instructions -->
         <div class="Instructions mb-5">
-          <h4>Instructions</h4>
+          <h4>{{'mainModule.EMR.profile.Instructions' | translate}}</h4>
           <div class="mb-2">
             <label for="exampleFormControlInput1" class="form-label"
-              >Instructions</label
+              >{{'mainModule.EMR.profile.Instructions' | translate}}</label
             >
             <textarea
               class="form-control"
@@ -56,7 +56,7 @@
 
         <!-- Documents -->
         <div class="Documents mb-5">
-          <h4>Documents</h4>
+          <h4>{{'mainModule.EMR.profile.Documents' | translate}}</h4>
           <div class="mb-2"></div>
           <div class="box1 py-2 px-3 d-flex flex-wrap justify-content-between align-items-center mb-3">
             <label disabled >1.png</label>
@@ -64,12 +64,12 @@
               <span
                 class=" view bg-light mx-2 p-2 border-0"
                 for="documents"
-                ><i class="fas fa-eye"></i> View</span
+                ><i class="fas fa-eye"></i> {{'mainModule.EMR.profile.View' | translate}}</span
               >
               <span
                 class=" download bg-light border-0 mx-2 p-2"
                 for="documents"
-                ><i class="fas fa-download"></i> Download</span
+                ><i class="fas fa-download"></i> {{'mainModule.EMR.profile.Download' | translate}}</span
               >
             </div>
           </div>
@@ -79,12 +79,12 @@
               <span
                 class=" view bg-light mx-2 p-2 border-0"
                 for="documents"
-                ><i class="fas fa-eye"></i> View</span
+                ><i class="fas fa-eye"></i> {{'mainModule.EMR.profile.View' | translate}}</span
               >
               <span
                 class=" download bg-light border-0 mx-2 p-2"
                 for="documents"
-                ><i class="fas fa-download"></i> Download</span
+                ><i class="fas fa-download"></i> {{'mainModule.EMR.profile.Download' | translate}}</span
               >
             </div>
           </div>
@@ -94,12 +94,12 @@
               <span
                 class=" view bg-light mx-2 p-2 border-0"
                 for="documents"
-                ><i class="fas fa-eye"></i> View</span
+                ><i class="fas fa-eye"></i> {{'mainModule.EMR.profile.View' | translate}}</span
               >
               <span
                 class=" download bg-light border-0 mx-2 p-2"
                 for="documents"
-                ><i class="fas fa-download"></i> Download</span
+                ><i class="fas fa-download"></i> {{'mainModule.EMR.profile.Download' | translate}}</span
               >
             </div>
           </div>
@@ -111,16 +111,16 @@
 
     <!-- current emr -->
     <div class="col-md-6 mt-3 current">
-      <h2>Current EMR</h2>
+      <h2>{{'mainModule.EMR.profile.CurrentEMR' | translate}}</h2>
 
       <form [formGroup]="EmrForm">
         <div class="box1 p-4 mt-4">
             <!-- Description -->
             <div class="Description mb-5" >
-              <h4>Description </h4>
+              <h4>{{'mainModule.EMR.profile.Description' | translate}} </h4>
               <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >RX Title</label
+                  >{{'mainModule.EMR.profile.RXTitle' | translate}}</label
                 >
                 <input
                   type="text"
@@ -130,7 +130,7 @@
               </div>
               <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >RX Description</label
+                  >{{'mainModule.EMR.profile.RXDescription' | translate}}</label
                 >
                 <textarea
                   class="form-control"
@@ -140,15 +140,15 @@
                 ></textarea
                 >
               </div>
-              <button class="btn upload"><i class="fas fa-plus"></i> Add Description</button>
+              <button class="btn upload"><i class="fas fa-plus"></i>{{'mainModule.EMR.profile.AddDescription' | translate}}</button>
             </div>
     
             <!-- Instructions -->
             <div class="Instructions mb-5">
-              <h4>Instructions</h4>
+              <h4>{{'mainModule.EMR.profile.Instructions' | translate}}</h4>
               <div class="mb-2">
                 <label for="exampleFormControlInput1" class="form-label"
-                  >Instructions</label
+                  >{{'mainModule.EMR.profile.Instructions' | translate}}</label
                 >
                 <textarea
                   class="form-control"
@@ -162,13 +162,13 @@
     
             <!-- Documents -->
             <div class="Documents mb-5">
-              <h4>Documents</h4>
+              <h4>{{'mainModule.EMR.profile.Documents' | translate}}</h4>
               <div class="mb-2"></div>
               <div class=" mb-3">
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" id="inputGroupFile02" placeholder="Choose file"> 
                 </div>
-                <button class="btn upload"><i class="fas fa-upload"></i> Upload document or report</button>
+                <button class="btn upload"><i class="fas fa-upload"></i> {{'mainModule.EMR.profile.UploadDocumentorReport' | translate}}</button>
               </div>
             </div>
           </div>

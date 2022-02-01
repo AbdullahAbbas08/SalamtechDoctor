@@ -203,7 +203,22 @@
         "Location": "الموقع ( من الخريطة)",
         "PatientComplain": "مشكلة المريض",
         "Attachedfiles": "الاوراق المطلوبة",
-        "ChangePhoto":"تغيير الصورة"
+        "ChangePhoto":"تغيير الصورة",
+        "Leave Complain Here":"Leave Complain Here",
+        "PostReport":"Post Report"
+      },
+      "profile":{
+        "EMRHistory":"تاريخ السجلات الطبية الإلكترونية",
+        "Description":"وصف",
+        "RXTitle":"RX Title",
+        "RXDescription":"RX Description",
+        "Instructions":"تعليمات",
+        "Documents":"ملفات",
+        "View":"معاينة",
+        "Download":"تحميل",
+        "CurrentEMR":"EMR الحالي",
+        "AddDescription":"اضف وصفا",
+        "UploadDocumentorReport":"تحميل ملف أو تقرير"
       }
     },
     "Services":{
