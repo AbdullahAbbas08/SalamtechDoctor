@@ -1,16 +1,28 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class EmrService {
+
+
   culture:string = localStorage.getItem('lang') as string;
   auth:string =localStorage.getItem('Authorization') as string;
-  constructor(private http: HttpClient) { }
+  
+  appointmentId:number = null;
+  public id = new BehaviorSubject<any>(this.appointmentId);
+  
+  constructor(private http: HttpClient) { 
+    this.id.subscribe(res=>{
+      // console.log(res);
+      
+    })
 
-
+  }
+ 
+  
   //#region Options
   httpOptions = {
     headers: new HttpHeaders({
