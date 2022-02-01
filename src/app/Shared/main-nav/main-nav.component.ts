@@ -12,7 +12,7 @@ import { LoginService } from 'src/Service/login.service';
 export class MainNavComponent implements OnInit {
 
   DefaultLang:string |null;
-
+  data;
   name;
   logo;
   IamgeURL:string;
@@ -36,13 +36,13 @@ export class MainNavComponent implements OnInit {
 
       document.getElementsByTagName('html')[0].setAttribute("dir","rtl");
       this.translate.use(this.DefaultLang);
-      this.name=localStorage.getItem('NameArabic');
+      
 
     }else{
       this.DefaultLang = 'en';
       document.getElementsByTagName('html')[0].setAttribute("dir","ltr");
       this.translate.use(this.DefaultLang);
-      this.name=localStorage.getItem('NameEnglish');
+      
     }
     //#endregion
     this.logo = localStorage.getItem("logo")
@@ -81,10 +81,18 @@ export class MainNavComponent implements OnInit {
     this.loginService.GetDoctorProfile().subscribe(
       (response)=>{
         // console.log(response);
-        
-        localStorage.setItem("NameEnglish",response.Data.FirstName + ' ' + response.Data.MiddelName + ' ' + response.Data.LastName);
-        localStorage.setItem("NameArabic",response.Data.FirstNameAr+ ' ' + response.Data.MiddelNameAr + ' ' + response.Data.LastNameAr);
+        this.data=response.Data;
+        localStorage.setItem("NameEnglish",response.Data.FirstName);
+        localStorage.setItem("NameArabic",response.Data.FirstNameAr);
         localStorage.setItem("logo",response.Data.Image);
+
+        if(this.DefaultLang === 'ar'){
+          this.name=response.Data.FirstNameAr;
+        }
+        else{
+          this.name=response.Data.FirstName;
+        }
+
       },
       (err)=>{
 
