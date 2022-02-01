@@ -18,6 +18,7 @@ export class EmrProfileComponent implements OnInit {
       this.id=param.get('appointmentID');
       this.getEmrProfile(this.id)
       // console.log(param.get('appointmentID'));
+      this.emrService.id.next(this.id) 
     })
   }
 

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GoogleMapsComponent } from 'src/app/Shared/google-maps/google-maps.component';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EmrService } from 'src/Service/emr/emr.service';
 
 
 @Component({
@@ -22,11 +23,12 @@ export class PatientProfileComponent implements OnInit {
   constructor(private route:ActivatedRoute , 
               private AppointmentService:AppointmentService,
               private fb:FormBuilder ,
-              private modalService: NgbModal) { 
+              private modalService: NgbModal,
+              private emrService :EmrService) { 
                 this.route.paramMap.subscribe(param=>{
                   this.id=param.get('appointmentID')
                   // console.log(this.id);
-                  
+                  this.emrService.id.next(this.id) 
                  })
                  
               }
