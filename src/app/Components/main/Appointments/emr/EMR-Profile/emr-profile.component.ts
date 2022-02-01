@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
+import { EmrService } from 'src/Service/emr/emr.service';
 
 @Component({
   selector: 'app-emr-profile',
@@ -9,10 +11,13 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
 })
 export class EmrProfileComponent implements OnInit {
   id;
-  constructor(private route:ActivatedRoute , private AppointmentService:AppointmentService) { 
+  profiledetails;
+  EmrForm:FormGroup;
+  constructor(private route:ActivatedRoute , private emrService : EmrService) { 
      this.route.paramMap.subscribe(param=>{
-      this.id=param.get('emrID');
-      // console.log(param.get('emrID'));
+      this.id=param.get('appointmentID');
+      this.getEmrProfile(this.id)
+      // console.log(param.get('appointmentID'));
     })
   }
 
@@ -22,7 +27,22 @@ export class EmrProfileComponent implements OnInit {
     document.getElementById('PatientProfile')?.classList.remove('visited-appointemt-component');
     document.getElementById('EMRProfile')?.classList.add('visited-appointemt-component');
     //#endregion
+    this.initForm()
 
   }
+
+  initForm(){
+    
+  }
+
+  getEmrProfile(id){
+    this.emrService.GetEmrProfile(id).subscribe(res=>{
+      this.profiledetails= res.Data;
+      console.log(this.profiledetails);
+      
+    })
+  }
+
+
 
 }

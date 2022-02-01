@@ -24,7 +24,7 @@ export class PatientProfileComponent implements OnInit {
               private fb:FormBuilder ,
               private modalService: NgbModal) { 
                 this.route.paramMap.subscribe(param=>{
-                  this.id=param.get('emrID')
+                  this.id=param.get('appointmentID')
                   // console.log(this.id);
                   
                  })

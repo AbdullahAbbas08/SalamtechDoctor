@@ -107,9 +107,9 @@ const routes: Routes = [
         ] },
 
         { path:'emr',component:EmrComponent,children:[
-          {path:':emrID',component:EmrProfileComponent } ,
-          {path:'emr-profile/:emrID',component:EmrProfileComponent } ,
-          {path:'patient-profile/:emrID',component:PatientProfileComponent} ,
+          {path:':appointmentID',component:EmrProfileComponent } ,
+          {path:'emr-profile/:appointmentID',component:EmrProfileComponent } ,
+          {path:'patient-profile/:appointmentID',component:PatientProfileComponent} ,
         ] },
     ]
   },

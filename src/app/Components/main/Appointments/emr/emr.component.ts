@@ -10,7 +10,7 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
 export class EmrComponent implements OnInit {
 id;
   constructor(private router:Router,private route:ActivatedRoute,private AppointmentService:AppointmentService) { 
-    this.id=window.location.pathname.slice(10,12)
+    this.id=window.location.pathname.slice(10,13)
     console.log(this.id);
     
   }
