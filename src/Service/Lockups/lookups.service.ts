@@ -57,5 +57,9 @@ export class LookupsService {
     }
     //#endregion
 
-
+    //#region 
+    GetMedicalType():Observable<any>{
+      return this.http.get(`${environment.URL}${this.culture}/LookUp/GetMedicalExaminationType`,this.httpOptions);
+    }
+    //#endregion
 }

@@ -319,11 +319,11 @@
                                                                   class="form-select" aria-label="Default select example">
 
                                                                 <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
                                                                 </option>
 
                                                                 <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
                                                                 </option>
 
                                                           </select>

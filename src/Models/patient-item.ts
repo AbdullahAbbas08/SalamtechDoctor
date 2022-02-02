@@ -1,5 +1,5 @@
 export class PatientItem {
-    AppointmentDate: Date;
+    AppointmentDate: string;
     AppointmentId: number;
     CancelReason: any;
     ClinicName: string;

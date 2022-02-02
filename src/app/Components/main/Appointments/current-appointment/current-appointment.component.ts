@@ -62,8 +62,8 @@ export class CurrentAppointmentComponent implements OnInit {
 //#endregion
 
   //#region EmrProfile Method
-  EmrProfile(emrID:number){
-    this.router.navigate(['/main/emr',emrID])
+  EmrProfile(ID:number){
+    this.router.navigate(['/main/emr',ID])
   }
   //#endregion
 }

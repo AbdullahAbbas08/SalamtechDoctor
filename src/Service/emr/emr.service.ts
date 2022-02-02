@@ -30,10 +30,17 @@ export class EmrService {
       }
     )};
   //#endregion
+      //#region 
+      GetEmrHistory( Id):Observable<any>{
+        return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrHistory?patientId=${Id}`,this.httpOptions);
+      }
+      //#endregion
 
     //#region 
-    GetEmrProfile( appointmentId):Observable<any>{
+    GetEmrDetails( appointmentId):Observable<any>{
       return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrDetails?appointmentId=${appointmentId}`,this.httpOptions);
     }
     //#endregion
+
+
 }
