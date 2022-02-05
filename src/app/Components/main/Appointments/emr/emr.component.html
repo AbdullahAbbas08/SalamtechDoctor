@@ -23,6 +23,7 @@
                                                     padding-block
                                                     changeCursor" 
                                                     [routerLink]="['/main/emr/patient-profile' , id]"
+                                                    [queryParams]="{appointment_id: appointmentID}"
                                                 >
                         {{'mainModule.EMR.PatientProfile'|translate}}           
                         </div>
@@ -35,6 +36,7 @@
                                                padding-block
                                                changeCursor"
                                                [routerLink]="['/main/emr/emr-profile', id]"
+                                               [queryParams]="{appointment_id: appointmentID}"
                                                >
                         {{'mainModule.EMR.EMRProfile'|translate}}  
                         </div>

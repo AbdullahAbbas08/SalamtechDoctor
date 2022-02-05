@@ -13,7 +13,7 @@ import { EmrService } from 'src/Service/emr/emr.service';
   styleUrls: ['./patient-profile.component.css']
 })
 export class PatientProfileComponent implements OnInit {
-
+  appointmentID;
   //#region Declare Variables
   id;
   PatientProfileForm : FormGroup ;
@@ -26,10 +26,14 @@ export class PatientProfileComponent implements OnInit {
               private modalService: NgbModal,
               private emrService :EmrService) { 
                 this.route.paramMap.subscribe(param=>{
+                  this.route.queryParamMap.subscribe(qparam=>{
+                    this.appointmentID=qparam.get('appointment_id');
+                    this.emrService.appointmentId.next(this.appointmentID)  
+                  })
                   this.id=param.get('ID')
-                  // console.log(this.id);
-                  this.emrService.id.next(this.id) 
+                  this.emrService.patientId.next(this.id) 
                  })
+                 
                  
               }
 

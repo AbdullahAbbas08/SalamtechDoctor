@@ -11,16 +11,11 @@ export class EmrService {
   culture:string = localStorage.getItem('lang') as string;
   auth:string =localStorage.getItem('Authorization') as string;
   
-  appointmentId:number = null;
-  public id = new BehaviorSubject<any>(this.appointmentId);
+  Id:number = null;
+  public patientId = new BehaviorSubject<any>(this.Id);
+  public appointmentId = new BehaviorSubject<any>(this.Id);
   
-  constructor(private http: HttpClient) { 
-    this.id.subscribe(res=>{
-      // console.log(res);
-      
-    })
-
-  }
+  constructor(private http: HttpClient) { }
  
   
   //#region Options
@@ -30,17 +25,36 @@ export class EmrService {
       }
     )};
   //#endregion
-      //#region 
-      GetEmrHistory( Id):Observable<any>{
-        return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrHistory?patientId=${Id}`,this.httpOptions);
-      }
-      //#endregion
 
-    //#region 
-    GetEmrDetails( appointmentId):Observable<any>{
-      return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrDetails?appointmentId=${appointmentId}`,this.httpOptions);
-    }
-    //#endregion
+  //#region 
+  GetEmrHistory( Id):Observable<any>{
+    return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrHistory?patientId=${Id}`,this.httpOptions);
+  }
+  //#endregion
 
+  //#region 
+  GetEmrDetails( appointmentId):Observable<any>{
+    return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientEmrDetails?appointmentId=${appointmentId}`,this.httpOptions);
+  }
+  //#endregion
+
+
+  //#region 
+  PostEmrInstructions( body):Observable<any>{
+    return this.http.post(`${environment.URL}${this.culture}/Patient/CreatePatientEmr`,body,this.httpOptions);
+  }
+  //#endregion
+
+  //#region 
+  PostEmrDetails( body):Observable<any>{
+    return this.http.post(`${environment.URL}${this.culture}/Patient/CreatePatientEmrDetails`,body,this.httpOptions);
+  }
+  //#endregion
+
+  //#region 
+  PostEmrDocs( body):Observable<any>{
+    return this.http.post(`${environment.URL}${this.culture}/Patient/CreatePatientEmrDocument`,body,this.httpOptions);
+  }
+  //#endregion
 
 }

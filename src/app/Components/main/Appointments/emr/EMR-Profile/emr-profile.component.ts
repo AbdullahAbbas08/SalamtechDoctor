@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
-import { AppointmentService } from 'src/Service/Appointment/appointment.service';
 import { EmrService } from 'src/Service/emr/emr.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 
@@ -12,22 +10,31 @@ import { LookupsService } from 'src/Service/Lockups/lookups.service';
   styleUrls: ['./emr-profile.component.css']
 })
 export class EmrProfileComponent implements OnInit {
-  id;
+  id; //patientid
+  appointmentID;
   data=[];
   MedicalType ;
   medicalImg;
   profileHistory;
   profiledetails;
-  EmrForm:FormGroup;
+
+
+
+
+
+
   constructor(private route:ActivatedRoute ,
      private emrService : EmrService ,
      private lookupService:LookupsService
      ) { 
      this.route.paramMap.subscribe(param=>{
+      this.route.queryParamMap.subscribe(qparam=>{
+        this.appointmentID=qparam.get('appointment_id');
+        this.emrService.appointmentId.next(this.appointmentID)  
+      })
       this.id=param.get('ID');
       this.GetEmrHistory(this.id)
-      // console.log(param.get('appointmentID'));
-      this.emrService.id.next(this.id)  
+      this.emrService.patientId.next(this.id)  
     })
   }
 
@@ -37,13 +44,9 @@ export class EmrProfileComponent implements OnInit {
     document.getElementById('PatientProfile')?.classList.remove('visited-appointemt-component');
     document.getElementById('EMRProfile')?.classList.add('visited-appointemt-component');
     //#endregion
-    this.initForm()
 
   }
 
-  initForm(){
-    
-  }
 
   getMedicalTYpe(id){    
     if(id==1){
@@ -73,21 +76,92 @@ export class EmrProfileComponent implements OnInit {
       this.profileHistory= res.Data;
       console.log(this.profileHistory);
       this.profileHistory.map(res=>{
-        this.GetEmrDetails(res.AppointmentId)
-        this.getMedicalTYpe(res.MedicalExaminationTypeId)
+        // this.GetEmrDetails(res.AppointmentId)
+        // this.getMedicalTYpe(res.MedicalExaminationTypeId)
       })
     })
   }
 
   GetEmrDetails(id){
     this.emrService.GetEmrDetails(id).subscribe(res=>{
-      this.profiledetails= res.Data;
+      this.profiledetails= res.Data;   
       console.log(this.profiledetails);
-      console.log(this.profiledetails.PatientEmrdocuments.length);
-      
+         
     })
   }
 
+
+  // 3 functions post --------------------------------
+
+
+  postEmretails(title , description){
+   let body ={
+    "Title" : title ,
+    "Description" : description,
+    "AppointmentId" : parseInt(this.appointmentID)
+  }
+  this.emrService.PostEmrDetails(body).subscribe(res=>{
+    console.log(res);
+    this.GetEmrHistory(this.id)
+  }, 
+  err=>{
+    console.log(err);
+    this.GetEmrHistory(this.id)
+  })
+  }
+  postEmrInstructions(instructions ){
+    let body ={
+     "Instructions" : instructions , 
+     "AppointmentId" : parseInt(this.appointmentID)
+   }
+   this.emrService.PostEmrInstructions(body).subscribe(res=>{
+     console.log(res);
+     this.GetEmrHistory(this.id)
+   }, 
+   err=>{
+     console.log(err);
+     this.GetEmrHistory(this.id)
+   })
+   }
+
+
+   public message: string;
+
+   preview(files:any ) { 
+     
+     const formData = new FormData();
+     if (files.length === 0)
+       return ;
+
+    //  var mimeType = files[0].type;
+    //  if (mimeType.match(/image\/*/) == null) {
+    //    this.message = "Only images are supported.";
+    //    return ;
+    //  }
+     var reader = new FileReader();
+     reader.readAsDataURL(files[0]);
+    
+     formData.append('document',files[0] );
+     console.log(formData)
+     this.PostEmrDocs(files[0] ) 
+
+   }
+
+   PostEmrDocs(docs ){
+    let body ={
+      "document" : docs , 
+      "AppointmentId" : parseInt(this.appointmentID)
+    }
+    console.log(body);
+    this.emrService.PostEmrDocs(body).subscribe(res=>{
+      console.log(res);
+      this.GetEmrHistory(this.id)
+    }, 
+    err=>{
+      console.log(err);
+      this.GetEmrHistory(this.id)
+    })
+   }
 
 
 }

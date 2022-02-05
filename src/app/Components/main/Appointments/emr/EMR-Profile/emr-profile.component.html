@@ -13,6 +13,7 @@
       [attr.data-bs-target]="'#element' + i"
       aria-expanded="false"
       [attr.aria-controls]="'element' + i"
+      (click)="GetEmrDetails(item.AppointmentId) ; getMedicalTYpe(item.MedicalExaminationTypeId)"
       >
       <div class="row align-items-center">
         <div class="col-1">
@@ -69,7 +70,7 @@
             </div>
           </div>
           <!-- Instructions -->
-          <div class="Instructions mb-4">
+          <div class="Instructions mb-4" *ngIf="profiledetails?.Instructions != null">
             <h4>{{ "mainModule.EMR.profile.Instructions" | translate }}</h4>
             <div class="mb-2">
               <label for="exampleFormControlInput1" class="form-label">{{
@@ -144,34 +145,12 @@
       </div>
     </div>
 
-    <!-- Documents -->
-    <!--<div class="Documents mb-5">
-          <h4>{{'mainModule.EMR.profile.Documents' | translate}}</h4>
-          <div class="mb-2"></div>
-          <div class="box1 py-2 px-3 d-flex flex-wrap justify-content-between align-items-center mb-3">
-            <label disabled >1.png</label>
-            <div class="d-flex flex-wrap">
-              <span
-                class=" view bg-light mx-2 p-2 border-0"
-                for="documents"
-                ><i class="fas fa-eye"></i> {{'mainModule.EMR.profile.View' | translate}}</span
-              >
-              <span
-                class=" download bg-light border-0 mx-2 p-2"
-                for="documents"
-                ><i class="fas fa-download"></i> {{'mainModule.EMR.profile.Download' | translate}}</span
-              >
-            </div>
-          </div>         
-        </div>
-      </div>
-    </div> -->
 
     <!-- current emr -->
     <div class="col-md-6 mt-3 current">
       <h2>{{ "mainModule.EMR.profile.CurrentEMR" | translate }}</h2>
 
-      <form [formGroup]="EmrForm">
+      <form  >
         <div class="box1 p-4 mt-4">
           <!-- Description -->
           <div class="Description mb-5">
@@ -184,6 +163,7 @@
                 type="text"
                 class="form-control"
                 id="exampleFormControlInput1"
+                #title
               />
             </div>
             <div class="mb-2">
@@ -195,9 +175,10 @@
                 name="description"
                 id="description"
                 wrap="soft"
+                #description
               ></textarea>
             </div>
-            <button class="btn upload">
+            <button class="btn upload" (click)=" postEmretails(title.value, description.value)">
               <i class="fas fa-plus"></i
               >{{ "mainModule.EMR.profile.AddDescription" | translate }}
             </button>
@@ -215,8 +196,13 @@
                 name="description"
                 id="description"
                 wrap="soft"
+                #instructions
               ></textarea>
             </div>
+            <button class="btn upload" (click)=" postEmrInstructions(instructions.value)">
+              <i class="fas fa-plus"></i
+              >{{ "mainModule.EMR.profile.AddInstructions" | translate }}
+            </button>
           </div>
 
           <!-- Documents -->
@@ -230,9 +216,10 @@
                   class="form-control"
                   id="inputGroupFile02"
                   placeholder="Choose file"
+                  #file
                 />
               </div>
-              <button class="btn upload">
+              <button class="btn upload" (click)="preview(file.files)">
                 <i class="fas fa-upload"></i>
                 {{
                   "mainModule.EMR.profile.UploadDocumentorReport" | translate

@@ -10,12 +10,17 @@ import { EmrService } from 'src/Service/emr/emr.service';
 })
 export class EmrComponent implements OnInit {
 id;
+appointmentID
   constructor(private router:Router,private route:ActivatedRoute,private AppointmentService:AppointmentService , private emrService :EmrService) { 
     // this.id=window.location.pathname.slice(10,13)
     // console.log(this.id);
 
-    this.emrService.id.subscribe(res=>{
+    this.emrService.patientId.subscribe(res=>{
       this.id=res;
+      // console.log(res);
+    })
+    this.emrService.appointmentId.subscribe(res=>{
+      this.appointmentID=res;
       // console.log(res);
     })
     

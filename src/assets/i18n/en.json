@@ -221,6 +221,7 @@
         "Download":"Download",
         "CurrentEMR":"Current EMR",
         "AddDescription":"Add Description",
+        "AddInstructions":"Add Instructions",
         "UploadDocumentorReport":"Upload document or report"
       }
     },
