@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
 
     <div class="row">
         <div class="col-12 path-row">
@@ -12,7 +12,7 @@
         <div class="col-12 ">
     
             <div class="row">
-                <div class="col-md-9 shared-menu-bar">
+                <div class="col-md-4 shared-menu-bar">
                     <div class="row ">
     
                         <div id="PatientProfile" class="col-12
@@ -20,7 +20,7 @@
                                                     d-flex 
                                                     justify-content-center 
                                                     align-items-center 
-                                                    padding-block
+                                                   py-2
                                                     changeCursor" 
                                                     [routerLink]="['/main/emr/patient-profile' , id]"
                                                     [queryParams]="{appointment_id: appointmentID}"
@@ -33,7 +33,7 @@
                                                d-flex 
                                                justify-content-center 
                                                align-items-center 
-                                               padding-block
+                                               py-2
                                                changeCursor"
                                                [routerLink]="['/main/emr/emr-profile', id]"
                                                [queryParams]="{appointment_id: appointmentID}"
@@ -43,10 +43,12 @@
     
                     </div>
                 </div>
-                <div class="col-md-3 d-md-flex justify-content-end d-block">
-                    <button class="Filter-Btn w-100 mt-2">
-                        <img src="../../../../assets/img/FilterIcon.png">
-                    </button>
+                <div class="col-md-8 ">
+                    <div class="d-md-flex justify-content-end d-block">
+                        <button class="Filter-Btn  py-2 px-4 mt-2">
+                            <img src="../../../../assets/img/FilterIcon.png">
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

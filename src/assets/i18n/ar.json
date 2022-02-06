@@ -184,6 +184,7 @@
     "appointment": {
       "Current": "الحالى",
       "History": "الماضى",
+      "Appointment_status":"حالة الموعد",
       "current": {
         "Name": "الاسم",
         "Date": "التاريخ",

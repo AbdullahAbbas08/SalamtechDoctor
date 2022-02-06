@@ -1,6 +1,10 @@
-.navbar-block
+.navbar
 {
-  min-height: 5%;
+  background: #F9F9F9;
+  border: 1px solid #E5E5E5;
+  border-radius: 0px 0px 14px 14px;
+  margin-bottom: 40px;
+  padding: 20px 30px ;
 }
 /* .sidebar {
   margin: 0;

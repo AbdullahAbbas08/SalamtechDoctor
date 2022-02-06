@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { EmrService } from 'src/Service/emr/emr.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 
@@ -17,8 +18,8 @@ export class EmrProfileComponent implements OnInit {
   medicalImg;
   profileHistory;
   profiledetails;
-
-
+  imageDoc
+ ImgeURL = environment.ImagesURL;
 
 
 
@@ -59,15 +60,15 @@ export class EmrProfileComponent implements OnInit {
     }
     else if(id==3){
       this.MedicalType=  "Video appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/location.png"
+      this.medicalImg="../../../../../../assets/img/medical-type/video.png"
     }
     else if(id==4){
       this.MedicalType= "Call appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/location.png"
+      this.medicalImg="../../../../../../assets/img/medical-type/call.png"
     }
     else if(id==5){
       this.MedicalType= "Chat appointment"
-      this.medicalImg="`../../../../../..`/assets/img/medical-type/location.png"
+      this.medicalImg="../../../../../../assets/img/medical-type/chat.png"
     }
   }
 
@@ -133,27 +134,24 @@ export class EmrProfileComponent implements OnInit {
      if (files.length === 0)
        return ;
 
-    //  var mimeType = files[0].type;
-    //  if (mimeType.match(/image\/*/) == null) {
-    //    this.message = "Only images are supported.";
-    //    return ;
-    //  }
+     var mimeType = files[0].type;
+     if (mimeType.match(/image\/*/) == null) {
+       this.message = "Only images are supported.";
+       return ;
+     }
      var reader = new FileReader();
      reader.readAsDataURL(files[0]);
     
      formData.append('document',files[0] );
-     console.log(formData)
-     this.PostEmrDocs(files[0] ) 
+     formData.append('AppointmentId',  this.appointmentID  );
+ 
+     this.PostEmrDocs(formData ) 
 
    }
 
-   PostEmrDocs(docs ){
-    let body ={
-      "document" : docs , 
-      "AppointmentId" : parseInt(this.appointmentID)
-    }
-    console.log(body);
-    this.emrService.PostEmrDocs(body).subscribe(res=>{
+   PostEmrDocs(formData :FormData ){ 
+    
+    this.emrService.PostEmrDocs(formData).subscribe(res=>{
       console.log(res);
       this.GetEmrHistory(this.id)
     }, 

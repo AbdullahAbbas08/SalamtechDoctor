@@ -1,47 +1,29 @@
-.appFooter {
-  background-color: #232227;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  height: 10%;
-}
 
-
-
-.copyRights {
- 
+.copyRights { 
   text-align: end;
   color: #fff;
 }
 
-img.Path-812 {
-  width: 36px;
-  height: 36px;
+img.Path-812 { 
+  width: 2rem;
   margin-right: 8px;
-  object-fit: contain;
   background-color: #232227;
 }
 
-img.twitter {
-  width: 36px;
-  height: 36px;
+img.twitter { 
+  width: 2rem;
   margin-right: 8px;
-  object-fit: contain;
   background-color: #232227;
 }
 
-img.facebook {
-  width: 36px;
-  height: 36px;
+img.facebook { 
+  width: 2rem;
   margin-right: 8px;
-  object-fit: contain;
   background-color: #232227;
 }
 
 img.linkedin {
-  width: 36px;
-  height: 36px;
+  width: 2rem;
   margin-right: 8px;
-  object-fit: contain;
   background-color: #232227;
 }

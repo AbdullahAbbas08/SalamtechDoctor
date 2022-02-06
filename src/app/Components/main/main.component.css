@@ -13,6 +13,7 @@
 .main-sidebar
 {
     height: 100%;
+    background-color: #F9F9F9;
     /* background-color: red; */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -162,7 +163,7 @@ ul li span
 .hr-sidebar-main
 {
     height: 2px;
-    width: 110%;
+    width: 100%;
     margin-left: 0px;
     margin-right: 0px;
 }

@@ -1,17 +1,17 @@
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <!-- <div class="row">
         <div class="col-12 path-row">
             {{ "mainModule.main.Services" | translate }} > {{ "mainModule.main.Appointments" | translate }}
         </div>
-    </div>
+    </div> -->
 
     <!-- Status Bar -->
-    <div class="row">
+    <div class="row mt-5">
 
         <div class="col-12 ">
 
             <div class="row">
-                <div class="col-md-9 shared-menu-bar">
+                <div class="col-md-4 shared-menu-bar">
                     <div class="row ">
     
                         <div id="Current" class="col-12
@@ -19,29 +19,18 @@
                                                     d-flex 
                                                     justify-content-center 
                                                     align-items-center 
-                                                    padding-block
+                                                     py-2
                                                     changeCursor" 
                                              [routerLink]="['/main/appointment/current']">
                              {{'mainModule.appointment.Current'|translate}}           
                         </div>
-    
-                        <!-- <div  id="Upcoming" class=" col-12 
-                                                    col-md-4 
-                                                    d-flex 
-                                                    justify-content-center 
-                                                    align-items-center 
-                                                    padding-block
-                                                    changeCursor"
-                                            [routerLink]="['/main/appointment/upcoming']">
-                        Upcoming
-                        </div> -->
     
                         <div id="History" class=" col-12 
                                                col-md-6 
                                                d-flex 
                                                justify-content-center 
                                                align-items-center 
-                                               padding-block
+                                               py-2
                                                changeCursor"
                                         [routerLink]="['/main/appointment/history']">
                          {{'mainModule.appointment.History'|translate}}  
@@ -49,10 +38,12 @@
     
                     </div>
                 </div>
-                <div class="col-md-3 d-md-flex justify-content-end d-block">
-                    <button class="Filter-Btn w-100 mt-2">
+                <div class="col-md-8 d-md-flex justify-content-end d-block text-center">
+                  <div>
+                    <button class="Filter-Btn  py-2  px-4 mt-2">
                         <img src="../../../../assets/img/FilterIcon.png">
                     </button>
+                  </div>
                 </div>
             </div>
         </div>
@@ -60,12 +51,10 @@
     </div>
 
     <!-- Shared Location => Display Service Components -->
-    <div class="row">
-        <div class="col-12 Shared-Component">
+    <div class="row  ">
+        <div class="col-12  Shared-Component">
             <!-- <div class=""> -->
-                <router-outlet>
-
-                </router-outlet>
+                <router-outlet>  </router-outlet>
             <!-- </div>  -->
         </div>
     </div>

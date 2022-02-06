@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid pt-4"  >
   <div class="row Appointment-table-header d-md-flex d-none">
     <div class="col-3 col-lg-3"> {{'mainModule.appointment.current.Name'|translate}} </div>
     <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Date'|translate}}</div>
@@ -6,10 +6,11 @@
     <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Type'|translate}}</div>
     <div class="col-3 col-lg-3"> {{'mainModule.appointment.current.Actions'|translate}}</div>
   </div>
+  <hr class="mt-3">
 
   <div
     *ngFor="
-      let item of PatientList | paginate: { itemsPerPage: 5, currentPage: p }
+      let item of PatientList | paginate: { itemsPerPage: 5, currentPage: p }  ; let i=index
     "
     class="row Appointment-table-body"
   >
@@ -19,20 +20,20 @@
         src="{{ IamgeURL }}{{ item.PatientImage }}"
         onerror="this.src='../../../../assets/img/LogoAlternative.png';"
       />
-      {{ item.PatientName }}
+      {{ item?.PatientName }}
     </div>
-    <div class="col-5 col-lg-2 padding-row">
-      {{ item.AppointmentDate | slice:0:10 }}
+    <div class="col-6 col-lg-2 padding-row">
+      {{ item?.AppointmentDate | slice:0:9 }}
     </div>
-    <div class="col-4 col-lg-2 padding-row">
-      {{ item.AppointmentDate | slice:10:19 }}
+    <div class="col-6 col-lg-2 padding-row">
+      {{ item?.AppointmentDate | slice:9:21 }}
     </div>
-    <div class="col-3 col-lg-2 padding-row">
+    <div class="col-12 col-lg-2 padding-row" >
       <img
         class="type-bg-icon"
-          src="../../../../../assets/img/CallIconVisited.png"
+          [src]="medicalImg[i]"
       />
-      {{'mainModule.appointment.Call'|translate}} 
+      {{MedicalType[i]}} 
     </div>
     <div class="col-12 col-lg-3 padding-row d-flex justify-content-between">
       <button class="acrions-btn comunicate-btn">

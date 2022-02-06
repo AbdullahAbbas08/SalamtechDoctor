@@ -12,6 +12,8 @@ export class HistoryAppointmentComponent implements OnInit {
 
   //#region Decalre Variables
   IamgeURL:string;
+  MedicalType =[];
+  medicalImg=[];
   p:number = 1;
   PatientList:PatientItem[];
   //#endregion
@@ -50,6 +52,32 @@ export class HistoryAppointmentComponent implements OnInit {
             let s= (element.PatientName.split(" ", 2)).toString();
             element.PatientName = (s.replace(","," "));
         });
+        console.log( this.PatientList);
+        
+        this.PatientList.map(item=>{
+          if(item.MedicalExaminationTypeId==1){
+            this.MedicalType.push("Clinic Appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+          }
+          else if(item.MedicalExaminationTypeId==2){
+            this.MedicalType.push("Home visit")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+          }
+          else if(item.MedicalExaminationTypeId==3){
+            this.MedicalType.push("Video appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/video.png")
+          }
+          else if(item.MedicalExaminationTypeId==4){
+            this.MedicalType.push("Call appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/call.png")
+          }
+          else if(item.MedicalExaminationTypeId==5){
+            this.MedicalType.push("Chat appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/chat.png")
+          } 
+          
+          
+        })
       },
       (err)=>{
       }

@@ -15,6 +15,9 @@ export class CurrentAppointmentComponent implements OnInit {
   IamgeURL:string;
   p:number = 1;
   PatientList:PatientItem[];
+  
+  MedicalType =[];
+  medicalImg=[];
   //#endregion
 
   //#region constructor
@@ -40,7 +43,7 @@ export class CurrentAppointmentComponent implements OnInit {
   //#region Get Current Doctor Appointment
   GetCurrentDoctorAppointment(MaxResultCount:number,SkipCount:number){
     // this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
-    this.AppointmentService.GetHistoryDoctorAppointment(MaxResultCount,SkipCount).subscribe(
+    this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
          this.PatientList = response.Data.Items;
          let re = /\*/gi;
@@ -52,6 +55,30 @@ export class CurrentAppointmentComponent implements OnInit {
         });
         console.log("data : ",response.Data);
 
+        this.PatientList.map(item=>{
+          if(item.MedicalExaminationTypeId==1){
+            this.MedicalType.push("Clinic Appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+          }
+          else if(item.MedicalExaminationTypeId==2){
+            this.MedicalType.push("Home visit")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+          }
+          else if(item.MedicalExaminationTypeId==3){
+            this.MedicalType.push("Video appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/video.png")
+          }
+          else if(item.MedicalExaminationTypeId==4){
+            this.MedicalType.push("Call appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/call.png")
+          }
+          else if(item.MedicalExaminationTypeId==5){
+            this.MedicalType.push("Chat appointment")
+            this.medicalImg.push("../../../../../../assets/img/medical-type/chat.png")
+          } 
+          
+          
+        })
       },
       (err)=>{
       }

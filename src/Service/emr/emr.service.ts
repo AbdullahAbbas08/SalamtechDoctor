@@ -52,7 +52,7 @@ export class EmrService {
   //#endregion
 
   //#region 
-  PostEmrDocs( body):Observable<any>{
+  PostEmrDocs( body):Observable<any>{ 
     return this.http.post(`${environment.URL}${this.culture}/Patient/CreatePatientEmrDocument`,body,this.httpOptions);
   }
   //#endregion

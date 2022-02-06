@@ -184,6 +184,7 @@
     "appointment": {
       "Current": "Current",
       "History": "History",
+      "Appointment_status":"Appointment status",
       "current": {
         "Name": "Name",
         "Date": "Date",

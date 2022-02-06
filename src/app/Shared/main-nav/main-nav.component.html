@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light main-color">
+<nav class="navbar navbar-expand-lg navbar-light px-md-5 ">
   <div class="container-fluid">
-    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <a class="navbar-brand " routerLink="/main"><img src="./assets/img/logo.webp" class="logo"></a>
 
     <div
       class=" d-md-flex d-none align-baseline" [ngClass]="{'ml-md-auto': DefaultLang=='en' , 'mr-md-auto': DefaultLang=='ar'}"
@@ -50,7 +50,7 @@
 
         <li class="nav-item mx-2 mt-md-0 mt-2">
           <div class="card border-0">
-            <div class="row g-0 main-color">
+            <div class="row main-color">
               <div class="col-md-4">
                 <img
                   src="{{ IamgeURL }}{{ logo }}"
@@ -60,7 +60,7 @@
               </div>
               <div class="col-md-8">
                 <div class="">
-                  <p class="card-text mb-0 mt-2 mx-2">{{ name }}</p>
+                  <p class=" mb-0 mt-2 mx-2">{{ name }}</p>
                 </div>
               </div>
             </div>
@@ -73,12 +73,10 @@
 
 
 
-
-
     <div class="d-md-none text-center">
-      <a class="navbar-brand"
+      <!-- <a class="navbar-brand"
         ><img src="./assets/img/logo.webp" class="logo"
-      /></a>
+      /></a> -->
       <div class="d-flex  align-items-center justify-content-center mt-4 "  >
         <div class="nav-item mx-3"> 
           <div class="notification text-center">
@@ -124,5 +122,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </nav>

@@ -7,7 +7,7 @@
 
 .shared-menu-bar
 {
-    background-color: #edf1fb;
+   
     font-size: 16px;
     color: #262d70;
     font-weight: 500;
@@ -39,6 +39,7 @@
 }
 .changeCursor
 {
+    background-color: #edf1fb;
     cursor: pointer;
 }
 
