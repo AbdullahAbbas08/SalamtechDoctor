@@ -17,7 +17,7 @@
 
             <button onclick="document.getElementById('getFile').click()"
                     class="changePhoto-btn">
-              Change Profile Photo
+                    {{"mainModule.EMR.Patient.ChangePhoto" | translate }}
             </button>
           </div>
         </div>
@@ -229,18 +229,26 @@
           "mainModule.DoctorInfo.SubSpeciality" | translate
           }}</span>
         <span class="star"> * </span>
-        <select formControlName="SubSpeciality"
+        <!-- <select formControlName="SubSpeciality"
                 (change)="SelectSubSpeciality($event)"
                 class="form-select"
                 aria-label="Default select example">
           <option value="" selected disabled>
             {{ "mainModule.DoctorInfo.SubSpeciality" | translate }}
           </option>
-          <option *ngFor="let item of DropDownList_SubSpeciality" value={{item.Id}}>
+          <option *ngFor="let item of DropDownList_SubSpeciality" }>
             {{item.Name}}
             </option>
-        </select>
+        </select> -->
+        <ng-multiselect-dropdown
+        formControlName="SubSpeciality"
+        [placeholder]="'Select SubSpeciality'"
+        [settings]="dropdownSettings"
+        [data]="DropDownList_SubSpeciality"
+        [(ngModel)]="selectedItems"  >
+      </ng-multiselect-dropdown>
       </div>
+
 
       <!-- Seniority -->
       <div class="col-12 col-md-4 ">

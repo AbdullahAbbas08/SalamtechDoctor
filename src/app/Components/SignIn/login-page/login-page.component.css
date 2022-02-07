@@ -1,155 +1,104 @@
-
-.main-div
-{
-  height: 80%;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  /* background-color: tomato; */
+.Login-As-Doctor {
+  height: 62px;
+  font-size: 20px;
+  color: #01d2ca;
 }
-.card{
-  background-color: transparent;
-  border-width: 0px;
-  /* background-color: tomato; */
-}
-.card-header
-{
-  padding: 15px;
-  border-radius: 25px 25px 0px 0px;
-  background-color: #00D2CA;
-  color: #fff;
-}
-.card-body
-{
-  background-color: rgb(243, 243, 243);
-  border-radius: 0px 0px 25px 25px ;
-
-}
-.ForgetPassword
-{
-  padding:5px ;
-  color: #2d2570;
-  cursor: pointer;
-}
-
-.form-group-Password
-{
-  margin-bottom: 50px;
-  position: relative;
-}
-
-#PasswordLogin
-{
-  padding-right: 42px;
-}
-.Create-account
-{
-  /* margin-bottom: 100px; */
-  color: #727685;
-  font-weight: 500;
-}
-
-.create-account-link
-{
-  font-weight: 500;
-  color: #262d70;
-  cursor: pointer;
-}
-
-.PhoneNumber-col
-{
-  margin-top: 20px;
-}
-
-.card-body input
-{
-  font-size: 18px;
-  padding: 15px;
-  border-radius: 10px;
-}
-.card-body
-{
-  background-color: rgb(240, 240, 240);
-}
-
-.login-btn
-{
-  background-color: #262d70;
+.Login-As-Patient {
+  /* width: 165px; */
+  height: 62px;
+  font-size: 20px;
   text-align: center;
-  border-radius: 10px;
-  color: white;
-  padding-top:10px ;
-  padding-bottom:10px ;
-  cursor: pointer;
-  margin-bottom: 10px;
+  color: #01d2ca;
+}
+/* .modal-content{
+  border: none!important;
+} */
+.nav-tabs {
+  border-bottom: none !important;
+}
+.nav-tabs .nav-link {
+  margin-bottom: -1px;
+  background: 0 0;
+  color: rgb(243, 243, 243);
+  background-color: #00d2ca;
+  border: none !important;
+  transition: all 0.85s;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 0px !important;
+  box-shadow: inset 8px -8px 10px 0 rgba(139, 144, 160, 0.3);
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #00d2ca;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  box-shadow: none;
 }
 
-.login-btn label
-{
-  cursor: pointer;
+.forgetPassword a {
+  font-size: 16px;
+  text-align: left;
+  color: #2d2570;
+}
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 15%);
 }
 
-.label-input
-{
+.Dont-have-an-account-create-account {
+  width: 100%;
+  height: 19px;
+  /* margin: 24px 80px 0 38px; */
+  font-size: 16px;
   font-weight: 500;
+  text-align: center;
   color: #727685;
 }
+.Dont-have-an-account-create-account a {
+  text-decoration: none;
+}
 
-.label-Login
+/* .modal-dialog
 {
-  font-weight: 500;
-  color: #fff;
-}
-
-.star
-{
-  color: red;
-  font-weight: 500;
-}
-.PhoneNumber-col .form-group
-{
-  position: relative;
-}
-
-.PhoneNumber-col input
-{
-  background-color: white;
-  padding-left: 75px;
-}
-
-.unit {
-  position: absolute;
-  display: block;
-  left: 40px;
-  top: 13px;
-  font-size: 18px;
-  line-height: 17px;
-  /* font-weight: 500; */
-}
-
-.icon {
-  padding-left:65px;
-  background: url("../../../../assets/img/egyptlogo.png") no-repeat left;
-  background-size: 20px;
-  /* background-color: red; */
-  background-position-x: 10px;
-  content: var("+20");
-}
-
-/* .icon-rtl {
-  padding-right: 65px;
-  background: url("../../../../assets/img/Group512657.png") no-repeat right;
-  background-size: 20px;
-  content: var("+20");
+  max-width: 600px;
 } */
 
-.eye {
-  position: absolute;
-  display: block;
-  top: 12px;
-  font-size: 15px;
-  line-height: 17px;
-  font-weight: 500;
-  right: 15px;
-  cursor: pointer;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.nav-tabs[_ngcontent-fbl-c110] .nav-link[_ngcontent-fbl-c110] {
+  color: #00d2ca !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+.nav-tabs[_ngcontent-fbl-c110] .nav-link.active[_ngcontent-fbl-c110] {
+  margin-bottom: -1px !important;
+  background: 0 0 !important;
+  color: rgb(243, 243, 243) !important;
+  background-color: #00d2ca !important;
+  border: none !important;
+  transition: all 0.85s !important;
+  border-bottom-left-radius: 15px !important;
+  border-bottom-right-radius: 0px !important;
+  box-shadow: inset 8px -8px 10px 0 rgb(139 144 160 / 30%) !important;
+}
+
+h5 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px; 
+  color: #ffffff;
 }

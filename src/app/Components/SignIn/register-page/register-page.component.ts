@@ -18,6 +18,7 @@ export class RegisterPageComponent implements OnInit {
   //#region Declare Variables
   RegisterForm:FormGroup;
   CreateUser:CreateUser = new CreateUser();
+  passFormat= true;
   //#endregion
 
   //#region constructor
@@ -39,11 +40,11 @@ export class RegisterPageComponent implements OnInit {
         FirstName:['',[Validators.required]],
         MiddleName:['',[Validators.required]],
         LastName:['',[Validators.required]],
-        Email:['',[Validators.required , Validators.email]],
-        PhoneNumber:['',[Validators.required]],
+        Email:['',[Validators.required , Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)]],
+        PhoneNumber:['',[Validators.required , Validators.pattern(/^(1?(-?\d{3})-?)?(\d{3})(-?\d{4})$/) , Validators.maxLength(11)]], 
         checkboxcont:['',[Validators.required]],
         Password:['',[Validators.required , Validators.minLength(6)]],
-        ReEnterPassword:['',[Validators.required , Validators.minLength(6)]],
+        ReEnterPassword:['',[Validators.required , Validators.minLength(6)]  ],
         });
     //#endregion
 
@@ -59,6 +60,14 @@ export class RegisterPageComponent implements OnInit {
 
 
 
+  checkPass(pass , rePass) {
+    if(pass === rePass){
+      this.passFormat=true
+    }
+    else{
+      this.passFormat=false
+     }
+  }
 
 
 
@@ -90,9 +99,11 @@ Checkinput(){
 
   //#region Submit
   Submit(){
-
     
     if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid){
+      let con=this.RegisterForm.get('PhoneNumber').value;
+      this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
+      
       this.CreateUser.Email = this.RegisterForm.controls.Email.value;
       this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
                               this.RegisterForm.controls.MiddleName.value+" "+

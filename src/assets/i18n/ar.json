@@ -19,8 +19,8 @@
       "verify": "تحقق"
     },
     "login": {
-      "LoginAsDoctor": "تسجيل الدخول للدكنور",
-      "PhoneNumber": "رقم الموبيل",
+      "LoginAsDoctor": "تسجيل الدخول للدكتور",
+      "PhoneNumber": "رقم الهاتف",
       "SignIn": "تسجيل الدخول",
       "DontHaveAnAccount?": "ليس لديك حساب ؟",
       "createAccount": "انشاء حساب",
@@ -257,6 +257,11 @@
   "errorField": {
     "phone": "من فضلك أدخل رقم موبايل صحيح مكون من 11 رقم",
     "password": "من فضلك أدخل كلمة مرور ممكونة من 6 ارقام وحروف",
-    "email": "من فضلك ادخل بريد الكترونى صحيح "
+    "email": "من فضلك ادخل بريد الكترونى صحيح ",
+    "reenterpass":"They Don't match Please Renter your password",
+    "firstname":"Please enter your first name",
+    "secondname":"Please enter your middle name",
+    "lastname":"Please enter your last name",
+    "checkboxcont":"please check the box"
   }
 }

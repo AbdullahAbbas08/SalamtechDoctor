@@ -4,6 +4,7 @@ import { Certificate } from 'src/Models/certificate';
 import { CertificateResponse } from 'src/Models/certificateResponse';
 import { CertificateService } from 'src/Service/Certificate/certificate.service';
 import { LoginService } from 'src/Service/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-certificates',
@@ -48,8 +49,16 @@ export class CertificatesComponent implements OnInit {
         ImageCertificate:['',[Validators.required ]]
       }
     )
+    this.getCertificate()
 
-
+  }
+  getCertificate(){
+    this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
+      this.submittedCertificate= res as CertificateResponse
+      console.log(this.submittedCertificate);
+      
+      this.resetForm()
+    })
   }
 
   changeStyle()
@@ -86,10 +95,7 @@ export class CertificatesComponent implements OnInit {
   //#region review AND File FormData image from input file
   CreateCertificate(lang:string,certificate:FormData){
     this.certificateService.CreateCertificate('en',certificate).subscribe((res)=>{
-      this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-        this.submittedCertificate= res as CertificateResponse
-        this.resetForm()
-      })
+      this.getCertificate()
     },
     (err)=>{
       console.log(err)
@@ -128,12 +134,40 @@ export class CertificatesComponent implements OnInit {
 
   //#region Delete Certificate
     DeleteCertificate(id:number){
-      this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
-        this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-          this.submittedCertificate= res as CertificateResponse
-          console.log(this.submittedCertificate)}
-        )},
-        (err)=>{console.log(err)})
+
+      Swal.fire({
+        title:'Are You Sure You want to delete',
+        icon:'warning', 
+        showCancelButton:true,
+      })
+      .then((isConfirmed) => {
+
+        if (isConfirmed) {
+           this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
+            this.getCertificate()
+            Swal.fire({
+              title:"Your file has been deleted!", 
+              icon: "success",
+            });
+        },
+        (err)=>{
+          console.log(err)
+          Swal.fire("An error occur");
+        })
+         
+        } else {
+          Swal.fire("Your imaginary file is safe!");
+        }
+      }); 
+
+
+
+      // this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
+      //   this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
+      //     this.submittedCertificate= res as CertificateResponse
+      //     console.log(this.submittedCertificate)}
+      //   )},
+      //   (err)=>{console.log(err)})
       }
   //#endregion
 

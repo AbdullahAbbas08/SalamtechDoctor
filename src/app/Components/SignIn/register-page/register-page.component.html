@@ -28,6 +28,10 @@
                         formControlName="FirstName"
                         class="form-control"
                       />
+                      <app-fielderror 
+                      [displayError]="isFieldValid('FirstName')"
+                      errorMsg="{{'errorField.firstname' | translate}}"
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -44,6 +48,10 @@
                         class="form-control"
                         formControlName="MiddleName"
                       />
+                      <app-fielderror 
+                      [displayError]="isFieldValid('MiddleName')"
+                      errorMsg="{{'errorField.secondname' | translate}}"
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -60,6 +68,11 @@
                         class="form-control"
                         formControlName="LastName"
                       />
+
+                      <app-fielderror 
+                      [displayError]="isFieldValid('LastName')"
+                      errorMsg="{{'errorField.lastname' | translate}}"
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -92,7 +105,7 @@
 
                     <div dir="auto" class="form-group">
                       <input
-                        type="text"
+                        type="number"
                         formControlName="PhoneNumber"
                         class="form-control"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -123,6 +136,7 @@
                         class="form-control"
                         placeholder="***********"
                         id="PasswordLogin"
+                        #pass
                       />
 
                       <span
@@ -132,6 +146,10 @@
                       >
                         <i class="far fa-eye text-end" id="togglePassword"></i>
                       </span>
+                      <app-fielderror 
+                      [displayError]="isFieldValid('Password')"
+                      errorMsg="{{'errorField.password' | translate}}"
+                    ></app-fielderror>
                     </div>
                   </div>
 
@@ -146,11 +164,13 @@
 
                     <div class="form-group form-group-Password">
                       <input
+                      #rePass
                         type="password"
                         formControlName="ReEnterPassword"
                         class="form-control"
                         placeholder="***********"
                         id="ReEnterPassword"
+                        (keyup)="checkPass(pass.value , rePass.value)"
                       />
 
                       <span
@@ -160,6 +180,14 @@
                       >
                         <i class="far fa-eye text-end" id="togglePassword"></i>
                       </span>
+                      <app-fielderror *ngIf="passFormat== true"
+                      [displayError]="isFieldValid('ReEnterPassword')"
+                      errorMsg="{{'errorField.password' | translate}}"
+                    ></app-fielderror>
+                    <app-fielderror *ngIf="passFormat === false "
+                      [displayError]="true"
+                      errorMsg="{{'errorField.reenterpass' | translate}}"
+                    ></app-fielderror> 
                     </div>
                   </div>
 
@@ -183,6 +211,10 @@
                             | translate
                         }}
                       </span>
+                      <app-fielderror 
+                      [displayError]="isFieldValid('checkboxcont')"
+                      errorMsg="{{'errorField.checkboxcont' | translate}}"
+                    ></app-fielderror>
                     </label>
                   </div>
 

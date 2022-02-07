@@ -156,6 +156,8 @@ getAreas(){
     modalRef.result.then(
       (result) => {
         this.ClinicToUpdate.Address = result.address;
+        console.log(this.ClinicToUpdate.Address );
+        
       },
       (reason) => {}
     );

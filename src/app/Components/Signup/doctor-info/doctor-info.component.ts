@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { DoctorInfoModel } from 'src/Models/doctor-info-model';
 import { DoctorProfile } from 'src/Models/doctor-profile';
 import { DropDownModel } from 'src/Models/drop-down-model';
@@ -25,6 +26,9 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_GetCountries:IdNameList[]; 
   //#endregion
 
+  selectedItems= [];
+  dropdownSettings: IDropdownSettings = {};
+
   //#region Constructor
   constructor(private fb:FormBuilder ,
     private SignupService:SignupService ,
@@ -34,6 +38,16 @@ export class DoctorInfoComponent implements OnInit {
 
   //#region On Init Method
     ngOnInit(): void {
+      this.dropdownSettings = {
+        singleSelection: false,
+        idField: 'Id',
+        textField: 'Name',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 3,
+        allowSearchFilter: true
+      };
+  
 
       this.initForm()
       //#region Init Values
@@ -77,9 +91,9 @@ export class DoctorInfoComponent implements OnInit {
             Gender:['',[Validators.required ]],
             // Nationality:['',[Validators.required ]],
             Country:['',[Validators.required ]],
-            DateOfBirth:['',[Validators.required ]],
+            DateOfBirth:['',[Validators.required ,Validators.pattern(/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[0-9]{1}\d{1})|([2]{1}[0]{1}[0]{1}[0-4]{1}))$/)]],
             Speciality:['',[Validators.required]],
-            SubSpeciality:['',[Validators.required]],
+            SubSpeciality:[[],[Validators.required]],
             Seniority:['',[Validators.required]],
             BiographyAr:['',[Validators.required]],
             Biography:['',[Validators.required]]
@@ -206,12 +220,16 @@ GetSpecialistIdName(lang:string)
     formData.append("SeniorityLevelId", this.DoctorInfoModel.SeniorityLevelId as unknown as Blob);
     formData.append("SpecialistId", this.DoctorInfoModel.SpecialistId as unknown as Blob);
     formData.append("Birthday", this.DoctorInfoModel.Birthday);
-    formData.append("DoctorSubSpecialist", this.DoctorInfoModel.DoctorSubSpecialist as unknown as Blob);
+    this.selectedItems.forEach(element => {
+      formData.append('DoctorSubSpecialist', element.Id as unknown as Blob)
+    });
+    // formData.append("DoctorSubSpecialist", this.DoctorInfoModel.DoctorSubSpecialist as unknown as Blob);
     formData.append("DoctorInfo", this.DoctorInfoModel.DoctorInfo);
     formData.append("DoctorInfoAr", this.DoctorInfoModel.DoctorInfoAr);
     formData.append("profileImage", this.DoctorInfoModel.profileImage);
 
     this.CreateProfile('en',formData);
+    
 
   }
   //#endregion
@@ -225,7 +243,7 @@ GetSpecialistIdName(lang:string)
 
   //#region SubSpeciality Method event change
   SelectSubSpeciality(event:any){
-    this.DoctorInfoForm.controls.SubSpeciality = event.target.value;
+console.log(event);
   }
   //#endregion
 
@@ -276,5 +294,11 @@ GetSpecialistIdName(lang:string)
       // this.FormDataImage.append('EpisodeIamge', files[0]);
     }
     //#endregion
-
+    onItemSelect(item: any) {
+      // console.log(this.selectedItems)
+    }
+  
+    onSelectAll(items: any) {
+      // console.log(items);
+    }
 }

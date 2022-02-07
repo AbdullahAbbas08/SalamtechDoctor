@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Login } from 'src/Models/Login';
 import { LoginResponse } from 'src/Models/LoginResponse';
 import { LoginService } from 'src/Service/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-page',
@@ -15,75 +16,101 @@ export class LoginPageComponent implements OnInit {
 
   //#region Declare Variables
   LoginForm:FormGroup;
-  LoginObj:Login;
+  loginDoctorForm:Login=new Login();
+  errorMsg:string
   AuthenticatedUser:LoginResponse=new LoginResponse()
+  toggle=false;
   //#endregion
+
 
   //#region constructor
-  constructor(private fb:FormBuilder,
-              private loginService:LoginService,
-              private toastr:ToastrService,
-              private router:Router) {
+  constructor( private loginService:LoginService,
+    private fb:FormBuilder,
+    private toastr:ToastrService,
+    private router:Router) {
+this.loginDoctorForm.UserTypeId=2
+}
+//#endregion
+//#region On Init Method
+ngOnInit() {
+
+  //#region  Register Form Section
+  this.LoginForm = this.fb.group(
+   {
+       PhoneNumber:['',[Validators.required  , Validators.minLength(11) ,  Validators.maxLength(12)]],
+       Password:['',[Validators.required , Validators.minLength(6)]]
+     });
+ //#endregion
+
+}
+//#endregion
+
+
+isFieldValid(field): boolean {
+ return (
+   !this.LoginForm.get(field).valid && this.LoginForm.get(field).touched
+ )
+}
+
+
+//#region Login Method
+LoginDoctor(){
+ if(this.LoginForm.valid){
+   this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
+   this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
+   this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
+     this.AuthenticatedUser= res      
+     localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
+     this.toastr.success("Login Successfully ", 'Successfully');
+     this.router.navigateByUrl("/main");
+     window.setInterval(() => {
+       window.location.reload();
+     }, 2000);
+   },
+   (err)=>{
+     Swal.fire({
+       title: 'Error !',
+       text: err.error.Message,
+       icon: 'error',
+       showCancelButton: true,
+       showConfirmButton:false,
+       cancelButtonColor:"#f00",
+       confirmButtonText: 'OK',
+       cancelButtonText:"OK",
+       reverseButtons: true
+     })
+     
+   })
+ }
+ else{
+   this.LoginForm.markAllAsTouched()
+ }
+}
+//#endregion
+
+
+//#region Get Doctor Profile
+
+//#endregion
+
+//#region password Icon Method
+passwordIcon(){
+ const password = document.getElementById('Pass');
+
+ // toggle the type attribute
+//   password?.getAttribute('type') === 'password' ? 'text' : 'password';
+//  password?.setAttribute('type', type);
+ // toggle the eye slash icon
+//  password?.classList.toggle('fa-eye-slash');
+  if(this.toggle==false){
+    this.toggle=true ;
+    password?.setAttribute('type', 'text')
   }
-  //#endregion
-
-  //#region On Init Method
-  ngOnInit() {
-
-    //#region  Init Values
-    this.LoginObj = {"Phone":"","Password":"","UserTypeId":2};
-    //#endregion
-
-     //#region  Register Form Section
-     this.LoginForm = this.fb.group(
-      {
-        PhoneNumber:['',[Validators.required,Validators.minLength(10)]],
-        Password:['',[Validators.required , Validators.minLength(6)]]
-      });
-    //#endregion
-
+  else{
+    this.toggle=false;
+    password?.setAttribute('type', 'password')
   }
-  //#endregion
+}
+//#endregion
 
-    //#region Toggle Password Method
-    passwordIcon(id:string){
-      const password = document.querySelector('#'+id);
-
-      // toggle the type attribute
-      const type = password?.getAttribute('type') === 'password' ? 'text' : 'password';
-      password?.setAttribute('type', type);
-      // toggle the eye slash icon
-      password?.classList.toggle('fa-eye-slash');
-    }
-    //#endregion
-
-
-    //#region Consume API's
-
-      //#region Login
-      Login(){
-        this.LoginObj.Phone ="0"+ (this.LoginForm.controls.PhoneNumber.value).toString();
-        this.LoginObj.Password = (this.LoginForm.controls.Password.value).toString();
-       
-    
-        this.loginService.login(this.LoginObj).subscribe((res)=>{
-          console.log(res);
-          
-          // this.buttonEnable=true;
-          this.AuthenticatedUser= res
-          localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
-          this.toastr.success("Login Successfully ", 'Successfully');
-          this.router.navigateByUrl("dashboard");
-          window.setInterval(() => {
-            window.location.reload();
-          }, 2000);
-        },
-        (err)=>{
-          console.log(err)
-          // this.toastr.success("", 'Errors...!');
-        })
-      }
-      //#endregion
-
-    //#endregion
-  }
+}

@@ -257,6 +257,11 @@
   "errorField": {
     "phone": "Please enter valid phone from 11 number",
     "password": "Please enter valid password with min length 6 digits",
-    "email": "Please enter valid email "
+    "email": "Please enter valid email ",
+    "reenterpass":"They Don't match Please Renter your password",
+    "firstname":"Please enter your first name",
+    "secondname":"Please enter your middle name",
+    "lastname":"Please enter your last name",
+    "checkboxcont":"please check the box"
   }
 }
