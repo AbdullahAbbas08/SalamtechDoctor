@@ -14,7 +14,7 @@
         <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
           <div class="row img-block just">
             <div class="col img-col-block">
-              <img [src]="clinicInfo.imgURL ? clinicInfo.imgURL : imgURL" />
+              <img [src]="imgURL" />
             </div>
           </div>
 
@@ -132,9 +132,11 @@
               <span class="star"> * </span>
               <select
                 class="form-select"
+                #cityid
                 aria-label="Default select example"
                 style="margin-bottom: 20px"
                 formControlName="CityId"
+                (change)="getAreas(cityid.value)"
               >
                 <option [value]="this.clinicInfo?.CityId" selected>
                   {{ Cities?.Name }}

@@ -61,10 +61,11 @@ export class UpdateClinicInfoComponent implements OnInit {
       console.log(res.Data);
       this.initForm()
       this.getCity()
-      this.getAreas()
-      this.getCountry()
+       this.getCountry()
 
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
+      console.log(this.phones);
+      
       for (let num of this.phones) {
         this.addPhone(num)
       }
@@ -84,10 +85,10 @@ export class UpdateClinicInfoComponent implements OnInit {
       Address :[this.clinicInfo?.Address ||'' , Validators.required],
       Latitude:[this.clinicInfo?.Latitude||''],
       Longitude:[this.clinicInfo?.Longitude||''],
-      BlockNo:[this.clinicInfo?.BlockNo||''  ],
-      FloorNo:[this.clinicInfo?.FloorNo||''  ],
-      FixedFee :[this.clinicInfo?.FixedFee ||'' , Validators.required],
-      clinicLogo:[this.clinicInfo?.imgURL||''],
+      BlockNo:[this.clinicInfo?.BlockNo||'' ,[Validators.required, Validators.pattern(/^\d*$/)] ],
+      FloorNo:[this.clinicInfo?.FloorNo||'' ,[Validators.required, Validators.pattern(/^\d*$/)] ],
+      FixedFee :[this.clinicInfo?.FixedFee ||'' , [Validators.required, Validators.pattern(/^\d*$/)]],
+      clinicLogo:[this.clinicInfo?.Logo||''],
     })
   }
 
@@ -125,8 +126,8 @@ getCity(){
   })
 }
 
-getAreas(){
-  this.lookupService.GetAreas('en').subscribe(
+getAreas(id){
+  this.lookupService.GetAreaByCityId(id).subscribe(
     (response)=>{
       this.Areas =  response.Data;
       // console.log(this.Areas);
@@ -210,27 +211,28 @@ getAreas(){
    this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
    this.FormInfo.get('AreaId').setValue(parseInt(this.FormInfo.get('AreaId').value))
    
-    // console.log(this.FormInfo.value);
+    console.log(this.FormInfo.value);
     if(this.FormInfo.valid){
 
       //#region Create Form Data
       let formData = new FormData();   
-      formData.append("ClinicId",this.FormInfo.get('ClinicId').value as unknown as Blob)
-      formData.append("CityId",  this.FormInfo.get('CityId').value as unknown as Blob)
-      formData.append("CountryId", this.FormInfo.get('CountryId').value as unknown as Blob)
-      formData.append("AreaId",  this.FormInfo.get('AreaId').value as unknown as Blob)
-      formData.append("Name",  this.FormInfo.get('Name').value as unknown as Blob)
-      formData.append("NameAr",  this.FormInfo.get('NameAr').value as unknown as Blob)
-      formData.append("Email",  this.FormInfo.get('Email').value as unknown as Blob)
-      formData.append("Address",  this.FormInfo.get('Address').value as unknown as Blob)
-      formData.append("FixedFee",  this.FormInfo.get('FixedFee').value as unknown as Blob)
-      formData.append("clinicLogo",  this.FormInfo.get('clinicLogo').value as unknown as Blob)
-      formData.append("Latitude",  this.FormInfo.get('Latitude').value as unknown as Blob)
-      formData.append("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
-      formData.append("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
-      formData.append("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
-      formData.append("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
+      formData.set("ClinicId",this.FormInfo.get('ClinicId').value as unknown as Blob)
+      formData.set("CityId",  this.FormInfo.get('CityId').value as unknown as Blob)
+      formData.set("CountryId", this.FormInfo.get('CountryId').value as unknown as Blob)
+      formData.set("AreaId",  this.FormInfo.get('AreaId').value as unknown as Blob)
+      formData.set("Name",  this.FormInfo.get('Name').value as unknown as Blob)
+      formData.set("NameAr",  this.FormInfo.get('NameAr').value as unknown as Blob)
+      formData.set("Email",  this.FormInfo.get('Email').value as unknown as Blob)
+      formData.set("Address",  this.FormInfo.get('Address').value as unknown as Blob)
+      formData.set("FixedFee",  this.FormInfo.get('FixedFee').value as unknown as Blob)
+      formData.set("clinicLogo",  this.FormInfo.get('clinicLogo').value as unknown as Blob)
+      formData.set("Latitude",  this.FormInfo.get('Latitude').value as unknown as Blob)
+      formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
+      formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
+      formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
+      formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos').value as unknown as Blob)
       //#endregion
+     console.log(formData.get('clinicLogo'));
      
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         console.log(res);

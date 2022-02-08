@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-clinic-galary',
@@ -97,6 +98,12 @@ export class UpdateClinicGalaryComponent implements OnInit {
     if (files.length === 0)
       return;
 
+    if (files[0].size > 3000000)
+        {
+        this.message = "image size is larger than 5mb.";
+        return;
+      }
+
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -132,14 +139,40 @@ export class UpdateClinicGalaryComponent implements OnInit {
 
   //#region Delete Galary
   DeleteGalary(ID: number) {
-    this.GalaryService.DeleteClinicGallery('en', ID).subscribe(
-      (response) => {
-        // console.log(response);
-        this.GetClinicGalleryByClinicId('en',  this.ClinicId);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+    .then((result) => {
+
+      if (result.isConfirmed) {
+        this.GalaryService.DeleteClinicGallery('en', ID).subscribe((res)=>{
+          this.GetClinicGalleryByClinicId('en',  this.ClinicId);
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
       },
-      (err) => {
-        // console.log(err);
+      (err)=>{
+        console.log(err)
+        Swal.fire("An error occur");
       })
+       
+      } else {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        );
+      }
+    }); 
   }
   //#endregion
 

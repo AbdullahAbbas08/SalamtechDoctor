@@ -145,6 +145,7 @@
       "FloorNumber": "رقم الدور",
       "ApartmentNumber": "رقم ",
       "Services": "الخدمات",
+      "selectServices": "حدد الخدمات",
       "Next": "التالى",
       "addphone":"أضف الهاتف"
     },

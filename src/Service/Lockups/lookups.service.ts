@@ -45,6 +45,10 @@ export class LookupsService {
     }
     //#endregion
 
+    GetAreaByCityId(cityId):Observable<any>{
+      return this.http.get(`${environment.URL}${this.culture}/Area/GetAreasByCityId?cityId=${cityId}` ,this.httpOptions)
+    }
+
     //#region Get Services
     GetServices(lang:string):Observable<DropDownModel>{
       return this.http.get<DropDownModel>(`${environment.URL}${this.culture}/Services/GetServicesBySpecialist`,this.httpOptions);

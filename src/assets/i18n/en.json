@@ -145,6 +145,7 @@
       "FloorNumber": "Floor Number",
       "ApartmentNumber": "Apartment Number",
       "Services": "Services",
+      "selectServices": "Select Services",
       "Next": "Next",
       "addphone":"add phone"
     },

@@ -278,6 +278,12 @@ console.log(event);
       if (files.length === 0)
         return;
 
+        if (files[0].size > 3000000)
+         {
+          this.message = "image size is larger than 5mb.";
+          return;
+        }
+
       var mimeType = files[0].type;
       if (mimeType.match(/image\/*/) == null) {
         this.message = "Only images are supported.";
