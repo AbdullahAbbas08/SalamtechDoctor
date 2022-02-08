@@ -98,11 +98,16 @@ export class UpdateClinicGalaryComponent implements OnInit {
     if (files.length === 0)
       return;
 
-    if (files[0].size > 3000000)
-        {
-        this.message = "image size is larger than 5mb.";
-        return;
-      }
+      if (files[0].size > 3000000)
+      {
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+      this.message = "image size is larger than 3mb.";
+      return;
+    }
 
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {

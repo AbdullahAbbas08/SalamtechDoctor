@@ -4,6 +4,7 @@ import { Certificate } from 'src/Models/certificate';
 import { CertificateResponse } from 'src/Models/certificateResponse';
 import { CertificateService } from 'src/Service/Certificate/certificate.service';
 import { LoginService } from 'src/Service/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-doctor-certificates',
@@ -86,7 +87,6 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   GetDoctorCertificate(){
     this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
       this.submittedCertificate= res as CertificateResponse
-     console.log(this.submittedCertificate);
      
     })
   }
@@ -111,6 +111,16 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
     if (files.length === 0)
       return;
 
+      if (files[0].size > 3000000)
+      {
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+      this.message = "image size is larger than 3mb.";
+      return;
+    }
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -160,20 +170,21 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
 
 
   Edit(id:number){
+    
     this.editableCertificate= this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
   }
-
+  
   SaveCertificate(){
     const formData = new FormData();
 
-    formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
-    formData.append('Title',this.editableCertificate.Title)
-    formData.append('Description',this.editableCertificate.Description)
-    formData.append('TitleAr',this.editableCertificate.TitleAr)
-    formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
-    formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
-    formData.append('certificateImage',this.editableCertificate.CertificateUrl)
+    formData.append('CertificateId',+this.CertificateForm.get('Id').value as unknown as Blob)
+    formData.append('Title', this.CertificateForm.get('Title').value )
+    formData.append('Description',this.CertificateForm.get('Description').value)
+    formData.append('TitleAr',this.CertificateForm.get('TitleAr').value)
+    formData.append('DescriptionAr',this.CertificateForm.get('DescriptionAr').value)
+    formData.append('Year', +this.CertificateForm.get('Year').value as unknown as Blob)
+    formData.append('certificateImage',this.CertificateForm.get('CertificateUrl').value)
 
     this.UpdateCertificate('en',formData)
   }

@@ -187,17 +187,12 @@
           "mainModule.DoctorInfo.SubSpeciality" | translate
           }}</span>
         <span class="star"> * </span>
-        <select formControlName="SubSpeciality"
-                (change)="SelectSubSpeciality($event)"
-                class="form-select"
-                aria-label="Default select example">
-          <option value="" selected disabled>
-            {{ "mainModule.DoctorInfo.SubSpeciality" | translate }}
-          </option>
-          <option *ngFor="let item of DropDownList_SubSpeciality" value={{item.Id}}>
-            {{item.Name}}
-            </option>
-        </select>
+        <ng-multiselect-dropdown 
+        formControlName="SubSpeciality"
+        [settings]="dropdownSettings"
+        [data]="DropDownList_SubSpeciality"  
+          >
+      </ng-multiselect-dropdown>
       </div>
 
       <!-- Seniority -->
@@ -221,7 +216,7 @@
         <div class="form-floating">
           <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register">{{ "mainModule.DoctorInfo.Biography"
             | translate }}
-            <span class="star"> * </span></label>
+            </label>
           <textarea formControlName='Biography' class="form-control" placeholder="{{'mainModule.DoctorInfo.Leave a comment here'|translate}}" id="floatingTextarea2"
             style="height: 120px"></textarea>
         </div>
@@ -230,24 +225,24 @@
       <!-- BiographyAr -->
       <div class="col-12 col-md-6">
         <div class="form-floating textForArabic">
-          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register"><span class="star"> * </span>
+          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register">
             {{"mainModule.DoctorInfo.BiographyAr" | translate }}</label>
           <textarea formControlName='BiographyAr' class="form-control textForArabic" placeholder="{{'mainModule.DoctorInfo.Leave a comment here'|translate}} " id="floatingTextarea2"
             style="height: 120px"></textarea>
         </div>
       </div>
     </div>
+    <div class="row justify-content-md-end justify-content-center mt-4  "  >
+      <div class="col-md-2 col-4">
+        <button [disabled]="DoctorInfoForm?.invalid"  class="btn text-white w-100" style="background-color: #262d70" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm?.valid">
+            {{"mainModule.DoctorInfo.Update" | translate }}
+        </button>
+      </div>
+      <div class="col-md-2 col-4">
+        <button  class="btn text-white w-100" style="background-color: #262d70" (click)="back()" >
+            {{"mainModule.DoctorInfo.back" | translate }}
+        </button>
+      </div>
+    </div>
   </form>
 
-  <div class="row justify-content-md-end justify-content-center mt-4  ">
-    <div class="col-md-2 col-4">
-      <button  class="btn text-white w-100" style="background-color: #262d70" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm?.valid">
-          {{"mainModule.DoctorInfo.Update" | translate }}
-      </button>
-    </div>
-    <div class="col-md-2 col-4">
-      <button  class="btn text-white w-100" style="background-color: #262d70" (click)="back()" >
-          {{"mainModule.DoctorInfo.back" | translate }}
-      </button>
-    </div>
-  </div>

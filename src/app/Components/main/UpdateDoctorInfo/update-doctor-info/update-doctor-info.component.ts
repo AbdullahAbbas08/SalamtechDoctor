@@ -10,6 +10,7 @@ import { IdNameList } from "src/Models/id-name-list";
 import { UpdateProfile } from "src/Models/update-profile";
 import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { SignupService } from "src/Service/signup/signup.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-update-doctor-info",
@@ -32,6 +33,16 @@ export class UpdateDoctorInfoComponent implements OnInit {
   date:string;
   Seniority:string;
   //#endregion
+  selectedItems= [];
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'Id',
+    textField: 'Name',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 7,
+    allowSearchFilter: true
+  };
 
   //#region Constructor
   constructor(
@@ -67,7 +78,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.getDoctorProfile();
 
 
-    
+ 
     //#endregion
   }
 
@@ -80,20 +91,20 @@ export class UpdateDoctorInfoComponent implements OnInit {
      
       Speciality: [this.DoctorProfile.SpecialistId, [Validators.nullValidator]],
       SubSpeciality: [
-        this.DoctorProfile.DoctorSubSpecialist,
+        this.DoctorProfile.DoctorSubSpecialist ,
         [Validators.required],
       ],
-      BiographyAr: [this.DoctorProfile.DoctorInfo, [Validators.required]],
-      Biography: [this.DoctorProfile.DoctorInfoAr, [Validators.required]],
+      BiographyAr: [this.DoctorProfile.DoctorInfo,  ],
+      Biography: [this.DoctorProfile.DoctorInfoAr, ],
     });
 
 
     this.url_img += this.DoctorProfile.Image;
 
     if (this.DoctorProfile.GenderId == 1) {
-      this.DoctorInfoForm.controls.Gender.setValue("Male");
+      this.DoctorInfoForm.controls.Gender?.setValue("Male");
     } else {
-      this.DoctorInfoForm.controls.Gender.setValue("Female");
+      this.DoctorInfoForm.controls.Gender?.setValue("Female");
     }
 
     this.Seniority =  this.DropDownList_SeniorityLevel.find(
@@ -110,8 +121,6 @@ export class UpdateDoctorInfoComponent implements OnInit {
   GetSubSpecialistIdName(lang: string, specialListId: number) {
     this.DoctorService.GetSubSpecialistIdName(lang, specialListId).subscribe(
       (response) => {
-        // console.log(response);
-
         this.DropDownList_SubSpeciality = response.Data;
       },
       (err) => {
@@ -202,14 +211,23 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   //#region Doctor Info Submit Method
   DoctorInfoSubmit() {
-
-   
+    let arr=[]
+    this.DoctorInfoForm.get('SubSpeciality').value.map(item=>{
+     if(item.Id){
+      arr.push(item.Id)
+     }
+     else{
+       arr.push(item)
+     }
+    })
+    
     let obj = {
       "DoctorInfo":this.DoctorInfoForm.controls.Biography.value,
       "DoctorInfoAr":this.DoctorInfoForm.controls.BiographyAr.value,
-      "DoctorSubSpecialist": this.DoctorSubSpecial
+      "DoctorSubSpecialist": arr
     } as UpdateProfile;
    
+ 
 
     document.getElementById("Certificates")?.classList.add("OnClick-Style");
 
@@ -228,6 +246,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
   SelectSubSpeciality(event: any) {
     this.DoctorInfoForm.controls.SubSpeciality = event.target.value;
     this.DoctorSubSpecial.push(Number(event.target.value));
+    console.log(this.DoctorSubSpecial);
+    
   }
   //#endregion
 
@@ -259,6 +279,17 @@ export class UpdateDoctorInfoComponent implements OnInit {
   preview(files: any) {
     if (files.length === 0) return;
 
+    if (files[0].size > 3000000)
+    {
+      Swal.fire(
+        'Error!',
+        'image size is larger than 3mb',
+        'error'
+      )
+    this.message = "image size is larger than 3mb.";
+    return;
+  }
+  
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -279,9 +310,9 @@ export class UpdateDoctorInfoComponent implements OnInit {
   getDoctorProfile() {
     this.DoctorService.GetDoctorProfile().subscribe(
       (response) => {
-        console.log("doctor profile : ", response);
         this.DoctorProfile = response.Data;
-        this.GetSubSpecialistIdName('en',response.Data.DoctorSubSpecialist[0])
+        
+        this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
         this.date =  response.Data.Birthday.substring(0, 10)
        
         this.initForm();

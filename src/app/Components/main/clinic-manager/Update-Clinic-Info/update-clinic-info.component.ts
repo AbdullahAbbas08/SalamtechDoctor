@@ -15,6 +15,7 @@ import { UpdateClinic } from "src/Models/update-clinic";
 import { ClinicInfoService } from "src/Service/ClinicInfo/clinic-info.service";
 import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { LookupsService } from "src/Service/Lockups/lookups.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-update-clinic-info",
@@ -23,7 +24,7 @@ import { LookupsService } from "src/Service/Lockups/lookups.service";
 })
 export class UpdateClinicInfoComponent implements OnInit {
   FormInfo: FormGroup;
-
+  allAreas
   formData = new FormData();
   coordinates;
   ClinicToUpdate: any;
@@ -57,14 +58,14 @@ export class UpdateClinicInfoComponent implements OnInit {
   getClinicInfo(id){
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
-      this.clinicInfo.Logo? this.imgURL = this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
-      console.log(res.Data);
+      this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
+      // console.log(res.Data);
       this.initForm()
       this.getCity()
        this.getCountry()
-
+       this.getAreas(this.clinicInfo?.CityId)
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
-      console.log(this.phones);
+      // console.log(this.phones);
       
       for (let num of this.phones) {
         this.addPhone(num)
@@ -73,13 +74,14 @@ export class UpdateClinicInfoComponent implements OnInit {
   }
 
   initForm(){
+
     this.FormInfo=this.builder.group({
       ClinicId :[this.clinicId , Validators.required],
       HealthEntityPhoneDtos: new FormArray([]),
       Name :[this.clinicInfo?.Name||'' , Validators.required],
       NameAr:[this.clinicInfo?.NameAr||'' , Validators.required],
       Email:[this.clinicInfo?.Email||'' , Validators.required],
-      CountryId :[parseInt(this.clinicInfo?.CountryId) ||'' , Validators.required],
+      CountryId :[this.clinicInfo?.CountryId ||'' , Validators.required],
       CityId :[parseInt(this.clinicInfo?.CityId) ||'' , Validators.required],
       AreaId :[parseInt(this.clinicInfo?.AreaId) ||'' , Validators.required],
       Address :[this.clinicInfo?.Address ||'' , Validators.required],
@@ -125,7 +127,7 @@ getCity(){
       // console.log(this.Cities);
   })
 }
-
+ 
 getAreas(id){
   this.lookupService.GetAreaByCityId(id).subscribe(
     (response)=>{
@@ -173,6 +175,16 @@ getAreas(id){
   preview(files: any) {
     if (files.length === 0) return;
 
+    if (files[0].size > 3000000)
+    {
+      Swal.fire(
+        'Error!',
+        'image size is larger than 3mb',
+        'error'
+      )
+    this.message = "image size is larger than 3mb.";
+    return;
+  }
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -211,10 +223,10 @@ getAreas(id){
    this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
    this.FormInfo.get('AreaId').setValue(parseInt(this.FormInfo.get('AreaId').value))
    
-    console.log(this.FormInfo.value);
-    if(this.FormInfo.valid){
+    // console.log(this.FormInfo.value);
+ 
 
-      //#region Create Form Data
+  //     //#region Create Form Data
       let formData = new FormData();   
       formData.set("ClinicId",this.FormInfo.get('ClinicId').value as unknown as Blob)
       formData.set("CityId",  this.FormInfo.get('CityId').value as unknown as Blob)
@@ -231,17 +243,16 @@ getAreas(id){
       formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
       formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos').value as unknown as Blob)
-      //#endregion
-     console.log(formData.get('clinicLogo'));
+  //     //#endregion
      
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
-        console.log(res);
+        // console.log(res);
         this.Router.navigate(['clinic/gallary/',this.clinicId]);
        },
        (err)=>{
-         console.log(err)
+        //  console.log(err)
        })
-    }
+    
 
   }
 

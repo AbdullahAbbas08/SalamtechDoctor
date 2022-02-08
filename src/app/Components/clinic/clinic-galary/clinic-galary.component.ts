@@ -4,6 +4,7 @@ import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
 import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clinic-galary',
@@ -91,6 +92,17 @@ export class ClinicGalaryComponent implements OnInit {
     if (files.length === 0)
       return;
 
+      if (files[0].size > 3000000)
+      {
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+      this.message = "image size is larger than 3mb.";
+      return;
+    }
+
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
@@ -116,7 +128,7 @@ export class ClinicGalaryComponent implements OnInit {
 
   Next() {
     // this.router.navigateByUrl("clinic/Schedule")
-    console.log(" this.ClinicId : ", this.ClinicId);
+    // console.log(" this.ClinicId : ", this.ClinicId);
     this.router.navigate(['clinic/schedule/',this.ClinicId]);
 
   }

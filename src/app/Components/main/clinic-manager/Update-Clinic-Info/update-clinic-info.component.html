@@ -14,7 +14,7 @@
         <div class="col-lg-4 col-md-12 col-sm-12 mb-4">
           <div class="row img-block just">
             <div class="col img-col-block">
-              <img [src]="imgURL" />
+              <img src="{{imgURL}}" />
             </div>
           </div>
 
@@ -117,9 +117,6 @@
                 style="margin-bottom: 20px"
                 formControlName="CountryId"
               >
-                <option [value]="this.clinicInfo?.CountryId" selected>
-                  {{ countries?.Name }}
-                </option>
                 <option *ngFor="let item of countries" value="{{ item.Id }}">
                   {{ item.Name }}
                 </option>
@@ -138,9 +135,6 @@
                 formControlName="CityId"
                 (change)="getAreas(cityid.value)"
               >
-                <option [value]="this.clinicInfo?.CityId" selected>
-                  {{ Cities?.Name }}
-                </option>
                 <option *ngFor="let item of Cities" value="{{ item.Id }}">
                   {{ item.Name }}
                 </option>
@@ -259,9 +253,6 @@
             formControlName="AreaId"
             type="number"
           >
-            <option [value]="this.clinicInfo?.AreaId" selected>
-              {{ Areas?.Name }}
-            </option>
             <option *ngFor="let item of Areas" value="{{ item.Id }}">
               {{ item.Name }}
             </option>

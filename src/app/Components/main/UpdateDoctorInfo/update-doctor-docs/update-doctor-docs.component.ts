@@ -83,18 +83,42 @@ constructor(
           //#region delete Document Method
           DeleteDocument(lang:string , id)
           {
-            console.log(id);
-            
-            this.DocumentService.DeleteDocuments(lang , id).subscribe(
-              (response)=>{
-               console.log(response);
-               this.GetDocuments('en')
+
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            })
+            .then((result) => {
+      
+              if (result.isConfirmed) {
+                this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
+                  this.GetDocuments('en')
+                  Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
               },
-              (err)=>{ 
-                console.log(err);
-                
+              (err)=>{
+                console.log(err)
+                Swal.fire("An error occur");
+              })
+               
+              } else {
+                Swal.fire(
+                  'Cancelled',
+                  'Your imaginary file is safe :)',
+                  'error'
+                );
               }
-            )
+            }); 
+          
+           
           }
           //#endregion
 
@@ -121,11 +145,18 @@ constructor(
   //#region review AND File FormData image from input file
     public message: string;
 
-    preview(files:any  , id) {
-      console.log(id);
-      console.log(files);
+    preview(files:any  , id) { 
       
-      
+      if (files[0].size > 3000000)
+      {
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+      this.message = "image size is larger than 3mb.";
+      return;
+    }
       const formData = new FormData();
       if (files.length === 0)
         return ;
@@ -140,8 +171,7 @@ constructor(
      
       formData.append('LegalDocumentTypeId', id );
       formData.append('document',files[0] );
-      console.log(formData)
-      this.CreateDoctorDocuments('en',formData)
+       this.CreateDoctorDocuments('en',formData)
       this.GetDocuments('en')
 
     }
