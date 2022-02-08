@@ -49,7 +49,7 @@
         [attr.data-bs-target]="'#nextbtn'"
       >
         <span dir="auto">
-          <button class="btn-next" (click)="next()">
+          <button class="btn-next" (click)="next()" [disabled]="Documents?.length<1">
             {{ "mainModule.Documents.Next" | translate }}
           </button>
         </span>

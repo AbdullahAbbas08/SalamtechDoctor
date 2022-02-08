@@ -136,19 +136,24 @@ export class CertificatesComponent implements OnInit {
     DeleteCertificate(id:number){
 
       Swal.fire({
-        title:'Are You Sure You want to delete',
-        icon:'warning', 
-        showCancelButton:true,
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
       })
-      .then((isConfirmed) => {
+      .then((result) => {
 
-        if (isConfirmed) {
+        if (result.isConfirmed) {
            this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
             this.getCertificate()
-            Swal.fire({
-              title:"Your file has been deleted!", 
-              icon: "success",
-            });
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
         },
         (err)=>{
           console.log(err)
@@ -156,7 +161,11 @@ export class CertificatesComponent implements OnInit {
         })
          
         } else {
-          Swal.fire("Your imaginary file is safe!");
+          Swal.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          );
         }
       }); 
 
