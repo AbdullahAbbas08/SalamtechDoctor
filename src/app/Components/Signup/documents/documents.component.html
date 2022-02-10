@@ -1,6 +1,6 @@
 
 
-<form dir="auto" >
+<form   >
   <div class="row">
     <div class="col-md-6" *ngFor="let legalDoc of LegalDocumentList , let i=index">
       <div class=" document-title">{{ legalDoc.Name }}</div>
@@ -28,7 +28,7 @@
             src="https://salamtech.azurewebsites.net/{{ doc.DocumentUrl }}"
           />
           <div class="btn" (click)="DeleteDocument('en', doc.Id)">
-            <span dir="auto" class="eye text-danger">
+            <span   class="eye text-danger">
               <i class="far fa-trash-alt mx-1"></i>
             </span>
           </div>
@@ -48,7 +48,7 @@
         data-bs-toggle="modal"
         [attr.data-bs-target]="'#nextbtn'"
       >
-        <span dir="auto">
+        <span  >
           <button class="btn-next" (click)="next()" [disabled]="Documents?.length<1">
             {{ "mainModule.Documents.Next" | translate }}
           </button>

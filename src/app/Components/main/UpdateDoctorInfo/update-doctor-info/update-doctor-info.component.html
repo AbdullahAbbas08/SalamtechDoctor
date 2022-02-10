@@ -1,4 +1,4 @@
-<form class="d-block" dir="auto" [formGroup]="DoctorInfoForm" *ngIf="DoctorInfoForm">
+<form class="d-block"  [formGroup]="DoctorInfoForm" *ngIf="DoctorInfoForm">
     <div class="row">
       <!-- Picture Doctor -->
       <div class="col-lg-4 col-md-12  col-sm-12 mb-4">
@@ -123,12 +123,13 @@
           "mainModule.DoctorInfo.Gender" | translate
           }}</span>
         <span class="star"> * </span>
-        <div class="input-style">
-            <label class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock">
-               Male
-            </label>
-            <ng-template #elseblock>
-                Female
+        <div class="input-style"> 
+            <input placeholder="Male" type="text" class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock">
+            <ng-template  #elseblock>
+
+            <input placeholder="Female" type="text" class="form-control" >
+               
+              
             </ng-template>
           </div>
       </div>
@@ -139,10 +140,9 @@
           {{ "mainModule.DoctorInfo.Nationality" | translate }}
         </span>
         <span class="star"> * </span>
-        <div class="input-style">
-            <label class="form-control">
-               Egypt
-            </label>
+        <div class="input-style"> 
+               <input placeholder="Egypt" type="text" class="form-control"  >
+
           </div>
       </div>
 
@@ -168,17 +168,10 @@
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Speciality" | translate
           }}</span>
-        <span class="star"> * </span>
-        <select formControlName="Speciality"
-                (change)="SelectSpeciality($event)"
-                class="form-select" aria-label="Default select example">
-          <option value="" selected disabled >
-            {{ "mainModule.DoctorInfo.Speciality" | translate }}
-          </option>
-          <option *ngFor="let item of DropDownList_Speciality" value={{item.Id}}>
-            {{item.Name}}
-            </option>
-        </select>
+        <span class="star"> * </span> 
+          
+          <input type="text " class="form-control"  [placeholder]="specialist" disabled>
+          
       </div>
 
       <!-- SubSpeciality -->
@@ -187,13 +180,18 @@
           "mainModule.DoctorInfo.SubSpeciality" | translate
           }}</span>
         <span class="star"> * </span>
-        <ng-multiselect-dropdown 
-        formControlName="SubSpeciality"
-        [settings]="dropdownSettings"
-        [data]="DropDownList_SubSpeciality"  
-          >
-      </ng-multiselect-dropdown>
-      </div>
+       <div>
+        <mat-form-field appearance="fill" >
+          <mat-select formControlName="SubSpeciality" multiple class="form-select w-100">
+           <mat-option *ngFor="let item of DropDownList_SubSpeciality" [value]="item?.Id">
+             {{item?.Name}}
+           </mat-option>
+         </mat-select>
+       </mat-form-field>
+       </div>
+      </div>  
+     
+     
 
       <!-- Seniority -->
       <div class="col-12 col-md-4 ">
@@ -202,10 +200,8 @@
           }}</span>
         <span class="star"> * </span>
         <div class="input-style">
-            <label class="form-control">
-                <!-- {{Seniority}} -->
-                specialist
-             </label>
+           
+             <input type="text" class="form-control"  [placeholder]="Seniority" disabled>
         </div>
       </div>
     </div>

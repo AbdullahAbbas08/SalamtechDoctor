@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { ToastrService } from "ngx-toastr";
 import { environment } from "src/environments/environment";
 import { DoctorInfoModel } from "src/Models/doctor-info-model";
@@ -10,8 +11,7 @@ import { IdNameList } from "src/Models/id-name-list";
 import { UpdateProfile } from "src/Models/update-profile";
 import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { SignupService } from "src/Service/signup/signup.service";
-import Swal from "sweetalert2";
-
+import Swal from "sweetalert2"; 
 @Component({
   selector: "app-update-doctor-info",
   templateUrl: "./update-doctor-info.component.html",
@@ -32,6 +32,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
   DoctorSubSpecial:any[];
   date:string;
   Seniority:string;
+  specialist:string;
   //#endregion
   selectedItems= [];
   dropdownSettings = {
@@ -41,7 +42,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     itemsShowLimit: 7,
-    allowSearchFilter: true
+    allowSearchFilter: true,
+    noDataAvailablePlaceholderText: 'hello'
   };
 
   //#region Constructor
@@ -111,7 +113,14 @@ export class UpdateDoctorInfoComponent implements OnInit {
       (x) => x.Id == this.DoctorProfile.SeniorityLevelId
     ).Name
 
+    this.specialist=  this.DropDownList_Speciality.find(
+      (x) => x.Id == this.DoctorProfile.SpecialistId
+    ).Name
 
+    // this.GetSubSpecialistIdName("en", this.DoctorProfile.SpecialistId);
+    console.log( this.DropDownList_SubSpeciality);
+    console.log(this.DoctorInfoForm.value);
+    
 
   }
 
@@ -122,6 +131,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.GetSubSpecialistIdName(lang, specialListId).subscribe(
       (response) => {
         this.DropDownList_SubSpeciality = response.Data;
+        console.log( this.DropDownList_SubSpeciality);
+        this.initForm();
       },
       (err) => {
         // console.log(err);
@@ -134,6 +145,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
   CreateProfile(lang: string, _DoctorInfoModel: FormData) {
     this.DoctorService.CreateProfile(lang, _DoctorInfoModel).subscribe(
       (response) => {
+        // console.log(response);
+        
         this.router.navigateByUrl("/doctor-profile/certificates");
       },
       (err) => {
@@ -148,7 +161,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.UpdateProfile(obj).subscribe(
       (response) => {
         // this.router.navigateByUrl("/doctor-profile/certificates");
-        // console.log(response)
+        console.log(response)
         this.toaster.success("Doctor Info Updated Successfully","Successfully");
         this.router.navigate(['update-doctor-profile/certificates'])
       },
@@ -236,10 +249,10 @@ export class UpdateDoctorInfoComponent implements OnInit {
   //#endregion
 
   //#region SelectSpeciality Method event change
-  SelectSpeciality(event: any) {
-    this.DoctorInfoForm.controls.Speciality = event.target.value;
-    this.GetSubSpecialistIdName("en", event.target.value);
-  }
+  // SelectSpeciality(event: any) {
+  //   this.DoctorInfoForm.controls.Speciality = event.target.value;
+    
+  // }
   //#endregion
 
   //#region SubSpeciality Method event change
@@ -314,8 +327,9 @@ export class UpdateDoctorInfoComponent implements OnInit {
         
         this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
         this.date =  response.Data.Birthday.substring(0, 10)
+       console.log( this.DropDownList_SubSpeciality);
        
-        this.initForm();
+        
       },
       (err) => {
         console.log(err);

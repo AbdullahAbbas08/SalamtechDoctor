@@ -62,6 +62,11 @@ import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Prof
 import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 import { FielderrorModule } from './Shared/fielderror/fielderror.module';
 import { TermsComponent } from './Components/SignIn/terms/terms.component';
+// Angular Material Controls
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+ 
 
 
 // AoT requires an exported function for factories
@@ -139,14 +144,18 @@ export function CreateTranslateLoader(http: HttpClient) {
           deps: [HttpClient]
       },
       defaultLanguage:'en'}),
-      BrowserAnimationsModule,
+      BrowserAnimationsModule, 
       ToastrModule.forRoot(), // ToastrModule added
        NgxPaginationModule,
        SweetAlert2Module.forRoot(),
-       FielderrorModule
+       FielderrorModule,
+       MatFormFieldModule,
+       MatInputModule,
+       MatSelectModule,
     ],
-    //
+    
   providers: [InterceptorsProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

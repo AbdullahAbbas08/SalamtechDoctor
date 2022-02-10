@@ -1,5 +1,5 @@
 <div class="row main-Shared-place">
-  <form dir="auto" [formGroup]="signupform" >
+  <form   [formGroup]="signupform" >
     <div class="col-12">
       <div class="row" >
 
@@ -72,7 +72,7 @@
             "mainModule.signup.Email" | translate
             }}</span>
           <span class="star"> * </span>
-          <div dir="auto" class="input-style">
+          <div   class="input-style">
             <input type="email" formControlName="Email" class="form-control" [class.is-valid]="
             signupform.controls['Email'].valid &&
             signupform.controls['Email'].touched
@@ -90,7 +90,7 @@
             "mainModule.signup.PhoneNumber" | translate
             }}</span>
           <span class="star"> * </span>
-          <div dir="auto" class="input-style-phone">
+          <div   class="input-style-phone">
             <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
                           <span>+2</span> -->
 
@@ -128,7 +128,7 @@
                       placeholder="***********" 
                       name="Password1"
                       required  />
-              <span dir="auto" class="eye" (click)="passwordIcon('Password1')">
+              <span   class="eye" (click)="passwordIcon('Password1')">
 
                 <i class="far fa-eye text-end" id="togglePassword"></i>
 
@@ -160,7 +160,7 @@
                       name="Password2"
                       required />
 
-               <span dir="auto" class="eye" (click)="passwordIcon('Password2')">
+               <span   class="eye" (click)="passwordIcon('Password2')">
                 <i class="far fa-eye text-end" id="togglePassword"></i>
                </span>
 
