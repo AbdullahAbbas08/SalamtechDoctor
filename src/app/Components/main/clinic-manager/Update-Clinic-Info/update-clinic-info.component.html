@@ -57,6 +57,10 @@
                   maxlength="10"
                   minlength="3"
                 />
+                <app-fielderror 
+                [displayError]="isFieldValid('Name')"
+                errorMsg="{{'errorField.firstname' | translate}}"
+              ></app-fielderror>
               </div>
             </div>
 
@@ -73,6 +77,10 @@
                   maxlength="10"
                   minlength="3"
                 />
+                <app-fielderror 
+                [displayError]="isFieldValid('NameAr')"
+                errorMsg="{{'errorField.firstname' | translate}}"
+              ></app-fielderror>
               </div>
             </div>
 
@@ -201,9 +209,10 @@
         <!-- Phone Number -->
         <span class="lbl-Register">{{ "mainModule.ClinicInfo.PhoneNumber" | translate}}</span>
         <span class="star"> * </span>
-        <div  class="col-12 col-md-4 mb-4 row align-items-center"
-              *ngFor="let phone of phones_control; let i = index">
-
+        <div
+          class="col-12 col-md-4 mb-4 row align-items-center"
+          *ngFor="let phone of phones_control; let i = index"
+        >
               <div class="col-10 ">
                 <div dir="auto" class="input-style  ">
                   <input

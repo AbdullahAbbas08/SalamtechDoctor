@@ -59,7 +59,7 @@ export class UpdateClinicInfoComponent implements OnInit {
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
       this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
-      // console.log(res.Data);
+      // console.log(this.clinicInfo);
       this.initForm()
       this.getCity()
        this.getCountry()
@@ -94,6 +94,12 @@ export class UpdateClinicInfoComponent implements OnInit {
     })
   }
 
+  
+  isFieldValid(field): boolean {
+    return (
+      !this.FormInfo.get(field)?.valid && this.FormInfo.get(field)?.touched
+    )
+  }
 
   public get phones_control() {
 
@@ -216,6 +222,8 @@ getAreas(id){
         this.deleteFromGroup(index)
       }
     })
+    // console.log(arr);
+    
 
    this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
    this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
@@ -244,9 +252,10 @@ getAreas(id){
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
       formData.set("HealthEntityPhoneDtos", JSON.stringify(this.FormInfo.get('HealthEntityPhoneDtos').value))
       //#endregion
-     
+   
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         // console.log(res);
+        this.getClinicInfo( this.clinicId)
         this.Router.navigate(['clinic/gallary/',this.clinicId]);
        },
        (err)=>{
