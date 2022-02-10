@@ -128,16 +128,15 @@ position: relative;
     position: absolute;
     display: block;
     left: 40px;
-    top: 10px;
-    font-size: 15px;
+    top: 12px;
+    font-size: 18px;
     line-height: 17px;
-    font-weight: 500;
   }
 
   .eye {
     position: absolute;
     display: block;
-    top: 12px;
+    top: 13px;
     font-size: 15px;
     line-height: 17px;
     font-weight: 500;

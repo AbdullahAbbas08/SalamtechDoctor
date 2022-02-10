@@ -313,16 +313,15 @@
           <input
             formControlName="PhoneNumber"
             type="text"
-            style="
-              border-width: 1px;
-              outline: none;
-              display: block;
-              padding-left: 70px;
-            "
+            style=" border-width: 1px;
+                    outline: none;
+                    display: block;
+                    padding-left: 63px;"
             class="form-control" 
             maxlength="11" 
 
             [class.icon]="1"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
           />
           <app-fielderror 
         [displayError]="isFieldValid('PhoneNumber')"
@@ -353,16 +352,14 @@
             " -->
           <input
             formControlName="PhoneNumber2"
-            type="number"
-            style="
-              border-width: 1px;
-              outline: none;
-              display: block;
-              padding-left: 70px;
-            "
-            class="form-control"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="11" 
+            type="text"
+            style=" border-width: 1px;
+                    outline: none;
+                    display: block;
+                    padding-left: 63px;"
+            class="form-control "
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"           
+             maxlength="11" 
             [class.icon]="1"
           />
           <span class="unit">+2</span>
@@ -376,31 +373,17 @@
         </span>
         <!-- <span class="star"> * </span> -->
         <div dir="auto" class="input-style">
-          <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
-                          <span>+2</span> -->
-
-          <!--
-            [class.is-valid]="
-              ClinicInfoForm.controls['PhoneNumber3'].valid &&
-              ClinicInfoForm.controls['PhoneNumber3'].touched
-            "
-            [class.is-invalid]="
-              ClinicInfoForm.controls['PhoneNumber3'].invalid &&
-              ClinicInfoForm.controls['PhoneNumber3'].touched
-            "
-            -->
+         
           <input
             formControlName="PhoneNumber3"
-            type="number"
-            style="
-              border-width: 1px;
-              outline: none;
-              display: block;
-              padding-left: 70px;
-            "
+            type="text"
+            style=" border-width: 1px;
+                    outline: none;
+                    display: block;
+                    padding-left: 63px; "
             class="form-control"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="11" 
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"           
+             maxlength="11" 
             [class.icon]="1"
           />
           <span class="unit">+2</span>
