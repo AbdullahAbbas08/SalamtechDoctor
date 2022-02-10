@@ -138,7 +138,8 @@ getAreas(id){
   this.lookupService.GetAreaByCityId(id).subscribe(
     (response)=>{
       this.Areas =  response.Data;
-      // console.log(this.Areas);
+      console.log(this.Areas);
+      console.log("id : ",id);
   })
 }
 
@@ -250,8 +251,12 @@ getAreas(id){
       formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
       formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
-      formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
-
+      // formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
+      for (const index in arr) 
+      {
+          // instead of passing this.arrayValues.toString() iterate for each item and append it to form.
+          formData.append(`HealthEntityPhoneDtos[${index}]`,arr[index].toString());
+      }
       //#endregion
    
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{

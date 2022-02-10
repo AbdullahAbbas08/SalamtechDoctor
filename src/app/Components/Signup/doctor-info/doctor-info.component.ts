@@ -90,8 +90,9 @@ export class DoctorInfoComponent implements OnInit {
             // ConfirmPassword:['',[Validators.required ]],
             Gender:['',[Validators.required ]],
             // Nationality:['',[Validators.required ]],
+            // ,Validators.pattern(/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[0-9]{1}\d{1})|([2]{1}[0]{1}[0]{1}[0-4]{1}))$/)]
             Country:['',[Validators.required ]],
-            DateOfBirth:['',[Validators.required ,Validators.pattern(/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[0-9]{1}\d{1})|([2]{1}[0]{1}[0]{1}[0-4]{1}))$/)]],
+            DateOfBirth:['',[Validators.required ]],
             Speciality:['',[Validators.required]],
             SubSpeciality:[[],[Validators.required]],
             Seniority:['',[Validators.required]],

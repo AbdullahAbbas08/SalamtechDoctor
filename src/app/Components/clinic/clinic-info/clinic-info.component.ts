@@ -258,10 +258,10 @@ export class ClinicInfoComponent implements OnInit {
 
     // formData.append('HealthEntityPhoneDtos',[+this.ClinicInfoForm.controls.PhoneNumber.value,+this.ClinicInfoForm.controls.PhoneNumber2.value,+this.ClinicInfoForm.controls.PhoneNumber3.value] as unknown as Blob)
     for (const index in this.ListOfMobileNumber) 
-{
-    // instead of passing this.arrayValues.toString() iterate for each item and append it to form.
-    formData.append(`HealthEntityPhoneDtos[${index}]`,this.ListOfMobileNumber[index].toString());
-}
+        {
+            // instead of passing this.arrayValues.toString() iterate for each item and append it to form.
+            formData.append(`HealthEntityPhoneDtos[${index}]`,this.ListOfMobileNumber[index].toString());
+        }
 
     // formData.append('HealthEntityPhoneDtos', JSON.stringify(this.ListOfMobileNumber))
     formData.append('Name', this.ClinicInfoForm.controls.Name.value)
