@@ -242,8 +242,8 @@ getAreas(id){
       formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
       formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
-      formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos').value as unknown as Blob)
-  //     //#endregion
+      formData.set("HealthEntityPhoneDtos", JSON.stringify(this.FormInfo.get('HealthEntityPhoneDtos').value))
+      //#endregion
      
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         // console.log(res);

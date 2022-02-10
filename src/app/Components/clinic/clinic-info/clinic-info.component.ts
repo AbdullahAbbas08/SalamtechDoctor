@@ -259,7 +259,6 @@ export class ClinicInfoComponent implements OnInit {
     // formData.append('HealthEntityPhoneDtos',[+this.ClinicInfoForm.controls.PhoneNumber.value,+this.ClinicInfoForm.controls.PhoneNumber2.value,+this.ClinicInfoForm.controls.PhoneNumber3.value] as unknown as Blob)
     
     formData.append('HealthEntityPhoneDtos', JSON.stringify(this.ListOfMobileNumber))
-    var s = formData.get('HealthEntityPhoneDtos')
     formData.append('Name', this.ClinicInfoForm.controls.Name.value)
     formData.append('NameAr', this.ClinicInfoForm.controls.NameAr.value)
     formData.append('Email', this.ClinicInfoForm.controls.Email.value)
