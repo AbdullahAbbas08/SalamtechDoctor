@@ -536,16 +536,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>
@@ -734,16 +729,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>
@@ -932,15 +922,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>
@@ -1127,15 +1113,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>
@@ -1324,15 +1306,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>
@@ -1524,15 +1502,11 @@
                                                           <select (change)="SelectDuration($event)"
                                                                   class="form-select" aria-label="Default select example">
 
-                                                                <option value="">
-                                                                  {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                </option>
-
-                                                                <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                  <span *ngIf="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration !=item?.Duration">
-                                                                    {{item.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
-                                                                  </span>
-                                                                </option>
+                                                                  <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                    {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                    
+                                                                  </option>
 
                                                           </select>
                                                         </div>

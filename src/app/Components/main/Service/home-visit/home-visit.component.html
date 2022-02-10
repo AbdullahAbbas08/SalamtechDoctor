@@ -38,7 +38,7 @@
                       <div class="col-6 col-md-6 d-flex justify-content-end padding-right-50" >
 
                           <label class="switch">
-                              <input type="checkbox" [checked]="item.Active">
+                              <input type="checkbox" [checked]="true">
                               <span class="slider round"></span>
                           </label>
 
@@ -69,7 +69,7 @@
                                         <!-- <span (click)="DeletePeriod()" style="cursor: pointer;user-select: none;">
                                           <i class="far fa-trash-alt delete-view-btn"></i>&nbsp; Delete period
                                          </span> -->
-                                        <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;">
+                                        <label style="color: black;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;" (click)="PeriodForm.reset()">
                                            {{'mainModule.Services.Home_Visit.Reset' | translate}}
                                         </label>
                                         </div>
@@ -95,6 +95,10 @@
                                                             formControlName="DateFrom" 
                                                             class="form-control input-style-period" 
                                                             style="padding-right: 15px;">
+                                                            <app-fielderror 
+                                                              [displayError]="isFieldValid('DateFrom')"
+                                                              errorMsg="{{'errorField.DateFrom' | translate}}"
+                                                            ></app-fielderror>
 
                                                   </div>
 
@@ -107,6 +111,10 @@
                                                             formControlName="DateTo"  
                                                             class="form-control input-style-period" 
                                                             style="padding-right: 15px;" >
+                                                            <app-fielderror 
+                                                        [displayError]="isFieldValid('DateTo')"
+                                                        errorMsg="{{'errorField.DateTo' | translate}}"
+                                                      ></app-fielderror>
                                                   </div>
                                                 </div>
 
@@ -138,6 +146,10 @@
                                                           </option>
 
                                                       </select>
+                                                      <app-fielderror 
+                                                        [displayError]="isFieldValid('DurationExamination')"
+                                                        errorMsg="{{'errorField.DurationExamination' | translate}}"
+                                                      ></app-fielderror>
                                                     </div>
                                                   </div>
 
@@ -153,6 +165,10 @@
                                                               formControlName="Fees" 
                                                               class="form-control input-style-period" >
                                                       <label class="unit"> {{'mainModule.Services.Home_Visit.EGP' | translate}}</label>
+                                                      <app-fielderror 
+                                                        [displayError]="isFieldValid('Fees')"
+                                                        errorMsg="{{'errorField.Fees' | translate}}"
+                                                      ></app-fielderror>
                                                     </div>                                              
                                                   </div>
 
@@ -167,7 +183,7 @@
                                                     <div class="d-flex justify-content-end">
                                                         <button class="next-btn" 
                                                                 [disabled]="PeriodFormRef.invalid"
-                                                                (click)="SubmitPeriod(item.DayId , item.Active)" >
+                                                                (click)="SubmitPeriod(item.DayId , true)" >
 
                                                            {{'mainModule.Services.Home_Visit.Submit' | translate}}
                                                           
@@ -304,13 +320,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -487,13 +501,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -670,13 +682,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -855,13 +865,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -1038,13 +1046,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -1221,13 +1227,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
@@ -1406,13 +1410,11 @@
                                                         <select (change)="SelectDuration($event)"
                                                                 class="form-select" aria-label="Default select example">
     
-                                                              <option value="">
-                                                                {{DurationMedicalExaminationList[Period.DurationMedicalExaminationId].Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
-    
-                                                              <option *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
-                                                                {{item.Duration}}  {{'mainModule.Services.Home_Visit.Minutes' | translate}}
-                                                              </option>
+                                                                <option [selected]="DurationMedicalExaminationList[Period.DurationMedicalExaminationId]?.Duration ==item?.Duration" *ngFor="let item of DurationMedicalExamination" value={{item.Id}}>
+                                                                    
+                                                                  {{item?.Duration}} {{'mainModule.Schedule.Minutes' | translate}}
+                                                                  
+                                                                </option>
     
                                                         </select>
                                                       </div>
