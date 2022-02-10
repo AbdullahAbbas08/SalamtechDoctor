@@ -57,6 +57,10 @@
                   maxlength="10"
                   minlength="3"
                 />
+                <app-fielderror 
+                [displayError]="isFieldValid('Name')"
+                errorMsg="{{'errorField.firstname' | translate}}"
+              ></app-fielderror>
               </div>
             </div>
 
@@ -73,6 +77,10 @@
                   maxlength="10"
                   minlength="3"
                 />
+                <app-fielderror 
+                [displayError]="isFieldValid('NameAr')"
+                errorMsg="{{'errorField.firstname' | translate}}"
+              ></app-fielderror>
               </div>
             </div>
 
@@ -208,7 +216,8 @@
           <div class="col-10">
             <div dir="auto" class="input-style">
               <input
-                type="number"
+                type="string"
+                maxlength="11"
                 style="
                   border-width: 1px;
                   outline: none;
