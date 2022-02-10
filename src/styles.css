@@ -112,3 +112,8 @@ html {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.form-control:disabled, .form-control[readonly] {
+   background-color:  #ffffff !important;  
+  opacity: 1;
+}
