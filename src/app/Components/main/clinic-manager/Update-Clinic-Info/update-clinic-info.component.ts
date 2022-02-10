@@ -165,9 +165,8 @@ getAreas(id){
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {
-        this.ClinicToUpdate.Address = result.address;
-        console.log(this.ClinicToUpdate.Address );
-        
+        // this.ClinicToUpdate.Address = result.address;        
+        this.FormInfo.get("Address").setValue(result.address);        
       },
       (reason) => {}
     );

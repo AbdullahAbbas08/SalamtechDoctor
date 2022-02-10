@@ -87,7 +87,6 @@ export class CallComponent implements OnInit {
       this.GetDoctorCallAppointmentSchedualByDayId(index);
     }
 
-
     //#endregion
 
     //#region  Register Form Section
@@ -209,8 +208,7 @@ export class CallComponent implements OnInit {
        this.DoctorServiceService.GetDoctorCallAppointmentSchedualByDayId(DayId).subscribe(
          (response)=>{
            this.ClinicScheduleDayList[DayId] = response.Data;
-           // this.ClinicScheduleDayListOriginal[DayId] = response.Data;
-           // console.log(this.ClinicScheduleDayList[DayId])
+           console.log(this.ClinicScheduleDayList[DayId])
            // this.ClinicScheduleDayList[DayId].forEach(element => {
            //   console.log(element.SchedualId)
            // });

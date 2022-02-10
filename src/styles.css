@@ -110,6 +110,8 @@ html {
   padding:   0 !important;
    border-top: 0 !important; 
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .form-control:disabled, .form-control[readonly] {
    background-color:  #ffffff !important;  
