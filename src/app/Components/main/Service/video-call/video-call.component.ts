@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ClinicSchedule } from 'src/Models/clinic-schedule';
 import { ClinicScheduleDay } from 'src/Models/clinic-schedule-day';
 import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
@@ -40,7 +41,9 @@ export class VideoCallComponent implements OnInit {
   constructor( private DoctorServiceService:DoctorService ,
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
-               private route:ActivatedRoute ) { }
+               private route:ActivatedRoute,
+               private router:Router,
+               private toastr:ToastrService ) { }
   //#endregion
 
   //#region OnInit Method
@@ -56,10 +59,9 @@ export class VideoCallComponent implements OnInit {
       document.getElementById('VideoCall')?.classList.add('Active-Block');
       //#endregion
 
+
     this.DayList=[];
-
     this.DurationMedicalExamination=[];
-
     this.CreateClinicSchedule = {
         ClinicId                    :-1,
         DayId                       :-1,
@@ -67,9 +69,8 @@ export class VideoCallComponent implements OnInit {
         TimeTo                      :"",
         Fees                        :-1,
         DurationMedicalExaminationId:-1,
-        Inactive                    :false
+        Inactive                    :true
       }
-
       this.ClinicId = 41;
       
 
@@ -86,6 +87,7 @@ export class VideoCallComponent implements OnInit {
       this.GetDoctorVideoAppointmentSchedualByDayId(index);
     }
 
+
     //#endregion
 
     //#region  Register Form Section
@@ -100,6 +102,12 @@ export class VideoCallComponent implements OnInit {
 
   }
   //#endregion
+
+  isFieldValid(field): boolean {
+    return (
+      !this.PeriodForm.get(field).valid && this.PeriodForm.get(field).touched
+    )
+  }
 
   //#region Consume API's
 
@@ -225,7 +233,6 @@ export class VideoCallComponent implements OnInit {
                   this.ClinicScheduleDayList[DayId][Index].Fees = element.Fees; 
                   this.ClinicScheduleDayList[DayId][Index].Inactive = element.Inactive; 
                   this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId = element.DurationMedicalExaminationId; 
-                  // console.log( this.ClinicScheduleDayList[DayId][Index]);
                 }
             });
 
@@ -249,12 +256,15 @@ export class VideoCallComponent implements OnInit {
 
       //#region Create Clinic Schedule
       CreateDoctorVideoSchedual(NewPeriod:CreateClinicSchedule){
-        this.DoctorServiceService.CreateDoctorVideoSchedual(NewPeriod).subscribe(
-          (respose)=>{
-            // console.log(respose)
+       this.DoctorServiceService.CreateDoctorVideoSchedual(NewPeriod).subscribe(
+          (response)=>{
             this.GetDoctorVideoAppointmentSchedualByDayId(NewPeriod.DayId);
+            this. toastr.success("Message : ",response.Message);
+            window.location.reload();
           },
           (err)=>{
+            // console.log("err : ",err.error.Message)              
+            // this.toastr.error(err.error.Message, 'Errors...!');
             Swal.fire({
               title: 'Error !',
               text: err.error.Message,
@@ -266,7 +276,7 @@ export class VideoCallComponent implements OnInit {
               cancelButtonText:"OK",
               reverseButtons: true
             })
-          }
+          },
         )
       }
       //#endregion
@@ -275,7 +285,8 @@ export class VideoCallComponent implements OnInit {
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
-              // console.log(respose)
+              console.log(respose)
+              this.toastr.success('Updated Successfully' , 'Update Operation');
             },
             (err)=>{
               Swal.fire({
@@ -343,15 +354,25 @@ export class VideoCallComponent implements OnInit {
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
 
-    this.CreateClinicSchedule.ClinicId                      =  this.ClinicId;
-    this.CreateClinicSchedule.DayId                         = DayId;
-    this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
-    this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
-    this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
-    this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
-    this.CreateClinicSchedule.Inactive                      = Active;
+    if(this.PeriodForm.valid){
+      this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
+      this.CreateClinicSchedule.DayId                         = DayId;
+      this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
+      this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
+      this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
+      this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
+      this.CreateClinicSchedule.Inactive                      = Active;
+      // console.log(this.CreateClinicSchedule.ClinicId)
+      // console.log(this.CreateClinicSchedule.Fees    );
+  
+      this.CreateDoctorVideoSchedual(this.CreateClinicSchedule)
+      // this.reloadCurrentRoute();
+    }
+    else{
+      this.PeriodForm.markAllAsTouched()
+    }
     
-    this.CreateDoctorVideoSchedual(this.CreateClinicSchedule)
+  
 
   }
   //#endregion
@@ -364,24 +385,32 @@ export class VideoCallComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
      console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
- 
-     let NewPeriod = {
-      DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
-      TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
-      TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
-      Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
-      DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
-      Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
-      ClinicId                    : this.ClinicId
-     } as CreateClinicSchedule;
-
-    //  console.log("NewPeriod : ",NewPeriod);
-
-     if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
-        // Insert ClinicScheduleDay 
-        this.CreateDoctorVideoSchedual(NewPeriod);
+     if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
-     }
+      let NewPeriod = {
+        DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
+        TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
+        TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
+        Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
+        DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
+        Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
+        ClinicId                    : +this.ClinicId
+       } as CreateClinicSchedule;
+  
+      //  console.log(NewPeriod.ClinicId)
+  
+      //  console.log("NewPeriod : ",NewPeriod);
+  
+       if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
+          // Insert ClinicScheduleDay 
+          this.CreateDoctorVideoSchedual(NewPeriod);
+        
+       }
+    }
+    else{
+      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+    }
+ 
      
 
   }
@@ -396,9 +425,13 @@ export class VideoCallComponent implements OnInit {
 
     // console.log("update : ",this.ClinicScheduleDayList[DayId][Index])
 
-     // Update ClinicScheduleDay 
-     this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
-
+    if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
+      // Update ClinicScheduleDay 
+      this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
+    }
+    else{
+      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+    }
   }
   //#endregion
 
@@ -420,7 +453,7 @@ export class VideoCallComponent implements OnInit {
           TimeTo: '',
           Fees: 0,
           DurationMedicalExaminationId: 1,
-          Inactive:false
+          Inactive:true
         } as ClinicScheduleDay;
 
         // Push this.Empty period Into List
@@ -474,5 +507,12 @@ export class VideoCallComponent implements OnInit {
      
   }
   //#endregion
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
 }
