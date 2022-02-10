@@ -27,6 +27,10 @@
                   class="changePhoto-btn">
              {{"mainModule.ClinicInfo.ChangeLogo" | translate}}
           </button>
+          <app-fielderror 
+          [displayError]="isFieldValid('clinicLogo')"
+          errorMsg="{{'errorField.clinicLogo' | translate}}"
+        ></app-fielderror>
         </div>
       </div>
     </div>
@@ -57,6 +61,10 @@
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                 maxlength="50"
                 minlength="3" />
+                <app-fielderror 
+                      [displayError]="isFieldValid('Name')"
+                      errorMsg="{{'errorField.firstname' | translate}}"
+                    ></app-fielderror>
             </div>
           </div>
 
@@ -83,6 +91,10 @@
                 maxlength="50"
                 minlength="3"
               />
+              <app-fielderror 
+                      [displayError]="isFieldValid('NameAr')"
+                      errorMsg="{{'errorField.firstname' | translate}}"
+                    ></app-fielderror>
             </div>
           </div>
 
@@ -109,6 +121,10 @@
               maxlength="50"
               minlength="5"
             />
+            <app-fielderror 
+                      [displayError]="isFieldValid('Email')"
+                      errorMsg="{{'errorField.email' | translate}}"
+                    ></app-fielderror>
           </div>
           </div>
 
@@ -138,6 +154,10 @@
                   ClinicInfoForm.controls['FixedFee'].touched
                 "
               />
+              <app-fielderror 
+                      [displayError]="isFieldValid('FixedFee')"
+                      errorMsg="{{'errorField.Fees' | translate}}"
+                    ></app-fielderror>
             </div>
           </div>
 
@@ -159,6 +179,10 @@
                 {{ item.Name }}
               </option>
             </select>
+            <app-fielderror 
+            [displayError]="isFieldValid('City')"
+            errorMsg="{{'errorField.city' | translate}}"
+          ></app-fielderror>
           </div>
 
           <!-- Area -->
@@ -181,6 +205,10 @@
                 {{ item.Name }}
               </option>
             </select>
+            <app-fielderror 
+            [displayError]="isFieldValid('Area')"
+            errorMsg="{{'errorField.Area' | translate}}"
+          ></app-fielderror>
           </div>
 
       </div>
@@ -213,6 +241,10 @@
           "
 
         />
+        <app-fielderror 
+        [displayError]="isFieldValid('Address')"
+        errorMsg="{{'errorField.Address' | translate}}"
+      ></app-fielderror>
       </div>
     </div>
 
@@ -287,13 +319,15 @@
               display: block;
               padding-left: 70px;
             "
-            class="form-control"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="11"
-            minlength="11"
+            class="form-control" 
+            maxlength="11" 
 
             [class.icon]="1"
           />
+          <app-fielderror 
+        [displayError]="isFieldValid('PhoneNumber')"
+        errorMsg="{{'errorField.phone' | translate}}"
+      ></app-fielderror>
           <span class="unit">+2</span>
 
         </div>
@@ -319,7 +353,7 @@
             " -->
           <input
             formControlName="PhoneNumber2"
-            type="text"
+            type="number"
             style="
               border-width: 1px;
               outline: none;
@@ -328,8 +362,7 @@
             "
             class="form-control"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="11"
-            minlength="11"
+            maxlength="11" 
             [class.icon]="1"
           />
           <span class="unit">+2</span>
@@ -358,7 +391,7 @@
             -->
           <input
             formControlName="PhoneNumber3"
-            type="text"
+            type="number"
             style="
               border-width: 1px;
               outline: none;
@@ -367,8 +400,7 @@
             "
             class="form-control"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="11"
-            minlength="11"
+            maxlength="11" 
             [class.icon]="1"
           />
           <span class="unit">+2</span>
@@ -399,7 +431,10 @@
               ClinicInfoForm.controls['BuildingNumber'].invalid &&
               ClinicInfoForm.controls['BuildingNumber'].touched
             "/>
-
+            <app-fielderror 
+            [displayError]="isFieldValid('BuildingNumber')"
+            errorMsg="{{'errorField.BuildingNumber' | translate}}"
+          ></app-fielderror>
         </div>
       </div>
 
@@ -424,6 +459,10 @@
               ClinicInfoForm.controls['FloorNumber'].touched
             "
           />
+          <app-fielderror 
+          [displayError]="isFieldValid('FloorNumber')"
+          errorMsg="{{'errorField.FloorNumber' | translate}}"
+        ></app-fielderror>
         </div>
       </div>
 
@@ -499,6 +538,10 @@
         (ngModelChange)="onItemSelect($event)"
         (onSelectAll)="onSelectAll($event)">
       </ng-multiselect-dropdown>
+      <app-fielderror 
+      [displayError]="isFieldValid('Services')"
+      errorMsg="{{'errorField.Services' | translate}}"
+    ></app-fielderror>
     </div>
   </div>
 
@@ -507,7 +550,7 @@
 <div class="row justify-content-end mt-4">
   <div class="col-3">
     <button
-      [disabled]="ClinicInfoForm.invalid"
+      
       (click)="submitClinic()"
       class="btn text-white w-100"
       style="background-color: #262d70">

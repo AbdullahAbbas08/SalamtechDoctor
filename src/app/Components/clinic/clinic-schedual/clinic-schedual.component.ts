@@ -65,7 +65,7 @@ export class ClinicSchedualComponent implements OnInit {
         TimeTo                      :"",
         Fees                        :-1,
         DurationMedicalExaminationId:-1,
-        Inactive                    :false
+        Inactive                    :true
       }
       this.ClinicId = this.route.snapshot.paramMap.get('ClinicId');
 
@@ -96,6 +96,12 @@ export class ClinicSchedualComponent implements OnInit {
 
   }
   //#endregion
+
+  isFieldValid(field): boolean {
+    return (
+      !this.PeriodForm.get(field).valid && this.PeriodForm.get(field).touched
+    )
+  }
 
   //#region Consume API's
 
@@ -183,6 +189,8 @@ export class ClinicSchedualComponent implements OnInit {
         this.ClinicScheduleService.GetClinicSchedualByClinicDayId(lang,ClinicId,DayId).subscribe(
           (response)=>{
             this.ClinicScheduleDayList[DayId] = response.Data;
+            // console.log(response.Data);
+            
           },
           (err)=>{
             Swal.fire({
@@ -240,6 +248,8 @@ export class ClinicSchedualComponent implements OnInit {
 
       //#region Create Clinic Schedule
       CreateDoctorClinicSchedual(NewPeriod:CreateClinicSchedule){
+        // console.log(NewPeriod);
+        
         this.ClinicScheduleService.CreateDoctorClinicSchedual(NewPeriod).subscribe(
           (respose)=>{
             // console.log(respose)
@@ -268,6 +278,11 @@ export class ClinicSchedualComponent implements OnInit {
           this.ClinicScheduleService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
+              Swal.fire({
+                title: 'Updated Successfully', 
+                icon: 'success',
+               
+              })
             },
             (err)=>{
               Swal.fire({
@@ -334,17 +349,24 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
-
-    this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
-    this.CreateClinicSchedule.DayId                         = DayId;
-    this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
-    this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
-    this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
-    this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
-    this.CreateClinicSchedule.Inactive                      = Active;
-    console.log(this.CreateClinicSchedule.ClinicId)
-
-    this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+    
+    
+    if(this.PeriodForm.valid){
+      this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
+      this.CreateClinicSchedule.DayId                         = DayId;
+      this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
+      this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
+      this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
+      this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
+      this.CreateClinicSchedule.Inactive                      = Active;
+      // console.log(this.CreateClinicSchedule.ClinicId)
+      // console.log(this.CreateClinicSchedule.Fees    );
+  
+      this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+    }
+    else{
+      this.PeriodForm.markAllAsTouched()
+    }
     
   }
   //#endregion
@@ -356,27 +378,34 @@ export class ClinicSchedualComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
-     console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
- 
-     let NewPeriod = {
-      DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
-      TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
-      TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
-      Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
-      DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
-      Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
-      ClinicId                    : +this.ClinicId
-     } as CreateClinicSchedule;
+    //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
 
-     console.log(NewPeriod.ClinicId)
-
-    //  console.log("NewPeriod : ",NewPeriod);
-
-     if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
-        // Insert ClinicScheduleDay 
-        this.CreateDoctorClinicSchedual(NewPeriod);
+     if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
-     }
+      let NewPeriod = {
+        DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
+        TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
+        TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
+        Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
+        DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
+        Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
+        ClinicId                    : +this.ClinicId
+       } as CreateClinicSchedule;
+  
+      //  console.log(NewPeriod.ClinicId)
+  
+      //  console.log("NewPeriod : ",NewPeriod);
+  
+       if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
+          // Insert ClinicScheduleDay 
+          this.CreateDoctorClinicSchedual(NewPeriod);
+        
+       }
+    }
+    else{
+      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+    }
+
      
 
   }
@@ -389,10 +418,15 @@ export class ClinicSchedualComponent implements OnInit {
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
 
-    // console.log("update : ",this.ClinicScheduleDayList[DayId][Index])
+    if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
+      // Update ClinicScheduleDay 
+      this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
+    }
+    else{
+      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+    }
+  
 
-     // Update ClinicScheduleDay 
-     this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
 
   }
   //#endregion
@@ -473,7 +507,7 @@ export class ClinicSchedualComponent implements OnInit {
       //#region Next to Update Clinic Schedule Component
       Back() {
         // this.router.navigate(['main/updateclinic/UpdateClinicGalary/',this.ClinicId]);
-        this.router.navigateByUrl('/main');
+        this.router.navigateByUrl('/main/updateclinic');
       }
       //#endregion
 }

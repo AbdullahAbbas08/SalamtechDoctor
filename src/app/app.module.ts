@@ -61,6 +61,7 @@ import { EmrComponent } from './Components/main/Appointments/emr/emr.component';
 import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Profile/emr-profile.component';
 import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 import { FielderrorModule } from './Shared/fielderror/fielderror.module';
+import { TermsComponent } from './Components/SignIn/terms/terms.component';
 
 
 // AoT requires an exported function for factories
@@ -117,6 +118,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     PatientProfileComponent,
     EmrProfileComponent,
     UpdateDoctorDocsComponent,
+    TermsComponent,
   ],
   imports: [
     HttpClientModule,

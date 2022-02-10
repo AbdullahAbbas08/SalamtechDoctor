@@ -85,16 +85,16 @@ export class ClinicInfoComponent implements OnInit {
           PhoneNumber: [
             '',
             [
-              Validators.required,
+              Validators.required  , Validators.maxLength(11)
             ],
           ],
           PhoneNumber2: [
             '',
-            [Validators.nullValidator],
+            [    Validators.maxLength(11)],
           ],
           PhoneNumber3: [
             '',
-            [Validators.nullValidator],
+            [   Validators.maxLength(11)],
           ],
           City: ['', [Validators.required]],
           Address: ['', [Validators.required]],
@@ -110,6 +110,12 @@ export class ClinicInfoComponent implements OnInit {
     
         //#endregion
     
+  }
+
+  isFieldValid(field): boolean {
+    return (
+      !this.ClinicInfoForm.get(field)?.valid && this.ClinicInfoForm.get(field)?.touched
+    )
   }
 
 
@@ -218,6 +224,7 @@ export class ClinicInfoComponent implements OnInit {
       // localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
       // console.log(" res.Data.ClinicId : ", res.Data.ClinicId)
       this.Router.navigate(['/clinic/gallary/', res.Data.ClinicId]);
+      this.ClinicInfoForm.reset()
     },
       (err) => {
         console.log(err)
@@ -231,22 +238,24 @@ export class ClinicInfoComponent implements OnInit {
 
   //#region submit Clinic
   submitClinic() {
+    
+   if(this.ClinicInfoForm?.valid){
     const formData = new FormData();
     this.selectedItems.forEach(element => {
       formData.append('HealthEntityServiceDtos', element.Id as unknown as Blob)
     });
-
+    
     this.ListOfMobileNumber.push(this.ClinicInfoForm.controls.PhoneNumber.value);
-
-    if(this.ClinicInfoForm.controls.PhoneNumber2.value !='undefined'){
+    
+    if(this.ClinicInfoForm.controls.PhoneNumber2.value !='undefined' && this.ClinicInfoForm.controls.PhoneNumber2.value !='null' && this.ClinicInfoForm.controls.PhoneNumber2.value !=''){
       this.ListOfMobileNumber.push(this.ClinicInfoForm.controls.PhoneNumber2.value);
     }
-
-    if(this.ClinicInfoForm.controls.PhoneNumber3.value !='undefined'){
+    
+    if(this.ClinicInfoForm.controls.PhoneNumber3.value !='undefined' &&this.ClinicInfoForm.controls.PhoneNumber3.value !='null'&&this.ClinicInfoForm.controls.PhoneNumber3.value !=''){
       this.ListOfMobileNumber.push(this.ClinicInfoForm.controls.PhoneNumber3.value);
     }
-
-    // console.log("list",this.selectedItemsIds)
+    
+    // console.log(this.ListOfMobileNumber)
 
     // formData.append('HealthEntityPhoneDtos',[+this.ClinicInfoForm.controls.PhoneNumber.value,+this.ClinicInfoForm.controls.PhoneNumber2.value,+this.ClinicInfoForm.controls.PhoneNumber3.value] as unknown as Blob)
     formData.append('HealthEntityPhoneDtos', this.ListOfMobileNumber as unknown as Blob)
@@ -264,6 +273,10 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
 
     this.CreateClinic('en', formData)
+   }
+   else{
+     this.ClinicInfoForm.markAllAsTouched()
+   }
 
 
   }

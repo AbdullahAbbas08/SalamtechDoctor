@@ -45,8 +45,8 @@ export class MainNavComponent implements OnInit {
       
     }
     //#endregion
-    this.logo = localStorage.getItem("logo")
-
+    this.logo = this.IamgeURL+localStorage.getItem("logo")
+    
   }
   //#endregion
 

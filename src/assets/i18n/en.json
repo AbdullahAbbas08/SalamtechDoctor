@@ -147,7 +147,7 @@
       "Services": "Services",
       "selectServices": "Select Services",
       "Next": "Next",
-      "addphone":"add phone"
+      "addphone":"add another phone"
     },
     "Schedule": {
       "Schedule": "Schedule",
@@ -263,6 +263,17 @@
     "firstname":"Please enter your first name",
     "secondname":"Please enter your middle name",
     "lastname":"Please enter your last name",
-    "checkboxcont":"please check the box"
+    "checkboxcont":"please check the box",
+    "Fees":"Please enter Fees",
+    "DurationExamination":" Please enter Duration Examination",
+    "DateFrom":"Please enter Date  ",
+    "DateTo":"Please enter Date ",
+    "city":"Please select city",
+    "Area":"Please select area",
+    "Address":"Please enter address",
+    "BuildingNumber":"Please enter Building Number",
+    "FloorNumber":"Please enter Floor Number",
+    "Services":"Please select Services",
+    "clinicLogo":"please select clinic Logo"
   }
 }

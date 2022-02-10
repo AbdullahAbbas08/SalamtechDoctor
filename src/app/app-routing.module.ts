@@ -37,6 +37,7 @@ import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/up
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { LoginPageComponent } from './Components/SignIn/login-page/login-page.component';
 import { RegisterPageComponent } from './Components/SignIn/register-page/register-page.component';
+import { TermsComponent } from './Components/SignIn/terms/terms.component';
 import { CertificatesComponent } from './Components/Signup/certificates/certificates.component';
 import { CongratulationsComponent } from './Components/Signup/congratulations/congratulations.component';
 import { DoctorInfoComponent } from './Components/Signup/doctor-info/doctor-info.component';
@@ -49,12 +50,6 @@ import { SignupComponent } from './Components/Signup/signup/signup.component';
 
 const routes: Routes = [
 
-  { canActivate: [LoginGuardService],path:'',component:LoginMainComponent,children:[
-    {path:'register',component:RegisterPageComponent}
-  ] },
-  { canActivate: [LoginGuardService],path:'Login',component:LoginPageComponent
-  },
-
   {path:'doctor-profile',component:SignUpMainComponent ,children:[
       {path:'OTP',component:OtpComponent },
       {path:'',component:DoctorInfoComponent },
@@ -62,6 +57,15 @@ const routes: Routes = [
       {path:'documents',component:DocumentsComponent },
       {path:'Congratulations',component:CongratulationsComponent },
   ] },
+  { canActivate: [LoginGuardService],path:'',component:LoginMainComponent,children:[
+    {path:'register',component:RegisterPageComponent}
+  ] },
+  { canActivate: [LoginGuardService],path:'Login',component:LoginPageComponent
+  },
+  {
+    path:'terms',
+    component:TermsComponent
+  },
 
   {path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
       {path:'',component:UpdateDoctorInfoComponent },
