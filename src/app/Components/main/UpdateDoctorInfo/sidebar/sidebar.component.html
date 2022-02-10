@@ -3,9 +3,15 @@
     <div class="col-12 col-md-4 col-xl-2 sidebar-col">
         <div class="sidebar-item">
             <ul>
-                <li id="Doctorinfo" #DoctorinfoRef   class="li-Content" ><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
-                <li id="Certificates"    class="li-Content" ><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
-                <li id="LegalDocuments"  class="li-Content" ><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
+                <li id="Doctorinfo"  #DoctorinfoRef   class="li-Content" >
+                    <span routerLink="/update-doctor-profile">{{'mainModule.sideBar.DoctorInfo' | translate}}</span>
+                </li>
+                <li id="Certificates"    class="li-Content" >
+                    <span routerLink="/update-doctor-profile/certificates" >{{'mainModule.sideBar.Certificates' | translate}}</span>
+                </li>
+                <li id="LegalDocuments"  class="li-Content" >
+                    <span routerLink="/update-doctor-profile/documents">{{'mainModule.sideBar.LegalDocuments' | translate}}</span>
+                </li>
                 <!-- <li id="Congratulations" class="li-Content" ><span  >{{'mainModule.sideBar.AddClinics' | translate}}</span></li> -->
             </ul>
         </div>
