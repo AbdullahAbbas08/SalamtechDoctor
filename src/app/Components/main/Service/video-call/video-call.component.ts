@@ -80,8 +80,10 @@ export class VideoCallComponent implements OnInit {
     //#region call Methods
     this.GetDurationMedicalExamination('en');
 
-    let ReturnResolver = this.route.snapshot.data['DoctorVideoCallSchedual'];
-    this.ClinicSchedule = ReturnResolver.Data;
+    // let ReturnResolver = this.route.snapshot.data['DoctorVideoCallSchedual'];
+    // this.ClinicSchedule = ReturnResolver.Data;
+
+    this. GetClinicSchedualByClinicId()
 
     for (let index = 1; index <= 7; index++) {
       this.GetDoctorVideoAppointmentSchedualByDayId(index);

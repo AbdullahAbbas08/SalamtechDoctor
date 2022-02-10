@@ -78,8 +78,10 @@ export class CallComponent implements OnInit {
     //#region call Methods
     this.GetDurationMedicalExamination('en');
 
-    let ReturnResolver = this.route.snapshot.data['DoctorCallSchedual'];
-    this.ClinicSchedule = ReturnResolver.Data;
+    // let ReturnResolver = this.route.snapshot.data['DoctorCallSchedual'];
+    // this.ClinicSchedule = ReturnResolver.Data;
+
+    this.GetDoctorCallAppointmentSchedual()
 
     for (let index = 1; index <= 7; index++) {
       this.GetDoctorCallAppointmentSchedualByDayId(index);
@@ -164,9 +166,9 @@ export class CallComponent implements OnInit {
       //#endregion
 
       //#region Get Doctor Home Visit Schedual
-      GetDoctorHomeVisitSchedual()
+      GetDoctorCallAppointmentSchedual()
       {
-        this.DoctorServiceService.GetDoctorHomeVisitSchedual().subscribe(
+        this.DoctorServiceService.GetDoctorCallAppointmentSchedual().subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
             console.log("ClinicSchedule : ", this.ClinicSchedule)

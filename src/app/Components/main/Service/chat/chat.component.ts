@@ -79,8 +79,9 @@ export class ChatComponent implements OnInit {
     //#region call Methods
     this.GetDurationMedicalExamination('en');
 
-    let ReturnResolver = this.route.snapshot.data['DoctorChatSchedual'];
-    this.ClinicSchedule = ReturnResolver.Data;
+    // let ReturnResolver = this.route.snapshot.data['DoctorChatSchedual'];
+    // this.ClinicSchedule = ReturnResolver.Data;
+    this.GetDoctorChatAppointmentSchedual()
 
     for (let index = 1; index <= 7; index++) {
       this.GetDoctorChatAppointmentSchedualByDayId(index);
@@ -169,6 +170,8 @@ export class ChatComponent implements OnInit {
         this.DoctorServiceService.GetDoctorChatAppointmentSchedual().subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
+    console.log(this.ClinicSchedule);
+
             // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
