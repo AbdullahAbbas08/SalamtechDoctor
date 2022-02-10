@@ -134,30 +134,6 @@ export class DoctorService {
     //#endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //#region Update Doctor Clinic Schedual
     UpdateDoctorClinicSchedual(CreateClinicSchedule:ClinicScheduleDay):Observable<GeneralResponse<null>>{
       return this.http.post<GeneralResponse<null>>(`${environment.URL}${this.culture}/DoctorClinic/UpdateDoctorClinicSchedual`,CreateClinicSchedule,this.httpOptions);

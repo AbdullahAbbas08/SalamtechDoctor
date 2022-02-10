@@ -5,7 +5,7 @@
         <div class="col-12 col-md-3  mb-4">
             <div class="row img-block just">
                 <div class="col img-col-block">
-                    <img src="{{imgURL}}" />
+                    <img src="https://salamtech.azurewebsites.net{{patientProfile?.Image}}" />
                 </div>
             </div>
             <div class="row ChangeProfilePhoto-block ">
@@ -13,9 +13,9 @@
                     <input type='file' formControlName="ImagePatient" #file accept="image/*" id="getFile"
                         style="display:none" (change)="preview(file.files)">
 
-                    <button onclick="document.getElementById('getFile').click()" class="changePhoto-btn">
+                    <!-- <button  onclick="document.getElementById('getFile').click()" class="changePhoto-btn">
                          {{'mainModule.EMR.Patient.ChangePhoto'|translate}}
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </div>
@@ -36,7 +36,8 @@
                         {{"mainModule.EMR.Patient.PatientName" | translate }}
                     </span>
                     <div class="input-style">
-                        <input type="text" class="form-control" formControlName="PatientName" />
+                        <input type="text" class="form-control " formControlName="PatientName" [placeholder]="patientProfile.PatientName"  
+                        readonly />
                     </div>
                 </div>
 
@@ -46,7 +47,7 @@
                         {{"mainModule.EMR.Patient.PatientAge" | translate }}
                     </span>
                     <div class="input-style">
-                        <input type="text" class="form-control" formControlName="PatientAge" />
+                        <input type="text" class="form-control" formControlName="PatientAge" readonly/>
                     </div>
                 </div>
 
@@ -61,7 +62,7 @@
                                 display: block;
                                 padding-left: 38px;" class="form-control"
                             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                            maxlength="11" minlength="11" [class.icon]="1" />
+                            maxlength="11" minlength="11" [class.icon]="1" readonly/>
                         <span class="unit">+2</span>
                     </div>
                 </div>
@@ -74,11 +75,11 @@
 
                     <div class="form-group form-group-Password">
                         <input type="text" formControlName="location" style="padding-right: 35px"
-                            class="form-control" />
+                            class="form-control" readonly />
 
-                        <span   class="eye" (click)="openGoogelMapsModal()">
+                        <!-- <span   class="eye" (click)="openGoogelMapsModal()">
                             <i class="fas fa-map-marker-alt" style="color: #8B90A0;"></i>
-                        </span>
+                        </span> -->
                     </div>
                 </div>
 
@@ -89,7 +90,7 @@
                     </label>
 
                     <div class="input-style">
-                        <textarea formControlName='PatientComplain' class="form-control textForArabic" 
+                        <textarea formControlName='PatientComplain' class="form-control textForArabic" readonly
                             placeholder=" {{'mainModule.EMR.Patient.Leave Complain Here' | translate }}" style="height: 120px">
                         </textarea>
                     </div>
@@ -105,24 +106,23 @@
         </div>
 
     </form>
-    <div class="row " style="margin-top: 20px;margin-bottom: 50px;">
+    <!-- <div class="row " style="margin-top: 20px;margin-bottom: 50px;">
         <div class="col-12 d-flex justify-content-end">
             <div class="col-4 d-flex justify-content-end">
                 <button class="btn cancel"></button>
-                <!-- <button class="btn post-report">Post Report</button> -->
+                
                 <button class="post-report"
                         style="background-color: transparent;color: #f00;">
-                    <!-- {{ "mainModule.ClinicInfo.Next" | translate}} -->
-                    {{"mainModule.appointment.Cancel" | translate }}
+                     {{"mainModule.appointment.Cancel" | translate }}
               </button>
 
                 <button class="post-report"
                         style="background-color: #262d70" >
-                    <!-- {{ "mainModule.ClinicInfo.Next" | translate}} -->
+                   
                     {{"mainModule.EMR.Patient.PostReport" | translate }}
               </button>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 

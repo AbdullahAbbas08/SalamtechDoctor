@@ -57,4 +57,8 @@ export class EmrService {
   }
   //#endregion
 
+  getPatientProfile(appointmentId):Observable<any>{
+    return this.http.get(`${environment.URL}${this.culture}/Patient/GetPatientDetails?appointmentId=${appointmentId}`,this.httpOptions)
+  }
+
 }

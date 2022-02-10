@@ -17,7 +17,7 @@ export class PatientProfileComponent implements OnInit {
   //#region Declare Variables
   id;
   PatientProfileForm : FormGroup ;
-
+  patientProfile
   //#endregion
 
   constructor(private route:ActivatedRoute , 
@@ -28,7 +28,8 @@ export class PatientProfileComponent implements OnInit {
                 this.route.paramMap.subscribe(param=>{
                   this.route.queryParamMap.subscribe(qparam=>{
                     this.appointmentID=qparam.get('appointment_id');
-                    this.emrService.appointmentId.next(this.appointmentID)  
+                    this.emrService.appointmentId.next(this.appointmentID) 
+                    this.getPatientProfile(this.appointmentID) 
                   })
                   this.id=param.get('ID')
                   this.emrService.patientId.next(this.id) 
@@ -43,19 +44,19 @@ export class PatientProfileComponent implements OnInit {
      document.getElementById('EMRProfile')?.classList.remove('visited-appointemt-component');
      document.getElementById('PatientProfile')?.classList.add('visited-appointemt-component');
      //#endregion
-     this.initForm();
+     
     
   } 
 
   initForm(){
     this.PatientProfileForm = this.fb.group(
       {
-        PatientName:['',[Validators.required ]],
-        PatientAge:['',[Validators.required ]],
+        PatientName:[this.patientProfile.PatientName ,[Validators.required ]],
+        PatientAge:[this.patientProfile?.PatientAge,[Validators.required ]],
         ImagePatient:['',[Validators.required ]],
-        PhoneNumber:['',[Validators.required ]],
-        location:['',[Validators.required ]],
-        PatientComplain:['',[Validators.required ]],
+        PhoneNumber:[this.patientProfile?.PatientPhone,[Validators.required ]],
+        location:[this.patientProfile?.PatientAddress,[Validators.required ]],
+        PatientComplain:[this.patientProfile?.PatientComplain,[Validators.required ]],
         });
   }
 
@@ -103,5 +104,14 @@ export class PatientProfileComponent implements OnInit {
           },
           (reason) => { }
         );
+      }
+
+
+      getPatientProfile(id){
+        this.emrService.getPatientProfile(id).subscribe(res=>{
+          this.patientProfile=res.Data[0]
+          console.log(this.patientProfile.PatientName);
+          this.initForm();
+        })
       }
 }
