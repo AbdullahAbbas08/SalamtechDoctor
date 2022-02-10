@@ -250,23 +250,18 @@ getAreas(id){
       formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
       formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
-      formData.set("HealthEntityPhoneDtos", JSON.stringify(this.FormInfo.get('HealthEntityPhoneDtos').value))
+      formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
+
       //#endregion
    
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         // console.log(res);
         this.getClinicInfo( this.clinicId)
-        this.Router.navigate(['clinic/gallary/',this.clinicId]);
+        // this.Router.navigate(['clinic/gallary/',this.clinicId]);
+        this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
        },
        (err)=>{
-        //  console.log(err)
+         console.log(err)
        })
-    
-
   }
-
-
-
-
- 
 }

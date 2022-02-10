@@ -272,7 +272,7 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('Inactive', "true")
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
 
-    // this.CreateClinic('en', formData)
+    this.CreateClinic('en', formData)
    }
    else{
      this.ClinicInfoForm.markAllAsTouched()

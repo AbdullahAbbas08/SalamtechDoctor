@@ -49,14 +49,14 @@ export class UpdateClinicScheduleComponent implements OnInit {
     //#region Init Values
 
     //#region Change Active Component In Sidebar 
-    document.getElementById('Dashboard')?.classList.remove('OnClick-Style');
-      document.getElementById('DashboardIcon')?.classList.remove('calender-visited');
-      document.getElementById('Clinics')?.classList.remove('OnClick-Style');
-      document.getElementById('ClinicsIcon')?.classList.remove('OnClick-Style');
-      document.getElementById('Services')?.classList.remove('OnClick-Style');
-      document.getElementById('ServiceIcon')?.classList.remove('calender-visited');
-      document.getElementById('Profile')?.classList.add('OnClick-Style');
-      document.getElementById('ProfileIcon')?.classList.add('calender-visited');
+    // document.getElementById('Dashboard')?.classList.remove('OnClick-Style');
+    //   document.getElementById('DashboardIcon')?.classList.remove('calender-visited');
+    //   document.getElementById('Clinics')?.classList.remove('OnClick-Style');
+    //   document.getElementById('ClinicsIcon')?.classList.remove('OnClick-Style');
+    //   document.getElementById('Services')?.classList.remove('OnClick-Style');
+    //   document.getElementById('ServiceIcon')?.classList.remove('calender-visited');
+    //   document.getElementById('Profile')?.classList.add('OnClick-Style');
+    //   document.getElementById('ProfileIcon')?.classList.add('calender-visited');
     //#endregion
 
     this.DayList=[];
@@ -406,7 +406,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
     //#region Next to Update Clinic Schedule Component
     Back() {
       // this.router.navigate(['main/updateclinic/UpdateClinicGalary/',this.ClinicId]);
-      this.router.navigateByUrl('/main/updateclinic');
+      this.router.navigate(['/main/updateclinic']);
     }
     //#endregion
 
