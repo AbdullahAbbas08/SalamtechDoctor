@@ -1,4 +1,4 @@
-<form #form="ngForm" class="d-block" dir="auto" [formGroup]="ClinicInfoForm" >
+<form #form="ngForm" class="d-block"  [formGroup]="ClinicInfoForm" >
 
   <div class="row">
     <!-- Picture Doctor -->
@@ -8,11 +8,10 @@
           <img src="{{ imgURL }}" />
         </div>
       </div>
-      <div class="row ChangeProfilePhoto-block">
+      <div class="row ChangeProfilePhoto-block ">
         <div
           class="col justify-content-center"
-          style="display: flex; align-items: center"
-        >
+          style="display: flex; align-items: center">
           <input
             type="file"
             formControlName="clinicLogo"
@@ -20,18 +19,17 @@
             accept="image/*"
             id="getFile"
             style="display: none"
-            (change)="preview(file.files)"
-          />
+            (change)="preview(file.files)"/>
 
           <button onclick="document.getElementById('getFile').click()"
                   class="changePhoto-btn">
              {{"mainModule.ClinicInfo.ChangeLogo" | translate}}
           </button>
-          <app-fielderror 
-          [displayError]="isFieldValid('clinicLogo')"
-          errorMsg="{{'errorField.clinicLogo' | translate}}"
-        ></app-fielderror>
-        </div>
+          
+        </div><app-fielderror 
+        [displayError]="isFieldValid('clinicLogo')"
+        errorMsg="{{'errorField.clinicLogo' | translate}}">
+        </app-fielderror>
       </div>
     </div>
 
@@ -298,7 +296,7 @@
           {{"mainModule.ClinicInfo.PhoneNumber" | translate}}
         </span>
         <span class="star"> * </span>
-        <div dir="auto" class="input-style">
+        <div dir="auto" class="input-style" dir="ltr">
           <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
                           <span>+2</span> -->
 
@@ -338,7 +336,7 @@
             {{"mainModule.ClinicInfo.PhoneNumber2" | translate}}
         </span>
         <!-- <span class="star"> * </span> -->
-        <div dir="auto" class="input-style">
+        <div dir="auto" class="input-style" dir="ltr">
           <!-- <img src="../../../../assets/img/Group 512657.png" style="margin-left: 5px;margin-right: 5px;">
                           <span>+2</span> -->
 
@@ -372,7 +370,7 @@
         {{"mainModule.ClinicInfo.PhoneNumber3" | translate}}
         </span>
         <!-- <span class="star"> * </span> -->
-        <div dir="auto" class="input-style">
+        <div dir="auto" class="input-style" dir="ltr"> 
          
           <input
             formControlName="PhoneNumber3"
