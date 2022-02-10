@@ -195,13 +195,14 @@ export class VideoCallComponent implements OnInit {
         this.DoctorServiceService.GetDoctorVideoAppointmentSchedualByDayId(DayId).subscribe(
           (response)=>{
             this.ClinicScheduleDayList[DayId] = response.Data;
-            // this.ClinicScheduleDayListOriginal[DayId] = response.Data;
+            console.log(response.Data);
             // console.log(this.ClinicScheduleDayList[DayId])
             // this.ClinicScheduleDayList[DayId].forEach(element => {
             //   console.log(element.SchedualId)
             // });
           },
           (err)=>{
+            console.log(err)
             Swal.fire({
               title: 'Error !',
               text: err.error.Message,
@@ -213,6 +214,8 @@ export class VideoCallComponent implements OnInit {
               cancelButtonText:"OK",
               reverseButtons: true
             })
+
+            
           }
         )
       }

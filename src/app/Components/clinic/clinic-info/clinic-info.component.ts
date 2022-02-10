@@ -49,6 +49,7 @@ export class ClinicInfoComponent implements OnInit {
 
     this.initFrom()
     this.ListOfMobileNumber = [];
+    this.address = "";
 
     //#region multiple select
     this.GetServices()
