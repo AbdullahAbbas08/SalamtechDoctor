@@ -59,7 +59,6 @@ export class UpdateClinicInfoComponent implements OnInit {
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
       this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
-      // console.log(this.clinicInfo);
       this.initForm()
       this.getCity()
        this.getCountry()

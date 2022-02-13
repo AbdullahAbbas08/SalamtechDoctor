@@ -167,7 +167,8 @@
       "Interval": "Interval",
       "Update": "Update",
       "Finish": "Finish",
-      "To":"To"
+      "To":"To",
+      "From":"From"
     },
     "clinicmanager": {
       "main": {

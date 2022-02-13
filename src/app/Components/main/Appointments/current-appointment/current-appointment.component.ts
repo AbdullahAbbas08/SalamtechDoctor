@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { PatientItem } from 'src/Models/patient-item';
@@ -15,9 +15,10 @@ export class CurrentAppointmentComponent implements OnInit {
   IamgeURL:string;
   p:number = 1;
   PatientList:PatientItem[];
-  
+  searchResults;
   MedicalType =[];
-  medicalImg=[];
+  medicalImg=[]; 
+  search:boolean=false
   //#endregion
 
   //#region constructor
@@ -33,56 +34,74 @@ export class CurrentAppointmentComponent implements OnInit {
     //#endregion
   
     //#region Invoke Methods
-    this.GetCurrentDoctorAppointment(10,1);
+    // this.GetCurrentDoctorAppointment(10,1 );
     //#endregion
+
+    // subscribe on search data
+   this.AppointmentService.Result.subscribe(res=>{
+    if(res){
+      this.searchResults=res
+      this.GetCurrentDoctorAppointment(10,1 , this.search=true);
+    }
+    else{
+    this.GetCurrentDoctorAppointment(10,1 );
+
+    }
+   })
+
   }
   //#endregion
 
 //#region Consume API's
 
   //#region Get Current Doctor Appointment
-  GetCurrentDoctorAppointment(MaxResultCount:number,SkipCount:number){
+  GetCurrentDoctorAppointment(MaxResultCount:number,SkipCount:number ,  search?){
     // this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
-    this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
-      (response)=>{
-         this.PatientList = response.Data.Items;
-         let re = /\*/gi;
-         
-         this.PatientList.forEach(element => {
-            element.PatientName = element.PatientName.replace(re, " ");
-            let s= (element.PatientName.split(" ", 2)).toString();
-            element.PatientName = (s.replace(","," "));
-        });
-        console.log("data : ",response.Data);
-
-        this.PatientList.map(item=>{
-          if(item.MedicalExaminationTypeId==1){
-            this.MedicalType.push("Clinic Appointment")
-            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
-          }
-          else if(item.MedicalExaminationTypeId==2){
-            this.MedicalType.push("Home visit")
-            this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
-          }
-          else if(item.MedicalExaminationTypeId==3){
-            this.MedicalType.push("Video appointment")
-            this.medicalImg.push("../../../../../../assets/img/medical-type/video.png")
-          }
-          else if(item.MedicalExaminationTypeId==4){
-            this.MedicalType.push("Call appointment")
-            this.medicalImg.push("../../../../../../assets/img/medical-type/call.png")
-          }
-          else if(item.MedicalExaminationTypeId==5){
-            this.MedicalType.push("Chat appointment")
-            this.medicalImg.push("../../../../../../assets/img/medical-type/chat.png")
-          } 
-          
-          
+    if(!search){
+      this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
+        (response)=>{
+           this.PatientList = response.Data.Items;
+           let re = /\*/gi;
+           
+           this.PatientList.forEach(element => {
+              element.PatientName = element.PatientName.replace(re, " ");
+              let s= (element.PatientName.split(" ", 2)).toString();
+              element.PatientName = (s.replace(","," "));
+          });
+          console.log("data : ",response.Data);
+  
+          this.PatientList.map(item=>{
+            if(item.MedicalExaminationTypeId==1){
+              this.MedicalType.push("Clinic Appointment")
+              this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+            }
+            else if(item.MedicalExaminationTypeId==2){
+              this.MedicalType.push("Home visit")
+              this.medicalImg.push("../../../../../../assets/img/medical-type/location.png")
+            }
+            else if(item.MedicalExaminationTypeId==3){
+              this.MedicalType.push("Video appointment")
+              this.medicalImg.push("../../../../../../assets/img/medical-type/video.png")
+            }
+            else if(item.MedicalExaminationTypeId==4){
+              this.MedicalType.push("Call appointment")
+              this.medicalImg.push("../../../../../../assets/img/medical-type/call.png")
+            }
+            else if(item.MedicalExaminationTypeId==5){
+              this.MedicalType.push("Chat appointment")
+              this.medicalImg.push("../../../../../../assets/img/medical-type/chat.png")
+            } 
+            
+            
+          })
+        },
+        (err)=>{
         })
-      },
-      (err)=>{
-      }
-    )
+        if(search){
+          console.log(this.PatientList);
+          
+        }
+    }
   }
   //#endregion
 

@@ -12,6 +12,7 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { Login } from 'src/Models/Login';
 
 @Injectable()
 export class HttpInterceptorInterceptor implements HttpInterceptor {
@@ -22,20 +23,22 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
-        let message = '';
+        let message = '';        
         if (err.status === 401) {
           // handle client-side error
-          this.router.navigateByUrl('/Login')
+          localStorage.removeItem('Authorization')
+          this.router.navigate(['/Login'])
+          console.log(message);
           
           message = `Error: ${err.error.message}`;
         } 
-
+        
         else {
           // handle server-side error
           message = `Error Status: ${err.status}\nMessage: ${err.message}`;
         }
         // console.log(message);
-
+        
         // return the error back to the caller
         return throwError(err);
       })

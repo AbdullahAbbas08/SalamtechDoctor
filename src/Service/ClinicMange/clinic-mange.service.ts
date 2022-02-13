@@ -24,8 +24,8 @@ export class ClinicMangeService {
     //#endregion
     
     //#region Get Doctor Clinics
-    GetDoctorClinics():Observable<GeneralResponse<Clinic>>{
-      return this.http.get<GeneralResponse<Clinic>>(`${environment.URL}${this.culture}/DoctorClinic/GetDoctorClinics`,this.httpOptions);
+    GetDoctorClinics():Observable<any>{
+      return this.http.get(`${environment.URL}${this.culture}/DoctorClinic/GetDoctorClinics`,this.httpOptions);
     }
     //#endregion
 

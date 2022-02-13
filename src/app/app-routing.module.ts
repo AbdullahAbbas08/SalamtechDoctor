@@ -50,18 +50,31 @@ import { SignupComponent } from './Components/Signup/signup/signup.component';
 
 const routes: Routes = [
 
-  {path:'doctor-profile',component:SignUpMainComponent ,children:[
+  { path:'doctor-profile',
+    component:SignUpMainComponent ,
+    children:[
       {path:'OTP',component:OtpComponent },
       {path:'',component:DoctorInfoComponent },
       {path:'certificates',component:CertificatesComponent },
       {path:'documents',component:DocumentsComponent },
       {path:'Congratulations',component:CongratulationsComponent },
-  ] },
-  { canActivate: [LoginGuardService],path:'',component:LoginMainComponent,children:[
-    {path:'register',component:RegisterPageComponent}
-  ] },
-  { canActivate: [LoginGuardService],path:'Login',component:LoginPageComponent
+    ] 
   },
+
+
+  { canActivate: [LoginGuardService],
+    path:'',component:LoginMainComponent,
+    children:[
+    {path:'register',component:RegisterPageComponent}
+    ]
+  },
+
+
+  { canActivate: [LoginGuardService],
+    path:'Login',
+    component:LoginPageComponent
+  },
+  
   {
     path:'terms',
     component:TermsComponent

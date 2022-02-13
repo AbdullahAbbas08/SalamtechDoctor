@@ -41,7 +41,7 @@ export class ClinicManagerComponent implements OnInit {
     //#endregion
 
     //#region Invoke Methods 
-    this.GetDoctorClinics();
+    // this.GetDoctorClinics();
     //#endregion
  }
   //#endregion
@@ -55,15 +55,17 @@ export class ClinicManagerComponent implements OnInit {
   //#region Consume API's
 
       //#region GetDoctorClinics
-      GetDoctorClinics()
-      {
-        this.ClinicMangeService.GetDoctorClinics().subscribe((response)=>{
-          this.ClinicList = response.Data; 
-        },
-        (err)=>{
-          console.log(err);
-        })
-      }
+      // GetDoctorClinics()
+      // {
+      //   this.ClinicMangeService.GetDoctorClinics().subscribe((response)=>{
+      //     this.ClinicList = response.Data; 
+      //     console.log('hello from clinic manger');
+          
+      //   },
+      //   (err)=>{
+      //     console.log(err);
+      //   })
+      // }
       //#endregion
 
   //#endregion
