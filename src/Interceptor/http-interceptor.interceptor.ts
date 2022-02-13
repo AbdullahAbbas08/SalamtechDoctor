@@ -23,15 +23,16 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
-        let message = '';        
+
+        console.log(err);
+        
+        let message = '';
         if (err.status === 401) {
           // handle client-side error
-          localStorage.removeItem('Authorization')
-          this.router.navigate(['/Login'])
-          console.log(message);
-          
+          localStorage.removeItem("Authorization");
+          this.router.navigate(['/Login'])          
           message = `Error: ${err.error.message}`;
-        } 
+          } 
         
         else {
           // handle server-side error
