@@ -98,7 +98,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       this.resetForm()
     },
     (err)=>{
-      console.log(err)
+      // console.log(err)
     })
   }
 
@@ -159,7 +159,8 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
           this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
             this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
               this.submittedCertificate= res as CertificateResponse
-              console.log(this.submittedCertificate)}
+              // console.log(this.submittedCertificate)
+            }
             )
             Swal.fire(
               'Deleted!',
@@ -168,7 +169,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
             )
         },
         (err)=>{
-          console.log(err)
+          // console.log(err)
           Swal.fire("An error occur");
         })
          

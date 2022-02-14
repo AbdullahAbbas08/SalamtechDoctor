@@ -42,4 +42,7 @@ export class AppointmentService {
     return this.http.post(`${environment.URL}${this.culture}/DoctorAppointment/SearchForDoctorAppointment` , body,this.httpOptions)
   }
 
+  CancelApointment(appointmentId):Observable<any>{
+    return this.http.get(`${environment.URL}${this.culture}/DoctorAppointment/CancelAppointment?AppointmentId=${appointmentId}` ,this.httpOptions)
+  }
 }

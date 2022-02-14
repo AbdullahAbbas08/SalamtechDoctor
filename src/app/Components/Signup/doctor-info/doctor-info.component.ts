@@ -108,12 +108,12 @@ export class DoctorInfoComponent implements OnInit {
   {
     this.DoctorService.GetSubSpecialistIdName(lang ,specialListId ).subscribe(
       (response)=>{
-        console.log(response);
+        // console.log(response);
         
         this.DropDownList_SubSpeciality = response.Data;
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
       }
     )
   }
@@ -155,7 +155,7 @@ GetSpecialistIdName(lang:string)
         this.DropDownList_SeniorityLevel = response.Data;
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
       }
     )
   }
@@ -169,7 +169,7 @@ GetSpecialistIdName(lang:string)
         this.DropDownList_GetCountries = response.Data;
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
       }
     )
   }
@@ -244,7 +244,7 @@ GetSpecialistIdName(lang:string)
 
   //#region SubSpeciality Method event change
   SelectSubSpeciality(event:any){
-console.log(event);
+// console.log(event);
   }
   //#endregion
 

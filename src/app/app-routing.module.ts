@@ -16,6 +16,7 @@ import { CurrentAppointmentComponent } from './Components/main/Appointments/curr
 import { EmrProfileComponent } from './Components/main/Appointments/emr/EMR-Profile/emr-profile.component';
 import { EmrComponent } from './Components/main/Appointments/emr/emr.component';
 import { PatientProfileComponent } from './Components/main/Appointments/emr/Patient-Profile/patient-profile.component';
+import { FilterAppointmentComponent } from './Components/main/Appointments/filter-appointment/filter-appointment.component';
 import { HistoryAppointmentComponent } from './Components/main/Appointments/history-appointment/history-appointment.component';
 import { UpcomingAppointmentComponent } from './Components/main/Appointments/upcoming-appointment/upcoming-appointment.component';
 import { ClinicManagerComponent } from './Components/main/clinic-manager/clinic-manager.component';
@@ -122,6 +123,7 @@ const routes: Routes = [
           {path:'current',component:CurrentAppointmentComponent} ,
           {path:'history',component:HistoryAppointmentComponent} ,
           {path:'upcoming',component:UpcomingAppointmentComponent} ,
+          {path:'filter-appointment',component:FilterAppointmentComponent} ,
         ] },
 
         { path:'emr',component:EmrComponent,children:[

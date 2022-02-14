@@ -66,6 +66,7 @@ import { TermsComponent } from './Components/SignIn/terms/terms.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { FilterAppointmentComponent } from './Components/main/Appointments/filter-appointment/filter-appointment.component';
  
 
 
@@ -124,6 +125,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     EmrProfileComponent,
     UpdateDoctorDocsComponent,
     TermsComponent,
+    FilterAppointmentComponent,
   ],
   imports: [
     HttpClientModule,

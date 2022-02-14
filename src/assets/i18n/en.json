@@ -192,11 +192,17 @@
         "Date": "Date",
         "Time": "Time",
         "Type": "Type",
-        "Actions": "Actions"
+        "Actions": "Actions",
+        "Consultation Type":"Consultation Type"
       },
       "Call":"Call",
       "EMR":"EMR",
-      "Cancel":"Cancel"
+      "Cancel":"Cancel",
+      "Cancelled":"Cancelled",
+      "Filter":"Filter",
+      "ShowMore":"Show More",
+      "ShowLess":"Show Less",
+      "APPLYFILTER":"APPLY FILTER"
     },
     "EMR": {
       "PatientProfile": "Patient Profile",
@@ -276,5 +282,25 @@
     "FloorNumber":"Please enter Floor Number",
     "Services":"Please select Services",
     "clinicLogo":"please select clinic Logo"
-  }
+  },
+  "Swals":{
+    "Error!":"Error!",
+    "imagesize":"image size is larger than 3mb",
+    "UpdatedSuccessfully":"Updated Successfully",
+    "endtime":"end time should be less than start time",
+    "areusure":"Are you sure?",
+    "cancelapp":"You want to cancel this appointment",
+    "Cancelled":"Cancelled!",
+    "errocur":"An error occur",
+    "appointmentactive":"Your appointment still active",
+    "won'trevert":"You won't be able to revert this!",
+    "yes":"Yes, delete it!",
+    "Deleted":"Deleted!",
+    "filesafe":"Your imaginary file is safe",
+    "fileDeleted":"Your file has been deleted.",
+    "Great":"Great",
+    "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
+    "Done":"Done",
+    "AddClinic":"Add New Clinic"
+    }
 }

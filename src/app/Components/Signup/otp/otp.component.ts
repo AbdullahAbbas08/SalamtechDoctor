@@ -66,7 +66,7 @@ export class OtpComponent implements OnInit {
             this.second = 59
           } else {
             clearInterval(interval)
-            console.log("end");
+            // console.log("end");
           }
         }
       }, 1000)

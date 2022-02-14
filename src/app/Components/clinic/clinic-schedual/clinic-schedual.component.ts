@@ -165,7 +165,7 @@ export class ClinicSchedualComponent implements OnInit {
         this.ClinicScheduleService.GetClinicSchedualByClinicId(lang,ID).subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
-            console.log("ClinicSchedule : ", this.ClinicSchedule)
+            // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
             Swal.fire({
@@ -403,7 +403,9 @@ export class ClinicSchedualComponent implements OnInit {
        }
     }
     else{
-      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+      Swal.fire('Error!'
+       , "end time should be less than start time" , 
+       'error')
     }
 
      

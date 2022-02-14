@@ -170,7 +170,7 @@ export class CallComponent implements OnInit {
         this.DoctorServiceService.GetDoctorCallAppointmentSchedual().subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
-            console.log("ClinicSchedule : ", this.ClinicSchedule)
+            // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
 
@@ -208,7 +208,7 @@ export class CallComponent implements OnInit {
        this.DoctorServiceService.GetDoctorCallAppointmentSchedualByDayId(DayId).subscribe(
          (response)=>{
            this.ClinicScheduleDayList[DayId] = response.Data;
-           console.log(this.ClinicScheduleDayList[DayId])
+          //  console.log(this.ClinicScheduleDayList[DayId])
            // this.ClinicScheduleDayList[DayId].forEach(element => {
            //   console.log(element.SchedualId)
            // });
@@ -297,7 +297,7 @@ export class CallComponent implements OnInit {
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
-              console.log(respose)
+              // console.log(respose)
               this.toastr.success('Updated Successfully' , 'Update Operation');
             },
             (err)=>{
@@ -396,7 +396,7 @@ export class CallComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
-     console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
+    //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
      if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
       let NewPeriod = {
@@ -420,7 +420,9 @@ export class CallComponent implements OnInit {
        }
     }
     else{
-      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+      Swal.fire('Error!' ,
+       "end time should be less than start time" ,
+        'error')
     }
  
      
@@ -442,7 +444,9 @@ export class CallComponent implements OnInit {
       this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
     }
     else{
-      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+      Swal.fire('Error!' ,
+       "end time should be less than start time" ,
+        'error')
     }
   }
   //#endregion

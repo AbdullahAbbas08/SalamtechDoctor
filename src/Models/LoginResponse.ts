@@ -6,6 +6,8 @@ export class LoginResponse{
     Id: number
     Phone:string
     Token:string
+    Name:string
+    Image:string
   }
 
 }

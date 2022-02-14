@@ -56,7 +56,7 @@ export class MainNavComponent implements OnInit {
     if(e === 'en')
     {
 
-      console.log(localStorage.getItem("lang"))
+      // console.log(localStorage.getItem("lang"))
 
       this.DefaultLang = 'ar';
       localStorage.setItem("lang",'ar')
@@ -78,26 +78,12 @@ export class MainNavComponent implements OnInit {
   //#endregion
 
   GetDoctorProfile(){
-    this.loginService.GetDoctorProfile().subscribe(
-      (response)=>{
-        // console.log(response);
-        this.data=response.Data;
-        localStorage.setItem("NameEnglish",response.Data.FirstName);
-        localStorage.setItem("NameArabic",response.Data.FirstNameAr);
-        localStorage.setItem("logo",response.Data.Image);
-
-        if(this.DefaultLang === 'ar'){
-          this.name=response.Data.FirstNameAr;
-        }
-        else{
-          this.name=response.Data.FirstName;
-        }
-
-      },
-      (err)=>{
-
-      }
-    )
+   
+     
+        this.name=localStorage.getItem('Name');
+        this.logo=localStorage.getItem('logo');
+   
+    
   }
 
   RemoveAuth(){

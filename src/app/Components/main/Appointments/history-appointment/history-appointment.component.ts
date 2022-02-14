@@ -29,7 +29,7 @@ export class HistoryAppointmentComponent implements OnInit {
     this.IamgeURL = environment.ImagesURL;
     document.getElementById('Current')?.classList.remove('visited-appointemt-component');
     document.getElementById('History')?.classList.add('visited-appointemt-component');
-    document.getElementById('Upcoming')?.classList.remove('visited-appointemt-component');
+    document.getElementById('Filter')?.classList.remove('visited-appointemt-component');
     //#endregion
   
     //#region Invoke Methods
@@ -52,7 +52,7 @@ export class HistoryAppointmentComponent implements OnInit {
             let s= (element.PatientName.split(" ", 2)).toString();
             element.PatientName = (s.replace(","," "));
         });
-        console.log( this.PatientList);
+        // console.log( this.PatientList);
         
         this.PatientList.map(item=>{
           if(item.MedicalExaminationTypeId==1){

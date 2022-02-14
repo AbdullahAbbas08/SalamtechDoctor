@@ -118,8 +118,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     ).Name
 
     // this.GetSubSpecialistIdName("en", this.DoctorProfile.SpecialistId);
-    console.log( this.DropDownList_SubSpeciality);
-    console.log(this.DoctorInfoForm.value);
+    // console.log( this.DropDownList_SubSpeciality);
+    // console.log(this.DoctorInfoForm.value);
     
 
   }
@@ -131,7 +131,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.GetSubSpecialistIdName(lang, specialListId).subscribe(
       (response) => {
         this.DropDownList_SubSpeciality = response.Data;
-        console.log( this.DropDownList_SubSpeciality);
+        // console.log( this.DropDownList_SubSpeciality);
         this.initForm();
       },
       (err) => {
@@ -161,7 +161,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.UpdateProfile(obj).subscribe(
       (response) => {
         // this.router.navigateByUrl("/doctor-profile/certificates");
-        console.log(response)
+        // console.log(response)
         this.toaster.success("Doctor Info Updated Successfully","Successfully");
         this.router.navigate(['update-doctor-profile/certificates'])
       },
@@ -259,7 +259,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
   SelectSubSpeciality(event: any) {
     this.DoctorInfoForm.controls.SubSpeciality = event.target.value;
     this.DoctorSubSpecial.push(Number(event.target.value));
-    console.log(this.DoctorSubSpecial);
+    // console.log(this.DoctorSubSpecial);
     
   }
   //#endregion
@@ -327,12 +327,12 @@ export class UpdateDoctorInfoComponent implements OnInit {
         
         this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
         this.date =  response.Data.Birthday.substring(0, 10)
-       console.log( this.DropDownList_SubSpeciality);
+      //  console.log( this.DropDownList_SubSpeciality);
        
         
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       }
     );
   }

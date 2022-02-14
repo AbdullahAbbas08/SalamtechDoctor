@@ -33,8 +33,8 @@ export class DoctorService {
     //#endregion
 
     //#region Get Doctor Profile
-    GetDoctorProfile():Observable<GeneralResponseSingleObject<DoctorProfile>>{
-      return this.http.get<GeneralResponseSingleObject<DoctorProfile>>(`${environment.URL}${this.culture}/Doctor/GetDoctorProfile`,this.httpOptions);
+    GetDoctorProfile():Observable<any>{
+      return this.http.get(`${environment.URL}${this.culture}/Doctor/GetDoctorProfile`,this.httpOptions);
     }
     //#endregion
 

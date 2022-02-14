@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
     //#region Init Section
     this.ErrorMessege="";
     this.direction = document.getElementsByTagName('html')[0].getAttribute("dir");
-    console.log(this.direction);
+    // console.log(this.direction);
     //#endregion
 
      //#region Sidebar Section
@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
                   this._Responsesignup.Data = data;
                       this.router.navigateByUrl("/signup/OTP");
                       this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
-                      console.log(this.SignupService.ResenderCodeObject);
+                      // console.log(this.SignupService.ResenderCodeObject);
                       this.SignupService.Phone = this.SignUp.Phone;
                     },
                 (err)=> {

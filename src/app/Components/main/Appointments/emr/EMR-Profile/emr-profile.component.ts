@@ -75,7 +75,7 @@ export class EmrProfileComponent implements OnInit {
   GetEmrHistory(id){
     this.emrService.GetEmrHistory(id).subscribe(res=>{
       this.profileHistory= res.Data;
-      console.log(this.profileHistory);
+      // console.log(this.profileHistory);
       this.profileHistory.map(res=>{
         // this.GetEmrDetails(res.AppointmentId)
         // this.getMedicalTYpe(res.MedicalExaminationTypeId)
@@ -86,7 +86,7 @@ export class EmrProfileComponent implements OnInit {
   GetEmrDetails(id){
     this.emrService.GetEmrDetails(id).subscribe(res=>{
       this.profiledetails= res.Data;   
-      console.log(this.profiledetails);
+      // console.log(this.profiledetails);
          
     })
   }
@@ -102,11 +102,11 @@ export class EmrProfileComponent implements OnInit {
     "AppointmentId" : parseInt(this.appointmentID)
   }
   this.emrService.PostEmrDetails(body).subscribe(res=>{
-    console.log(res);
+    // console.log(res);
     this.GetEmrHistory(this.id)
   }, 
   err=>{
-    console.log(err);
+    // console.log(err);
     this.GetEmrHistory(this.id)
   })
   }
@@ -116,11 +116,11 @@ export class EmrProfileComponent implements OnInit {
      "AppointmentId" : parseInt(this.appointmentID)
    }
    this.emrService.PostEmrInstructions(body).subscribe(res=>{
-     console.log(res);
+    //  console.log(res);
      this.GetEmrHistory(this.id)
    }, 
    err=>{
-     console.log(err);
+    //  console.log(err);
      this.GetEmrHistory(this.id)
    })
    }
@@ -152,11 +152,11 @@ export class EmrProfileComponent implements OnInit {
    PostEmrDocs(formData :FormData ){ 
     
     this.emrService.PostEmrDocs(formData).subscribe(res=>{
-      console.log(res);
+      // console.log(res);
       this.GetEmrHistory(this.id)
     }, 
     err=>{
-      console.log(err);
+      // console.log(err);
       this.GetEmrHistory(this.id)
     })
    }

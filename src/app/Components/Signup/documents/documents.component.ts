@@ -58,7 +58,7 @@ constructor(
         this.DocumentService.GetLegalDocument(lang ).subscribe(
           (response)=>{
             this.LegalDocumentList = response.Data;
-            console.log(this.LegalDocumentList)
+            // console.log(this.LegalDocumentList)
           },
           (err)=>{ }
         )
@@ -73,7 +73,7 @@ constructor(
            this.DocumentService.GetDocuments(lang ).subscribe(
              (response)=>{
                this.Documents = response.Data;
-               console.log(this.Documents)
+              //  console.log(this.Documents)
              },
              (err)=>{ }
            )
@@ -83,15 +83,15 @@ constructor(
           //#region delete Document Method
           DeleteDocument(lang:string , id)
           {
-            console.log(id);
+            // console.log(id);
             
             this.DocumentService.DeleteDocuments(lang , id).subscribe(
               (response)=>{
-               console.log(response);
+              //  console.log(response);
                this.GetDocuments('en')
               },
               (err)=>{ 
-                console.log(err);
+                // console.log(err);
                 
               }
             )
@@ -104,12 +104,12 @@ constructor(
   {
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
-      console.log(response);
+      // console.log(response);
       this. GetLegalDocument('en')
       this.GetDocuments('en')
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
         this.GetDocuments('en')
       }
     )
@@ -122,8 +122,8 @@ constructor(
     public message: string;
 
     preview(files:any  , id) {
-      console.log(id);
-      console.log(files);
+      // console.log(id);
+      // console.log(files);
       
       
       const formData = new FormData();
@@ -140,7 +140,7 @@ constructor(
      
       formData.append('LegalDocumentTypeId', id );
       formData.append('document',files[0] );
-      console.log(formData)
+      // console.log(formData)
       this.CreateDoctorDocuments('en',formData)
       this.GetDocuments('en')
 

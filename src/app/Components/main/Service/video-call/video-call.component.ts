@@ -173,7 +173,7 @@ export class VideoCallComponent implements OnInit {
         this.DoctorServiceService.GetDoctorVideoAppointmentSchedual().subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
-            console.log("ClinicSchedule : ", this.ClinicSchedule)
+            // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
             Swal.fire({
@@ -197,7 +197,7 @@ export class VideoCallComponent implements OnInit {
         this.DoctorServiceService.GetDoctorVideoAppointmentSchedualByDayId(DayId).subscribe(
           (response)=>{
             this.ClinicScheduleDayList[DayId] = response.Data;
-            console.log(response.Data);
+            // console.log(response.Data);
             // console.log(this.ClinicScheduleDayList[DayId])
             // this.ClinicScheduleDayList[DayId].forEach(element => {
             //   console.log(element.SchedualId)
@@ -290,7 +290,7 @@ export class VideoCallComponent implements OnInit {
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
-              console.log(respose)
+              // console.log(respose)
               this.toastr.success('Updated Successfully' , 'Update Operation');
             },
             (err)=>{
@@ -389,7 +389,7 @@ export class VideoCallComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
-     console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
+    //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
      if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
       let NewPeriod = {

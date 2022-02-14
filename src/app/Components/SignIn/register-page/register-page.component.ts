@@ -116,6 +116,7 @@ Checkinput(){
       (response)=>{
         // console.log(response);
         localStorage.setItem('Authorization',response.Data.Token)
+        localStorage.setItem('Name',response.Data.Name);
         // this.GetDoctorProfile();
         let auth=localStorage.getItem('Authorization')        
         if(auth){

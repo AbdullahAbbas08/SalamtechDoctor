@@ -137,8 +137,8 @@ getAreas(id){
   this.lookupService.GetAreaByCityId(id).subscribe(
     (response)=>{
       this.Areas =  response.Data;
-      console.log(this.Areas);
-      console.log("id : ",id);
+      // console.log(this.Areas);
+      // console.log("id : ",id);
   })
 }
 

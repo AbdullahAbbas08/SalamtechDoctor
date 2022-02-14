@@ -55,7 +55,7 @@ export class CertificatesComponent implements OnInit {
   getCertificate(){
     this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
       this.submittedCertificate= res as CertificateResponse
-      console.log(this.submittedCertificate);
+      // console.log(this.submittedCertificate);
       
       this.resetForm()
     })
@@ -98,7 +98,7 @@ export class CertificatesComponent implements OnInit {
       this.getCertificate()
     },
     (err)=>{
-      console.log(err)
+      // console.log(err)
     })
   }
 
@@ -222,7 +222,9 @@ export class CertificatesComponent implements OnInit {
         this.resetForm()}
       )
     },
-    (err)=>{console.log(err)})
+    (err)=>{
+      // console.log(err)
+    })
   }
 
  

@@ -49,7 +49,7 @@ DefaultLang:string |null;
     if(e === 'en')
     {
 
-      console.log(localStorage.getItem("lang"))
+      // console.log(localStorage.getItem("lang"))
 
       this.DefaultLang = 'ar';
       localStorage.setItem("lang",'ar')

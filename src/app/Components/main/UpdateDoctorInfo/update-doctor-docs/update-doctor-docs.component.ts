@@ -58,7 +58,7 @@ constructor(
         this.DocumentService.GetLegalDocument(lang ).subscribe(
           (response)=>{
             this.LegalDocumentList = response.Data;
-            console.log(this.LegalDocumentList)
+            // console.log(this.LegalDocumentList)
           },
           (err)=>{ }
         )
@@ -73,7 +73,7 @@ constructor(
            this.DocumentService.GetDocuments(lang ).subscribe(
              (response)=>{
                this.Documents = response.Data;
-               console.log(this.Documents)
+              //  console.log(this.Documents)
              },
              (err)=>{ }
            )
@@ -105,7 +105,7 @@ constructor(
                   )
               },
               (err)=>{
-                console.log(err)
+                // console.log(err)
                 Swal.fire("An error occur");
               })
                
@@ -128,12 +128,12 @@ constructor(
   {
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
-      console.log(response);
+      // console.log(response);
       this. GetLegalDocument('en')
       this.GetDocuments('en')
       },
       (err)=>{
-        console.log(err);
+        // console.log(err);
         this.GetDocuments('en')
       }
     )

@@ -76,7 +76,7 @@ export class UpdateClinicGalaryComponent implements OnInit {
         this.GetClinicGalleryByClinicId('en',  this.ClinicId);
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       }
     )
   }
@@ -166,14 +166,14 @@ export class UpdateClinicGalaryComponent implements OnInit {
           )
       },
       (err)=>{
-        console.log(err)
+        // console.log(err)
         Swal.fire("An error occur");
       })
        
       } else {
         Swal.fire(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your imaginary file is safe',
           'error'
         );
       }

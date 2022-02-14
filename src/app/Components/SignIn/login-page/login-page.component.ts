@@ -59,10 +59,14 @@ LoginDoctor(){
    this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
    this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
    this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
-     this.AuthenticatedUser= res      
+     this.AuthenticatedUser= res  
+    //  console.log(res);
+         
      localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
+     localStorage.setItem('Name',this.AuthenticatedUser.Data.Name);
+     localStorage.setItem("logo",this.AuthenticatedUser.Data.Image);
      this.toastr.success("Login Successfully ", 'Successfully');
-     this.router.navigateByUrl("/main");
+     this.router.navigate(["/main"]);
      window.setInterval(() => {
        window.location.reload();
      }, 2000);

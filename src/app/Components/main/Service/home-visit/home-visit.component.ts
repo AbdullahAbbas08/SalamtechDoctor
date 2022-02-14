@@ -169,7 +169,7 @@ export class HomeVisitComponent implements OnInit {
         this.DoctorServiceService.GetDoctorHomeVisitSchedual().subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
-            console.log("ClinicSchedule : ", this.ClinicSchedule)
+            // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
 
@@ -268,7 +268,7 @@ export class HomeVisitComponent implements OnInit {
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
-              console.log(respose)
+              // console.log(respose)
               this.toastr.success('Updated Successfully' , 'Update Operation');
             },
             (err)=>{
@@ -367,7 +367,7 @@ export class HomeVisitComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
-     console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
+    //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
      if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
       let NewPeriod = {

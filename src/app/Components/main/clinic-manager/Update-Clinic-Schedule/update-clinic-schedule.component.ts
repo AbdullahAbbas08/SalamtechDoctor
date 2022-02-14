@@ -129,7 +129,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
                   // console.log("dsdsd : ", this.DurationMedicalExaminationList[element.Id]);
               });
             },(err)=>{
-              console.log(err);
+              // console.log(err);
             })
 
           
@@ -142,7 +142,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
         this.ClinicScheduleService.GetClinicSchedualByClinicId(lang,ID).subscribe(
           (response)=>{
             this.ClinicSchedule = response.Data;
-            console.log("ClinicSchedule : ", this.ClinicSchedule)
+            // console.log("ClinicSchedule : ", this.ClinicSchedule)
           },
           (err)=>{
 
@@ -275,7 +275,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
     this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
     this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
     this.CreateClinicSchedule.Inactive                      = Active;
-    console.log(this.CreateClinicSchedule.ClinicId)
+    // console.log(this.CreateClinicSchedule.ClinicId)
 
     this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
     
@@ -289,7 +289,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
-     console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
+    //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
  
      let NewPeriod = {
       DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
@@ -301,7 +301,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
       ClinicId                    : +this.ClinicId
      } as CreateClinicSchedule;
 
-     console.log(NewPeriod.ClinicId)
+    //  console.log(NewPeriod.ClinicId)
 
     //  console.log("NewPeriod : ",NewPeriod);
 

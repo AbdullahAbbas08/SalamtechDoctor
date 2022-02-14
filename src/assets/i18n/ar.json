@@ -192,11 +192,18 @@
         "Date": "التاريخ",
         "Time": "الوقت",
         "Type": "النوع",
-        "Actions": "اعدادات"
+        "Actions": "اعدادات",
+        "Consultation Type":"Consultation Type"
       },
       "Call":"مكالمة",
       "EMR":"EMR",
-      "Cancel":"أنهاء"
+      "Cancel":"أنهاء",
+      "Cancelled":"ملغي",
+      "Filter":"Filter",
+      "ShowMore":"Show More",
+      "ShowLess":"Show Less",
+      "APPLYFILTER":"APPLY FILTER"
+
     },
     "EMR": {
       "PatientProfile": "ملف المريض",
@@ -276,5 +283,25 @@
     "FloorNumber":"برجاء إدخال رقم الدور",
     "Services":"من فضلك أدخل الخدمات",
     "clinicLogo":"برجاء إدخال الصورة "
-  }
+  },
+  "Swals":{
+    "Error!":"Error!",
+    "imagesize":"image size is larger than 3mb",
+    "UpdatedSuccessfully":"Updated Successfully",
+    "endtime":"end time should be less than start time",
+    "areusure":"Are you sure?",
+    "cancelapp":"You want to cancel this appointment",
+    "Cancelled":"Cancelled!",
+    "errocur":"An error occur",
+    "appointmentactive":"Your appointment still active",
+    "won'trevert":"You won't be able to revert this!",
+    "yes":"Yes, delete it!",
+    "Deleted":"Deleted!",
+    "filesafe":"Your imaginary file is safe",
+    "fileDeleted":"Your file has been deleted.",
+    "Great":"Great",
+    "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
+    "Done":"Done",
+    "AddClinic":"Add New Clinic"
+    }
 }
