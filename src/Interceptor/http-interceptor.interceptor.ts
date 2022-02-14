@@ -12,7 +12,6 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import { Login } from 'src/Models/Login';
 
 @Injectable()
 export class HttpInterceptorInterceptor implements HttpInterceptor {
@@ -29,8 +28,10 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
         let message = '';
         if (err.status === 401) {
           // handle client-side error
-          localStorage.removeItem("Authorization");
-          this.router.navigate(['/Login'])          
+          setTimeout(function( router: Router){
+            localStorage.removeItem("Authorization");
+            router.navigateByUrl('/Login') 
+        }, 2000);
           message = `Error: ${err.error.message}`;
           } 
         
