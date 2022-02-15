@@ -46,6 +46,7 @@ export class MainNavComponent implements OnInit {
     }
     //#endregion
     this.logo = this.IamgeURL+localStorage.getItem("logo")
+    console.log(this.logo);
     
   }
   //#endregion
@@ -88,8 +89,8 @@ export class MainNavComponent implements OnInit {
 
   RemoveAuth(){
     localStorage.removeItem('Authorization')
-    localStorage.removeItem('NameArabic')
-    localStorage.removeItem('NameEnglish')
+    localStorage.removeItem('Name')
+    localStorage.removeItem('logo')
     this.router.navigate(['/Login']);
     window.location.reload();
   }

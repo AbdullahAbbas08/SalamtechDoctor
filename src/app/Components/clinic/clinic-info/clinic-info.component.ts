@@ -101,7 +101,7 @@ export class ClinicInfoComponent implements OnInit {
           Address: ['', [Validators.required]],
           // Street: ['', [Validators.required]],
           Area: ['', [Validators.required]],
-          BuildingNumber: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
+          BuildingNumber: ['',  ],
           FloorNumber: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
           // ApartmentNumber: ['', [Validators.required]],
           FixedFee: ['', [Validators.required , Validators.pattern(/^\d*$/)]],

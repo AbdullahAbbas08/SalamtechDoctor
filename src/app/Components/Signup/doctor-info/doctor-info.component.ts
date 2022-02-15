@@ -88,7 +88,7 @@ export class DoctorInfoComponent implements OnInit {
             // PhoneNumber:['',[Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
             // Password:['',[Validators.required , Validators.minLength(6)]],
             // ConfirmPassword:['',[Validators.required ]],
-            Gender:['',[Validators.required ]],
+            Gender:['',[Validators.required  ,Validators.pattern(/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[0-9]{1}\d{1})|([2]{1}[0]{1}[0]{1}[0-4]{1}))$/)]],
             // Nationality:['',[Validators.required ]],
             // ,Validators.pattern(/^[0,1]?\d{1}\/(([0-2]?\d{1})|([3][0,1]{1}))\/(([1]{1}[9]{1}[0-9]{1}\d{1})|([2]{1}[0]{1}[0]{1}[0-4]{1}))$/)]
             Country:['',[Validators.required ]],
