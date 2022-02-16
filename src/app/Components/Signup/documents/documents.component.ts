@@ -85,16 +85,41 @@ constructor(
           {
             // console.log(id);
             
-            this.DocumentService.DeleteDocuments(lang , id).subscribe(
-              (response)=>{
-              //  console.log(response);
-               this.GetDocuments('en')
+           
+
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            })
+            .then((result) => {
+        
+              if (result.isConfirmed) {
+                this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
+                  this.GetDocuments('en')
+                  Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                  )
               },
-              (err)=>{ 
-                // console.log(err);
-                
+              (err)=>{
+                // console.log(err)
+                Swal.fire("An error occur");
+              })
+               
+              } else {
+                Swal.fire(
+                  'Cancelled',
+                  'Your imaginary file is safe',
+                  'error'
+                );
               }
-            )
+            }); 
           }
           //#endregion
 
@@ -128,7 +153,19 @@ constructor(
       
       const formData = new FormData();
       if (files.length === 0)
-        return ;
+       { return ;
+       }
+
+        if (files[0].size > 3000000)
+        {
+        this.message = "image size is larger than 3mb.";
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+        return;
+      }
 
       var mimeType = files[0].type;
       if (mimeType.match(/image\/*/) == null) {
@@ -150,8 +187,6 @@ constructor(
 
     next(){
 
-      
-      
       Swal.fire({
         title: 'Great',
         text: "Welcome to Salamtech. We will review your request and update your account soon",

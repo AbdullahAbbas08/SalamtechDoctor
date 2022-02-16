@@ -28,10 +28,9 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
         let message = '';
         if (err.status === 401) {
           // handle client-side error
-          setTimeout(function( router: Router){
-            localStorage.removeItem("Authorization");
-            router.navigateByUrl('/Login') 
-        }, 2000);
+          
+          localStorage.removeItem("Authorization");
+          this.router.navigate(['/main']) 
           message = `Error: ${err.error.message}`;
           } 
         

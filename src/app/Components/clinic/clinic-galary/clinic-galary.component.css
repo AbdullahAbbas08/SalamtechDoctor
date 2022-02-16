@@ -39,8 +39,7 @@
 
 .next-btn
 {
-    width: 231px;
-    height: 53px;
+    padding: 15px 40px;
     border-radius: 8px;
     background-color: #262d70;
     font-size: 20px;

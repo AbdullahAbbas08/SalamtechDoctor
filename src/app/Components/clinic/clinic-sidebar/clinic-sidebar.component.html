@@ -13,21 +13,16 @@
   <div class="col-12 col-md-9  var-component  mb-5">
       <div class="container container-outlet ">
 
-          <div class="row row-outlet mb-5">
-              <div class="col-12">
-                  <router-outlet >
-
-
-                  </router-outlet>
-              </div>
+          <div class=" row-outlet"> 
+                  <router-outlet > </router-outlet> 
           </div>
 
-          <div  class="row row-terms mt-md-0 mt-5 pb-md-0 pb-4 " >
+          <div  class="row row-terms mt-md-0 mt-5 pb-md-0 pb-4  mr-auto" >
 
-                <div class="col-12 Terms-Condition-style "  >
+                <div class="col-12 Terms-Condition-style d-flex"  >
                         <span>
                             {{'mainModule.sideBar.singingUpYouAreApproveOur' | translate}}
-                            <span class="termsCondition-style">
+                            <span class="termsCondition-style" routerLink="/terms">
                                 {{'mainModule.sideBar.Terms&Conditions' | translate}}
                             </span>
                         </span>

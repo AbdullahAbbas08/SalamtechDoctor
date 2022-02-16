@@ -27,8 +27,8 @@ export class AppointmentService {
 
 
   //#region Get Current Doctor Appointment
-  GetCurrentDoctorAppointment(MaxResultCount:number , SkipCount:number):Observable<GeneralResponseAppointment<PatientItem>>{
-    return this.http.get<GeneralResponseAppointment<PatientItem>>(`${environment.URL}${this.culture}/DoctorAppointment/GetCurrentDoctorAppointment?SkipCount=${SkipCount}&MaxResultCount=${MaxResultCount}`,this.httpOptions);
+  GetCurrentDoctorAppointment(MaxResultCount:number , SkipCount:number):Observable<any>{
+    return this.http.get(`${environment.URL}${this.culture}/DoctorAppointment/GetCurrentDoctorAppointment?SkipCount=${SkipCount}&MaxResultCount=${MaxResultCount}`,this.httpOptions);
   }
   //#endregion
 

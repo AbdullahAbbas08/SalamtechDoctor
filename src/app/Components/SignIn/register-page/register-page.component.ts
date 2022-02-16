@@ -114,14 +114,16 @@ Checkinput(){
       this.CreateUser.UserTypeId = 2;
     this.UserService.CreateUser( this.CreateUser).subscribe(
       (response)=>{
-        // console.log(response);
+        // console.log(response.Data.Token);
         localStorage.setItem('Authorization',response.Data.Token)
         localStorage.setItem('Name',response.Data.Name);
-        // this.GetDoctorProfile();
         let auth=localStorage.getItem('Authorization')        
-        if(auth){
-          this.router.navigate(["/doctor-profile"]);
-        }
+        setTimeout(() => {
+          if(auth){
+            console.log(auth);
+            this.router.navigate(["/doctor-profile"]);          
+          }
+        }, 2000);
         // window.location.reload();
       },
       (err)=>{

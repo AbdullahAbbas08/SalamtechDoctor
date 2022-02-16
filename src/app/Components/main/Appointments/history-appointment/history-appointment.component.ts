@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { PatientItem } from 'src/Models/patient-item';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
@@ -16,10 +16,10 @@ export class HistoryAppointmentComponent implements OnInit {
   medicalImg=[];
   p:number = 1;
   PatientList:PatientItem[];
-  //#endregion
+   //#endregion
 
   //#region constructor
-  constructor(private AppointmentService:AppointmentService) { }
+  constructor(private AppointmentService:AppointmentService ) { }
   //#endregion
 
   //#region On Init Method
@@ -33,9 +33,10 @@ export class HistoryAppointmentComponent implements OnInit {
     //#endregion
   
     //#region Invoke Methods
-    this.GetHistoryDoctorAppointment(10,1);
+    this.GetHistoryDoctorAppointment(10,0);
     //#endregion
-  }
+
+   }
   //#endregion
 
 //#region Consume API's
@@ -44,6 +45,8 @@ export class HistoryAppointmentComponent implements OnInit {
   GetHistoryDoctorAppointment(MaxResultCount:number,SkipCount:number){
     this.AppointmentService.GetHistoryDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
+        // console.log(response);
+        
          this.PatientList = response.Data.Items;
          let re = /\*/gi;
          
@@ -51,7 +54,7 @@ export class HistoryAppointmentComponent implements OnInit {
             element.PatientName = element.PatientName.replace(re, " ");
             let s= (element.PatientName.split(" ", 2)).toString();
             element.PatientName = (s.replace(","," "));
-        });
+         });
         // console.log( this.PatientList);
         
         this.PatientList.map(item=>{

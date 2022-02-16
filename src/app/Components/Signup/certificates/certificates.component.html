@@ -142,11 +142,13 @@
                     <label for="year">{{"mainModule.Certificate.Year" | translate}}<span class="text-danger">*</span></label>
                     <input onKeyPress="if(this.value.length==4 ) return false; " formControlName="year" [class.is-valid]="
                         CertificateForm.controls['year'].valid &&
-                        CertificateForm.controls['year'].touched
+                        CertificateForm.controls['year'].touched &&
+                        CertificateForm.get('year').value>0
                       " [class.is-invalid]="
                         CertificateForm.controls['year'].invalid &&
-                        CertificateForm.controls['year'].touched
-                      " id="year" type="number" class="form-control w-100 mt-2 input-style" placeholder="0000"
+                        CertificateForm.controls['year'].touched &&
+                        CertificateForm.get('year').value<1
+                      " id="year" type="number" class="form-control w-100 mt-2 input-style" placeholder="0000" #year
                       [(ngModel)]="editableCertificate.Year" />
                   </div>
                 </div>

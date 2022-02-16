@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } fr
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { ToastrService } from "ngx-toastr";
 import { GoogleMapsComponent } from "src/app/Shared/google-maps/google-maps.component";
 import { environment } from "src/environments/environment";
 import { Area } from "src/Models/Area";
@@ -40,7 +41,8 @@ export class UpdateClinicInfoComponent implements OnInit {
     private ClinicService: ClinicInfoService,
     private Router: Router,
     private route: ActivatedRoute,
-    private builder:FormBuilder
+    private builder:FormBuilder,
+    private toaster:ToastrService
   ) {
     this.route.paramMap.subscribe(param=>{
       this.clinicId=param.get('ID');
@@ -260,6 +262,7 @@ getAreas(id){
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         // console.log(res);
         this.getClinicInfo( this.clinicId)
+        this.toaster.success("Clinic Info Updated Successfully","Successfully");
         // this.Router.navigate(['clinic/gallary/',this.clinicId]);
         this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
        },

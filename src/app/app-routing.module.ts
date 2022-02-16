@@ -51,7 +51,9 @@ import { SignupComponent } from './Components/Signup/signup/signup.component';
 
 const routes: Routes = [
 
-  { path:'doctor-profile',
+
+  {  
+    path:'doctor-profile',
     component:SignUpMainComponent ,
     children:[
       {path:'OTP',component:OtpComponent },
@@ -61,33 +63,19 @@ const routes: Routes = [
       {path:'Congratulations',component:CongratulationsComponent },
     ] 
   },
-
-
-  { canActivate: [LoginGuardService],
-    path:'',component:LoginMainComponent,
-    children:[
-    {path:'register',component:RegisterPageComponent}
-    ]
-  },
-
-
-  { canActivate: [LoginGuardService],
-    path:'Login',
-    component:LoginPageComponent
-  },
-  
-  {
-    path:'terms',
-    component:TermsComponent
-  },
-
-  {path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
+ 
+  {canActivate: [LogoutGuardService] , path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
       {path:'',component:UpdateDoctorInfoComponent },
       {path:'certificates',component:UpdateDoctorCertificatesComponent },
       {path:'documents',component:UpdateDoctorDocsComponent },
   ] },
 
-  { path:'clinic',component:ClinicInfoMainComponent ,
+  {
+    path:'terms',
+    component:TermsComponent
+  },
+
+  { canActivate: [LogoutGuardService] , path:'clinic',component:ClinicInfoMainComponent ,
     children:[
         {path:'',component:ClinicInfoComponent },
         {path:'gallary/:ClinicId',component:ClinicGalaryComponent , resolve:{Galary:GalaryResolver}},
@@ -131,6 +119,18 @@ const routes: Routes = [
           {path:'emr-profile/:ID',component:EmrProfileComponent } ,
           {path:'patient-profile/:ID',component:PatientProfileComponent} ,
         ] },
+    ]
+  },
+
+
+  { canActivate: [LoginGuardService],
+    path:'Login',
+    component:LoginPageComponent
+  },
+  { canActivate: [LoginGuardService],
+    path:'',component:LoginMainComponent,
+    children:[
+    {path:'register',component:RegisterPageComponent}
     ]
   },
  

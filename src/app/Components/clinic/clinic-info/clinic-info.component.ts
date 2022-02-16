@@ -13,6 +13,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { Router } from '@angular/router';
 import { ClinicId } from 'src/Models/clinic-id';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-clinic-info',
   templateUrl: './clinic-info.component.html',
@@ -68,7 +69,7 @@ export class ClinicInfoComponent implements OnInit {
 
     this.GetCities();
 
-    this.GetAreas();
+    // this.GetAreas();
 
     this.ClinicInfoModel = new ClinicInfoModel();
 
@@ -82,7 +83,7 @@ export class ClinicInfoComponent implements OnInit {
           Name: ['', [Validators.required, Validators.minLength(3)]],
           NameAr: ['', [Validators.required, Validators.minLength(3)]],
           clinicLogo: ['', [Validators.required]],
-          Email: ['', [Validators.email, Validators.required]],
+          Email: ['', [ Validators.required , Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)]],
           PhoneNumber: [
             '',
             [
@@ -102,10 +103,10 @@ export class ClinicInfoComponent implements OnInit {
           // Street: ['', [Validators.required]],
           Area: ['', [Validators.required]],
           BuildingNumber: ['',  ],
-          FloorNumber: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
+          FloorNumber: ['', ],
           // ApartmentNumber: ['', [Validators.required]],
           FixedFee: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
-          Services: ['', [Validators.required]],
+          Services: ['' ],
         });
     
     
@@ -148,6 +149,17 @@ export class ClinicInfoComponent implements OnInit {
   preview(files: any) {
     if (files.length === 0) return;
 
+    if (files[0].size > 3000000)
+    {
+    this.message = "image size is larger than 3mb.";
+    Swal.fire(
+      'Error!',
+      'image size is larger than 3mb',
+      'error'
+    )
+    return;
+    }
+
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = 'Only images are supported.';
@@ -178,16 +190,32 @@ export class ClinicInfoComponent implements OnInit {
   //#endregion
 
   //#region Get Areas
-  GetAreas() {
-    this.lookupService.GetAreas('en').subscribe(
-      (res) => {
-        this.Areas = res.Data;
-      },
-      (err) => {
-      }
-    );
-  }
+  // GetAreas() {
+  //   this.lookupService.GetAreas('en').subscribe(
+  //     (res) => {
+  //       this.Areas = res.Data;
+  //     },
+  //     (err) => {
+  //     }
+  //   );
+  // }
   //#endregion
+
+    //#region Get Areas
+    GetAreaByCityId(id) {
+      console.log(id);
+      
+      this.lookupService.GetAreaByCityId(id).subscribe(
+        (res) => {
+          console.log(res);
+          
+          this.Areas = res.Data;
+        },
+        (err) => {
+        }
+      );
+    }
+    //#endregion
 
   //#region get Services
   GetServices() {

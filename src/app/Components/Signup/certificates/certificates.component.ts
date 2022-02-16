@@ -81,14 +81,19 @@ export class CertificatesComponent implements OnInit {
   SubmitCertificate(){
     const formData = new FormData();
 
-    formData.append('Title',this.CertificateForm.controls.title.value)
-    formData.append('Description',this.CertificateForm.controls.Description.value)
-    formData.append('TitleAr',this.CertificateForm.controls.titleAr.value)
-    formData.append('DescriptionAr',this.CertificateForm.controls.DescriptionAr.value)
-    formData.append('Year', +this.CertificateForm.controls.year.value as unknown as Blob)
-    formData.append('certificateImage',this.certificate.CertificateUrl)
-
-    this.CreateCertificate('en',formData)
+    if(   +this.CertificateForm.controls.year.value >1000){
+      formData.append('Title',this.CertificateForm.controls.title.value)
+      formData.append('Description',this.CertificateForm.controls.Description.value)
+      formData.append('TitleAr',this.CertificateForm.controls.titleAr.value)
+      formData.append('DescriptionAr',this.CertificateForm.controls.DescriptionAr.value)
+      formData.append('Year', +this.CertificateForm.controls.year.value as unknown as Blob)
+      formData.append('certificateImage',this.certificate.CertificateUrl)
+  
+      this.CreateCertificate('en',formData)
+    }
+    else{
+      Swal.fire('Error!' , 'Cannot add this year' , 'error')
+    }
   }
 
 
@@ -110,6 +115,17 @@ export class CertificatesComponent implements OnInit {
 
     if (files.length === 0)
       return;
+    
+    if (files[0].size > 3000000)
+      {
+      this.message = "image size is larger than 3mb.";
+      Swal.fire(
+        'Error!',
+        'image size is larger than 3mb',
+        'error'
+      )
+      return;
+      }
 
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {

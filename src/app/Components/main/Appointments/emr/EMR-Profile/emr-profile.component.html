@@ -3,133 +3,135 @@
     <div class="col-md-6 mt-3 history">
       <h2>{{ "mainModule.EMR.profile.EMRHistory" | translate }}</h2>
       <div
-        class="box1  mt-4"
+        
         *ngFor="let item of profileHistory; let i = index"
       >
-      <span
-      class=" px-5 py-3 box1 w-100"
-      type="button"
-      data-bs-toggle="collapse"
-      [attr.data-bs-target]="'#element' + i"
-      aria-expanded="false"
-      [attr.aria-controls]="'element' + i"
-      (click)="GetEmrDetails(item.AppointmentId) ; getMedicalTYpe(item.MedicalExaminationTypeId)"
-      >
-      <div class="row align-items-center">
-        <div class="col-1">
-          <img src="../../../../../../assets/img/medical-type/location.png" alt="" width="30">
-        </div>
-        <div class="col-11">
-
-          {{ item.AppountmentDate }}
-          <br>
-            {{ MedicalType }}
-        </div>
-      </div>
-      
-         
-        </span>
-
-        <div class="collapse multi-collapse p-4" [id]="'element' + i">
-          <!-- Description -->
-          <div class="Description mb-4 mt-3"
-            *ngFor="
-              let pres of profiledetails?.PatientEmrdetails;
-              let i = index
-            "
+        <div class="box1  mt-4" *ngIf="item.AppointmentId != appointmentID">
+          <span
+          class=" px-5 py-3 box1 w-100"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#element' + i"
+          aria-expanded="false"
+          [attr.aria-controls]="'element' + i"
+          (click)="GetEmrDetails(item.AppointmentId) ; getMedicalTYpe(item.MedicalExaminationTypeId)"
           >
-            <h4>
-              {{ "mainModule.EMR.profile.Description" | translate }} {{ i + 1 }}
-            </h4>
-            <div class="mb-2">
-              <label for="exampleFormControlInput1" class="form-label">{{
-                "mainModule.EMR.profile.RXTitle" | translate
-              }}</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleFormControlInput1"
-                [placeholder]="pres?.Title"
-                disabled
-                readonly
-              />
+          <div class="row align-items-center">
+            <div class="col-1">
+              <img src="../../../../../../assets/img/medical-type/location.png" alt="" width="30">
             </div>
-            <div class="mb-2">
-              <label for="exampleFormControlInput1" class="form-label">{{
-                "mainModule.EMR.profile.RXDescription" | translate
-              }}</label>
-              <textarea
-                class="form-control"
-                name="description"
-                id="description"
-                wrap="soft"
-                disabled
-                readonly
-                >{{ pres?.Description }} </textarea
-              >
+            <div class="col-11">
+    
+              {{ item.AppountmentDate }}
+              <br>
+                {{ MedicalType }}
             </div>
           </div>
-          <!-- Instructions -->
-          <div class="Instructions mb-4" *ngIf="profiledetails?.Instructions != null">
-            <h4>{{ "mainModule.EMR.profile.Instructions" | translate }}</h4>
-            <div class="mb-2">
-              <label for="exampleFormControlInput1" class="form-label">{{
-                "mainModule.EMR.profile.Instructions" | translate
-              }}</label>
-              <textarea
-                class="form-control"
-                name="description"
-                id="description"
-                wrap="soft"
-                disabled
-                readonly
-                >{{ profiledetails?.Instructions }}</textarea
+          
+             
+            </span>
+    
+            <div class="collapse multi-collapse p-4" [id]="'element' + i">
+              <!-- Description -->
+              <div class="Description mb-4 mt-3"
+                *ngFor="
+                  let pres of profiledetails?.PatientEmrdetails;
+                  let i = index
+                "
               >
-            </div>
-          </div>
-
-          <!-- Documents -->
-          <div class="Documents mb-4" *ngIf="profiledetails?.PatientEmrdocuments.length != 0">
-            <h4>{{ "mainModule.EMR.profile.Documents" | translate }}</h4>
-            
-            <div
-              class="box1 py-2 px-3 d-flex flex-wrap justify-content-between align-items-center mb-3" *ngFor="let doc of profiledetails?.PatientEmrdocuments ; let i=index "
-            >
-              <label >{{doc?.DocumentUrl | slice:25:70}}</label>
-              <div class="d-flex flex-wrap">
+                <h4>
+                  {{ "mainModule.EMR.profile.Description" | translate }} {{ i + 1 }}
+                </h4>
+                <div class="mb-2">
+                  <label for="exampleFormControlInput1" class="form-label">{{
+                    "mainModule.EMR.profile.RXTitle" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    [placeholder]="pres?.Title"
+                    disabled
+                    readonly
+                  />
+                </div>
+                <div class="mb-2">
+                  <label for="exampleFormControlInput1" class="form-label">{{
+                    "mainModule.EMR.profile.RXDescription" | translate
+                  }}</label>
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    wrap="soft"
+                    disabled
+                    readonly
+                    >{{ pres?.Description }} </textarea
+                  >
+                </div>
+              </div>
+              <!-- Instructions -->
+              <div class="Instructions mb-4" *ngIf="profiledetails?.Instructions != null">
+                <h4>{{ "mainModule.EMR.profile.Instructions" | translate }}</h4>
+                <div class="mb-2">
+                  <label for="exampleFormControlInput1" class="form-label">{{
+                    "mainModule.EMR.profile.Instructions" | translate
+                  }}</label>
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    wrap="soft"
+                    disabled
+                    readonly
+                    >{{ profiledetails?.Instructions }}</textarea
+                  >
+                </div>
+              </div>
+    
+              <!-- Documents -->
+              <div class="Documents mb-4" *ngIf="profiledetails?.PatientEmrdocuments.length != 0">
+                <h4>{{ "mainModule.EMR.profile.Documents" | translate }}</h4>
                 
-         
-
-
-                <!--Modal   -->
-            <button type="button"  class="btn view bg-light" data-bs-toggle="modal" [attr.data-bs-target]="'#viewGalary'+i" >
-              <i class="fas fa-eye"></i>
-                  {{ "mainModule.EMR.profile.View" | translate }}
-            </button>
-
-            <div class="modal fade" id="viewGalary{{i}}" tabindex="-1" aria-labelledby="exampleModal2Label"
-              aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <img  [src]="ImgeURL+doc?.DocumentUrl">              
+                <div
+                  class="box1 py-2 px-3 d-flex flex-wrap justify-content-between align-items-center mb-3" *ngFor="let doc of profiledetails?.PatientEmrdocuments ; let i=index "
+                >
+                  <label >{{doc?.DocumentUrl | slice:25:70}}</label>
+                  <div class="d-flex flex-wrap">
+                    
+             
+    
+    
+                    <!--Modal   -->
+                <button type="button"  class="btn view bg-light" data-bs-toggle="modal" [attr.data-bs-target]="'#viewGalary'+i" >
+                  <i class="fas fa-eye"></i>
+                      {{ "mainModule.EMR.profile.View" | translate }}
+                </button>
+    
+                <div class="modal fade" id="viewGalary{{i}}" tabindex="-1" aria-labelledby="exampleModal2Label"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <img  [src]="ImgeURL+doc?.DocumentUrl">              
+                    </div>
+                  </div>
+                </div>
+              <!-- End Modal -->
+     
+    
+                    <a
+                      [href]="ImgeURL+doc?.DocumentUrl"
+                      target="_blank"
+                      [download]="ImgeURL+doc?.DocumentUrl"
+                      class="download bg-light border-0 mx-2 p-2" 
+                      style="text-decoration: none;"
+                      ><i class="fas fa-download"></i>
+                      {{ "mainModule.EMR.profile.Download" | translate }}</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
-          <!-- End Modal -->
- 
-
-                <a
-                  [href]="ImgeURL+doc?.DocumentUrl"
-                  target="_blank"
-                  [download]="ImgeURL+doc?.DocumentUrl"
-                  class="download bg-light border-0 mx-2 p-2" 
-                  style="text-decoration: none;"
-                  ><i class="fas fa-download"></i>
-                  {{ "mainModule.EMR.profile.Download" | translate }}</a
-                >
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -141,6 +143,146 @@
     <!-- current emr -->
     <div class="col-md-6 mt-3 current">
       <h2>{{ "mainModule.EMR.profile.CurrentEMR" | translate }}</h2>
+
+
+
+
+      <div
+    
+      *ngFor="let item of profileHistory; let i = index"
+    >
+      <div   class="box1  mt-4" *ngIf="item.AppointmentId == appointmentID">
+        <span
+        class=" px-5 py-3   w-100"
+        type="button"
+        data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#element' + i"
+        aria-expanded="false"
+        [attr.aria-controls]="'element' + i"
+        (click)="GetEmrDetails(item.AppointmentId) ; getMedicalTYpe(item.MedicalExaminationTypeId)"
+        >
+        <div class="row align-items-center">
+          <div class="col-1">
+            <img src="../../../../../../assets/img/medical-type/location.png" alt="" width="30">
+          </div>
+          <div class="col-11">
+    
+            {{ item.AppountmentDate }}
+            <br>
+              {{ MedicalType }}
+          </div>
+        </div>
+        
+           
+          </span>
+    
+          <div class="collapse multi-collapse p-4" [id]="'element' + i">
+            <!-- Description -->
+            <div class="Description mb-4 mt-3"
+              *ngFor="
+                let pres of profiledetails?.PatientEmrdetails;
+                let i = index
+              "
+            >
+              <h4>
+                {{ "mainModule.EMR.profile.Description" | translate }} {{ i + 1 }}
+              </h4>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label">{{
+                  "mainModule.EMR.profile.RXTitle" | translate
+                }}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleFormControlInput1"
+                  [placeholder]="pres?.Title"
+                  disabled
+                  readonly
+                />
+              </div>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label">{{
+                  "mainModule.EMR.profile.RXDescription" | translate
+                }}</label>
+                <textarea
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  wrap="soft"
+                  disabled
+                  readonly
+                  >{{ pres?.Description }} </textarea
+                >
+              </div>
+            </div>
+            <!-- Instructions -->
+            <div class="Instructions mb-4" *ngIf="profiledetails?.Instructions != null">
+              <h4>{{ "mainModule.EMR.profile.Instructions" | translate }}</h4>
+              <div class="mb-2">
+                <label for="exampleFormControlInput1" class="form-label">{{
+                  "mainModule.EMR.profile.Instructions" | translate
+                }}</label>
+                <textarea
+                  class="form-control"
+                  name="description"
+                  id="description"
+                  wrap="soft"
+                  disabled
+                  readonly
+                  >{{ profiledetails?.Instructions }}</textarea
+                >
+              </div>
+            </div>
+    
+            <!-- Documents -->
+            <div class="Documents mb-4" *ngIf="profiledetails?.PatientEmrdocuments.length != 0">
+              <h4>{{ "mainModule.EMR.profile.Documents" | translate }}</h4>
+              
+              <div
+                class="  py-2 px-3 d-flex flex-wrap justify-content-between align-items-center mb-3" *ngFor="let doc of profiledetails?.PatientEmrdocuments ; let i=index "
+              >
+                <label >{{doc?.DocumentUrl | slice:25:70}}</label>
+                <div class="d-flex flex-wrap">
+                  
+           
+    
+    
+                  <!--Modal   -->
+              <button type="button"  class="btn view bg-light" data-bs-toggle="modal" [attr.data-bs-target]="'#viewGalary'+i" >
+                <i class="fas fa-eye"></i>
+                    {{ "mainModule.EMR.profile.View" | translate }}
+              </button>
+    
+              <div class="modal fade" id="viewGalary{{i}}" tabindex="-1" aria-labelledby="exampleModal2Label"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <img  [src]="ImgeURL+doc?.DocumentUrl">              
+                  </div>
+                </div>
+              </div>
+            <!-- End Modal -->
+    
+    
+                  <a
+                    [href]="ImgeURL+doc?.DocumentUrl"
+                    target="_blank"
+                    [download]="ImgeURL+doc?.DocumentUrl"
+                    class="download bg-light border-0 mx-2 p-2" 
+                    style="text-decoration: none;"
+                    ><i class="fas fa-download"></i>
+                    {{ "mainModule.EMR.profile.Download" | translate }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+
+
 
       <form  >
         <div class="box1 p-4 mt-4">
@@ -156,6 +298,7 @@
                 class="form-control"
                 id="exampleFormControlInput1"
                 #title
+
               />
             </div>
             <div class="mb-2">
@@ -170,7 +313,7 @@
                 #description
               ></textarea>
             </div>
-            <button class="btn upload" (click)=" postEmretails(title.value, description.value)">
+            <button class="btn upload" (click)=" postEmretails(title.value, description.value)  " type="reset">
               <i class="fas fa-plus"></i
               >{{ "mainModule.EMR.profile.AddDescription" | translate }}
             </button>
@@ -191,7 +334,7 @@
                 #instructions
               ></textarea>
             </div>
-            <button class="btn upload" (click)=" postEmrInstructions(instructions.value)">
+            <button class="btn upload" (click)=" postEmrInstructions(instructions.value)" type="reset">
               <i class="fas fa-plus"></i
               >{{ "mainModule.EMR.profile.AddInstructions" | translate }}
             </button>
@@ -211,7 +354,7 @@
                   #file
                 />
               </div>
-              <button class="btn upload" (click)="preview(file.files)">
+              <button class="btn upload" (click)="preview(file.files)" type="reset">
                 <i class="fas fa-upload"></i>
                 {{
                   "mainModule.EMR.profile.UploadDocumentorReport" | translate

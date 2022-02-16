@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EmrService } from 'src/Service/emr/emr.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-emr-profile',
@@ -75,7 +76,7 @@ export class EmrProfileComponent implements OnInit {
   GetEmrHistory(id){
     this.emrService.GetEmrHistory(id).subscribe(res=>{
       this.profileHistory= res.Data;
-      // console.log(this.profileHistory);
+      console.log(this.profileHistory);
       this.profileHistory.map(res=>{
         // this.GetEmrDetails(res.AppointmentId)
         // this.getMedicalTYpe(res.MedicalExaminationTypeId)
@@ -118,6 +119,7 @@ export class EmrProfileComponent implements OnInit {
    this.emrService.PostEmrInstructions(body).subscribe(res=>{
     //  console.log(res);
      this.GetEmrHistory(this.id)
+
    }, 
    err=>{
     //  console.log(err);
@@ -133,6 +135,17 @@ export class EmrProfileComponent implements OnInit {
      const formData = new FormData();
      if (files.length === 0)
        return ;
+
+       if (files[0].size > 2000000)
+       {
+       this.message = "image size is larger than 2mb.";
+       Swal.fire(
+         'Error!',
+         'image size is larger than 2mb',
+         'error'
+       )
+       return;
+     }
 
      var mimeType = files[0].type;
      if (mimeType.match(/image\/*/) == null) {

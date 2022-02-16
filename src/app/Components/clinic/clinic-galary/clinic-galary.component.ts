@@ -136,14 +136,40 @@ export class ClinicGalaryComponent implements OnInit {
 
   //#region Delete Galary
   DeleteGalary(ID: number) {
-    this.GalaryService.DeleteClinicGallery('en', ID).subscribe(
-      (response) => {
-        // console.log(response);
-        this.GetClinicGalleryByClinicId('en',  this.ClinicId);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+    .then((result) => {
+
+      if (result.isConfirmed) {
+        this.GalaryService.DeleteClinicGallery('en', ID).subscribe((res)=>{
+          this.GetClinicGalleryByClinicId('en',  this.ClinicId);
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
       },
-      (err) => {
-        // console.log(err);
+      (err)=>{
+        // console.log(err)
+        Swal.fire("An error occur");
       })
+       
+      } else {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe',
+          'error'
+        );
+      }
+    }); 
   }
   //#endregion
 

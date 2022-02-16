@@ -62,7 +62,7 @@ export class DoctorService {
 
         //#region Get Doctor Video Call Schedual
         GetDoctorVideoAppointmentSchedual():Observable<GeneralResponse<ClinicSchedule>>{
-          return this.http.get<GeneralResponse<ClinicSchedule>>(`${environment.URL}${this.culture}/DoctorService/GetDoctorVideoAppointmentSchedual`,this.httpOptions);
+          return this.http.get<GeneralResponse<ClinicSchedule>>(`${environment.URL}${this.culture}/DoctorService/GetDoctorSchedualByServiceId?serviceId=3`,this.httpOptions);
         }
         //#endregion
 

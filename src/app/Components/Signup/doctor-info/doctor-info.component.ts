@@ -8,6 +8,7 @@ import { DropDownModel } from 'src/Models/drop-down-model';
 import { IdNameList } from 'src/Models/id-name-list';
 import { DoctorService } from 'src/Service/Doctor/doctor.service';
 import { SignupService } from 'src/Service/signup/signup.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-doctor-info',
@@ -96,8 +97,8 @@ export class DoctorInfoComponent implements OnInit {
             Speciality:['',[Validators.required]],
             SubSpeciality:[[],[Validators.required]],
             Seniority:['',[Validators.required]],
-            BiographyAr:['',[Validators.required]],
-            Biography:['',[Validators.required]]
+            BiographyAr:['' ],
+            Biography:['' ]
           });
     }
     
@@ -279,11 +280,16 @@ GetSpecialistIdName(lang:string)
       if (files.length === 0)
         return;
 
-        if (files[0].size > 3000000)
-         {
-          this.message = "image size is larger than 5mb.";
-          return;
-        }
+      if (files[0].size > 3000000)
+        {
+        this.message = "image size is larger than 3mb.";
+        Swal.fire(
+          'Error!',
+          'image size is larger than 3mb',
+          'error'
+        )
+        return;
+      }
 
       var mimeType = files[0].type;
       if (mimeType.match(/image\/*/) == null) {

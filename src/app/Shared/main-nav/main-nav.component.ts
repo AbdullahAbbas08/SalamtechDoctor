@@ -91,8 +91,8 @@ export class MainNavComponent implements OnInit {
     localStorage.removeItem('Authorization')
     localStorage.removeItem('Name')
     localStorage.removeItem('logo')
-    this.router.navigate(['/Login']);
     window.location.reload();
+    this.router.navigate(['/Login']);
   }
 
 }

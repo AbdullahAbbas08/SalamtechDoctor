@@ -63,7 +63,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     document.getElementById("Signup")?.classList.add("OnClick-Style");
     this.DropDownList_Speciality = [];
     this.DoctorInfoModel = new DoctorInfoModel();
-    this.url_img = environment.ImagesURL;
+   
     this.DoctorSubSpecial = [];
     // this.DoctorInfoForm.controls.ImageDoctor.value = "";
     // this.DropDownModel.Data = [];
@@ -79,8 +79,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.GetCountries("en");
     this.getDoctorProfile();
 
-
- 
+  
     //#endregion
   }
 
@@ -100,8 +99,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
       Biography: [this.DoctorProfile.DoctorInfoAr, ],
     });
 
-
-    this.url_img += this.DoctorProfile.Image;
+    this.url_img = environment.ImagesURL+this.DoctorProfile.Image;
+    // this.url_img += this.DoctorProfile.Image;
 
     if (this.DoctorProfile.GenderId == 1) {
       this.DoctorInfoForm.controls.Gender?.setValue("Male");
@@ -133,6 +132,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
         this.DropDownList_SubSpeciality = response.Data;
         // console.log( this.DropDownList_SubSpeciality);
         this.initForm();
+        console.log(this.url_img);
+        
       },
       (err) => {
         // console.log(err);
@@ -324,7 +325,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.GetDoctorProfile().subscribe(
       (response) => {
         this.DoctorProfile = response.Data;
-        
+        this.url_img = environment.ImagesURL+this.DoctorProfile.Image;
         this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
         this.date =  response.Data.Birthday.substring(0, 10)
       //  console.log( this.DropDownList_SubSpeciality);

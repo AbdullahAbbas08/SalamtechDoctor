@@ -9,6 +9,7 @@ import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-clinic-schedule',
@@ -201,6 +202,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
           },
           (err)=>{
             console.log(err)
+            Swal.fire('Error!' , err.error.Message,'error')
           }
         )
       }
@@ -291,25 +293,33 @@ export class UpdateClinicScheduleComponent implements OnInit {
  
     //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
  
-     let NewPeriod = {
-      DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
-      TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
-      TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
-      Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
-      DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
-      Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
-      ClinicId                    : +this.ClinicId
-     } as CreateClinicSchedule;
-
-    //  console.log(NewPeriod.ClinicId)
-
-    //  console.log("NewPeriod : ",NewPeriod);
-
-     if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
-        // Insert ClinicScheduleDay 
-        this.CreateDoctorClinicSchedual(NewPeriod);
+    if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
-     }
+      let NewPeriod = {
+        DayId                       :this.ClinicScheduleDayList[DayId][Index].DayId,
+        TimeFrom                    :this.ClinicScheduleDayList[DayId][Index].TimeFrom,
+        TimeTo                      :this.ClinicScheduleDayList[DayId][Index].TimeTo,
+        Fees                        :this.ClinicScheduleDayList[DayId][Index].Fees,
+        DurationMedicalExaminationId:this.ClinicScheduleDayList[DayId][Index].DurationMedicalExaminationId,
+        Inactive                    :this.ClinicScheduleDayList[DayId][Index].Inactive,
+        ClinicId                    : +this.ClinicId
+       } as CreateClinicSchedule;
+  
+      //  console.log(NewPeriod.ClinicId)
+  
+      //  console.log("NewPeriod : ",NewPeriod);
+  
+       if(NewPeriod.TimeFrom !="" && NewPeriod.TimeTo !="" && NewPeriod.Fees !=0 ){
+          // Insert ClinicScheduleDay 
+          this.CreateDoctorClinicSchedual(NewPeriod);
+        
+       }
+    }
+    else{
+      Swal.fire('Error!'
+       , "end time should be less than start time" , 
+       'error')
+    }
      
 
   }

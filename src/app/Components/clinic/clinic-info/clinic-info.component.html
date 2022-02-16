@@ -168,12 +168,14 @@
             <select
               formControlName="City"
               class="form-select"
+              #city
               aria-label="Default select example"
               (change)="SelectCity($event)"
+              (change)="GetAreaByCityId( city.value)"
             >
               <option value="" selected disabled>Select City</option>
 
-              <option *ngFor="let item of Cities" value="{{ item.Id }}">
+              <option  *ngFor="let item of Cities" value="{{ item.Id }}">
                 {{ item.Name }}
               </option>
             </select>
@@ -317,7 +319,7 @@
                     padding-left: 63px;"
             class="form-control" 
             maxlength="11" 
-
+            minlength="8"
             [class.icon]="1"
             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
           />
@@ -358,6 +360,7 @@
             class="form-control "
             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"           
              maxlength="11" 
+             minlength="8"
             [class.icon]="1"
           />
           <span class="unit">+2</span>
@@ -382,6 +385,7 @@
             class="form-control"
             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"           
              maxlength="11" 
+             minlength="8"
             [class.icon]="1"
           />
           <span class="unit">+2</span>
@@ -423,7 +427,6 @@
         <span class="lbl-Register">
             {{"mainModule.ClinicInfo.FloorNumber" | translate}}
         </span>
-        <span class="star"> * </span>
         <div   class="input-style">
           <input
             formControlName="FloorNumber"
@@ -508,8 +511,7 @@
       <span class="lbl-Register">
           {{"mainModule.ClinicInfo.Services" | translate}}
       </span>
-      <span class="star"> * </span>
-      <ng-multiselect-dropdown
+       <ng-multiselect-dropdown
         formControlName="Services"
         placeholder=" {{'mainModule.ClinicInfo.selectServices' | translate}}"
         [settings]="dropdownSettings"

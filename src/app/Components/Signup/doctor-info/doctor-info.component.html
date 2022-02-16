@@ -276,7 +276,7 @@
         <div class="form-floating">
           <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register">{{ "mainModule.DoctorInfo.Biography"
             | translate }}
-            <span class="star"> * </span></label>
+          </label>
           <textarea formControlName='Biography' class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
             style="height: 120px"></textarea>
         </div>
@@ -285,8 +285,9 @@
       <!-- BiographyAr -->
       <div class="col-12 col-md-6">
         <div class="form-floating textForArabic">
-          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register"><span class="star"> * </span>{{
-            "mainModule.DoctorInfo.BiographyAr" | translate }}</label>
+          <label for="floatingTextarea2 " class="position-relative px-0 lbl-Register">
+            {{"mainModule.DoctorInfo.BiographyAr" | translate }}
+          </label>
           <textarea formControlName='BiographyAr' class="form-control textForArabic" placeholder="Leave a comment here" id="floatingTextarea2"
             style="height: 120px"></textarea>
         </div>

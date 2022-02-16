@@ -36,7 +36,7 @@ export class CurrentAppointmentComponent implements OnInit {
     //#endregion
   
     //#region Invoke Methods
-    this.GetCurrentDoctorAppointment(10,1 );
+    this.GetCurrentDoctorAppointment(10,0 );
     //#endregion
   }
   
@@ -50,6 +50,8 @@ export class CurrentAppointmentComponent implements OnInit {
  
       this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
         (response)=>{
+          console.log(response);
+          
            this.PatientList = response.Data.Items;
            let re = /\*/gi;
            

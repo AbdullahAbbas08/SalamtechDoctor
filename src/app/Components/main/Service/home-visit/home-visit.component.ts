@@ -337,20 +337,28 @@ export class HomeVisitComponent implements OnInit {
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
 
-    if(this.PeriodForm.valid){
-      this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
-      this.CreateClinicSchedule.DayId                         = DayId;
-      this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
-      this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
-      this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
-      this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
-      this.CreateClinicSchedule.Inactive                      = Active;
-      // console.log(this.CreateClinicSchedule.ClinicId)
-      // console.log(this.CreateClinicSchedule.Fees    );
-  
-      this.CreateDoctorHomeVisitSchedual(this.CreateClinicSchedule)
-      // this.reloadCurrentRoute();
+    if(this.PeriodForm.valid  ){
+      if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
+        this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
+        this.CreateClinicSchedule.DayId                         = DayId;
+        this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
+        this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
+        this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
+        this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
+        this.CreateClinicSchedule.Inactive                      = Active;
+        // console.log(this.CreateClinicSchedule.ClinicId)
+        // console.log(this.CreateClinicSchedule.Fees    );
+    
+        this.CreateDoctorHomeVisitSchedual(this.CreateClinicSchedule)
+        // this.reloadCurrentRoute();
+      }
+      else{
+        Swal.fire('Error!'
+         , "end time should be less than start time" , 
+         'error')
+      }
     }
+   
     else{
       this.PeriodForm.markAllAsTouched()
     }

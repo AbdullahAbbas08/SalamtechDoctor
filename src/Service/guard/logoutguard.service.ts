@@ -7,20 +7,26 @@ import { Observable } from 'rxjs';
 })
 export class LogoutGuardService implements CanActivate {
 
-  Token:string=localStorage.getItem('Authorization') as string
+  auth=localStorage.getItem('Authorization') 
 
-  constructor(private router:Router) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  constructor(private router:Router) {
+
+
+   }
+
+  canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.checkLogin();
   }
 
   checkLogin(): boolean {
-	  if (this.Token) {
+	  if (this.auth) {      
 		return true;
 	  }
   
 	  // Navigate to the login page with extras
-	  this.router.navigate(["/Login"]);
-	  return false;
+    else{
+      this.router.navigate(["/Login"]);  
+      return false;
+    }
 	}
 }

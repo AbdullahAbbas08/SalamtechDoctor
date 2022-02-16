@@ -123,8 +123,12 @@
                      onerror="this.src='../../../../assets/img/LogoAlternative.png';">
                 {{item.PatientName}}
         </div>
-        <div class="col-lg-2 col-6 padding-row">{{item.AppointmentDate | date}}</div>
-        <div class="col-lg-2 col-6 padding-row">{{ item.AppointmentDate | date:'shortTime' }}</div>
+        <div class="col-6 col-lg-2 padding-row">
+            {{ item?.AppointmentDate | slice:0:10 }}
+          </div>
+          <div class="col-6 col-lg-2 padding-row">
+            {{ item?.AppointmentDate | slice:10:21 }}
+          </div>
         <div class="col-12 col-lg-2 padding-row" >
             
             {{item.MedicalExaminationTypeName}} 
