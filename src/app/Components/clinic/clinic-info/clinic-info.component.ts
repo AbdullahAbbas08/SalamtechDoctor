@@ -1,3 +1,4 @@
+import { TranslateSwalsService } from './../../../../Service/translateSwals/translate-swals.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -33,15 +34,21 @@ export class ClinicInfoComponent implements OnInit {
   selectedItemsIds: number[] = [];
   dropdownSettings: IDropdownSettings = {};
   ListOfMobileNumber: any[];
+  translation;
 
   constructor(
     private fb: FormBuilder,
     private modalService: NgbModal,
     private lookupService: LookupsService,
     private ClinicService: ClinicInfoService,
-    private Router: Router) {
+    private Router: Router,
+    private translateSwal:TranslateSwalsService) {
     this.coordinates = {} as Coordinates;
-
+    this.translation=this.translateSwal.getTranslitation()
+      console.log(this.translation);
+      console.log(this.translateSwal.getTranslitation());
+      
+      
   }
 
 

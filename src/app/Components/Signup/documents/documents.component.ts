@@ -187,21 +187,30 @@ constructor(
 
     next(){
 
-      Swal.fire({
-        title: 'Great',
-        text: "Welcome to Salamtech. We will review your request and update your account soon",
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'Done',
-        cancelButtonText: 'Add New Clinic',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['/main'])
-        } else   {
-          this.router.navigate(['/clinic'])
-        }
-      })
-    }
+      if(this.Documents.length>2){
+        Swal.fire({
+          title: 'Great',
+          text: "Welcome to Salamtech. We will review your request and update your account soon",
+          icon: 'success',
+          showCancelButton: true,
+          confirmButtonText: 'Done',
+          cancelButtonText: 'Add New Clinic',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/main'])
+          } else   {
+            this.router.navigate(['/clinic'])
+          }
+        })
+      }
+      else{
+        Swal.fire({
+          title: 'Error!',
+          text: "You have to add these documents first",
+          icon: 'warning',
+        })
+      }
+      }
 
 }
