@@ -63,7 +63,8 @@ export class MainNavComponent implements OnInit {
       localStorage.setItem("lang",'ar')
       this.translate.use(this.DefaultLang);
       document.getElementsByTagName('html')[0].setAttribute("dir","rtl");
-      window.location.reload();
+      document.getElementsByTagName('body')[0].style.fontFamily = 'Cairo';
+       window.location.reload();
 
     }
     if(e === 'ar')
@@ -72,6 +73,7 @@ export class MainNavComponent implements OnInit {
       this.DefaultLang = 'en';
       this.translate.use(this.DefaultLang);
       document.getElementsByTagName('html')[0].setAttribute("dir","ltr");
+      document.getElementsByTagName('body')[0].style.fontFamily = 'Poppins';
       window.location.reload();
     }
 

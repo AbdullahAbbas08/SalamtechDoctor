@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
+ /* @font-face {
   font-family: "STC";
   src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Black.ttf) format("truetype");
   src: local("STC"), url(./assets/fonts/Cairo/static/Cairo-Bold.ttf) format("truetype");
@@ -24,13 +24,15 @@ body {
   src: local("STC"), url(./assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf) format("truetype");
   src: local("STC"), url(./assets/fonts/Poppins/Poppins-Thin.ttf) format("truetype");
   src: local("STC"), url(./assets/fonts/Poppins/Poppins-ThinItalic.ttf) format("truetype");
-}
+} */
 
 
 
 html body{
   height: 100%; 
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Cairo', sans-serif !important;
 }
 
 .container
@@ -111,7 +113,7 @@ html {
    border-top: 0 !important; 
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
 
 .form-control:disabled, .form-control[readonly] {
    background-color:  #ffffff !important;  

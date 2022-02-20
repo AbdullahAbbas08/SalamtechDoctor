@@ -13,6 +13,7 @@ import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { SignupService } from "src/Service/signup/signup.service";
 import Swal from "sweetalert2"; 
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-update-doctor-info",
@@ -56,7 +57,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     private router: Router,
     private DoctorService: DoctorService,
     private toaster:ToastrService,
-    private translateSwal:TranslateSwalsService
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService
   ) {}
   //#endregion
 
@@ -333,8 +335,10 @@ export class UpdateDoctorInfoComponent implements OnInit {
   //#endregion
 
   getDoctorProfile() {
+    this.SpinnerService.show();
     this.DoctorService.GetDoctorProfile().subscribe(
       (response) => {
+        this.SpinnerService.hide();
         this.DoctorProfile = response.Data;
         this.url_img = environment.ImagesURL+this.DoctorProfile.Image;
         this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
@@ -344,6 +348,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
         
       },
       (err) => {
+        this.SpinnerService.hide();
         // console.log(err);
       }
     );

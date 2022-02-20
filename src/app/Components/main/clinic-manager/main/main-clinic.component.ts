@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { GoogleMapsComponent } from 'src/app/Shared/google-maps/google-maps.component';
 import { environment } from 'src/environments/environment';
 import { Clinic } from 'src/Models/clinic';
@@ -24,6 +25,8 @@ export class MainClinicComponent implements OnInit {
   constructor(  private ClinicMangeService:ClinicMangeService , 
                 private router:Router,
                 private modalService: NgbModal,
+                private SpinnerService: NgxSpinnerService
+
                 ) { }
   //#endregion
 
@@ -66,10 +69,13 @@ export class MainClinicComponent implements OnInit {
       //#region GetDoctorClinics
   GetDoctorClinics()
   {
+    this.SpinnerService.show();
     this.ClinicMangeService.GetDoctorClinics().subscribe((response)=>{
       this.ClinicList = response.Data; 
+      this.SpinnerService.hide();
     },
     (err)=>{
+      this.SpinnerService.hide();
       // console.log(err);
     })
   }

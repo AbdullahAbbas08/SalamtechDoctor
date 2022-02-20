@@ -310,5 +310,11 @@
     "cannotaddYear":"Cannot add this year",
     "AddDocs":"You have to add these documents first"
     },
-    "spinner":"برجاء الإنتظار."
+    "spinner":"برجاء الإنتظار.",
+    "toaster":{
+      "iternetoff":"The internet has been successfully restored",
+      "success":"Success",
+      "checkInternet":"Please make sure you have internet",
+      "NoInternet":"No Internet"
+    }
 }

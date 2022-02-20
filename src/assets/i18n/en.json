@@ -309,5 +309,11 @@
     "AddDocs":"You have to add these documents first",
     "cannotaddYear":"Cannot add this year"
     },
-    "spinner":"Please Wait."
+    "spinner":"Please Wait.",
+    "toaster":{
+      "iternetoff":"The internet has been successfully restored",
+      "success":"Success",
+      "checkInternet":"Please make sure you have internet",
+      "NoInternet":"No Internet"
+    }
 }

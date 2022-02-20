@@ -17,6 +17,7 @@ import { UpdateClinic } from "src/Models/update-clinic";
 import { ClinicInfoService } from "src/Service/ClinicInfo/clinic-info.service";
 import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { LookupsService } from "src/Service/Lockups/lookups.service";
+import { TranslateSwalsService } from "src/Service/translateSwals/translate-swals.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -36,6 +37,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   Areas;
   countries
   phones
+  translation;
   constructor(
     private modalService: NgbModal,
     private lookupService: LookupsService,
@@ -44,6 +46,7 @@ export class UpdateClinicInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private builder:FormBuilder,
     private toaster:ToastrService,
+    private translateSwal:TranslateSwalsService,
     private SpinnerService: NgxSpinnerService
   ) {
     this.route.paramMap.subscribe(param=>{
@@ -57,11 +60,22 @@ export class UpdateClinicInfoComponent implements OnInit {
 
   ngOnInit(): void {
    
+    this.getTranslitation()
   }
+  //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      // console.log(values);
+      this.translation =values 
+      });
+    }
 
   getClinicInfo(id){
+    this.SpinnerService.show();
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
+      this.SpinnerService.hide();
       this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
       this.initForm()
       this.getCity()
@@ -265,7 +279,7 @@ getAreas(id){
       this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
         // console.log(res);
         this.getClinicInfo( this.clinicId)
-        this.toaster.success("Clinic Info Updated Successfully","Successfully");
+        this.toaster.success(this.translation.UpdatedSuccessfully,this.translation.Great);
         // this.Router.navigate(['clinic/gallary/',this.clinicId]);
         this.SpinnerService.hide();
         this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);

@@ -193,11 +193,15 @@ export class HomeVisitComponent implements OnInit {
 
       //#region Get Doctor Home Visit Schedual By DayId
       GetDoctorHomeVisitSchedualByDayId(DayId:number){
+    this.SpinnerService.show();
+
         this.DoctorServiceService.GetDoctorHomeVisitSchedualByDayId(DayId).subscribe(
           (response)=>{
+            this.SpinnerService.hide();
             this.ClinicScheduleDayList[DayId] = response.Data;
           },
           (err)=>{
+            this.SpinnerService.hide();
             Swal.fire({
               title: this.translation.Error,
               text: err.error.Message,
