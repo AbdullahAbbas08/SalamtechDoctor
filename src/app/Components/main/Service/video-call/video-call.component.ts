@@ -110,7 +110,7 @@ export class VideoCallComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -214,7 +214,7 @@ export class VideoCallComponent implements OnInit {
             // });
           },
           (err)=>{
-            console.log(err)
+            // console.log(err)
             Swal.fire({
               title: this.translation.Error,
               text: err.error.Message,

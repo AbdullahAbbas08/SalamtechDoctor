@@ -53,7 +53,7 @@ export class EmrProfileComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -85,7 +85,7 @@ export class EmrProfileComponent implements OnInit {
   GetEmrHistory(id){
     this.emrService.GetEmrHistory(id).subscribe(res=>{
       this.profileHistory= res.Data;
-      console.log(this.profileHistory);
+      // console.log(this.profileHistory);
       this.profileHistory.map(res=>{
         // this.GetEmrDetails(res.AppointmentId)
         // this.getMedicalTYpe(res.MedicalExaminationTypeId)

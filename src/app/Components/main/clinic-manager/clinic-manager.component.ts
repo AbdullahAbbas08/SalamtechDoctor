@@ -73,7 +73,7 @@ export class ClinicManagerComponent implements OnInit {
 //#region Edit Doctor Profile
 EditDoctorProfile(ID:number){
   this.router.navigateByUrl("main/clinic/clinicinfo");
-  console.log("navigateByUrl");
+  // console.log("navigateByUrl");
 }
 //#endregion
 

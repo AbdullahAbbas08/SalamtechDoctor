@@ -79,7 +79,7 @@ export class DoctorInfoComponent implements OnInit {
   
     getTranslitation()  {
       this.translateSwal.Translitation().subscribe((values) => {
-        console.log(values);
+        // console.log(values);
         this.translation =values 
         });
       }
@@ -153,7 +153,9 @@ GetSpecialistIdName(lang:string)
       this.DropDownList_Speciality = this.DropDownModel.Data;
       // console.log(this.DropDownList);
     },
-    (err)=>{ console.log(err)}
+    (err)=>{ 
+      // console.log(err)
+    }
   )
 }
 //#endregion

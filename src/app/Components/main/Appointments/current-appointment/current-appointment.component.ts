@@ -49,7 +49,7 @@ export class CurrentAppointmentComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -62,7 +62,7 @@ export class CurrentAppointmentComponent implements OnInit {
  
       this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
         (response)=>{
-          console.log(response);
+          // console.log(response);
           
            this.PatientList = response.Data.Items;
            let re = /\*/gi;

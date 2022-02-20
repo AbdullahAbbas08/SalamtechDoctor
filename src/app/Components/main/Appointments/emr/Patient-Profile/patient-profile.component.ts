@@ -55,7 +55,7 @@ export class PatientProfileComponent implements OnInit {
   
     getTranslitation()  {
       this.translateSwal.Translitation().subscribe((values) => {
-        console.log(values);
+        // console.log(values);
         this.translation =values 
         });
       }
@@ -135,7 +135,7 @@ export class PatientProfileComponent implements OnInit {
       getPatientProfile(id){
         this.emrService.getPatientProfile(id).subscribe(res=>{
           this.patientProfile=res.Data[0]
-          console.log(this.patientProfile.PatientName);
+          // console.log(this.patientProfile.PatientName);
           this.initForm();
         })
       }

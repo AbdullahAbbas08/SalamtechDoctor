@@ -53,7 +53,7 @@ export class ClinicGalaryComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -68,7 +68,7 @@ export class ClinicGalaryComponent implements OnInit {
         this.GalaryList = response.Data;
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       }
     )
   }

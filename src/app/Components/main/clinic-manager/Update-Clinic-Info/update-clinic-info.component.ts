@@ -267,7 +267,7 @@ getAreas(id){
         this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
        },
        (err)=>{
-         console.log(err)
+        //  console.log(err)
        })
   }
 }

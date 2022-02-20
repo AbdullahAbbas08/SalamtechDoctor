@@ -107,7 +107,7 @@ export class HomeVisitComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }

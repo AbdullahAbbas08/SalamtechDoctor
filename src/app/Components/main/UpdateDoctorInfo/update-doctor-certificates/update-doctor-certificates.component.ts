@@ -62,8 +62,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
-      this.translation =values 
+       this.translation =values 
       });
     }
   changeStyle()
@@ -239,7 +238,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       this.resetForm()
     },
     (err)=>{
-      console.log(err)
+      // console.log(err)
     })
   }
 

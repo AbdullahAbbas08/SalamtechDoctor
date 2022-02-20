@@ -57,7 +57,7 @@ export class RegisterPageComponent implements OnInit {
   
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -132,7 +132,7 @@ Checkinput(){
         let auth=localStorage.getItem('Authorization')        
         setTimeout(() => {
           if(auth){
-            console.log(auth);
+            // console.log(auth);
             this.router.navigate(["/doctor-profile"]);          
           }
         }, 2000);

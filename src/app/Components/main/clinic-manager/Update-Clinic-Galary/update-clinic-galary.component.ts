@@ -62,7 +62,7 @@ export class UpdateClinicGalaryComponent implements OnInit {
         this.GalaryList = response.Data;
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       }
     )
   }

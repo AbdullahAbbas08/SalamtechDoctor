@@ -90,7 +90,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -143,7 +143,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
         this.DropDownList_SubSpeciality = response.Data;
         // console.log( this.DropDownList_SubSpeciality);
         this.initForm();
-        console.log(this.url_img);
+        // console.log(this.url_img);
         
       },
       (err) => {

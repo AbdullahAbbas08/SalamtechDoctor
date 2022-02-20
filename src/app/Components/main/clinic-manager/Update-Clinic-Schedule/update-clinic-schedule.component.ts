@@ -112,7 +112,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
             // console.log( this.DayList);
           },
           (err)=>{
-            console.log(err);
+            // console.log(err);
           }
         )
       }
@@ -159,7 +159,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
             this.ClinicScheduleDayList[DayId] = response.Data;
           },
           (err)=>{
-            console.log(err)
+            // console.log(err)
           }
         )
       }
@@ -186,7 +186,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
 
           },
           (err)=>{
-            console.log(err)
+            // console.log(err)
           }
         )
       }
@@ -201,7 +201,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
             window.location.reload();
           },
           (err)=>{
-            console.log(err)
+            // console.log(err)
             Swal.fire('Error!' , err.error.Message,'error')
           }
         )
@@ -215,7 +215,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
               // console.log(respose)
             },
             (err)=>{
-              console.log(err)
+              // console.log(err)
             }
           )
         }

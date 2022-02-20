@@ -103,7 +103,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      console.log(values);
+      // console.log(values);
       this.translation =values 
       });
     }
@@ -397,7 +397,7 @@ export class ClinicSchedualComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
     //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
-    console.log( this.ClinicScheduleDayList[DayId][Index].TimeFrom ,this.ClinicScheduleDayList[DayId][Index].TimeTo );
+    // console.log( this.ClinicScheduleDayList[DayId][Index].TimeFrom ,this.ClinicScheduleDayList[DayId][Index].TimeTo );
 
      if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       

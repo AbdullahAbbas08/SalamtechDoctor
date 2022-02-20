@@ -74,7 +74,7 @@ export class ClinicInfoComponent implements OnInit {
 
   getTranslitation()  {
   this.translateSwal.Translitation().subscribe((values) => {
-    console.log(values);
+    // console.log(values);
     this.translation =values 
     });
   }
@@ -205,11 +205,11 @@ export class ClinicInfoComponent implements OnInit {
 
     //#region Get Areas
     GetAreaByCityId(id) {
-      console.log(id);
+      // console.log(id);
       
       this.lookupService.GetAreaByCityId(id).subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
           
           this.Areas = res.Data;
         },
@@ -258,7 +258,7 @@ export class ClinicInfoComponent implements OnInit {
       this.ClinicInfoForm.reset()
     },
       (err) => {
-        console.log(err)
+        // console.log(err)
       })
   }
   //#endregion
