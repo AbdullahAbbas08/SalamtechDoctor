@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
@@ -26,7 +27,8 @@ export class ClinicGalaryComponent implements OnInit {
   constructor(private GalaryService: GalaryService,
     private router: Router,
     private route: ActivatedRoute,
-    private translateSwal:TranslateSwalsService) { }
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region On Init Method
@@ -76,12 +78,15 @@ export class ClinicGalaryComponent implements OnInit {
 
   //#region CreateClinicGallery
   CreateClinicGallery(lang: string, formData: FormData) {
+    this.SpinnerService.show();
     this.GalaryService.CreateClinicGallery(lang, formData).subscribe(
       (response) => {
         // console.log(response);
+        this.SpinnerService.hide();
         this.GetClinicGalleryByClinicId('en',  this.ClinicId);
       },
       (err) => {
+        this.SpinnerService.hide();
         console.log(err);
       }
     )

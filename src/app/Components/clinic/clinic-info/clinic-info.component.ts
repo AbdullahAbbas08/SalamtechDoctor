@@ -16,6 +16,7 @@ import { ClinicId } from 'src/Models/clinic-id';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { translateSwals } from 'src/Models/translateSwals';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-clinic-info',
   templateUrl: './clinic-info.component.html',
@@ -43,7 +44,8 @@ export class ClinicInfoComponent implements OnInit {
     private lookupService: LookupsService,
     private ClinicService: ClinicInfoService,
     private Router: Router,
-    private translateSwal:TranslateSwalsService) {
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) {
     this.coordinates = {} as Coordinates; 
       
   }
@@ -254,11 +256,13 @@ export class ClinicInfoComponent implements OnInit {
       //  this.Router.navigateByUrl("clinic/gallary")/ClinicId
       // localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
       // console.log(" res.Data.ClinicId : ", res.Data.ClinicId)
+      this.SpinnerService.hide();
       this.Router.navigate(['/clinic/gallary/', res.Data.ClinicId]);
       this.ClinicInfoForm.reset()
     },
       (err) => {
         // console.log(err)
+        this.SpinnerService.hide();
       })
   }
   //#endregion
@@ -269,6 +273,7 @@ export class ClinicInfoComponent implements OnInit {
 
   //#region submit Clinic
   submitClinic() {
+    this.SpinnerService.show();
     
    if(this.ClinicInfoForm?.valid){
     const formData = new FormData();
@@ -312,6 +317,7 @@ export class ClinicInfoComponent implements OnInit {
    }
    else{
      this.ClinicInfoForm.markAllAsTouched()
+     this.SpinnerService.hide();
    }
 
 

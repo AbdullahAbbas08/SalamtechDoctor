@@ -10,6 +10,7 @@ import { DoctorService } from 'src/Service/Doctor/doctor.service';
 import { SignupService } from 'src/Service/signup/signup.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-doctor-info',
@@ -37,7 +38,8 @@ export class DoctorInfoComponent implements OnInit {
     private SignupService:SignupService ,
     private router:Router ,
     private DoctorService:DoctorService,
-    private translateSwal:TranslateSwalsService) {  }
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) {  }
   //#endregion
 
   //#region On Init Method
@@ -135,10 +137,12 @@ export class DoctorInfoComponent implements OnInit {
   {
     this.DoctorService.CreateProfile(lang ,_DoctorInfoModel ).subscribe(
       (response)=>{
+        this.SpinnerService.hide();
        this.router.navigateByUrl('/doctor-profile/certificates');
       },
       (err)=>{
         // console.log(err);
+        this.SpinnerService.hide();
       }
     )
   }
@@ -203,6 +207,7 @@ GetSpecialistIdName(lang:string)
   //#region Doctor Info Submit Method
     DoctorInfoSubmit()
   {
+    this.SpinnerService.show();
     const formData = new FormData();
 
 

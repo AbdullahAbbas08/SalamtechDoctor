@@ -6,6 +6,7 @@ import { EmrService } from 'src/Service/emr/emr.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-emr-profile',
@@ -27,7 +28,8 @@ export class EmrProfileComponent implements OnInit {
   constructor(private route:ActivatedRoute ,
      private emrService : EmrService ,
      private lookupService:LookupsService,
-     private translateSwal:TranslateSwalsService
+     private translateSwal:TranslateSwalsService,
+     private SpinnerService: NgxSpinnerService
      ) { 
      this.route.paramMap.subscribe(param=>{
       this.route.queryParamMap.subscribe(qparam=>{
@@ -83,19 +85,20 @@ export class EmrProfileComponent implements OnInit {
   }
 
   GetEmrHistory(id){
+    this.SpinnerService.show();
     this.emrService.GetEmrHistory(id).subscribe(res=>{
       this.profileHistory= res.Data;
+      this.SpinnerService.hide();
       // console.log(this.profileHistory);
-      this.profileHistory.map(res=>{
-        // this.GetEmrDetails(res.AppointmentId)
-        // this.getMedicalTYpe(res.MedicalExaminationTypeId)
-      })
+      
     })
   }
 
   GetEmrDetails(id){
+    this.SpinnerService.show();
     this.emrService.GetEmrDetails(id).subscribe(res=>{
       this.profiledetails= res.Data;   
+      this.SpinnerService.hide();
       // console.log(this.profiledetails);
          
     })
@@ -106,6 +109,7 @@ export class EmrProfileComponent implements OnInit {
 
 
   postEmretails(title , description){
+    this.SpinnerService.show();
    let body ={
     "Title" : title ,
     "Description" : description,
@@ -114,13 +118,16 @@ export class EmrProfileComponent implements OnInit {
   this.emrService.PostEmrDetails(body).subscribe(res=>{
     // console.log(res);
     this.GetEmrHistory(this.id)
+    this.SpinnerService.hide();
   }, 
   err=>{
     // console.log(err);
     this.GetEmrHistory(this.id)
+    this.SpinnerService.hide();
   })
   }
   postEmrInstructions(instructions ){
+    this.SpinnerService.show();
     let body ={
      "Instructions" : instructions , 
      "AppointmentId" : parseInt(this.appointmentID)
@@ -128,11 +135,12 @@ export class EmrProfileComponent implements OnInit {
    this.emrService.PostEmrInstructions(body).subscribe(res=>{
     //  console.log(res);
      this.GetEmrHistory(this.id)
-
+     this.SpinnerService.hide();
    }, 
    err=>{
     //  console.log(err);
      this.GetEmrHistory(this.id)
+     this.SpinnerService.hide();
    })
    }
 
@@ -140,7 +148,7 @@ export class EmrProfileComponent implements OnInit {
    public message: string;
 
    preview(files:any ) { 
-     
+    this.SpinnerService.show();
      const formData = new FormData();
      if (files.length === 0)
        return ;
@@ -148,6 +156,7 @@ export class EmrProfileComponent implements OnInit {
        if (files[0].size > 2000000)
        {
        this.message = "image size is larger than 2mb.";
+       this.SpinnerService.hide();
        Swal.fire(
         this.translation.Error,
         this.translation.imagesize2mb,
@@ -176,10 +185,12 @@ export class EmrProfileComponent implements OnInit {
     this.emrService.PostEmrDocs(formData).subscribe(res=>{
       // console.log(res);
       this.GetEmrHistory(this.id)
+      this.SpinnerService.hide();
     }, 
     err=>{
       // console.log(err);
       this.GetEmrHistory(this.id)
+      this.SpinnerService.hide();
     })
    }
 

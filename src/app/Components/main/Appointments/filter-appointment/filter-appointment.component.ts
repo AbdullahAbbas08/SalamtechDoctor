@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
 import { PatientItem } from "src/Models/patient-item";
 import { AppointmentService } from "src/Service/Appointment/appointment.service";
@@ -33,7 +34,8 @@ export class FilterAppointmentComponent implements OnInit {
     private AppointmentService: AppointmentService,
     private clinicService: ClinicMangeService,
     private LookupService: LookupsService,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private SpinnerService: NgxSpinnerService
   ) {}
   //#endregion
 
@@ -78,8 +80,10 @@ export class FilterAppointmentComponent implements OnInit {
   }
 
   getDoctorClicinc() {
+    this.SpinnerService.show();
     this.clinicService.GetDoctorClinics().subscribe((res) => {
       this.clinics = res.Data;
+      this.SpinnerService.hide();
       // console.log(this.clinics);
     });
   }
@@ -93,6 +97,8 @@ export class FilterAppointmentComponent implements OnInit {
 
   submit() {
     if (this.searchForm.valid) {
+      this.SpinnerService.show();
+
       this.searchForm
         .get("ClinicId")
         .setValue(parseInt(this.searchForm.get("ClinicId").value));
@@ -106,7 +112,9 @@ export class FilterAppointmentComponent implements OnInit {
         this.searchForm.value
       ).subscribe(
         (res) => {
+
           this.searchResult = res.Data;
+          this.SpinnerService.hide();
           // console.log(this.searchResult);
           this.AppointmentService.Result.next(this.searchResult);
         },
@@ -115,6 +123,7 @@ export class FilterAppointmentComponent implements OnInit {
         }
       );
     } else {
+      this.SpinnerService.hide();
       this.searchForm.markAllAsTouched();
     }
   }

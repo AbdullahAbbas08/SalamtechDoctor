@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmrService } from 'src/Service/emr/emr.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class PatientProfileComponent implements OnInit {
               private fb:FormBuilder ,
               private modalService: NgbModal,
               private emrService :EmrService,
-              private translateSwal:TranslateSwalsService) { 
+              private translateSwal:TranslateSwalsService,
+              private SpinnerService: NgxSpinnerService) { 
                 this.route.paramMap.subscribe(param=>{
                   this.route.queryParamMap.subscribe(qparam=>{
                     this.appointmentID=qparam.get('appointment_id');
@@ -79,9 +81,10 @@ export class PatientProfileComponent implements OnInit {
       public message: string;
   
       preview(files:any) {
-
+        this.SpinnerService.show();
         if (files[0].size > 3000000)
         {
+          this.SpinnerService.hide();
           Swal.fire(
             this.translation.Error,
             this.translation.imagesize,
@@ -105,6 +108,7 @@ export class PatientProfileComponent implements OnInit {
         reader.readAsDataURL(files[0]);
         reader.onload = (_event) => {
           this.imgURL = reader.result;
+          this.SpinnerService.hide();
         }
         // this.DoctorInfoModel.profileImage = files[0];
         // this.FormDataImage.append('EpisodeIamge', files[0]);
@@ -133,10 +137,12 @@ export class PatientProfileComponent implements OnInit {
 
 
       getPatientProfile(id){
+        this.SpinnerService.show();
         this.emrService.getPatientProfile(id).subscribe(res=>{
           this.patientProfile=res.Data[0]
           // console.log(this.patientProfile.PatientName);
           this.initForm();
+          this.SpinnerService.hide();
         })
       }
 }

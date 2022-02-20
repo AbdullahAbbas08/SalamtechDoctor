@@ -8,6 +8,7 @@ import { UserService } from 'src/Service/CreateUser/user.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register-page',
@@ -30,7 +31,8 @@ export class RegisterPageComponent implements OnInit {
               private router:Router,
               private UserService:UserService,
               private loginService:LoginService,
-              private translateSwal:TranslateSwalsService) {
+              private translateSwal:TranslateSwalsService,
+              private SpinnerService: NgxSpinnerService) {
   }
   //#endregion
 
@@ -111,7 +113,7 @@ Checkinput(){
 
   //#region Submit
   Submit(){
-    
+    this.SpinnerService.show();
     if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid){
       let con=this.RegisterForm.get('PhoneNumber').value;
       this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
@@ -133,12 +135,14 @@ Checkinput(){
         setTimeout(() => {
           if(auth){
             // console.log(auth);
+            this.SpinnerService.hide();
             this.router.navigate(["/doctor-profile"]);          
           }
         }, 2000);
         // window.location.reload();
       },
       (err)=>{
+        this.SpinnerService.hide();
         Swal.fire({
           title:this.translation.Error,
           text: err.error.Message,
@@ -155,6 +159,7 @@ Checkinput(){
     }
     else
     {
+      this.SpinnerService.hide();
       this.RegisterForm.markAllAsTouched()
     }
   }

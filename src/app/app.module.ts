@@ -67,6 +67,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FilterAppointmentComponent } from './Components/main/Appointments/filter-appointment/filter-appointment.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
  
 
 
@@ -154,6 +155,7 @@ export function CreateTranslateLoader(http: HttpClient) {
        MatFormFieldModule,
        MatInputModule,
        MatSelectModule,
+       NgxSpinnerModule
     ],
     
   providers: [InterceptorsProvider],

@@ -7,6 +7,7 @@ import { LoginResponse } from 'src/Models/LoginResponse';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login-page',
@@ -30,7 +31,8 @@ export class LoginPageComponent implements OnInit {
     private fb:FormBuilder,
     private toastr:ToastrService,
     private router:Router,
-    private translateSwal:TranslateSwalsService) {
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) {
 this.loginDoctorForm.UserTypeId=2
 }
 //#endregion
@@ -68,23 +70,27 @@ isFieldValid(field): boolean {
 
 //#region Login Method
 LoginDoctor(){
+  this.SpinnerService.show();
+  console.log('show');
+  
  if(this.LoginForm.valid){
    this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
    this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
    this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
      this.AuthenticatedUser= res  
     //  console.log(res);
-         
-     localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
-     localStorage.setItem('Name',this.AuthenticatedUser.Data.Name);
-     localStorage.setItem("logo",this.AuthenticatedUser.Data.Image);
-     this.toastr.success("Login Successfully ", 'Successfully');
-     this.router.navigate(["/main"]);
-     window.setInterval(() => {
-       window.location.reload();
+    localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
+    localStorage.setItem('Name',this.AuthenticatedUser.Data.Name);
+    localStorage.setItem("logo",this.AuthenticatedUser.Data.Image);
+    this.toastr.success("Login Successfully ", 'Successfully');
+    this.router.navigate(["/main"]);
+    window.setInterval(() => {
+      window.location.reload();
+      this.SpinnerService.hide();
      }, 2000);
    },
    (err)=>{
+    this.SpinnerService.hide();
      Swal.fire({
        title:this.translation.Error,
        text: err.error.Message,

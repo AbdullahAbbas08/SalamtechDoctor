@@ -6,6 +6,7 @@ import { DocumentService } from 'src/Service/Documents/document.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -30,7 +31,8 @@ constructor(
   private DocumentService:DocumentService,
   private loginService:LoginService,
   private router:Router,
-  private translateSwal:TranslateSwalsService
+  private translateSwal:TranslateSwalsService,
+  private SpinnerService: NgxSpinnerService
 ) { }
 //#endregion
 
@@ -140,15 +142,18 @@ constructor(
   //#region Doctor Documents
   CreateDoctorDocuments(lang:string , Model:FormData)
   {
+    this.SpinnerService.show();
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
       // console.log(response);
       this. GetLegalDocument('en')
       this.GetDocuments('en')
+      this.SpinnerService.hide();
       },
       (err)=>{
         // console.log(err);
         this.GetDocuments('en')
+        this.SpinnerService.hide();
       }
     )
   }
@@ -169,12 +174,12 @@ constructor(
        { return ;
        }
 
-        if (files[0].size > 3000000)
+        if (files[0].size > 2000000)
         {
-        this.message = "image size is larger than 3mb.";
+        this.message = "image size is larger than 2mb.";
         Swal.fire(
           this.translation.Error,
-          this.translation.imagesize,
+          this.translation.imagesize2mb,
           'error'
         )
         return;

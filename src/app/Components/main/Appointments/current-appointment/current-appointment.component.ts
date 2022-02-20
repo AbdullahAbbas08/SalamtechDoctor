@@ -5,6 +5,7 @@ import { PatientItem } from 'src/Models/patient-item';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-current-appointment',
@@ -28,7 +29,8 @@ export class CurrentAppointmentComponent implements OnInit {
   //#region constructor
   constructor(private AppointmentService:AppointmentService,
     private router:Router,
-    private translateSwal:TranslateSwalsService) { }
+    private translateSwal:TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region On Init Method
@@ -59,10 +61,12 @@ export class CurrentAppointmentComponent implements OnInit {
   //#region Get Current Doctor Appointment
   GetCurrentDoctorAppointment(MaxResultCount:number,SkipCount:number ){
     // this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
+      this.SpinnerService.show();
  
       this.AppointmentService.GetCurrentDoctorAppointment(MaxResultCount,SkipCount).subscribe(
         (response)=>{
           // console.log(response);
+          this.SpinnerService.hide();
           
            this.PatientList = response.Data.Items;
            let re = /\*/gi;
@@ -110,6 +114,8 @@ export class CurrentAppointmentComponent implements OnInit {
           })
         },
         (err)=>{
+        this.SpinnerService.hide();
+
         })
       
   }
@@ -137,6 +143,7 @@ export class CurrentAppointmentComponent implements OnInit {
       confirmButtonText: this.translation.yes,
       cancelButtonText:this.translation.Cancel
     })
+    
     .then((result) => {
 
       if (result.isConfirmed) {

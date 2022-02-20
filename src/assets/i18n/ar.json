@@ -300,7 +300,7 @@
     "Deleted":"تم الحذف!",
     "filesafe":"ملفك التخيلي آمن",
     "fileDeleted":"تم حذف ملفك.",
-    "Great":"رائعة",
+    "Great":"رائع",
     "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
     "Done":"تم",
     "AddClinic":"اضافة عيادة جديدة",
@@ -309,5 +309,6 @@
     "Cancel":"أنهاء",
     "cannotaddYear":"Cannot add this year",
     "AddDocs":"You have to add these documents first"
-    }
+    },
+    "spinner":"برجاء الإنتظار."
 }

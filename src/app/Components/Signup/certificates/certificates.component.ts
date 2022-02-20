@@ -6,6 +6,7 @@ import { CertificateService } from 'src/Service/Certificate/certificate.service'
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-certificates',
@@ -30,7 +31,8 @@ export class CertificatesComponent implements OnInit {
   constructor(private fb:FormBuilder ,
     private certificateService:CertificateService ,
      private loginService:LoginService,
-     private translateSwal:TranslateSwalsService) { }
+     private translateSwal:TranslateSwalsService,
+     private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
@@ -94,6 +96,7 @@ export class CertificatesComponent implements OnInit {
   //#endregion
 
   SubmitCertificate(){
+    this.SpinnerService.show();
     const formData = new FormData();
 
     if(   +this.CertificateForm.controls.year.value >1000){
@@ -116,9 +119,11 @@ export class CertificatesComponent implements OnInit {
   CreateCertificate(lang:string,certificate:FormData){
     this.certificateService.CreateCertificate('en',certificate).subscribe((res)=>{
       this.getCertificate()
+      this.SpinnerService.hide();
     },
     (err)=>{
       // console.log(err)
+      this.SpinnerService.hide();
     })
   }
 
@@ -235,6 +240,7 @@ export class CertificatesComponent implements OnInit {
 
   SaveCertificate(){
     const formData = new FormData();
+    this.SpinnerService.show();
 
     formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
     formData.append('Title',this.editableCertificate.Title)
@@ -251,11 +257,14 @@ export class CertificatesComponent implements OnInit {
     this.certificateService.UpdateCertificate('en',certificate).subscribe((res)=>{
       this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
         this.submittedCertificate= res as CertificateResponse
-        this.resetForm()}
-      )
+        this.resetForm()
+        this.SpinnerService.hide();
+
+      })
     },
     (err)=>{
       // console.log(err)
+      this.SpinnerService.hide();
     })
   }
 

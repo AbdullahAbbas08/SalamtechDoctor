@@ -308,5 +308,6 @@
     "Cancel":"Cancel",
     "AddDocs":"You have to add these documents first",
     "cannotaddYear":"Cannot add this year"
-    }
+    },
+    "spinner":"Please Wait."
 }

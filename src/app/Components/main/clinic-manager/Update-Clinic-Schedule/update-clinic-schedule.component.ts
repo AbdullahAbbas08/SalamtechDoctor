@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ClinicSchedule } from 'src/Models/clinic-schedule';
 import { ClinicScheduleDay } from 'src/Models/clinic-schedule-day';
 import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
@@ -9,6 +10,7 @@ import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -33,7 +35,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
   DayPeriodsList:{[ScheduleId:number]:ClinicScheduleDay} = {}
   CreateClinicSchedule:CreateClinicSchedule;
   ClinicId:any;
-
+  translation
   //#endregion
 
   //#region constructor
@@ -41,7 +43,9 @@ export class UpdateClinicScheduleComponent implements OnInit {
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
                private router:Router,
-               private route:ActivatedRoute ) { }
+               private route:ActivatedRoute ,
+               private translateSwal:TranslateSwalsService,
+               private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region OnInit Method
@@ -98,10 +102,18 @@ export class UpdateClinicScheduleComponent implements OnInit {
               });
       //#endregion
 
+      //#endregion
+      this.getTranslitation()
   }
   //#endregion
 
-  //#region Consume API's
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      // console.log(values);
+      this.translation =values 
+      });
+    }
+
 
       //#region Get Days
       GetDays(lang:string)
@@ -197,12 +209,16 @@ export class UpdateClinicScheduleComponent implements OnInit {
         this.ClinicScheduleService.CreateDoctorClinicSchedual(NewPeriod).subscribe(
           (respose)=>{
             // console.log(respose)
+            this.SpinnerService.hide();
+
             this.GetClinicSchedualByClinicDayId('en',NewPeriod.ClinicId,NewPeriod.DayId);
             window.location.reload();
           },
           (err)=>{
             // console.log(err)
-            Swal.fire('Error!' , err.error.Message,'error')
+            this.SpinnerService.hide();
+
+            Swal.fire( this.translation.Error, err.error.Message,'error')
           }
         )
       }
@@ -212,9 +228,11 @@ export class UpdateClinicScheduleComponent implements OnInit {
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
           this.ClinicScheduleService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
+              this.SpinnerService.hide();
               // console.log(respose)
             },
             (err)=>{
+              this.SpinnerService.hide();
               // console.log(err)
             }
           )
@@ -269,7 +287,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
 
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
-
+    this.SpinnerService.show();
     this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
     this.CreateClinicSchedule.DayId                         = DayId;
     this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
@@ -286,6 +304,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
 
   //#region Create New Period On Schedule 
   SubmitNewPeriod(DayId:number,Index:number ){
+    this.SpinnerService.show();
 
      // Remove Seconds Block From TimeFrom , TimeTo 
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
@@ -316,6 +335,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
        }
     }
     else{
+      this.SpinnerService.hide();
       Swal.fire('Error!'
        , "end time should be less than start time" , 
        'error')
@@ -327,7 +347,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
 
   //#region Update New Period
   UpdateNewPeriod( DayId:number ,Index:number ){
-
+    this.SpinnerService.show();
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ClinicSchedule } from 'src/Models/clinic-schedule';
 import { ClinicScheduleDay } from 'src/Models/clinic-schedule-day';
@@ -46,7 +47,8 @@ export class ChatComponent implements OnInit {
                private route:ActivatedRoute,
                private router:Router,
                private toastr:ToastrService ,
-               private translateSwal:TranslateSwalsService) { }
+               private translateSwal:TranslateSwalsService,
+               private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region OnInit Method
@@ -269,6 +271,7 @@ export class ChatComponent implements OnInit {
       CreateDoctorChatSchedual(NewPeriod:CreateClinicSchedule){
        this.DoctorServiceService.CreateDoctorChatSchedual(NewPeriod).subscribe(
           (response)=>{
+            this.SpinnerService.hide();
             this.GetDoctorChatAppointmentSchedualByDayId(NewPeriod.DayId);
             this. toastr.success("Message : ",response.Message);
             window.location.reload();
@@ -276,6 +279,8 @@ export class ChatComponent implements OnInit {
           (err)=>{
             // console.log("err : ",err.error.Message)              
             // this.toastr.error(err.error.Message, 'Errors...!');
+            this.SpinnerService.hide();
+
             Swal.fire({
               title: this.translation.Error,
               text: err.error.Message,
@@ -297,9 +302,11 @@ export class ChatComponent implements OnInit {
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
+              this.SpinnerService.hide();
               this.toastr.success(this.translation.UpdatedSuccessfully );
             },
             (err)=>{
+              this.SpinnerService.hide();
               Swal.fire({
                 title: this.translation.Error,
               text: err.error.Message,
@@ -366,6 +373,7 @@ export class ChatComponent implements OnInit {
   SubmitPeriod(DayId:number,Active:boolean){
 
     if(this.PeriodForm.valid){
+      this.SpinnerService.show();
       this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
       this.CreateClinicSchedule.DayId                         = DayId;
       this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
@@ -381,6 +389,7 @@ export class ChatComponent implements OnInit {
     }
     else{
       this.PeriodForm.markAllAsTouched()
+      this.SpinnerService.hide();
     }
     
   
@@ -390,7 +399,7 @@ export class ChatComponent implements OnInit {
 
   //#region Create New Period On Schedule 
   SubmitNewPeriod(DayId:number,Index:number ){
-
+    this.SpinnerService.show();
      // Remove Seconds Block From TimeFrom , TimeTo 
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
@@ -419,6 +428,7 @@ export class ChatComponent implements OnInit {
        }
     }
     else{
+      this.SpinnerService.hide();
       Swal.fire(this.translation.Error
         , this.translation.endtime, 
         'error')
@@ -431,7 +441,7 @@ export class ChatComponent implements OnInit {
 
   //#region Update New Period
   UpdateNewPeriod( DayId:number ,Index:number ){
-
+    this.SpinnerService.show();
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);

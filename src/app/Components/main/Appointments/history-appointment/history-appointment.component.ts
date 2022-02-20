@@ -1,4 +1,5 @@
  import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 import { PatientItem } from 'src/Models/patient-item';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
@@ -19,7 +20,8 @@ export class HistoryAppointmentComponent implements OnInit {
    //#endregion
 
   //#region constructor
-  constructor(private AppointmentService:AppointmentService ) { }
+  constructor(private AppointmentService:AppointmentService ,
+    private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region On Init Method
@@ -35,6 +37,7 @@ export class HistoryAppointmentComponent implements OnInit {
     //#region Invoke Methods
     this.GetHistoryDoctorAppointment(10,0);
     //#endregion
+    this.SpinnerService.show();
 
    }
   //#endregion
@@ -43,9 +46,11 @@ export class HistoryAppointmentComponent implements OnInit {
 
   //#region Get History Doctor Appointment
   GetHistoryDoctorAppointment(MaxResultCount:number,SkipCount:number){
+
     this.AppointmentService.GetHistoryDoctorAppointment(MaxResultCount,SkipCount).subscribe(
       (response)=>{
         // console.log(response);
+        this.SpinnerService.hide();
         
          this.PatientList = response.Data.Items;
          let re = /\*/gi;
@@ -83,6 +88,7 @@ export class HistoryAppointmentComponent implements OnInit {
         })
       },
       (err)=>{
+        this.SpinnerService.hide();
       }
     )
   }

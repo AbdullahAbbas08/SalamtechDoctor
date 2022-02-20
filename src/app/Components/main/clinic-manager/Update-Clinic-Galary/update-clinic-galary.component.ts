@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
@@ -21,7 +22,8 @@ export class UpdateClinicGalaryComponent implements OnInit {
   //#region Constructor
   constructor(private GalaryService: GalaryService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region On Init Method
@@ -73,9 +75,11 @@ export class UpdateClinicGalaryComponent implements OnInit {
     this.GalaryService.CreateClinicGallery(lang, formData).subscribe(
       (response) => {
         // console.log(response);
+        this.SpinnerService.hide();
         this.GetClinicGalleryByClinicId('en',  this.ClinicId);
       },
       (err) => {
+        this.SpinnerService.hide();
         // console.log(err);
       }
     )
@@ -94,12 +98,15 @@ export class UpdateClinicGalaryComponent implements OnInit {
   public message: string;
 
   preview(files: any) {
+    this.SpinnerService.show();
+
     const formData = new FormData();
     if (files.length === 0)
       return;
 
       if (files[0].size > 3000000)
       {
+        this.SpinnerService.hide();
         Swal.fire(
           'Error!',
           'image size is larger than 3mb',
@@ -144,7 +151,7 @@ export class UpdateClinicGalaryComponent implements OnInit {
 
   //#region Delete Galary
   DeleteGalary(ID: number) {
-
+ 
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

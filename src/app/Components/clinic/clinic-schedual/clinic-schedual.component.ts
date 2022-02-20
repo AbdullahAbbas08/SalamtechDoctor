@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ClinicSchedule } from 'src/Models/clinic-schedule';
 import { ClinicScheduleDay } from 'src/Models/clinic-schedule-day';
 import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
@@ -46,7 +47,8 @@ export class ClinicSchedualComponent implements OnInit {
                private fb:FormBuilder,
                private route:ActivatedRoute,
                private router:Router ,
-               private translateSwal:TranslateSwalsService) { }
+               private translateSwal:TranslateSwalsService,
+               private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region OnInit Method
@@ -264,10 +266,12 @@ export class ClinicSchedualComponent implements OnInit {
         this.ClinicScheduleService.CreateDoctorClinicSchedual(NewPeriod).subscribe(
           (respose)=>{
             // console.log(respose)
+            this.SpinnerService.hide();
             this.GetClinicSchedualByClinicDayId('en',NewPeriod.ClinicId,NewPeriod.DayId);
             window.location.reload();
           },
           (err)=>{
+            this.SpinnerService.hide();
             Swal.fire({
               title: this.translation.Error,
               text: err.error.Message,
@@ -289,6 +293,7 @@ export class ClinicSchedualComponent implements OnInit {
           this.ClinicScheduleService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
+              this.SpinnerService.hide();
               Swal.fire({
                 title: this.translation.UpdatedSuccessfully, 
                 icon: 'success',
@@ -296,6 +301,7 @@ export class ClinicSchedualComponent implements OnInit {
               })
             },
             (err)=>{
+              this.SpinnerService.hide();
               Swal.fire({
                 title: this.translation.Error,
                 text: err.error.Message,
@@ -361,8 +367,8 @@ export class ClinicSchedualComponent implements OnInit {
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
     
-    
     if(this.PeriodForm.valid){
+      this.SpinnerService.show();
       this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
       this.CreateClinicSchedule.DayId                         = DayId;
       this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
@@ -377,12 +383,14 @@ export class ClinicSchedualComponent implements OnInit {
         this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
       }
       else{
+        this.SpinnerService.hide();
         Swal.fire(this.translation.Error
           , this.translation.endtime, 
           'error')
       }
     }
     else{
+      this.SpinnerService.hide();
       this.PeriodForm.markAllAsTouched()
     }
     
@@ -434,7 +442,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region Update New Period
   UpdateNewPeriod( DayId:number ,Index:number ){
-
+    this.SpinnerService.show();
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
@@ -445,6 +453,8 @@ export class ClinicSchedualComponent implements OnInit {
       this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
     }
     else{
+    this.SpinnerService.hide();
+
       Swal.fire(this.translation.Error , this.translation.endtime , 'error')
     }
   

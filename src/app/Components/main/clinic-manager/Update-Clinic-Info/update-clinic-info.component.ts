@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } fr
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { GoogleMapsComponent } from "src/app/Shared/google-maps/google-maps.component";
 import { environment } from "src/environments/environment";
@@ -42,7 +43,8 @@ export class UpdateClinicInfoComponent implements OnInit {
     private Router: Router,
     private route: ActivatedRoute,
     private builder:FormBuilder,
-    private toaster:ToastrService
+    private toaster:ToastrService,
+    private SpinnerService: NgxSpinnerService
   ) {
     this.route.paramMap.subscribe(param=>{
       this.clinicId=param.get('ID');
@@ -213,6 +215,7 @@ getAreas(id){
 
 
   submitClinic(){
+    this.SpinnerService.show();
     let arr = [];
     // console.log(this.addressForm.value);
     this.phones_control.map((phone , index) => {
@@ -264,9 +267,11 @@ getAreas(id){
         this.getClinicInfo( this.clinicId)
         this.toaster.success("Clinic Info Updated Successfully","Successfully");
         // this.Router.navigate(['clinic/gallary/',this.clinicId]);
+        this.SpinnerService.hide();
         this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
        },
        (err)=>{
+     this.SpinnerService.hide();
         //  console.log(err)
        })
   }

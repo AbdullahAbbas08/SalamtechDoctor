@@ -12,6 +12,7 @@ import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class HomeVisitComponent implements OnInit {
                private route:ActivatedRoute,
                private router:Router,
                private toastr:ToastrService ,
-               private translateSwal:TranslateSwalsService) { }
+               private translateSwal:TranslateSwalsService,
+               private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
   //#region OnInit Method
@@ -252,6 +254,7 @@ export class HomeVisitComponent implements OnInit {
       CreateDoctorHomeVisitSchedual(NewPeriod:CreateClinicSchedule){
        this.DoctorServiceService.CreateDoctorHomeVisitSchedual(NewPeriod).subscribe(
           (response)=>{
+            this.SpinnerService.hide();
             this.GetDoctorHomeVisitSchedualByDayId(NewPeriod.DayId);
             this. toastr.success("Message : ",response.Message);
             window.location.reload();
@@ -259,6 +262,7 @@ export class HomeVisitComponent implements OnInit {
           (err)=>{
             // console.log("err : ",err.error.Message)              
             // this.toastr.error(err.error.Message, 'Errors...!');
+            this.SpinnerService.hide();
             Swal.fire({
               title: this.translation.Error,
               text: err.error.Message,
@@ -280,9 +284,11 @@ export class HomeVisitComponent implements OnInit {
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
+              this.SpinnerService.hide();
               this.toastr.success(this.translation.UpdatedSuccessfully);
             },
             (err)=>{
+              this.SpinnerService.hide();
               Swal.fire({
                 title: this.translation.Error,
                 text: err.error.Message,
@@ -349,6 +355,7 @@ export class HomeVisitComponent implements OnInit {
   SubmitPeriod(DayId:number,Active:boolean){
 
     if(this.PeriodForm.valid  ){
+      this.SpinnerService.show();
       if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
         this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
         this.CreateClinicSchedule.DayId                         = DayId;
@@ -364,6 +371,7 @@ export class HomeVisitComponent implements OnInit {
         // this.reloadCurrentRoute();
       }
       else{
+        this.SpinnerService.hide();
         Swal.fire(this.translation.Error
           , this.translation.endtime, 
           'error')
@@ -371,6 +379,7 @@ export class HomeVisitComponent implements OnInit {
     }
    
     else{
+      this.SpinnerService.hide();
       this.PeriodForm.markAllAsTouched()
     }
     
@@ -381,7 +390,7 @@ export class HomeVisitComponent implements OnInit {
 
   //#region Create New Period On Schedule 
   SubmitNewPeriod(DayId:number,Index:number ){
-
+    this.SpinnerService.show();
      // Remove Seconds Block From TimeFrom , TimeTo 
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
@@ -410,6 +419,7 @@ export class HomeVisitComponent implements OnInit {
        }
     }
     else{
+      this.SpinnerService.hide();
       Swal.fire(this.translation.Error
         , this.translation.endtime, 
         'error')
@@ -422,7 +432,7 @@ export class HomeVisitComponent implements OnInit {
 
   //#region Update New Period
   UpdateNewPeriod( DayId:number ,Index:number ){
-
+    this.SpinnerService.show();
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
@@ -434,6 +444,7 @@ export class HomeVisitComponent implements OnInit {
       this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
     }
     else{
+      this.SpinnerService.hide();
       Swal.fire(this.translation.Error
         , this.translation.endtime, 
         'error')
