@@ -5,6 +5,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { DocumentService } from 'src/Service/Documents/document.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-update-doctor-docs',
@@ -19,6 +20,8 @@ export class UpdateDoctorDocsComponent implements OnInit {
   // Upload_Image:boolean;
   LegalDocumentList;
   Documents;
+  translation;
+
   //#endregion
 
   //#region Constructor
@@ -26,7 +29,8 @@ constructor(
   private fb:FormBuilder ,
   private DocumentService:DocumentService,
   private loginService:LoginService,
-  private router:Router
+  private router:Router,
+  private translateSwal:TranslateSwalsService
 ) { }
 //#endregion
 
@@ -45,10 +49,16 @@ constructor(
     this.GetDocuments('en')
     //#endregion
 
-    }
-//#endregion
+    this.getTranslitation()
+  }
+  //#endregion
 
-  //#region Consume API's
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
 
 
 
@@ -85,13 +95,14 @@ constructor(
           {
 
             Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
+              title:  this.translation.areusure,
+              text: this.translation.wontrevert,
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
+              confirmButtonText: this.translation.yes,
+              cancelButtonText: this.translation.Cancel
             })
             .then((result) => {
       
@@ -99,20 +110,20 @@ constructor(
                 this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
                   this.GetDocuments('en')
                   Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    this.translation.Deleted,
+                    this.translation.fileDeleted,
                     'success'
                   )
               },
               (err)=>{
                 // console.log(err)
-                Swal.fire("An error occur");
+                Swal.fire( this.translation.errocur);
               })
                
               } else {
                 Swal.fire(
-                  'Cancelled',
-                  'Your imaginary file is safe :)',
+                  this.translation.Cancelled,
+                  this.translation.filesafe,
                   'error'
                 );
               }
@@ -150,8 +161,8 @@ constructor(
       if (files[0].size > 3000000)
       {
         Swal.fire(
-          'Error!',
-          'image size is larger than 3mb',
+          this.translation.Error,
+          this.translation.imagesize,
           'error'
         )
       this.message = "image size is larger than 3mb.";
@@ -183,8 +194,8 @@ constructor(
       
       
       Swal.fire({
-        title: 'Great',
-        text: "Your profile has updated successfully",
+        title: this.translation.Great,
+        text: this.translation.UpdatedSuccessfully,
         icon: 'success',
       }).then((result) => {
           this.router.navigate(['/main'])

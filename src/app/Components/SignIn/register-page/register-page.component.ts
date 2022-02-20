@@ -7,6 +7,7 @@ import { CreateUser } from 'src/Models/create-user';
 import { UserService } from 'src/Service/CreateUser/user.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-register-page',
@@ -19,6 +20,8 @@ export class RegisterPageComponent implements OnInit {
   RegisterForm:FormGroup;
   CreateUser:CreateUser = new CreateUser();
   passFormat= true;
+  translation;
+
   //#endregion
 
   //#region constructor
@@ -26,7 +29,8 @@ export class RegisterPageComponent implements OnInit {
               private toastr:ToastrService,
               private router:Router,
               private UserService:UserService,
-              private loginService:LoginService,) {
+              private loginService:LoginService,
+              private translateSwal:TranslateSwalsService) {
   }
   //#endregion
 
@@ -47,9 +51,17 @@ export class RegisterPageComponent implements OnInit {
         ReEnterPassword:['',[Validators.required , Validators.minLength(6)]  ],
         });
     //#endregion
-
+    this.getTranslitation()
   }
   //#endregion
+  
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
+  
 
 
   isFieldValid(field): boolean {
@@ -128,14 +140,14 @@ Checkinput(){
       },
       (err)=>{
         Swal.fire({
-          title: 'Error !',
+          title:this.translation.Error,
           text: err.error.Message,
           icon: 'error',
           showCancelButton: true,
           showConfirmButton:false,
           cancelButtonColor:"#f00",
-          confirmButtonText: 'OK',
-          cancelButtonText:"OK",
+          confirmButtonText:this.translation.Ok,
+          cancelButtonText:this.translation.Ok,
           reverseButtons: true
         })
       }

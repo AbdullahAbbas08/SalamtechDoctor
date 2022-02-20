@@ -11,6 +11,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { DoctorService } from 'src/Service/DoctorService/doctor-service.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-call',
@@ -34,6 +35,7 @@ export class CallComponent implements OnInit {
   DayPeriodsList:{[ScheduleId:number]:ClinicScheduleDay} = {}
   CreateClinicSchedule:CreateClinicSchedule;
   ClinicId:any;
+  translation;
 
   //#endregion
 
@@ -43,7 +45,8 @@ export class CallComponent implements OnInit {
                private fb:FormBuilder,
                private route:ActivatedRoute,
                private router:Router,
-               private toastr:ToastrService ) { }
+               private toastr:ToastrService ,
+               private translateSwal:TranslateSwalsService) { }
   //#endregion
 
   //#region OnInit Method
@@ -98,9 +101,16 @@ export class CallComponent implements OnInit {
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
-
+      this.getTranslitation()
   }
   //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
 
   isFieldValid(field): boolean {
     return (
@@ -120,14 +130,14 @@ export class CallComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -148,14 +158,14 @@ export class CallComponent implements OnInit {
               });
             },(err)=>{
               Swal.fire({
-                title: 'Error !',
+                title: this.translation.Error,
                 text: err.error.Message,
                 icon: 'error',
                 showCancelButton: true,
                 showConfirmButton:false,
                 cancelButtonColor:"#f00",
-                confirmButtonText: 'OK',
-                cancelButtonText:"OK",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
                 reverseButtons: true
               })
             })
@@ -188,15 +198,15 @@ export class CallComponent implements OnInit {
          },
          (err)=>{
            Swal.fire({
-             title: 'Error !',
-             text: err.error.Message,
-             icon: 'error',
-             showCancelButton: true,
-             showConfirmButton:false,
-             cancelButtonColor:"#f00",
-             confirmButtonText: 'OK',
-             cancelButtonText:"OK",
-             reverseButtons: true
+            title: this.translation.Error,
+            text: err.error.Message,
+            icon: 'error',
+            showCancelButton: true,
+            showConfirmButton:false,
+            cancelButtonColor:"#f00",
+            confirmButtonText: this.translation.Ok,
+            cancelButtonText:this.translation.Ok,
+            reverseButtons: true
            })
          }
        )
@@ -215,15 +225,15 @@ export class CallComponent implements OnInit {
          },
          (err)=>{
            Swal.fire({
-             title: 'Error !',
-             text: err.error.Message,
-             icon: 'error',
-             showCancelButton: true,
-             showConfirmButton:false,
-             cancelButtonColor:"#f00",
-             confirmButtonText: 'OK',
-             cancelButtonText:"OK",
-             reverseButtons: true
+            title: this.translation.Error,
+            text: err.error.Message,
+            icon: 'error',
+            showCancelButton: true,
+            showConfirmButton:false,
+            cancelButtonColor:"#f00",
+            confirmButtonText: this.translation.Ok,
+            cancelButtonText:this.translation.Ok,
+            reverseButtons: true
            })
          }
        )
@@ -251,14 +261,14 @@ export class CallComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -278,15 +288,15 @@ export class CallComponent implements OnInit {
             // console.log("err : ",err.error.Message)              
             // this.toastr.error(err.error.Message, 'Errors...!');
             Swal.fire({
-              title: 'Error !',
-              text: err.error.Message,
-              icon: 'error',
-              showCancelButton: true,
-              showConfirmButton:false,
-              cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
-              reverseButtons: true
+              title: this.translation.Error,
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
+                reverseButtons: true
             })
           },
         )
@@ -298,18 +308,18 @@ export class CallComponent implements OnInit {
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
-              this.toastr.success('Updated Successfully' , 'Update Operation');
+              this.toastr.success(this.translation.UpdatedSuccessfully );
             },
             (err)=>{
               Swal.fire({
-                title: 'Error !',
+                title: this.translation.Error,
                 text: err.error.Message,
                 icon: 'error',
                 showCancelButton: true,
                 showConfirmButton:false,
                 cancelButtonColor:"#f00",
-                confirmButtonText: 'OK',
-                cancelButtonText:"OK",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
                 reverseButtons: true
               })
             }
@@ -420,8 +430,8 @@ export class CallComponent implements OnInit {
        }
     }
     else{
-      Swal.fire('Error!' ,
-       "end time should be less than start time" ,
+      Swal.fire(this.translation.Error
+        , this.translation.endtime, 
         'error')
     }
  
@@ -444,8 +454,8 @@ export class CallComponent implements OnInit {
       this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
     }
     else{
-      Swal.fire('Error!' ,
-       "end time should be less than start time" ,
+      Swal.fire(this.translation.Error
+        , this.translation.endtime, 
         'error')
     }
   }

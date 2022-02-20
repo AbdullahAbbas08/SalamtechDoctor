@@ -5,6 +5,8 @@ import { GoogleMapsComponent } from 'src/app/Shared/google-maps/google-maps.comp
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmrService } from 'src/Service/emr/emr.service';
+import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 
 @Component({
@@ -18,13 +20,16 @@ export class PatientProfileComponent implements OnInit {
   id;
   PatientProfileForm : FormGroup ;
   patientProfile
+  translation;
+
   //#endregion
 
   constructor(private route:ActivatedRoute , 
               private AppointmentService:AppointmentService,
               private fb:FormBuilder ,
               private modalService: NgbModal,
-              private emrService :EmrService) { 
+              private emrService :EmrService,
+              private translateSwal:TranslateSwalsService) { 
                 this.route.paramMap.subscribe(param=>{
                   this.route.queryParamMap.subscribe(qparam=>{
                     this.appointmentID=qparam.get('appointment_id');
@@ -44,9 +49,17 @@ export class PatientProfileComponent implements OnInit {
      document.getElementById('EMRProfile')?.classList.remove('visited-appointemt-component');
      document.getElementById('PatientProfile')?.classList.add('visited-appointemt-component');
      //#endregion
-     
-    
-  } 
+     this.getTranslitation()
+    }
+    //#endregion
+  
+    getTranslitation()  {
+      this.translateSwal.Translitation().subscribe((values) => {
+        console.log(values);
+        this.translation =values 
+        });
+      }
+  
 
   initForm(){
     this.PatientProfileForm = this.fb.group(
@@ -66,6 +79,18 @@ export class PatientProfileComponent implements OnInit {
       public message: string;
   
       preview(files:any) {
+
+        if (files[0].size > 3000000)
+        {
+          Swal.fire(
+            this.translation.Error,
+            this.translation.imagesize,
+            'error'
+          )
+        this.message = "image size is larger than 3mb.";
+        return;
+      }
+
         if (files.length === 0)
           return;
   

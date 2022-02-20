@@ -5,6 +5,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { DocumentService } from 'src/Service/Documents/document.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class DocumentsComponent implements OnInit {
   // Upload_Image:boolean;
   LegalDocumentList;
   Documents;
+  translation;
+
   //#endregion
 
   //#region Constructor
@@ -26,7 +29,8 @@ constructor(
   private fb:FormBuilder ,
   private DocumentService:DocumentService,
   private loginService:LoginService,
-  private router:Router
+  private router:Router,
+  private translateSwal:TranslateSwalsService
 ) { }
 //#endregion
 
@@ -44,9 +48,17 @@ constructor(
     this.GetLegalDocument('en');
     this.GetDocuments('en')
     //#endregion
+    this.getTranslitation()
+  }
+  //#endregion
 
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
     }
-//#endregion
+
 
   //#region Consume API's
 
@@ -88,13 +100,14 @@ constructor(
            
 
             Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
+              title:  this.translation.areusure,
+              text: this.translation.wontrevert,
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
+              confirmButtonText: this.translation.yes,
+              cancelButtonText: this.translation.Cancel
             })
             .then((result) => {
         
@@ -102,20 +115,20 @@ constructor(
                 this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
                   this.GetDocuments('en')
                   Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    this.translation.Deleted,
+                    this.translation.fileDeleted,
                     'success'
                   )
               },
               (err)=>{
                 // console.log(err)
-                Swal.fire("An error occur");
+                Swal.fire( this.translation.errocur);
               })
                
               } else {
                 Swal.fire(
-                  'Cancelled',
-                  'Your imaginary file is safe',
+                  this.translation.Cancelled,
+                  this.translation.filesafe,
                   'error'
                 );
               }
@@ -160,8 +173,8 @@ constructor(
         {
         this.message = "image size is larger than 3mb.";
         Swal.fire(
-          'Error!',
-          'image size is larger than 3mb',
+          this.translation.Error,
+          this.translation.imagesize,
           'error'
         )
         return;
@@ -189,12 +202,12 @@ constructor(
 
       if(this.Documents.length>2){
         Swal.fire({
-          title: 'Great',
-          text: "Welcome to Salamtech. We will review your request and update your account soon",
-          icon: 'success',
+          title: this.translation.Great,
+        text: this.translation.welcome,
+        icon: 'success',
           showCancelButton: true,
-          confirmButtonText: 'Done',
-          cancelButtonText: 'Add New Clinic',
+          confirmButtonText: this.translation.Done,
+          cancelButtonText: this.translation.AddClinic,
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
@@ -206,8 +219,8 @@ constructor(
       }
       else{
         Swal.fire({
-          title: 'Error!',
-          text: "You have to add these documents first",
+          title:  this.translation.Error,
+          text:  this.translation.AddDocs,
           icon: 'warning',
         })
       }

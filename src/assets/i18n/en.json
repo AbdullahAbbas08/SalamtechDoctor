@@ -286,6 +286,7 @@
   "Swals":{
     "Error!":"Error!",
     "imagesize":"image size is larger than 3mb",
+    "imagesize2mb":"image size is larger than 2mb",
     "UpdatedSuccessfully":"Updated Successfully",
     "endtime":"end time should be less than start time",
     "areusure":"Are you sure?",
@@ -293,7 +294,7 @@
     "Cancelled":"Cancelled!",
     "errocur":"An error occur",
     "appointmentactive":"Your appointment still active",
-    "won'trevert":"You won't be able to revert this!",
+    "wontrevert":"You won't be able to revert this!",
     "yes":"Yes, delete it!",
     "Deleted":"Deleted!",
     "filesafe":"Your imaginary file is safe",
@@ -301,6 +302,11 @@
     "Great":"Great",
     "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
     "Done":"Done",
-    "AddClinic":"Add New Clinic"
+    "AddClinic":"Add New Clinic",
+    "Ok":"Ok",
+    "DocInfo":"Doctor Info Updated Successfully",
+    "Cancel":"Cancel",
+    "AddDocs":"You have to add these documents first",
+    "cannotaddYear":"Cannot add this year"
     }
 }

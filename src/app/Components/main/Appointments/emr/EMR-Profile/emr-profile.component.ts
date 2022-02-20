@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { EmrService } from 'src/Service/emr/emr.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-emr-profile',
@@ -21,13 +22,12 @@ export class EmrProfileComponent implements OnInit {
   profiledetails;
   imageDoc
  ImgeURL = environment.ImagesURL;
-
-
-
+ translation;
 
   constructor(private route:ActivatedRoute ,
      private emrService : EmrService ,
-     private lookupService:LookupsService
+     private lookupService:LookupsService,
+     private translateSwal:TranslateSwalsService
      ) { 
      this.route.paramMap.subscribe(param=>{
       this.route.queryParamMap.subscribe(qparam=>{
@@ -47,7 +47,16 @@ export class EmrProfileComponent implements OnInit {
     document.getElementById('EMRProfile')?.classList.add('visited-appointemt-component');
     //#endregion
 
+    this.getTranslitation()
   }
+  //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
 
 
   getMedicalTYpe(id){    
@@ -140,9 +149,9 @@ export class EmrProfileComponent implements OnInit {
        {
        this.message = "image size is larger than 2mb.";
        Swal.fire(
-         'Error!',
-         'image size is larger than 2mb',
-         'error'
+        this.translation.Error,
+        this.translation.imagesize2mb,
+        'error'
        )
        return;
      }

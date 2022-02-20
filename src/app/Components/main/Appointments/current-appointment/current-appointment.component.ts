@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { PatientItem } from 'src/Models/patient-item';
 import { AppointmentService } from 'src/Service/Appointment/appointment.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-current-appointment',
@@ -20,10 +21,14 @@ export class CurrentAppointmentComponent implements OnInit {
   medicalImg=[];
   actionImg=[] 
   actions=[]
+  translation;
+
    //#endregion
 
   //#region constructor
-  constructor(private AppointmentService:AppointmentService,private router:Router) { }
+  constructor(private AppointmentService:AppointmentService,
+    private router:Router,
+    private translateSwal:TranslateSwalsService) { }
   //#endregion
 
   //#region On Init Method
@@ -38,9 +43,16 @@ export class CurrentAppointmentComponent implements OnInit {
     //#region Invoke Methods
     this.GetCurrentDoctorAppointment(10,0 );
     //#endregion
+    this.getTranslitation()
   }
-  
   //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
 
 //#region Consume API's
 
@@ -116,13 +128,14 @@ export class CurrentAppointmentComponent implements OnInit {
   
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You want to cancel this appointment",
+      title: this.translation.areusure,
+      text: this.translation.cancelapp,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes '
+      confirmButtonText: this.translation.yes,
+      cancelButtonText:this.translation.Cancel
     })
     .then((result) => {
 
@@ -130,18 +143,18 @@ export class CurrentAppointmentComponent implements OnInit {
         this.AppointmentService.CancelApointment(id).subscribe(res=>{
           
           Swal.fire(
-            'Cancelled!',
+            this.translation.Cancelled,
             'success'
           )
       },
       (err)=>{
         // console.log(err)
-        Swal.fire("An error occur");
+        Swal.fire( this.translation.errocur);
       })
        
       } else {
         Swal.fire(
-          'Your appointment still active ',
+          this.translation.appointmentactive,
         );
       }
     }); 

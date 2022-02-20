@@ -4,6 +4,7 @@ import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
 import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,11 +19,14 @@ export class ClinicGalaryComponent implements OnInit {
   Response: GeneralResponse<Galary>;
   ClinicId:any;
   //#endregion
+  translation;
+
 
   //#region Constructor
   constructor(private GalaryService: GalaryService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private translateSwal:TranslateSwalsService) { }
   //#endregion
 
   //#region On Init Method
@@ -43,9 +47,17 @@ export class ClinicGalaryComponent implements OnInit {
     this.Response = this.route.snapshot.data['Galary']
     this.GalaryList = this.Response.Data;
     //#endregion
-
+    this.getTranslitation()
   }
   //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
+  
 
   //#region  Consume API's
 
@@ -95,8 +107,8 @@ export class ClinicGalaryComponent implements OnInit {
       if (files[0].size > 3000000)
       {
         Swal.fire(
-          'Error!',
-          'image size is larger than 3mb',
+          this.translation.Error,
+          this.translation.imagesize,
           'error'
         )
       this.message = "image size is larger than 3mb.";
@@ -138,13 +150,13 @@ export class ClinicGalaryComponent implements OnInit {
   DeleteGalary(ID: number) {
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title:  this.translation.areusure,
+      text: this.translation.wontrevert,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: this.translation.yes
     })
     .then((result) => {
 
@@ -152,20 +164,20 @@ export class ClinicGalaryComponent implements OnInit {
         this.GalaryService.DeleteClinicGallery('en', ID).subscribe((res)=>{
           this.GetClinicGalleryByClinicId('en',  this.ClinicId);
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            this.translation.Deleted,
+            this.translation.fileDeleted,
             'success'
           )
       },
       (err)=>{
         // console.log(err)
-        Swal.fire("An error occur");
+        Swal.fire( this.translation.errocur);
       })
        
       } else {
         Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe',
+          this.translation.Cancelled,
+          this.translation.filesafe,
           'error'
         );
       }

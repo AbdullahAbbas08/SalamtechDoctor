@@ -5,6 +5,7 @@ import { CertificateResponse } from 'src/Models/certificateResponse';
 import { CertificateService } from 'src/Service/Certificate/certificate.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-certificates',
@@ -22,10 +23,14 @@ export class CertificatesComponent implements OnInit {
   certificate:Certificate;
   CertificateForm:FormGroup
   imageName:string='Upload Certificate'
+  translation;
 
   editableCertificate:Certificate
 
-  constructor(private fb:FormBuilder ,private certificateService:CertificateService , private loginService:LoginService) { }
+  constructor(private fb:FormBuilder ,
+    private certificateService:CertificateService ,
+     private loginService:LoginService,
+     private translateSwal:TranslateSwalsService) { }
 
   ngOnInit(): void {
 
@@ -50,8 +55,18 @@ export class CertificatesComponent implements OnInit {
       }
     )
     this.getCertificate()
-
+    this.getTranslitation()
   }
+  //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
+
+
   getCertificate(){
     this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
       this.submittedCertificate= res as CertificateResponse
@@ -92,7 +107,7 @@ export class CertificatesComponent implements OnInit {
       this.CreateCertificate('en',formData)
     }
     else{
-      Swal.fire('Error!' , 'Cannot add this year' , 'error')
+      Swal.fire( this.translation.Error,  this.translation.cannotaddYear,  'error')
     }
   }
 
@@ -120,9 +135,9 @@ export class CertificatesComponent implements OnInit {
       {
       this.message = "image size is larger than 3mb.";
       Swal.fire(
-        'Error!',
-        'image size is larger than 3mb',
-        'error'
+        this.translation.Error,
+          this.translation.imagesize,
+          'error'
       )
       return;
       }
@@ -152,13 +167,14 @@ export class CertificatesComponent implements OnInit {
     DeleteCertificate(id:number){
 
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title:  this.translation.areusure,
+        text: this.translation.wontrevert,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: this.translation.yes,
+        cancelButtonText: this.translation.Cancel
       })
       .then((result) => {
 
@@ -166,20 +182,20 @@ export class CertificatesComponent implements OnInit {
            this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
             this.getCertificate()
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              this.translation.Deleted,
+              this.translation.fileDeleted,
               'success'
             )
         },
         (err)=>{
-          console.log(err)
-          Swal.fire("An error occur");
+          // console.log(err)
+          Swal.fire( this.translation.errocur);
         })
          
         } else {
           Swal.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
+            this.translation.Cancelled,
+            this.translation.filesafe,
             'error'
           );
         }

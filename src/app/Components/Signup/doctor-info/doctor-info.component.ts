@@ -9,6 +9,7 @@ import { IdNameList } from 'src/Models/id-name-list';
 import { DoctorService } from 'src/Service/Doctor/doctor.service';
 import { SignupService } from 'src/Service/signup/signup.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-doctor-info',
@@ -26,6 +27,7 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_SeniorityLevel:IdNameList[];
   DropDownList_GetCountries:IdNameList[]; 
   //#endregion
+  translation;
 
   selectedItems= [];
   dropdownSettings: IDropdownSettings = {};
@@ -34,7 +36,8 @@ export class DoctorInfoComponent implements OnInit {
   constructor(private fb:FormBuilder ,
     private SignupService:SignupService ,
     private router:Router ,
-    private DoctorService:DoctorService) {  }
+    private DoctorService:DoctorService,
+    private translateSwal:TranslateSwalsService) {  }
   //#endregion
 
   //#region On Init Method
@@ -70,9 +73,16 @@ export class DoctorInfoComponent implements OnInit {
       this.GetCountries('en');
    
       //#endregion
+      this.getTranslitation()
     }
-
     //#endregion
+  
+    getTranslitation()  {
+      this.translateSwal.Translitation().subscribe((values) => {
+        console.log(values);
+        this.translation =values 
+        });
+      }
 
 
     initForm(){
@@ -284,8 +294,8 @@ GetSpecialistIdName(lang:string)
         {
         this.message = "image size is larger than 3mb.";
         Swal.fire(
-          'Error!',
-          'image size is larger than 3mb',
+          this.translation.Error,
+          this.translation.imagesize,
           'error'
         )
         return;

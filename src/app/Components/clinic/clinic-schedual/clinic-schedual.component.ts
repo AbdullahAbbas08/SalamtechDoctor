@@ -8,8 +8,10 @@ import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
 import { Duration } from 'src/Models/duration';
 import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
+import { Login } from 'src/Models/Login';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -34,6 +36,7 @@ export class ClinicSchedualComponent implements OnInit {
   DayPeriodsList:{[ScheduleId:number]:ClinicScheduleDay} = {}
   CreateClinicSchedule:CreateClinicSchedule;
   ClinicId:any;
+  translation;
 
   //#endregion
 
@@ -42,7 +45,8 @@ export class ClinicSchedualComponent implements OnInit {
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
                private route:ActivatedRoute,
-               private router:Router ) { }
+               private router:Router ,
+               private translateSwal:TranslateSwalsService) { }
   //#endregion
 
   //#region OnInit Method
@@ -93,9 +97,16 @@ export class ClinicSchedualComponent implements OnInit {
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
-
+      this.getTranslitation()
   }
   //#endregion
+
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
 
   isFieldValid(field): boolean {
     return (
@@ -115,14 +126,14 @@ export class ClinicSchedualComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -143,14 +154,14 @@ export class ClinicSchedualComponent implements OnInit {
               });
             },(err)=>{
               Swal.fire({
-                title: 'Error !',
+                title: this.translation.Error,
                 text: err.error.Message,
                 icon: 'error',
                 showCancelButton: true,
                 showConfirmButton:false,
                 cancelButtonColor:"#f00",
-                confirmButtonText: 'OK',
-                cancelButtonText:"OK",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
                 reverseButtons: true
               })
             })
@@ -169,14 +180,14 @@ export class ClinicSchedualComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -194,14 +205,14 @@ export class ClinicSchedualComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -231,14 +242,14 @@ export class ClinicSchedualComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -258,14 +269,14 @@ export class ClinicSchedualComponent implements OnInit {
           },
           (err)=>{
             Swal.fire({
-              title: 'Error !',
+              title: this.translation.Error,
               text: err.error.Message,
               icon: 'error',
               showCancelButton: true,
               showConfirmButton:false,
               cancelButtonColor:"#f00",
-              confirmButtonText: 'OK',
-              cancelButtonText:"OK",
+              confirmButtonText: this.translation.Ok,
+              cancelButtonText:this.translation.Ok,
               reverseButtons: true
             })
           }
@@ -279,21 +290,21 @@ export class ClinicSchedualComponent implements OnInit {
             (respose)=>{
               // console.log(respose)
               Swal.fire({
-                title: 'Updated Successfully', 
+                title: this.translation.UpdatedSuccessfully, 
                 icon: 'success',
                
               })
             },
             (err)=>{
               Swal.fire({
-                title: 'Error !',
+                title: this.translation.Error,
                 text: err.error.Message,
                 icon: 'error',
                 showCancelButton: true,
                 showConfirmButton:false,
                 cancelButtonColor:"#f00",
-                confirmButtonText: 'OK',
-                cancelButtonText:"OK",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
                 reverseButtons: true
               })
             }
@@ -362,7 +373,14 @@ export class ClinicSchedualComponent implements OnInit {
       // console.log(this.CreateClinicSchedule.ClinicId)
       // console.log(this.CreateClinicSchedule.Fees    );
   
-      this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+      if(this.CreateClinicSchedule.TimeFrom <this.CreateClinicSchedule.TimeTo ){
+        this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+      }
+      else{
+        Swal.fire(this.translation.Error
+          , this.translation.endtime, 
+          'error')
+      }
     }
     else{
       this.PeriodForm.markAllAsTouched()
@@ -379,6 +397,7 @@ export class ClinicSchedualComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
     //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
+    console.log( this.ClinicScheduleDayList[DayId][Index].TimeFrom ,this.ClinicScheduleDayList[DayId][Index].TimeTo );
 
      if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
@@ -403,8 +422,8 @@ export class ClinicSchedualComponent implements OnInit {
        }
     }
     else{
-      Swal.fire('Error!'
-       , "end time should be less than start time" , 
+      Swal.fire(this.translation.Error
+       , this.translation.endtime, 
        'error')
     }
 
@@ -419,13 +438,14 @@ export class ClinicSchedualComponent implements OnInit {
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
+    // console.log( this.ClinicScheduleDayList[DayId][Index].TimeFrom ,this.ClinicScheduleDayList[DayId][Index].TimeTo );
 
     if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       // Update ClinicScheduleDay 
       this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
     }
     else{
-      Swal.fire('Error!' , "end time should be less than start time" , 'error')
+      Swal.fire(this.translation.Error , this.translation.endtime , 'error')
     }
   
 

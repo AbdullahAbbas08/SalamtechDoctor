@@ -130,6 +130,9 @@ const routes: Routes = [
   { canActivate: [LoginGuardService],
     path:'',component:LoginMainComponent,
     children:[
+      { path:'',
+        component:LoginPageComponent
+      },
     {path:'register',component:RegisterPageComponent}
     ]
   },

@@ -6,6 +6,7 @@ import { Login } from 'src/Models/Login';
 import { LoginResponse } from 'src/Models/LoginResponse';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-login-page',
@@ -21,13 +22,15 @@ export class LoginPageComponent implements OnInit {
   AuthenticatedUser:LoginResponse=new LoginResponse()
   toggle=false;
   //#endregion
+  translation;
 
 
   //#region constructor
   constructor( private loginService:LoginService,
     private fb:FormBuilder,
     private toastr:ToastrService,
-    private router:Router) {
+    private router:Router,
+    private translateSwal:TranslateSwalsService) {
 this.loginDoctorForm.UserTypeId=2
 }
 //#endregion
@@ -42,8 +45,18 @@ ngOnInit() {
      });
  //#endregion
 
+
+ this.getTranslitation()
 }
 //#endregion
+
+getTranslitation()  {
+  this.translateSwal.Translitation().subscribe((values) => {
+    console.log(values);
+    this.translation =values 
+    });
+  }
+
 
 
 isFieldValid(field): boolean {
@@ -73,14 +86,14 @@ LoginDoctor(){
    },
    (err)=>{
      Swal.fire({
-       title: 'Error !',
+       title:this.translation.Error,
        text: err.error.Message,
        icon: 'error',
        showCancelButton: true,
        showConfirmButton:false,
        cancelButtonColor:"#f00",
-       confirmButtonText: 'OK',
-       cancelButtonText:"OK",
+       confirmButtonText:this.translation.Ok,
+       cancelButtonText:this.translation.Ok,
        reverseButtons: true
      })
      

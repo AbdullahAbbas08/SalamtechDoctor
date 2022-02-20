@@ -12,6 +12,8 @@ import { UpdateProfile } from "src/Models/update-profile";
 import { DoctorService } from "src/Service/Doctor/doctor.service";
 import { SignupService } from "src/Service/signup/signup.service";
 import Swal from "sweetalert2"; 
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+
 @Component({
   selector: "app-update-doctor-info",
   templateUrl: "./update-doctor-info.component.html",
@@ -45,6 +47,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     allowSearchFilter: true,
     noDataAvailablePlaceholderText: 'hello'
   };
+  translation;
 
   //#region Constructor
   constructor(
@@ -52,7 +55,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     private SignupService: SignupService,
     private router: Router,
     private DoctorService: DoctorService,
-    private toaster:ToastrService
+    private toaster:ToastrService,
+    private translateSwal:TranslateSwalsService
   ) {}
   //#endregion
 
@@ -80,9 +84,16 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.getDoctorProfile();
 
   
-    //#endregion
+    this.getTranslitation()
   }
+  //#endregion
 
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
   //#endregion
 
   initForm() {
@@ -163,7 +174,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
       (response) => {
         // this.router.navigateByUrl("/doctor-profile/certificates");
         // console.log(response)
-        this.toaster.success("Doctor Info Updated Successfully","Successfully");
+        this.toaster.success(this.translation.DocInfo,this.translation.UpdatedSuccessfully);
         this.router.navigate(['update-doctor-profile/certificates'])
       },
       (err) => {
@@ -296,8 +307,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     if (files[0].size > 3000000)
     {
       Swal.fire(
-        'Error!',
-        'image size is larger than 3mb',
+        this.translation.Error,
+        this.translation.imagesize,
         'error'
       )
     this.message = "image size is larger than 3mb.";

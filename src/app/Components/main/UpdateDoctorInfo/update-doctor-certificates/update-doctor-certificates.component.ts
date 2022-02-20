@@ -5,6 +5,7 @@ import { CertificateResponse } from 'src/Models/certificateResponse';
 import { CertificateService } from 'src/Service/Certificate/certificate.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 
 @Component({
   selector: 'app-update-doctor-certificates',
@@ -24,8 +25,13 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   imageName:string='Upload Certificate'
 
   editableCertificate:Certificate
+  translation;
 
-  constructor(private fb:FormBuilder ,private certificateService:CertificateService , private loginService:LoginService) { }
+
+  constructor(private fb:FormBuilder ,
+    private certificateService:CertificateService ,
+     private loginService:LoginService,
+     private translateSwal:TranslateSwalsService) { }
 
   ngOnInit(): void {
 
@@ -50,9 +56,16 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       }
     )
 
-
+    this.getTranslitation()
   }
+  //#endregion
 
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      console.log(values);
+      this.translation =values 
+      });
+    }
   changeStyle()
   {
   //  document.getElementById('Signup')?.classList.remove('OnClick-Style');
@@ -114,8 +127,8 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       if (files[0].size > 3000000)
       {
         Swal.fire(
-          'Error!',
-          'image size is larger than 3mb',
+          this.translation.Error,
+          this.translation.imagesize,
           'error'
         )
       this.message = "image size is larger than 3mb.";
@@ -145,13 +158,14 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   //#region Delete Certificate
     DeleteCertificate(id:number){
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title:  this.translation.areusure,
+        text: this.translation.wontrevert,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: this.translation.yes,
+        cancelButtonText: this.translation.Cancel
       })
       .then((result) => {
 
@@ -163,20 +177,20 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
             }
             )
             Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
+              this.translation.Deleted,
+              this.translation.fileDeleted,
               'success'
             )
         },
         (err)=>{
           // console.log(err)
-          Swal.fire("An error occur");
+          Swal.fire( this.translation.errocur);
         })
          
         } else {
           Swal.fire(
-            'Cancelled',
-            'Your imaginary file is safe :)',
+            this.translation.Cancelled,
+            this.translation.filesafe,
             'error'
           );
         }

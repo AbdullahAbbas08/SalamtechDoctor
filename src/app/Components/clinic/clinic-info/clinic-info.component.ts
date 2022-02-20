@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { ClinicId } from 'src/Models/clinic-id';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { translateSwals } from 'src/Models/translateSwals';
 @Component({
   selector: 'app-clinic-info',
   templateUrl: './clinic-info.component.html',
@@ -43,24 +44,13 @@ export class ClinicInfoComponent implements OnInit {
     private ClinicService: ClinicInfoService,
     private Router: Router,
     private translateSwal:TranslateSwalsService) {
-    this.coordinates = {} as Coordinates;
-    this.translation=this.translateSwal.getTranslitation()
-      console.log(this.translation);
-      console.log(this.translateSwal.getTranslitation());
-      
+    this.coordinates = {} as Coordinates; 
       
   }
 
 
 
   ngOnInit(): void {
-
-    this.initFrom()
-    this.ListOfMobileNumber = [];
-    this.address = "";
-
-    //#region multiple select
-    this.GetServices()
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -71,17 +61,22 @@ export class ClinicInfoComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-
-    //#endregion
-
-    this.GetCities();
-
-    // this.GetAreas();
-
+    this.ListOfMobileNumber = [];
+    this.address = "";
     this.ClinicInfoModel = new ClinicInfoModel();
+    this.initFrom()
+    this.GetCities(); 
+    this.getTranslitation()
+    this.GetServices()
+
+  }
 
 
-
+  getTranslitation()  {
+  this.translateSwal.Translitation().subscribe((values) => {
+    console.log(values);
+    this.translation =values 
+    });
   }
 
   initFrom(){
@@ -160,8 +155,8 @@ export class ClinicInfoComponent implements OnInit {
     {
     this.message = "image size is larger than 3mb.";
     Swal.fire(
-      'Error!',
-      'image size is larger than 3mb',
+      this.translation.Error,
+      this.translation.imagesize,
       'error'
     )
     return;
