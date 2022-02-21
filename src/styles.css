@@ -30,7 +30,7 @@
 
 html body{
   height: 100%; 
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   font-family: 'Poppins', sans-serif !important;
   font-family: 'Cairo', sans-serif !important;
 }
@@ -39,7 +39,9 @@ html body{
 {
   min-height: 100%;
 }
-html, body, .sidebar-col {height:100%;}
+html, body, .sidebar-col {
+  height:100%;  
+overflow: hidden;}
 
 /*-------------------validations input start-------------------*/
 .ng-valid[required] , .ng-valid.required
@@ -59,9 +61,10 @@ html, body, .sidebar-col {height:100%;}
        -khtml-user-select: none; /* Konqueror HTML */
          -moz-user-select: none; /* Old versions of Firefox */
           -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
-  }
+          user-select: none; /* Non-prefixed version, currently
+          supported by Chrome, Edge, Opera and Firefox */
+
+}
 /*------------------- Disable Select Text End    -------------------*/
 
 /*------------------ hide arrow in input number start ---------------*/
@@ -78,9 +81,8 @@ input[type=number] {
 }
 /*------------------ hide arrow in input number End   ---------------*/
 
-
 html {
-  overflow: scroll;
+  /* overflow: scroll; */
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
@@ -112,7 +114,7 @@ html {
   padding:   0 !important;
    border-top: 0 !important; 
 }
-html, body { height: 100%; }
+html, body { height: 100%; } 
 body { margin: 0; }
 
 .form-control:disabled, .form-control[readonly] {

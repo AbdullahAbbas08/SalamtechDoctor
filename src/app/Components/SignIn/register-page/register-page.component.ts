@@ -104,17 +104,30 @@ export class RegisterPageComponent implements OnInit {
 Checkinput(){
   var element = <HTMLInputElement> document.getElementById('checkboxTermsConditions');
   
-  if(element.checked == true)
-    element.checked = false;
+  if(element.checked == false)
+    {
+      element.checked = false;
+      console.log('false');
+      
+     this.RegisterForm.get('checkboxcont').setValue(element.checked)
+    }
   else
+   {
     element.checked = true;
+    console.log(true);
+    
+    this.RegisterForm.get('checkboxcont').setValue(element.checked)
+   }
+
 }
 //#endregion
 
   //#region Submit
   Submit(){
     this.SpinnerService.show();
-    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid){
+    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true){
+      console.log(this.RegisterForm.value);
+      
       let con=this.RegisterForm.get('PhoneNumber').value;
       this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
       

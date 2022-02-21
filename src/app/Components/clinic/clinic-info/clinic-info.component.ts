@@ -275,7 +275,7 @@ export class ClinicInfoComponent implements OnInit {
   submitClinic() {
     this.SpinnerService.show();
     
-   if(this.ClinicInfoForm?.valid){
+   if(this.ClinicInfoForm.valid){
     const formData = new FormData();
     this.selectedItems.forEach(element => {
       formData.append('HealthEntityServiceDtos', element.Id as unknown as Blob)
@@ -314,10 +314,12 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
 
     this.CreateClinic('en', formData)
+    this.SpinnerService.hide();
+
    }
    else{
-     this.ClinicInfoForm.markAllAsTouched()
      this.SpinnerService.hide();
+     this.ClinicInfoForm.markAllAsTouched()
    }
 
 

@@ -242,7 +242,7 @@
         </select> -->
         <ng-multiselect-dropdown
         formControlName="SubSpeciality"
-        [placeholder]="'Select SubSpeciality'"
+        placeholder="{{'mainModule.DoctorInfo.SelectSubSpeciality' | translate}}"
         [settings]="dropdownSettings"
         [data]="DropDownList_SubSpeciality"
         [(ngModel)]="selectedItems"  >

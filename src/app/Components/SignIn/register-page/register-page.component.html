@@ -111,7 +111,7 @@
 
                     <div   class="form-group">
                       <input
-                        type="number"
+                        type="text"
                         formControlName="PhoneNumber"
                         class="form-control"
                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -199,19 +199,22 @@
 
                   <!-- Terms & Condition  -->
                   <div class="col-12">
-                    <label class="Create-account" (click)="Checkinput()">
+                    <label class="Create-account" >
                       <input
+                      #checkTerms
                         type="checkbox"
                         formControlName="checkboxcont"
                         id="checkboxTermsConditions"
                         class="Checkbox-Condition"
+                        (change)="Checkinput()"
                       />
 
                       {{
                         "mainModule.RegisterPage.Terms&Conditions" | translate
                       }}
+                    </label>
 
-                      <button type="button" class="btn create-account-link" data-toggle="modal" data-target="#exampleModal1">
+                      <button type="button" class="btn create-account-link shadow-none" data-toggle="modal" data-target="#exampleModal1">
                         {{
                           "mainModule.RegisterPage.Terms&ConditionsKeyword"
                             | translate
@@ -222,7 +225,6 @@
                       [displayError]="isFieldValid('checkboxcont')"
                       errorMsg="{{'errorField.checkboxcont' | translate}}"
                     ></app-fielderror>
-                    </label>
                   </div>
                   <!-- terms btn -->
 
@@ -231,7 +233,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>

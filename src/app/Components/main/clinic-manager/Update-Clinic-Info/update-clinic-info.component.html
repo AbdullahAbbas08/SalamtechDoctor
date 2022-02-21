@@ -98,6 +98,10 @@
                   maxlength="50"
                   minlength="5"
                 />
+                <app-fielderror 
+                      [displayError]="isFieldValid('Email')"
+                      errorMsg="{{'errorField.email' | translate}}"
+                    ></app-fielderror>
               </div>
             </div>
 
@@ -112,6 +116,10 @@
                   style="border-width: 1px; outline: none; display: block"
                   class="form-control"
                 />
+                <app-fielderror 
+                [displayError]="isFieldValid('FixedFee')"
+                errorMsg="{{'errorField.Fees' | translate}}"
+              ></app-fielderror>
               </div>
             </div>
 
@@ -129,6 +137,7 @@
                   {{ item.Name }}
                 </option>
               </select>
+             
             </div>
 
             <!-- city -->
@@ -147,6 +156,10 @@
                   {{ item.Name }}
                 </option>
               </select>
+              <app-fielderror 
+              [displayError]="isFieldValid('CityId')"
+              errorMsg="{{'errorField.city' | translate}}"
+            ></app-fielderror>
             </div>
           </div>
         </div>
@@ -164,6 +177,10 @@
                
               class="form-control textForArabic"
             />
+            <app-fielderror 
+            [displayError]="isFieldValid('Address')"
+            errorMsg="{{'errorField.Address' | translate}}"
+          ></app-fielderror>
           </div>
         </div>
 
@@ -226,10 +243,15 @@
                     [formControlName]="i"
                     [class.icon]="1"
                     maxlength="11"
+                    minlength="8"
+                    required
 
                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                   />
-
+                  <app-fielderror 
+                  [displayError]="isFieldValid('HealthEntityPhoneDtos')"
+                  errorMsg="{{'errorField.phone' | translate}}"
+                ></app-fielderror>
                   <span class="unit">+2</span>
                 </div>
               </div>
@@ -268,6 +290,10 @@
               {{ item.Name }}
             </option>
           </select>
+          <app-fielderror 
+            [displayError]="isFieldValid('AreaId')"
+            errorMsg="{{'errorField.Area' | translate}}"
+          ></app-fielderror>
         </div>
         <!-- Building Number -->
         <div class="col-12 col-md-4 mb-4">

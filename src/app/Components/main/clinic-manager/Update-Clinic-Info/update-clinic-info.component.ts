@@ -84,8 +84,13 @@ export class UpdateClinicInfoComponent implements OnInit {
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
       // console.log(this.phones);
       
-      for (let num of this.phones) {
-        this.addPhone(num)
+      if(this.phones){
+        for (let num of this.phones) {
+          this.addPhone(num)
+        }
+      }
+      else{
+        this.addPhone()
       }
     })
   }
@@ -94,7 +99,7 @@ export class UpdateClinicInfoComponent implements OnInit {
 
     this.FormInfo=this.builder.group({
       ClinicId :[this.clinicId , Validators.required],
-      HealthEntityPhoneDtos: new FormArray([]),
+      HealthEntityPhoneDtos: new FormArray([] , Validators.required),
       Name :[this.clinicInfo?.Name||'' , Validators.required],
       NameAr:[this.clinicInfo?.NameAr||'' , Validators.required],
       Email:[this.clinicInfo?.Email||'' , Validators.required],
@@ -276,17 +281,23 @@ getAreas(id){
       }
       //#endregion
    
-      this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
-        // console.log(res);
-        this.getClinicInfo( this.clinicId)
-        this.toaster.success(this.translation.UpdatedSuccessfully,this.translation.Great);
-        // this.Router.navigate(['clinic/gallary/',this.clinicId]);
-        this.SpinnerService.hide();
-        this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
-       },
-       (err)=>{
-     this.SpinnerService.hide();
-        //  console.log(err)
-       })
+      if(this.FormInfo.valid){
+        this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
+          // console.log(res);
+          this.getClinicInfo( this.clinicId)
+          this.toaster.success(this.translation.UpdatedSuccessfully,this.translation.Great);
+          // this.Router.navigate(['clinic/gallary/',this.clinicId]);
+          this.SpinnerService.hide();
+          this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
+         },
+         (err)=>{
+       this.SpinnerService.hide();
+          //  console.log(err)
+         })
+      }
+      else{
+        this.FormInfo.markAllAsTouched()
+       this.SpinnerService.hide();
+      }
   }
 }
