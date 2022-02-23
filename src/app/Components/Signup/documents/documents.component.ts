@@ -205,7 +205,7 @@ constructor(
 
     next(){
 
-      if(this.Documents.length>2){
+      if(this.Documents[1]){
         Swal.fire({
           title: this.translation.Great,
         text: this.translation.welcome,
