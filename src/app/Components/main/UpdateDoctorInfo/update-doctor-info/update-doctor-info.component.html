@@ -124,10 +124,10 @@
           }}</span>
         <span class="star"> * </span>
         <div class="input-style"> 
-            <input placeholder="Male" type="text" class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock">
+            <input placeholder="Male" type="text" class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock" disabled>
             <ng-template  #elseblock>
 
-            <input placeholder="Female" type="text" class="form-control" >
+            <input placeholder="Female" type="text" class="form-control" disabled>
                
               
             </ng-template>
@@ -141,7 +141,7 @@
         </span>
         <span class="star"> * </span>
         <div class="input-style"> 
-               <input placeholder="Egypt" type="text" class="form-control"  >
+               <input placeholder="Egypt" type="text" class="form-control" disabled >
 
           </div>
       </div>

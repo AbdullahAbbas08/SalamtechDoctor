@@ -285,6 +285,8 @@ export class HomeVisitComponent implements OnInit {
 
       //#region Update Doctor Clinic Schedual
         UpdateDoctorClinicSchedual(NewPeriod:ClinicScheduleDay){
+          // console.log(NewPeriod);
+          
           this.DoctorServiceService.UpdateDoctorClinicSchedual(NewPeriod).subscribe(
             (respose)=>{
               // console.log(respose)
@@ -360,7 +362,8 @@ export class HomeVisitComponent implements OnInit {
 
     if(this.PeriodForm.valid  ){
       this.SpinnerService.show();
-      if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
+      
+      if(this.PeriodForm.controls.DateFrom.value < this.PeriodForm.controls.DateTo.value ){
         this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
         this.CreateClinicSchedule.DayId                         = DayId;
         this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;

@@ -384,8 +384,7 @@ export class CallComponent implements OnInit {
     this.SpinnerService.show();
     if(this.PeriodForm.valid){
       this.SpinnerService.show();
-      if(this.PeriodForm.valid  ){
-        this.SpinnerService.show();
+      
         if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
           this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
           this.CreateClinicSchedule.DayId                         = DayId;
@@ -406,7 +405,7 @@ export class CallComponent implements OnInit {
             , this.translation.endtime, 
             'error')
         }
-      } 
+     
     }
     else{
       this.SpinnerService.hide();

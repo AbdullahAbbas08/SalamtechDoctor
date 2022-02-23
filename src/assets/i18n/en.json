@@ -289,7 +289,7 @@
     "imagesize":"image size is larger than 3mb",
     "imagesize2mb":"image size is larger than 2mb",
     "UpdatedSuccessfully":"Updated Successfully",
-    "endtime":"end time should be less than start time",
+    "endtime":"end time should be more than start time",
     "areusure":"Are you sure?",
     "cancelapp":"You want to cancel this appointment",
     "Cancelled":"Cancelled!",

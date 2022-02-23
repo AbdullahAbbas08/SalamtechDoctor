@@ -110,6 +110,7 @@ export class CertificatesComponent implements OnInit {
       this.CreateCertificate('en',formData)
     }
     else{
+      this.SpinnerService.hide();
       Swal.fire( this.translation.Error,  this.translation.cannotaddYear,  'error')
     }
   }

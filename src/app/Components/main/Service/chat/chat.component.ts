@@ -374,17 +374,28 @@ export class ChatComponent implements OnInit {
 
     if(this.PeriodForm.valid){
       this.SpinnerService.show();
-      this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
-      this.CreateClinicSchedule.DayId                         = DayId;
-      this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
-      this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
-      this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
-      this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
-      this.CreateClinicSchedule.Inactive                      = Active;
-      // console.log(this.CreateClinicSchedule.ClinicId)
-      // console.log(this.CreateClinicSchedule.Fees    );
-  
-      this.CreateDoctorChatSchedual(this.CreateClinicSchedule)
+
+ if(this.PeriodForm.controls.DateFrom.value < this.PeriodForm.controls.DateTo.value ){
+        this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
+        this.CreateClinicSchedule.DayId                         = DayId;
+        this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
+        this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
+        this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
+        this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
+        this.CreateClinicSchedule.Inactive                      = Active;
+        // console.log(this.CreateClinicSchedule.ClinicId)
+        // console.log(this.CreateClinicSchedule.Fees    );
+    
+        this.CreateDoctorChatSchedual(this.CreateClinicSchedule)
+        // this.reloadCurrentRoute();
+      }
+      else{
+        this.SpinnerService.hide();
+        Swal.fire(this.translation.Error
+          , this.translation.endtime, 
+          'error')
+      }
+   
       // this.reloadCurrentRoute();
     }
     else{

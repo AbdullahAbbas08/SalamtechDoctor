@@ -378,6 +378,7 @@ export class ClinicSchedualComponent implements OnInit {
       this.CreateClinicSchedule.Inactive                      = Active;
       // console.log(this.CreateClinicSchedule.ClinicId)
       // console.log(this.CreateClinicSchedule.Fees    );
+      console.log(this.CreateClinicSchedule.TimeFrom ,this.CreateClinicSchedule.TimeTo);
   
       if(this.CreateClinicSchedule.TimeFrom <this.CreateClinicSchedule.TimeTo ){
         this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)

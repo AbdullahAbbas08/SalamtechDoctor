@@ -234,6 +234,17 @@ export class UpdateClinicScheduleComponent implements OnInit {
             (err)=>{
               this.SpinnerService.hide();
               // console.log(err)
+              Swal.fire({
+                title: this.translation.Error,
+                text: err.error.Message,
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton:false,
+                cancelButtonColor:"#f00",
+                confirmButtonText: this.translation.Ok,
+                cancelButtonText:this.translation.Ok,
+                reverseButtons: true
+              })
             }
           )
         }
@@ -287,17 +298,35 @@ export class UpdateClinicScheduleComponent implements OnInit {
 
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
-    this.SpinnerService.show();
-    this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
-    this.CreateClinicSchedule.DayId                         = DayId;
-    this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
-    this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
-    this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
-    this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
-    this.CreateClinicSchedule.Inactive                      = Active;
-    // console.log(this.CreateClinicSchedule.ClinicId)
 
-    this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+    if(this.PeriodForm.valid){
+      this.SpinnerService.show();
+      // console.log(this.PeriodForm.value);
+      
+      if(this.PeriodForm.controls.DateFrom.value < this.PeriodForm.controls.DateTo.value ){
+        this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
+        this.CreateClinicSchedule.DayId                         = DayId;
+        this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
+        this.CreateClinicSchedule.TimeTo                        = this.PeriodForm.controls.DateTo.value ;
+        this.CreateClinicSchedule.Fees                          = this.PeriodForm.controls.Fees.value ;
+        this.CreateClinicSchedule.DurationMedicalExaminationId  = +this.PeriodForm.controls.DurationExamination.value;
+        this.CreateClinicSchedule.Inactive                      = Active;
+        // console.log(this.CreateClinicSchedule.ClinicId)
+    
+        this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
+      }
+      else{
+        this.SpinnerService.hide();
+        Swal.fire(this.translation.Error
+          , this.translation.endtime, 
+          'error')
+      }
+    }
+   
+    else{
+      this.SpinnerService.hide();
+      this.PeriodForm.markAllAsTouched()
+    }
     
   }
   //#endregion
@@ -311,7 +340,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
      this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
  
     //  console.log("Insert : ",this.ClinicScheduleDayList[DayId][Index])
- 
+    
     if(this.ClinicScheduleDayList[DayId][Index].TimeFrom <this.ClinicScheduleDayList[DayId][Index].TimeTo){
       
       let NewPeriod = {
@@ -353,9 +382,20 @@ export class UpdateClinicScheduleComponent implements OnInit {
     this.ClinicScheduleDayList[DayId][Index].TimeTo = this.ClinicScheduleDayList[DayId][Index].TimeTo.substring(0,5);
 
     // console.log("update : ",this.ClinicScheduleDayList[DayId][Index])
+    // console.log(this.ClinicScheduleDayList[DayId][Index]);
+    
+    if(this.ClinicScheduleDayList[DayId][Index].TimeFrom < this.ClinicScheduleDayList[DayId][Index].TimeTo  ){
+      
+        this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
+       
 
-     // Update ClinicScheduleDay 
-     this.UpdateDoctorClinicSchedual(this.ClinicScheduleDayList[DayId][Index]);
+    }
+    else{
+      this.SpinnerService.hide();
+      Swal.fire(this.translation.Error
+        , this.translation.endtime, 
+        'error')
+    }
 
   }
   //#endregion
