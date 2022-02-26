@@ -74,7 +74,7 @@ LoginDoctor(){
   console.log('show');
   
  if(this.LoginForm.valid){
-   this.loginDoctorForm.Phone =(this.LoginForm.controls.PhoneNumber.value).toString();
+   this.loginDoctorForm.Phone ='0'+(this.LoginForm.controls.PhoneNumber.value).toString();
    this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
    this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
      this.AuthenticatedUser= res  
@@ -107,6 +107,7 @@ LoginDoctor(){
  }
  else{
    this.LoginForm.markAllAsTouched()
+   this.SpinnerService.hide();
  }
 }
 //#endregion

@@ -47,7 +47,7 @@ export class RegisterPageComponent implements OnInit {
         MiddleName:['',[Validators.required]],
         LastName:['',[Validators.required]],
         Email:['',[Validators.required , Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)]],
-        PhoneNumber:['',[Validators.required , Validators.pattern(/^(1?(-?\d{3})-?)?(\d{3})(-?\d{4})$/) , Validators.maxLength(11)]], 
+        PhoneNumber:['',[Validators.required , Validators.maxLength(11)]], 
         checkboxcont:['',[Validators.required]],
         Password:['',[Validators.required , Validators.minLength(6)]],
         ReEnterPassword:['',[Validators.required , Validators.minLength(6)]  ],
@@ -129,7 +129,7 @@ Checkinput(){
       console.log(this.RegisterForm.value);
       
       let con=this.RegisterForm.get('PhoneNumber').value;
-      this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
+      // this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
       
       this.CreateUser.Email = this.RegisterForm.controls.Email.value;
       this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
@@ -137,7 +137,7 @@ Checkinput(){
                               this.RegisterForm.controls.LastName.value ;
   
       this.CreateUser.Password = this.RegisterForm.controls.Password.value;
-      this.CreateUser.Phone = this.RegisterForm.controls.PhoneNumber.value;
+      this.CreateUser.Phone = '0'+this.RegisterForm.controls.PhoneNumber.value;
       this.CreateUser.UserTypeId = 2;
     this.UserService.CreateUser( this.CreateUser).subscribe(
       (response)=>{
