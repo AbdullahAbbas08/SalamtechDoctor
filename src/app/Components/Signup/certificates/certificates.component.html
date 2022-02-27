@@ -224,8 +224,8 @@
                 </div>
               </div>
 
-              <div class="row justify-content-between d-block text-center mb-2">
-                <div class="col-md-2">
+              <div class="d-block text-center mb-2">
+              
                   <button *ngIf="!sendButton"  type="button" class="btn blue-btn"
                    (click)="SubmitCertificate()" [disabled]="CertificateForm.invalid">
                     {{"mainModule.Certificate.Submit" | translate}}
@@ -234,7 +234,6 @@
                      (click)="SaveCertificate()" [disabled]="CertificateForm.invalid">
                     {{"mainModule.Certificate.Save" | translate}}
                   </button>
-                </div>
               </div>
 
             </div>
