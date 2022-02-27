@@ -3,7 +3,7 @@
     <div class="row ">
 
         <div class="col-12 d-flex justify-content-end" style="padding: 10px;padding-right: 30px;">
-          <button class="addnewcertificate" [routerLink]="['/Certificates']">
+          <button class="addnewcertificate" (click)="CertificateForm.reset()">
             {{"mainModule.Certificate.AddNewCertificate" | translate}}
           </button>
         </div>

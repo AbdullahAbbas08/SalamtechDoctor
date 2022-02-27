@@ -23,6 +23,8 @@ export class DocumentsComponent implements OnInit {
   Documents;
   translation;
 
+  idDocs=null;
+  proffDocs=null;
   //#endregion
 
   //#region Constructor
@@ -88,6 +90,16 @@ constructor(
              (response)=>{
                this.Documents = response.Data;
               //  console.log(this.Documents)
+              this.Documents.map(item=>{
+                if(item.LegalDocumentTypeId == 1){
+                  this.idDocs=item                   
+                }
+                if(item.LegalDocumentTypeId == 2){
+                 this.proffDocs=item
+                 // console.log(this.proffDocs);
+                 
+               }
+              })
              },
              (err)=>{ }
            )

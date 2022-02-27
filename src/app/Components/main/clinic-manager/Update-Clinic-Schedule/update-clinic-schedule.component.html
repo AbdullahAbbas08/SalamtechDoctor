@@ -1427,7 +1427,7 @@
 
                                                 <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
 
-                                                        <button class="next-btn"
+                                                        <button class="blue-btn btn"
                                                                 style="background-color:#198754;"  
                                                                 (click)="UpdateNewPeriod( item.DayId,i)">
                                                            {{'mainModule.Schedule.Update' | translate}}
@@ -1437,7 +1437,7 @@
 
                                                   <ng-template  #UpdateBlock>
 
-                                                        <button class="next-btn" 
+                                                        <button class="blue-btn btn" 
                                                                 (click)="SubmitNewPeriod( item.DayId,i)">
                                                            {{'mainModule.Schedule.Submit' | translate}}
                                                         </button>
