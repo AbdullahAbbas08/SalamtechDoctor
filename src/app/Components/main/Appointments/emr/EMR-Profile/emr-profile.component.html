@@ -312,7 +312,7 @@
                 #description
               ></textarea>
             </div>
-            <button class="btn upload" (click)=" postEmretails(title.value, description.value)  " type="reset">
+            <button class="btn upload-btn w-100" (click)=" postEmretails(title.value, description.value)  " type="reset">
               <i class="fas fa-plus"></i
               >{{ "mainModule.EMR.profile.AddDescription" | translate }}
             </button>
@@ -333,7 +333,7 @@
                 #instructions
               ></textarea>
             </div>
-            <button class="btn upload" (click)=" postEmrInstructions(instructions.value)" type="reset">
+            <button class="btn upload-btn w-100" (click)=" postEmrInstructions(instructions.value)" type="reset">
               <i class="fas fa-plus"></i
               >{{ "mainModule.EMR.profile.AddInstructions" | translate }}
             </button>
@@ -353,7 +353,7 @@
                   #file
                 />
               </div>
-              <button class="btn upload" (click)="preview(file.files)" type="reset">
+              <button class="btn upload-btn w-100" (click)="preview(file.files)" type="reset">
                 <i class="fas fa-upload"></i>
                 {{
                   "mainModule.EMR.profile.UploadDocumentorReport" | translate

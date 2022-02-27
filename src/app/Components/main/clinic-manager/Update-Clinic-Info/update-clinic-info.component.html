@@ -163,7 +163,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row align-items-center">
         <!-- Address -->
         <div class="col-12 col-md-8">
           <span class="lbl-Register">{{ "mainModule.ClinicInfo.Location" | translate}}</span>
@@ -182,10 +182,9 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4" style="margin-bottom: 20px">
-          <span class="lbl-Register"></span>
-          <div
-            class="d-flex justify-content-center"
+        <div class="col-12 col-md-4  "  >
+           <div
+            class="d-flex justify-content-center "
             style="align-items: center"
           >
             <button class="btn locationButton" (click)="openGoogelMapsModal()">
@@ -320,6 +319,22 @@
             />
           </div>
         </div>
+        <div class="col-12  mb-4">
+          <span class="lbl-Register">
+            {{"mainModule.ClinicInfo.Services" | translate}}
+        </span>
+          <div   class="input-style">
+            <input
+              type="text"
+              style="border-width: 1px; outline: none; display: block"
+              class="form-control" 
+              formControlName="HealthEntityServiceName"
+              readonly
+            />
+            
+          </div>
+        </div>
+
       </div>
     </form>
   </div>

@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { translateSwals } from 'src/Models/translateSwals';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LocationService } from 'src/Service/location/location.service';
 @Component({
   selector: 'app-clinic-info',
   templateUrl: './clinic-info.component.html',
@@ -37,6 +38,8 @@ export class ClinicInfoComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   ListOfMobileNumber: any[];
   translation;
+  lat;
+  long
 
   constructor(
     private fb: FormBuilder,
@@ -45,7 +48,8 @@ export class ClinicInfoComponent implements OnInit {
     private ClinicService: ClinicInfoService,
     private Router: Router,
     private translateSwal:TranslateSwalsService,
-    private SpinnerService: NgxSpinnerService) {
+    private SpinnerService: NgxSpinnerService,
+    private locationService:LocationService) {
     this.coordinates = {} as Coordinates; 
       
   }
@@ -111,6 +115,7 @@ export class ClinicInfoComponent implements OnInit {
           // ApartmentNumber: ['', [Validators.required]],
           FixedFee: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
           Services: ['' ],
+         
         });
     
     
@@ -136,9 +141,17 @@ export class ClinicInfoComponent implements OnInit {
     };
 
     modalRef.componentInstance.fromParent = data;
+
     modalRef.result.then(
       (result) => {
+        // console.log(result);
+        
         this.address = result.address;
+        this.lat = result.latitude;
+        this.long= result.longitude
+        
+        this.locationService.lat.next(this.lat)
+        this.locationService.long.next(this.long)
       },
       (reason) => { }
     );
@@ -312,7 +325,8 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('FloorNo', +this.ClinicInfoForm.controls.FloorNumber.value as unknown as Blob)
     formData.append('Inactive', "true")
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
-
+    formData.append('Latitude', this.lat)
+    formData.append('Longitude', this.long) 
     this.CreateClinic('en', formData)
     this.SpinnerService.hide();
 

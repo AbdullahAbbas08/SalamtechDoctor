@@ -1,3 +1,4 @@
+import { LocationService } from './../../../../../Service/location/location.service';
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
@@ -38,6 +39,8 @@ export class UpdateClinicInfoComponent implements OnInit {
   countries
   phones
   translation;
+  lat;
+  long
   constructor(
     private modalService: NgbModal,
     private lookupService: LookupsService,
@@ -47,7 +50,8 @@ export class UpdateClinicInfoComponent implements OnInit {
     private builder:FormBuilder,
     private toaster:ToastrService,
     private translateSwal:TranslateSwalsService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
+    private locationService:LocationService
   ) {
     this.route.paramMap.subscribe(param=>{
       this.clinicId=param.get('ID');
@@ -75,6 +79,8 @@ export class UpdateClinicInfoComponent implements OnInit {
     this.SpinnerService.show();
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
       this.clinicInfo=res.Data
+      this.lat=res.Data.Latitude;
+      this.long=res.Data.Longitude;
       this.SpinnerService.hide();
       this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
       this.initForm()
@@ -83,6 +89,9 @@ export class UpdateClinicInfoComponent implements OnInit {
        this.getAreas(this.clinicInfo?.CityId)
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
       // console.log(this.phones);
+
+        this.locationService.lat.next(this.lat)
+        this.locationService.long.next(this.long)
       
       if(this.phones){
         for (let num of this.phones) {
@@ -113,6 +122,7 @@ export class UpdateClinicInfoComponent implements OnInit {
       FloorNo:[this.clinicInfo?.FloorNo||'' ,[Validators.required, Validators.pattern(/^\d*$/)] ],
       FixedFee :[this.clinicInfo?.FixedFee ||'' , [Validators.required, Validators.pattern(/^\d*$/)]],
       clinicLogo:[this.clinicInfo?.Logo||''],
+      HealthEntityServiceName:[this.clinicInfo?.HealthEntityServiceName || '']
     })
   }
 
@@ -189,6 +199,8 @@ getAreas(id){
       (result) => {
         // this.ClinicToUpdate.Address = result.address;        
         this.FormInfo.get("Address").setValue(result.address);        
+        this.FormInfo.get("Latitude").setValue(result.latitude);        
+        this.FormInfo.get("Longitude").setValue(result.longitude);        
       },
       (reason) => {}
     );
@@ -273,6 +285,8 @@ getAreas(id){
       formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
       formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
       formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
+      formData.append('Latitude',this.FormInfo.get('Latitude').value)
+      formData.append('Longitude', this.FormInfo.get('Longitude').value) 
       // formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
       for (const index in arr) 
       {

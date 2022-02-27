@@ -307,9 +307,9 @@
  
   </form>
 
-  <div class="row justify-content-end mt-4 ">
+  <div class="row justify-content-md-end justify-content-center my-4 ">
     <div class="col-3">
-      <button  class="btn blue-btn" style="background-color: #262d70" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm.valid">
+      <button  class="btn blue-btn" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm.valid">
         {{"mainModule.signup.Next" | translate }}
       </button>
     </div>

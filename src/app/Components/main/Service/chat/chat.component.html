@@ -1,15 +1,14 @@
 <div class="row d-flex justify-content-center">
   <!-- Title  -->
   <div class="col-12 ScheduleBlockTitle"> 
-     <span class="Schedule">
+     <span class="Schedule greenText">
            {{'mainModule.Services.Home_Visit.Schedule' | translate}}
      </span> 
   </div>
   <!-- Schedule Body -->
   <div *ngFor="let item of ClinicSchedule;let i=index" class="col-11" >
-      <div class="row Schedule-block" style=" background-color: #f3f3f3;
-      margin-bottom: 15px;
-      border-radius: 13px;">
+      <div class="row Schedule-block" style="border-bottom:1px solid darkgrey;
+      margin-bottom: 15px;">
         <!-- <div class="col" style="position: relative;">
           <hr>
         </div> -->

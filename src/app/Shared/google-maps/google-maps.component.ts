@@ -1,3 +1,5 @@
+import { LocationService } from './../../../Service/location/location.service';
+import { UpdateClinicInfoComponent } from './../../Components/main/clinic-manager/Update-Clinic-Info/update-clinic-info.component';
 
 import { MapsAPILoader } from '@agm/core';
 import { Component, OnInit, ViewChild, ElementRef, NgZone, Input, AfterViewInit } from '@angular/core';
@@ -19,13 +21,14 @@ export class GoogleMapsComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
-  @Input() fromParent:any;
+  @Input() fromParent:any; 
 
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private locationService:LocationService
   ) { }
 
 
@@ -33,9 +36,10 @@ export class GoogleMapsComponent implements OnInit {
 
   ngOnInit() {
 
-    //load Places Autocomplete
+    
+    this.getLocFromApis()
+     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
         autocomplete.addListener("place_changed", () => {
@@ -62,23 +66,13 @@ export class GoogleMapsComponent implements OnInit {
 
 
 
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 8;
-        this.getAddress(this.latitude, this.longitude);
-      });
-    }
-  }
 
 
   markerDragEnd($event: any) {
     // console.log("drag",$event);
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
+    console.log(this.latitude , this.longitude)
     this.getAddress(this.latitude, this.longitude);
   }
 
@@ -112,5 +106,37 @@ export class GoogleMapsComponent implements OnInit {
     }
     this.activeModal.close(data);
   }
+
+  getLocFromApis(){
+  
+    this.locationService.long.subscribe(res=>{
+      this.longitude=parseFloat(res);
+      console.log(res);
+      
+      this.locationService.lat.subscribe(res=>{
+        
+        if(this.longitude == 0 || this.longitude == null ){
+          console.log(this.latitude);
+          if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+              this.latitude = position.coords.latitude;
+              this.longitude = position.coords.longitude;
+              this.zoom = 8;
+              this.getAddress(this.latitude, this.longitude);
+            });
+          }
+        }
+        else{
+          this.latitude=parseFloat(res);
+        
+          this.zoom = 8;
+          console.log(this.latitude , this.longitude);
+        }
+      })
+    })
+  
+}
+
+
 
 }
