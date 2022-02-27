@@ -2,32 +2,69 @@
 
 <form  >
     <div class="row">
-      <div class="col-md-6 mt-3" *ngFor="let legalDoc of LegalDocumentList , let i=index">
-        <div class=" document-title">{{ legalDoc.Name }}</div>
+      <div class="col-md-6 mt-3" >
+        <div class=" document-title">{{ LegalDocumentList[0]?.Name }}</div>
         
-        <div class=" mt-2">
-          <label class="input-file-btn text-center"  [for]="'file'+legalDoc.Id">
+        <div class=" mt-2" *ngIf="!idDocs">
+          <label class="upload-btn w-100 text-center"  for="file1" >
               <input
             type="file"
-            #file
+            #file1
             accept="image/*"
-            [id]="'file'+legalDoc.Id"
+            id="file1"
             class="d-none"
-            (change)="preview(file.files, legalDoc.Id)"
+            (change)="preview(file1.files, 1)"
             />
             <span > <i class="fas fa-cloud-upload-alt img-icon"></i><br /></span>
           </label>
         </div>
   
-        <div class="col-12 mt-2" *ngIf="Documents">
-          <div  *ngFor="let doc of Documents">
-            <div class="row" *ngIf="doc.LegalDocumentTypeId === legalDoc.Id">
+        <div class="col-12 mt-2" *ngIf="idDocs">
+          <div  >
+            <div class="row" >
             
-             <div class="card w-75 mt-2 w-100">
+             <div class="card w-75 mt-2 ">
               <img class="img-fluid w-75 mx-auto my-1"
-              src="https://salamtech.azurewebsites.net/{{ doc.DocumentUrl }}"
+              src="https://salamtech.azurewebsites.net/{{ idDocs.DocumentUrl }}"
             />
-            <div class="btn" (click)="DeleteDocument('en', doc.Id)">
+            <div class="btn" (click)="DeleteDocument('en', idDocs.Id)">
+              <span  class="text-danger">
+                <i class="far fa-trash-alt mx-1"></i>
+              </span>
+            </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 mt-3" >
+        <div class=" document-title">{{ LegalDocumentList[1]?.Name }}</div>
+        
+        <div class=" mt-2" *ngIf="!proffDocs" >
+          <label class="upload-btn w-100 text-center"  for="file2" >
+              <input
+            type="file"
+            #file2
+            accept="image/*"
+            id="file2"
+            class="d-none"
+            (change)="preview(file2.files, 2)"
+            />
+            <span > <i class="fas fa-cloud-upload-alt img-icon"></i><br /></span>
+          </label>
+        </div>
+  
+        <div class="col-12 mt-2" *ngIf="proffDocs">
+          <div >
+            <div class="row" >
+            
+             <div class="card w-75 mt-2  ">
+              <img class="img-fluid w-75 mx-auto my-1"
+              src="https://salamtech.azurewebsites.net/{{ proffDocs.DocumentUrl }}"
+            />
+            <div class="btn" (click)="DeleteDocument('en', proffDocs.Id)">
               <span  class="text-danger">
                 <i class="far fa-trash-alt mx-1"></i>
               </span>
@@ -49,7 +86,7 @@
           [attr.data-bs-target]="'#nextbtn'"
         >
           <span  > 
-            <button class="btn-next" (click)="next()">
+            <button class="btn blue-btn" (click)="next()">
               {{ "mainModule.Documents.Next" | translate }}
             </button>
           </span>

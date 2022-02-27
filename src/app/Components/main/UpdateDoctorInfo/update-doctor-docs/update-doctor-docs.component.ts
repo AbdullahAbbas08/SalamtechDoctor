@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +22,8 @@ export class UpdateDoctorDocsComponent implements OnInit {
   LegalDocumentList;
   Documents;
   translation;
-
+  idDocs=null;
+  proffDocs=null;
   //#endregion
 
   //#region Constructor
@@ -83,6 +85,16 @@ constructor(
              (response)=>{
                this.Documents = response.Data;
               //  console.log(this.Documents)
+               this.Documents.map(item=>{
+                 if(item.LegalDocumentTypeId == 1){
+                   this.idDocs=item                   
+                 }
+                 if(item.LegalDocumentTypeId == 2){
+                  this.proffDocs=item
+                  // console.log(this.proffDocs);
+                  
+                }
+               })
              },
              (err)=>{ }
            )
@@ -115,6 +127,8 @@ constructor(
                   )
               },
               (err)=>{
+                this.GetDocuments('en')
+
                 // console.log(err)
                 Swal.fire( this.translation.errocur);
               })
@@ -136,11 +150,13 @@ constructor(
   //#region Doctor Documents
   CreateDoctorDocuments(lang:string , Model:FormData)
   {
+    
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
       // console.log(response);
-      this. GetLegalDocument('en')
+      // this. GetLegalDocument('en')
       this.GetDocuments('en')
+     
       },
       (err)=>{
         // console.log(err);
@@ -156,6 +172,7 @@ constructor(
     public message: string;
 
     preview(files:any  , id) { 
+      
       
       if (files[0].size > 3000000)
       {

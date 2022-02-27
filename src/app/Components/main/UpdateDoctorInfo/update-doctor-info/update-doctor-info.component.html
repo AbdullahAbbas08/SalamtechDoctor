@@ -16,17 +16,17 @@
                   (change)="preview(file.files)">
 
             <button disabled
-                    class="changePhoto-btn">
+                    class="upload-btn btn">
                     {{"mainModule.EMR.Patient.ChangePhoto" | translate}}
             </button>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-8 col-md-12">
-        <div class="row">
+      <div class="col-lg-8 col-md-12 mb-4">
+        <div class="row align-items-center">
           <!-- First Name -->
-          <div class="col-lg-6 col-sm-12">
+          <div class="col-lg-4 col-md-12 mb-4">
             <span class="lbl-Register">
               {{"mainModule.signup.FirstName" | translate }}
             </span>
@@ -38,23 +38,10 @@
             </div>
           </div>
 
-          <!-- First Name Ar -->
-          <div class="col-lg-6 col-sm-12 textForArabic">
-            <span class="lbl-Register">{{
-              "mainModule.DoctorInfo.FirstNameAr" | translate
-              }}</span>
-            <span class="star"> * </span>
-            <div class="input-style">
-                <div class="input-style">
-                    <label class="form-control">
-                        {{DoctorProfile.FirstNameAr}}
-                    </label>
-                  </div>
-            </div>
-          </div>
+         
 
           <!-- Middle Name -->
-          <div class="col-lg-6 col-sm-12">
+          <div class="col-lg-4 col-md-12 mb-4">
             <span class="lbl-Register">{{
               "mainModule.signup.MiddleName" | translate
               }}</span>
@@ -68,8 +55,40 @@
             </div>
           </div>
 
+          <!-- Last Name -->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <span class="lbl-Register">{{
+              "mainModule.signup.LastName" | translate
+              }}</span>
+            <span class="star"> * </span>
+            <div class="input-style">
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.LastName}}
+                    </label>
+                  </div>
+            </div>
+          </div>
+          </div>
+          <div class="row align-items-center">
+
+           <!-- First Name Ar -->
+           <div class="col-lg-4 col-md-12 textForArabic mb-4">
+            <span class="lbl-Register">{{
+              "mainModule.DoctorInfo.FirstNameAr" | translate
+              }}</span>
+            <span class="star"> * </span>
+            <div class="input-style">
+                <div class="input-style">
+                    <label class="form-control">
+                        {{DoctorProfile.FirstNameAr}}
+                    </label>
+                  </div>
+            </div>
+          </div>
+
           <!-- Middle Name Ar -->
-          <div class="col-lg-6 col-sm-12 textForArabic">
+          <div class="col-lg-4 col-md-12 textForArabic mb-4">
             <span class="lbl-Register">{{
               "mainModule.DoctorInfo.MiddleNameAr" | translate
               }}</span>
@@ -83,23 +102,10 @@
             </div>
           </div>
 
-          <!-- Last Name -->
-          <div class="col-lg-6 col-sm-12">
-            <span class="lbl-Register">{{
-              "mainModule.signup.LastName" | translate
-              }}</span>
-            <span class="star"> * </span>
-            <div class="input-style">
-                <div class="input-style">
-                    <label class="form-control">
-                        {{DoctorProfile.LastName}}
-                    </label>
-                  </div>
-            </div>
-          </div>
+          
 
           <!-- Last Name Ar -->
-          <div class="col-lg-6 col-sm-12 textForArabic">
+          <div class="col-lg-4 col-md-12 textForArabic mb-4">
             <span class="lbl-Register">{{
               "mainModule.DoctorInfo.LastNameAr" | translate
               }}</span>
@@ -113,41 +119,45 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row">
+     
+      <div class="row align-items-center">
+    
+   
       <!-- Gender -->
-      <div class="col-12 col-md-4 mb-4 ">
+      <div class="col-lg-4 col-md-12 mb-4 ">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Gender" | translate
           }}</span>
         <span class="star"> * </span>
         <div class="input-style"> 
-            <input placeholder="Male" type="text" class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock" disabled>
+          <label class="form-control" *ngIf="DoctorProfile.GenderId == 1;else elseblock">
+            Male
+         </label>
             <ng-template  #elseblock>
 
-            <input placeholder="Female" type="text" class="form-control" disabled>
-               
+            <label class="form-control" >
+              Female
+           </label> 
               
             </ng-template>
           </div>
       </div>
 
       <!-- Nationality -->
-      <div class="col-12 col-md-4 mb-4">
+      <div class=" col-lg-4 col-md-12 mb-4">
         <span class="lbl-Register">
           {{ "mainModule.DoctorInfo.Nationality" | translate }}
         </span>
         <span class="star"> * </span>
         <div class="input-style"> 
-               <input placeholder="Egypt" type="text" class="form-control" disabled >
-
+               <label class="form-control">
+                Egypt
+             </label>
           </div>
       </div>
 
       <!-- Date_of_birth -->
-      <div class="col-12 col-md-4">
+      <div class=" col-lg-4 col-md-12 mb-4">
         <div class="">
           <span class="lbl-Register">{{
             "mainModule.DoctorInfo.Date_of_birth" | translate
@@ -157,25 +167,26 @@
             <label class="form-control">
                 {{date}}
              </label>
+
         </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row align-items-center">
       <!-- Speciality -->
-      <div class="col-12 col-md-4 mb-4">
+      <div class="col-md-12 col-lg-4 mb-4">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Speciality" | translate
           }}</span>
         <span class="star"> * </span> 
-          
+        <div class="input-style">
           <input type="text " class="form-control"  [placeholder]="specialist" disabled>
-          
+        </div>
       </div>
 
       <!-- SubSpeciality -->
-      <div class="col-12 col-md-4 mb-4">
+      <div class="col-md-12 col-lg-4 mb-4">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.SubSpeciality" | translate
           }}</span>
@@ -190,11 +201,10 @@
        </mat-form-field>
        </div>
       </div>  
-     
-     
+    
 
       <!-- Seniority -->
-      <div class="col-12 col-md-4 ">
+      <div class="col-md-12 col-lg-4 mb-4">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Seniority" | translate
           }}</span>
@@ -206,7 +216,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row align-items-center">
       <!-- Biography -->
       <div class="col-12 col-md-6">
         <div class="form-floating">
@@ -228,14 +238,18 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-md-end justify-content-center mt-4  "  >
+  </div>
+    </div>
+
+
+    <div class="row justify-content-md-between justify-content-center mt-4  "  >
       <div class="col-md-2 col-4">
-        <button  class="btn text-white w-100" style="background-color: #262d70" (click)="back()" >
+        <button  class="btn blue-btn px-3"  (click)="back()" >
             {{"mainModule.DoctorInfo.back" | translate }}
           </button>
         </div>
         <div class="col-md-2 col-4">
-          <button [disabled]="DoctorInfoForm?.invalid"  class="btn text-white w-100" style="background-color: #262d70" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm?.valid">
+          <button [disabled]="DoctorInfoForm?.invalid"  class="btn blue-btn" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm?.valid">
               {{"mainModule.DoctorInfo.Update" | translate }}
           </button>
         </div>
