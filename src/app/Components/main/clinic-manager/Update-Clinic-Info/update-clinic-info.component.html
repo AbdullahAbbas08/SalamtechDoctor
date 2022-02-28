@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12" style="padding-left: 0px; padding-bottom: 20px">
-    <div style="font-size: 16px; font-weight: 500">
+    <div class="greenText" style="font-size: 16px; font-weight: 500">
       {{ "mainModule.Clinic.clinic" | translate}} > {{ "mainModule.Clinic.sidebarinfo"| translate }}
     </div>
   </div>
@@ -26,7 +26,7 @@
               <input
                 type="file"
                 #file
-                accept="image/*"
+                accept="image/png, image/gif, image/jpeg"
                 id="getFile"
                 style="display: none"
                 (change)="preview(file.files)"
@@ -45,7 +45,7 @@
         <div class="col-lg-8 col-md-12">
           <div class="row">
             <!-- Name -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
               <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Name" | translate}}</span>
               <span class="star"> * </span>
               <div class="input-style">
@@ -64,7 +64,7 @@
             </div>
 
             <!-- NameAr -->
-            <div class="col-12 col-md-6 textForArabic">
+            <div class="col-12 col-md-6 textForArabic mb-3">
               <span class="lbl-Register"> {{ "mainModule.ClinicInfo.NameAr" | translate}}</span>
               <span class="star"> * </span>
               <div class="input-style">
@@ -83,7 +83,7 @@
             </div>
 
             <!-- Email -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
               <span class="lbl-Register">{{
                 "mainModule.signup.Email" | translate
               }}</span>
@@ -104,7 +104,7 @@
             </div>
 
             <!-- FixedFee -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
               <span class="lbl-Register">{{ "mainModule.ClinicInfo.FixedFee" | translate}}</span>
               <span class="star"> * </span>
               <div   class="input-style">
@@ -122,7 +122,7 @@
             </div>
 
             <!-- country -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
               <span class="lbl-Register">{{ "mainModule.DoctorInfo.Egypt" | translate}}</span>
               <span class="star"> * </span>
               <select
@@ -139,7 +139,7 @@
             </div>
 
             <!-- city -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 mb-3">
               <span class="lbl-Register">{{ "mainModule.ClinicInfo.City" | translate}}</span>
               <span class="star"> * </span>
               <select
@@ -165,7 +165,7 @@
 
       <div class="row align-items-center">
         <!-- Address -->
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 mb-3">
           <span class="lbl-Register">{{ "mainModule.ClinicInfo.Location" | translate}}</span>
           <!-- <span class="star"> * </span> -->
           <div class="input-style">
@@ -182,7 +182,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4  "  >
+        <div class="col-12 col-md-4 mb-3 "  >
            <div
             class="d-flex justify-content-center "
             style="align-items: center"
@@ -219,7 +219,7 @@
         </div>
       </div>
 
-      <div class="row" formArrayName="HealthEntityPhoneDtos">
+      <div class="row mb-3" formArrayName="HealthEntityPhoneDtos">
         <!-- Phone Number -->
         <span class="lbl-Register">{{ "mainModule.ClinicInfo.PhoneNumber" | translate}}</span>
         <span class="star"> * </span>

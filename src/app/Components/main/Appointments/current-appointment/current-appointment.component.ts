@@ -148,7 +148,7 @@ export class CurrentAppointmentComponent implements OnInit {
 
       if (result.isConfirmed) {
         this.AppointmentService.CancelApointment(id).subscribe(res=>{
-          
+          this.GetCurrentDoctorAppointment(10,0 );
           Swal.fire(
             this.translation.Cancelled,
             'success'
@@ -156,10 +156,12 @@ export class CurrentAppointmentComponent implements OnInit {
       },
       (err)=>{
         // console.log(err)
+        this.GetCurrentDoctorAppointment(10,0 );
         Swal.fire( this.translation.errocur);
       })
        
       } else {
+        this.GetCurrentDoctorAppointment(10,0 );
         Swal.fire(
           this.translation.appointmentactive,
         );

@@ -63,12 +63,7 @@ const routes: Routes = [
       {path:'Congratulations',component:CongratulationsComponent },
     ] 
   },
- 
-  {canActivate: [LogoutGuardService] , path:'update-doctor-profile',component:UpdataDoctorDataComponent ,children:[
-      {path:'',component:UpdateDoctorInfoComponent },
-      {path:'certificates',component:UpdateDoctorCertificatesComponent },
-      {path:'documents',component:UpdateDoctorDocsComponent },
-  ] },
+
 
   {
     path:'terms',
@@ -119,6 +114,9 @@ const routes: Routes = [
           {path:'emr-profile/:ID',component:EmrProfileComponent } ,
           {path:'patient-profile/:ID',component:PatientProfileComponent} ,
         ] },
+        {path:'update-doctor-profile',component:UpdateDoctorInfoComponent },
+        {path:'update-doctor-certificates',component:UpdateDoctorCertificatesComponent },
+        {path:'update-doctor-documents',component:UpdateDoctorDocsComponent },
     ]
   },
 

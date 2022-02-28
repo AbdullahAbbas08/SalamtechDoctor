@@ -1,4 +1,7 @@
 <div class="container-fluid pt-4"  >
+
+
+
   <div class="row Appointment-table-header d-md-flex d-none">
     <div class="col-3 col-lg-3"> {{'mainModule.appointment.current.Name'|translate}} </div>
     <div class="col-2 col-lg-2"> {{'mainModule.appointment.current.Date'|translate}}</div>
@@ -35,13 +38,13 @@
     />
     {{MedicalType[i]}} 
   </div>
-  <div class="col-12 col-lg-3 padding-row d-flex justify-content-between">
-    <button class="acrions-btn comunicate-btn">
+  <div class="col-12 col-lg-3 padding-row d-flex justify-content-start">
+    <!-- <button class="acrions-btn comunicate-btn">
       <img 
         [src]="actionImg[i]"
     />
     {{actions[i]}} 
-    </button>
+    </button> -->
     <button class="acrions-btn PostReport-btn" (click)="EmrProfile(item.PatientId ,item.AppointmentId )">{{'mainModule.appointment.EMR'|translate}}</button>
     <button *ngIf="!item.IsCancel" class="acrions-btn cancel-btn"  (click)="cancelAppointment(item.AppointmentId )">{{'mainModule.appointment.Cancel'|translate}}</button>
     <p *ngIf="item.IsCancel" class="acrions-btn cancel-btn"  >{{'mainModule.appointment.Cancelled'|translate}}</p>

@@ -1,6 +1,14 @@
 
 
-<form  >
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-12 path-row greenText mt-4 mb-3">
+        {{ "mainModule.sideBar.DoctorInfo" | translate }} >  {{ "mainModule.sideBar.LegalDocuments" | translate }}
+    </div>
+</div>
+
+  <form  >
     <div class="row">
       <div class="col-md-6 mt-3" >
         <div class=" document-title">{{ LegalDocumentList[0]?.Name }}</div>
@@ -10,7 +18,7 @@
               <input
             type="file"
             #file1
-            accept="image/*"
+            accept="image/png, image/gif, image/jpeg"
             id="file1"
             class="d-none"
             (change)="preview(file1.files, 1)"
@@ -47,7 +55,7 @@
               <input
             type="file"
             #file2
-            accept="image/*"
+            accept="image/png, image/gif, image/jpeg"
             id="file2"
             class="d-none"
             (change)="preview(file2.files, 2)"
@@ -96,3 +104,4 @@
     </div>
   </form>
   
+</div>

@@ -177,7 +177,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
         // this.router.navigateByUrl("/doctor-profile/certificates");
         // console.log(response)
         this.toaster.success(this.translation.DocInfo,this.translation.UpdatedSuccessfully);
-        this.router.navigate(['update-doctor-profile/certificates'])
+        this.router.navigate(['main/update-doctor-certificates'])
       },
       (err) => {
         // console.log(err);
