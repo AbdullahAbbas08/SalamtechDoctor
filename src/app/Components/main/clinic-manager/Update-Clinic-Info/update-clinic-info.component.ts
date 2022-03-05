@@ -225,11 +225,11 @@ getAreas(id){
     this.message = "image size is larger than 3mb.";
     return;
   }
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   this.message = "Only images are supported.";
+    //   return;
+    // }
 
     var reader = new FileReader();
     this.imagePath = files;
@@ -307,11 +307,17 @@ getAreas(id){
          (err)=>{
        this.SpinnerService.hide();
           //  console.log(err)
+          Swal.fire(
+            this.translation.Error,
+            err.error.Message,
+            'error'
+          )
          })
       }
       else{
         this.FormInfo.markAllAsTouched()
        this.SpinnerService.hide();
+        
       }
   }
 }

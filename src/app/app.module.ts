@@ -68,6 +68,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FilterAppointmentComponent } from './Components/main/Appointments/filter-appointment/filter-appointment.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HomeComponent } from './Components/without-signin/home/home.component';
+import { AboutUsComponent } from './Components/without-signin/about-us/about-us.component';
+import { ContactUsComponent } from './Components/without-signin/contact-us/contact-us.component';
+import { HelpComponent } from './Components/without-signin/help/help.component';
  
 
 
@@ -127,6 +131,10 @@ export function CreateTranslateLoader(http: HttpClient) {
     UpdateDoctorDocsComponent,
     TermsComponent,
     FilterAppointmentComponent,
+    HomeComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    HelpComponent,
   ],
   imports: [
     HttpClientModule,

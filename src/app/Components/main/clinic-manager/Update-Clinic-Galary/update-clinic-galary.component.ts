@@ -72,6 +72,7 @@ export class UpdateClinicGalaryComponent implements OnInit {
 
   //#region CreateClinicGallery
   CreateClinicGallery(lang: string, formData: FormData) {
+    
     this.GalaryService.CreateClinicGallery(lang, formData).subscribe(
       (response) => {
         // console.log(response);
@@ -80,7 +81,12 @@ export class UpdateClinicGalaryComponent implements OnInit {
       },
       (err) => {
         this.SpinnerService.hide();
-        // console.log(err);
+        console.log(err);
+        Swal.fire(
+          'Error!',
+          err.error.Message,
+          'error'
+        )
       }
     )
   }
@@ -115,12 +121,13 @@ export class UpdateClinicGalaryComponent implements OnInit {
       this.message = "image size is larger than 3mb.";
       return;
     }
+    this.SpinnerService.hide();
 
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   this.message = "Only images are supported.";      
+    //   return;
+    // }
 
     var reader = new FileReader();
     this.imagePath = files;

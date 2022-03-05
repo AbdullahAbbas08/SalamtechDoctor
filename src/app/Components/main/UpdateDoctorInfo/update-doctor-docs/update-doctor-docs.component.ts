@@ -161,6 +161,11 @@ constructor(
       (err)=>{
         // console.log(err);
         this.GetDocuments('en')
+        Swal.fire(
+          this.translation.Error,
+          err.error.Message,
+          'error'
+        )
       }
     )
   }
@@ -188,11 +193,11 @@ constructor(
       if (files.length === 0)
         return ;
 
-      var mimeType = files[0].type;
-      if (mimeType.match(/image\/*/) == null) {
-        this.message = "Only images are supported.";
-        return ;
-      }
+      // var mimeType = files[0].type;
+      // if (mimeType.match(/image\/*/) == null) {
+      //   this.message = "Only images are supported.";
+      //   return ;
+      // }
       var reader = new FileReader();
       reader.readAsDataURL(files[0]);
      

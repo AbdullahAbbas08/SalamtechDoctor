@@ -53,19 +53,19 @@
                       <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
                     </li>
 
-                    <li id="Profile" class="li-Content dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" >
+                    <li id="Profile" type="button" class="li-Content" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <span>
                           <i id="ProfileIcon" class="fas fa-user-md" style="font-size: 23px;"></i>
                         </span>
                         <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
                     </li>
 
-                    <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                         <ul>
-                          <li class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
-                          <li class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
-                          <li class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
-                      </ul>
+                    <div  class="collapse" id="collapseExample">
+                        <ul>
+                         <li class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
+                         <li class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
+                         <li class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
+                        </ul> 
                      </div>
 
                   </ul> 

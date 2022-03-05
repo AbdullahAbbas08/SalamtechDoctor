@@ -1,38 +1,125 @@
-<div class="row main-row">
-    <div class="col-12 noselect">
-        <h3 class="title">
-            {{"mainModule.otp.EntertheVerificationCode" | translate }}
-        </h3>
-    </div>
-    <div class="col-12">
-        <div class="CodeSent-style">
-          {{"mainModule.otp.Codesentto" | translate }} <span class="phone-style">{{PhoneNumber}}</span>
-        </div> 
-        <div class="expired-style">
-             {{"mainModule.otp.Thiscodewillbeexpiredwithin" | translate }}
-            <span class="couter-style">{{minute}}:{{second}}</span>
-        </div>   
-    </div>
-    <div class="col-12 code-block-main">
-        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE1" id="codeBox1" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)"></div>
-        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE2" id="codeBox2" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)"></div>
-        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE3" id="codeBox3" type="number" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)"></div>
-        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE4" id="codeBox4" type="number" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)"></div>
-    </div>
-    <div class="col-12 dont-recieve-block">
-        <span> {{ 'mainModule.otp.Didntrecivecode' | translate }}
-            <button class="Resend-block" [disabled]="EnableResendLink" (click)="ResendCode()"> {{ 'mainModule.otp.ResendAgain' | translate }}</button>
-         </span>
-    </div>
-      <!-- Next Button Block -->
-      <div class="col-12">
-        <div class="row" >
-            <button (click)="verify()" 
-                    class="btn next-btn">
 
-                {{ 'mainModule.otp.verify' | translate }}
-            </button>
-            <!-- [disabled]="signupform.invalid"   -->
+
+<!-- <div style="min-height: 92%;position: relative; overflow-x: hidden;">
+    <div class="" >
+      <app-nav></app-nav>
+    </div>
+    <div class="" style="height:91% ;position: absolute; ;width: 100%;">
+
+
+        <div class=" col-12 col-md-4 offset-md-4 var-component text-center " >
+            <div class="container p-4"  >
+                <div class="  main-row">
+                <div class=" noselect">
+                    <h3 class="title">
+                        {{"mainModule.otp.EntertheVerificationCode" | translate }}
+                    </h3>
+                </div>
+                <div class=" ">
+                    <div class="CodeSent-style">
+                        {{"mainModule.otp.Codesentto" | translate }} <span class="phone-style">{{PhoneNumber}}</span>
+                    </div> 
+                    <div class="expired-style">
+                            {{"mainModule.otp.Thiscodewillbeexpiredwithin" | translate }}
+                        <span class="couter-style">{{minute}}:{{second}}</span>
+                    </div>   
+                </div>
+                <div class=" code-block-main">
+                    <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE1" id="codeBox1" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)"></div>
+                    <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE2" id="codeBox2" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)"></div>
+                    <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE3" id="codeBox3" type="number" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)"></div>
+                    <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE4" id="codeBox4" type="number" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)"></div>
+                </div>
+                <div class=" dont-recieve-block">
+                    <span> {{ 'mainModule.otp.Didntrecivecode' | translate }}
+                        <button class="Resend-block" [disabled]="EnableResendLink" (click)="ResendCode()"> {{ 'mainModule.otp.ResendAgain' | translate }}</button>
+                        </span>
+                </div> 
+                        <div class="text-center" >
+                        <button (click)="verify()" 
+                                class="btn next-btn">
+            
+                            {{ 'mainModule.otp.verify' | translate }}
+                        </button>
+                     </div>
+                </div> 
+             </div>
+    
         </div>
+
+
+     
+        
     </div>
 </div>
+<div style="height: 8%;">
+    <app-footer></app-footer>
+</div> -->
+
+
+
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn  text-white" data-toggle="modal" data-target="#staticBackdrop">
+    {{
+        "mainModule.RegisterPage.CreateAccount" | translate
+      }}
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header d-none">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" id="cancelbtn" class="close" data-dismiss="modal" aria-label="Close">
+            <span  aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class=" var-component text-center " >
+                <div class="container p-4"  >
+                    <div class="  main-row">
+                    <div class=" noselect">
+                        <h3 class="title">
+                            {{"mainModule.otp.EntertheVerificationCode" | translate }}
+                        </h3>
+                    </div>
+                    <div class=" ">
+                        <div class="CodeSent-style">
+                            {{"mainModule.otp.Codesentto" | translate }} <span class="phone-style">{{PhoneNumber}}</span>
+                        </div> 
+                        <div class="expired-style">
+                                {{"mainModule.otp.Thiscodewillbeexpiredwithin" | translate }}
+                            <span class="couter-style">{{timer}}</span>
+                        </div>   
+                    </div>
+                    <div class=" code-block-main">
+                        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE1" id="codeBox1" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)"></div>
+                        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE2" id="codeBox2" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)"></div>
+                        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE3" id="codeBox3" type="number" maxlength="1" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)"></div>
+                        <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE4" id="codeBox4" type="number" maxlength="1" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)"></div>
+                    </div>
+                    <div class=" dont-recieve-block">
+                        <span> {{ 'mainModule.otp.Didntrecivecode' | translate }}
+                            <button class="Resend-block" [disabled]="EnableResendLink" (click)="ResendCode()"> {{ 'mainModule.otp.ResendAgain' | translate }}</button>
+                            </span>
+                    </div>
+                        <!-- Next Button Block -->
+                            <div class="text-center" >
+                            <button (click)="verify()" 
+                                    class="btn next-btn">
+                                
+                                {{ 'mainModule.otp.verify' | translate }}
+                            </button>
+                            <!-- [disabled]="signupform.invalid"   -->
+                        </div>
+                    </div> 
+                 </div>
+        
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>

@@ -50,12 +50,12 @@
             <div class="plus-block">
                 <input  type='file'
                 #file
-                accept="image/*"
+               
                 id="getFile1"
                 style="display:none"
                 (change)="preview(file.files)">
 
-                <button onclick="document.getElementById('getFile1').click()" class="open-dialog-btn">
+                <button onclick="document.getElementById('getFile1').click()" class="add-btn">
                   +
                 </button>
             </div>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Next Button -->
-    <div class="col-12 d-flex mt-5 justify-content-between">
+    <div class="  d-flex mt-5 justify-content-between">
             <button class="blue-btn btn"
                     (click)="Back()">
                     {{ "mainModule.DoctorInfo.back" | translate}}

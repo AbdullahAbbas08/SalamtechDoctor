@@ -308,11 +308,11 @@ GetSpecialistIdName(lang:string)
         return;
       }
 
-      var mimeType = files[0].type;
-      if (mimeType.match(/image\/*/) == null) {
-        this.message = "Only images are supported.";
-        return;
-      }
+      // var mimeType = files[0].type;
+      // if (mimeType.match(/image\/*/) == null) {
+      //   this.message = "Only images are supported.";
+      //   return;
+      // }
 
       var reader = new FileReader();
       this.imagePath = files;

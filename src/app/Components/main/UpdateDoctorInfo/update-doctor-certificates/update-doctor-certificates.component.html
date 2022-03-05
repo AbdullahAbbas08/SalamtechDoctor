@@ -9,7 +9,7 @@
     <div class="row ">
 
         <div class="col-12 d-flex justify-content-end" style="padding: 10px;padding-right: 30px;">
-          <button class="addnewcertificate" (click)="CertificateForm.reset()">
+          <button class="addnewcertificate" (click)="resetForm()">
             {{"mainModule.Certificate.AddNewCertificate" | translate}}
           </button>
         </div>
@@ -59,9 +59,12 @@
             <div class="card-header d-flex border-0 text-muted justify-content-between"
                   style="background-color: #f9f9f9 !important">
 
-              <div class="btn">
-                {{"mainModule.Certificate.NewCertificate" | translate}}
-              </div>
+                  <div class="btn" *ngIf="editableCertificate.Id == undefined">
+                    {{"mainModule.Certificate.NewCertificate" | translate}}
+                  </div> 
+                  <div class="btn" *ngIf="editableCertificate.Id != undefined">
+                    {{"mainModule.DoctorInfo.Update" | translate}}
+                  </div>
 
               <div>
                 <div class="btn px-1" (click)="resetForm()">{{"mainModule.Certificate.Reset" | translate}}</div>
@@ -211,7 +214,6 @@
                           class="btn button-upload px-3 mb-2" 
                           formControlName="ImageCertificate" 
                           #file
-                          accept="image/png, image/gif, image/jpeg"
                           id="getFile" 
                           style="display: none" 
                           (change)="preview(file.files)" />

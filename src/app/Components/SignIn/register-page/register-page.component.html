@@ -261,13 +261,19 @@
                     </label>
                     <div>
                       <button
-                       
-                        class="CreateAccount-btn"
-                        (click)="Submit()"
+                       *ngIf="RegisterForm.invalid"
+                        class="btn mx-2 p-2 blue-btn"
+                        (click)="RegisterForm.markAllAsTouched()"
                       >
                         {{
                           "mainModule.RegisterPage.CreateAccount" | translate
                         }}
+                      </button>
+
+                      <button class="btn mx-2  blue-btn" 
+                      (click)="Submit()"
+                    *ngIf="RegisterForm.valid" >
+                      <app-otp [timer]="Timer" [user]="CreateUser"></app-otp>
                       </button>
                     </div>
                   </div>

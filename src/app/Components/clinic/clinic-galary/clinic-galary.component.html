@@ -49,7 +49,7 @@
                         style="display:none"
                         (change)="preview(file.files)">
 
-                <button onclick="document.getElementById('getFile1').click()" class="open-dialog-btn"> + </button>
+                <button onclick="document.getElementById('getFile1').click()" class="add-btn"> + </button>
             </div>
         </div>
 
@@ -57,15 +57,13 @@
   </div>
 
   <!-- Next Button -->
-  <div class="col-12 ">
-    <div class="d-md-flex justify-content-end">
+     <div class="d-md-flex justify-content-end">
       <button class="blue-btn btn"
               (click)="Next()">
               {{ "mainModule.ClinicInfo.Next" | translate}}
             </button>
     </div>
-  </div>
-
+ 
 </div>
 
   <!-- spinner -->

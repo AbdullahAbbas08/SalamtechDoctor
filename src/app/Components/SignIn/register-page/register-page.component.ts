@@ -9,7 +9,9 @@ import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { Signup } from 'src/Models/signup';
+import { Responsesignup } from 'src/Service/signup/responsesignup';
+import { SignupService } from 'src/Service/signup/signup.service';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -22,13 +24,18 @@ export class RegisterPageComponent implements OnInit {
   CreateUser:CreateUser = new CreateUser();
   passFormat= true;
   translation;
-
+  SignUp:Signup = new Signup();
+  ErrorMessege:string;
+  _Responsesignup:Responsesignup= new Responsesignup();
+  direction:any;
+  Timer
   //#endregion
 
   //#region constructor
   constructor(private fb:FormBuilder,
               private toastr:ToastrService,
-              private router:Router,
+              private router:Router, 
+              private SignupService:SignupService ,
               private UserService:UserService,
               private loginService:LoginService,
               private translateSwal:TranslateSwalsService,
@@ -114,7 +121,7 @@ Checkinput(){
   else
    {
     element.checked = true;
-    console.log(true);
+    // console.log(true);
     
     this.RegisterForm.get('checkboxcont').setValue(element.checked)
    }
@@ -123,10 +130,65 @@ Checkinput(){
 //#endregion
 
   //#region Submit
+  // Submit(){
+  //   this.SpinnerService.show();
+  //   if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true){
+  //     console.log(this.RegisterForm.value);
+      
+  //     let con=this.RegisterForm.get('PhoneNumber').value;
+  //     // this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
+      
+  //     this.CreateUser.Email = this.RegisterForm.controls.Email.value;
+  //     this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
+  //                             this.RegisterForm.controls.MiddleName.value+" "+
+  //                             this.RegisterForm.controls.LastName.value ;
+  
+  //     this.CreateUser.Password = this.RegisterForm.controls.Password.value;
+  //     this.CreateUser.Phone = '0'+this.RegisterForm.controls.PhoneNumber.value;
+  //     this.CreateUser.UserTypeId = 2;
+  //   this.UserService.CreateUser( this.CreateUser).subscribe(
+  //     (response)=>{
+  //       // console.log(response.Data.Token);
+  //       localStorage.setItem('Authorization',response.Data.Token)
+  //       localStorage.setItem('Name',response.Data.Name);
+  //       let auth=localStorage.getItem('Authorization')        
+  //       setTimeout(() => {
+  //         if(auth){
+  //           // console.log(auth);
+  //           this.SpinnerService.hide();
+  //           this.router.navigate(["/doctor-profile"]);          
+  //         }
+  //       }, 2000);
+  //       // window.location.reload();
+  //     },
+  //     (err)=>{
+  //       this.SpinnerService.hide();
+  //       Swal.fire({
+  //         title:this.translation.Error,
+  //         text: err.error.Message,
+  //         icon: 'error',
+  //         showCancelButton: true,
+  //         showConfirmButton:false,
+  //         cancelButtonColor:"#f00",
+  //         confirmButtonText:this.translation.Ok,
+  //         cancelButtonText:this.translation.Ok,
+  //         reverseButtons: true
+  //       })
+  //     }
+  //   )
+  //   }
+  //   else
+  //   {
+  //     this.SpinnerService.hide();
+  //     this.RegisterForm.markAllAsTouched()
+  //   }
+  // }
+  //#endregion
+
   Submit(){
     this.SpinnerService.show();
     if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true){
-      console.log(this.RegisterForm.value);
+      // console.log(this.RegisterForm.value);
       
       let con=this.RegisterForm.get('PhoneNumber').value;
       // this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
@@ -139,35 +201,24 @@ Checkinput(){
       this.CreateUser.Password = this.RegisterForm.controls.Password.value;
       this.CreateUser.Phone = '0'+this.RegisterForm.controls.PhoneNumber.value;
       this.CreateUser.UserTypeId = 2;
-    this.UserService.CreateUser( this.CreateUser).subscribe(
-      (response)=>{
-        // console.log(response.Data.Token);
-        localStorage.setItem('Authorization',response.Data.Token)
-        localStorage.setItem('Name',response.Data.Name);
-        let auth=localStorage.getItem('Authorization')        
-        setTimeout(() => {
-          if(auth){
-            // console.log(auth);
-            this.SpinnerService.hide();
-            this.router.navigate(["/doctor-profile"]);          
-          }
-        }, 2000);
-        // window.location.reload();
-      },
-      (err)=>{
-        this.SpinnerService.hide();
-        Swal.fire({
-          title:this.translation.Error,
-          text: err.error.Message,
-          icon: 'error',
-          showCancelButton: true,
-          showConfirmButton:false,
-          cancelButtonColor:"#f00",
-          confirmButtonText:this.translation.Ok,
-          cancelButtonText:this.translation.Ok,
-          reverseButtons: true
-        })
-      }
+        this.SignupService.SignUp(this.CreateUser).subscribe(
+        (data)=> {
+          this.SpinnerService.hide();
+
+          this._Responsesignup.Data = data;
+          console.log(data['Data'].ReSendCounter);
+          this.Timer=data['Data'].ReSendCounter
+          
+              // this.router.navigateByUrl("otp");
+              this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
+              // console.log(this.SignupService.ResenderCodeObject);
+              this.SignupService.Phone = this.SignUp.Phone;
+            },
+        (err)=> {
+              this.SpinnerService.hide();
+              this.ErrorMessege = err.error['Message'];
+              console.log(err.error['Message']);
+            }
     )
     }
     else
@@ -176,7 +227,6 @@ Checkinput(){
       this.RegisterForm.markAllAsTouched()
     }
   }
-  //#endregion
 
   //#region Get Doctor Profile
 

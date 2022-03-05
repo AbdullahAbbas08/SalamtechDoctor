@@ -37,7 +37,7 @@
             <div class="container">
                 <div class="row Clinic-table-header">
                     <div class="col-8 col-md-3 ">{{"mainModule.clinicmanager.main.ClinicName" | translate}}</div>
-                    <div class="d-none d-sm-none d-md-block col-md-3 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.ClinicNumber" | translate}}</div>
+                    <div class="d-none d-sm-none d-md-block col-md-7 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.ClinicNumber" | translate}}</div>
                     <!-- <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Appointments" | translate}}</div> -->
                     <!-- <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Location" | translate}}</div> -->
                     <div class="col-4 col-md-2 d-flex justify-content-center"> {{"mainModule.clinicmanager.main.Actions" | translate}}</div>
@@ -47,9 +47,9 @@
                             <img class="Clinic-Logo-Style" 
                                 src="{{IamgeURL}}{{item.Logo}}" 
                                 onerror="this.src='../../../../assets/img/LogoAlternative.png';">
-                            {{item.Name}}
+                            {{item.Name|slice:0:10}}
                     </div>
-                    <div class="d-none d-sm-none d-md-block col-md-3 d-flex justify-content-center">
+                    <div class="d-none d-sm-none d-md-block col-md-7 d-flex justify-content-center">
                         {{item.Phone}}
                     </div>
                     <!-- <div class="d-none d-sm-none d-md-block col-md-2 d-flex justify-content-center">

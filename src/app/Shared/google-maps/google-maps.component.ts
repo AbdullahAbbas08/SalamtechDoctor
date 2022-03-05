@@ -112,10 +112,11 @@ export class GoogleMapsComponent implements OnInit {
     this.locationService.long.subscribe(res=>{
       this.longitude=parseFloat(res);
       console.log(res);
+      console.log(   this.longitude);
       
       this.locationService.lat.subscribe(res=>{
         
-        if(this.longitude == 0 || this.longitude == null ){
+        if(this.longitude == 0 || this.longitude == null || res == undefined ){
           console.log(this.latitude);
           if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition((position) => {

@@ -19,6 +19,7 @@ export class EmrProfileComponent implements OnInit {
   data=[];
   MedicalType ;
   medicalImg;
+  medicals=[]
   profileHistory;
   profiledetails;
   imageDoc
@@ -61,27 +62,32 @@ export class EmrProfileComponent implements OnInit {
     }
 
 
-  getMedicalTYpe(id){    
+  getMedicalTYpe(id){   
+   let body={
+      medicalType:null,
+      medicalimg:null
+    } 
     if(id==1){
-      this.MedicalType="Clinic Appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/location.png"
+      body.medicalType="Clinic Appointment"
+      body.medicalimg="../../../../../../assets/img/medical-type/location.png"
     }
     else if(id==2){
-      this.MedicalType= "Home visit"
-      this.medicalImg="../../../../../../assets/img/medical-type/location.png"
+       body.medicalType= "Home visit"
+      body.medicalimg="../../../../../../assets/img/medical-type/location.png"
     }
     else if(id==3){
-      this.MedicalType=  "Video appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/video.png"
+      body.medicalType=  "Video appointment"
+      body.medicalimg="../../../../../../assets/img/medical-type/video.png"
     }
     else if(id==4){
-      this.MedicalType= "Call appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/call.png"
+       body.medicalType= "Call appointment"
+      body.medicalimg="../../../../../../assets/img/medical-type/call.png"
     }
     else if(id==5){
-      this.MedicalType= "Chat appointment"
-      this.medicalImg="../../../../../../assets/img/medical-type/chat.png"
+       body.medicalType= "Chat appointment"
+     body.medicalimg="../../../../../../assets/img/medical-type/chat.png"
     }
+    return body
   }
 
   GetEmrHistory(id){
@@ -89,6 +95,11 @@ export class EmrProfileComponent implements OnInit {
     this.emrService.GetEmrHistory(id).subscribe(res=>{
       this.profileHistory= res.Data;
       this.SpinnerService.hide();
+      this.profileHistory.map(item=>{
+        
+        this.medicals.push(this.getMedicalTYpe(item.MedicalExaminationTypeId))
+      })
+      console.log( this.medicals);
       // console.log(this.profileHistory);
       
     })
@@ -100,7 +111,8 @@ export class EmrProfileComponent implements OnInit {
       this.profiledetails= res.Data;   
       this.SpinnerService.hide();
       // console.log(this.profiledetails);
-         
+      
+      
     })
   }
 
@@ -165,11 +177,11 @@ export class EmrProfileComponent implements OnInit {
        return;
      }
 
-     var mimeType = files[0].type;
-     if (mimeType.match(/image\/*/) == null) {
-       this.message = "Only images are supported.";
-       return ;
-     }
+    //  var mimeType = files[0].type;
+    //  if (mimeType.match(/image\/*/) == null) {
+    //    this.message = "Only images are supported.";
+    //    return ;
+    //  }
      var reader = new FileReader();
      reader.readAsDataURL(files[0]);
     
@@ -191,6 +203,11 @@ export class EmrProfileComponent implements OnInit {
       // console.log(err);
       this.GetEmrHistory(this.id)
       this.SpinnerService.hide();
+      Swal.fire(
+        this.translation.Error,
+        err.error.Message,
+        'error'
+      )
     })
    }
 

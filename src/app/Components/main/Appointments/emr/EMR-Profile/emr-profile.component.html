@@ -14,17 +14,17 @@
           [attr.data-bs-target]="'#element' + i"
           aria-expanded="false"
           [attr.aria-controls]="'element' + i"
-          (click)="GetEmrDetails(item.AppointmentId) ; getMedicalTYpe(item.MedicalExaminationTypeId)"
+          (click)="GetEmrDetails(item.AppointmentId) ;"
           >
           <div class="row align-items-center">
             <div class="col-1">
-              <img src="../../../../../../assets/img/medical-type/location.png" alt="" width="30">
+              <img [src]="medicals[0].medicalimg" alt="" width="30"  class="img-fluid">
             </div>
             <div class="col-11">
     
               {{ item.AppountmentDate }}
               <br>
-                {{ MedicalType }}
+                {{ medicals[0].medicalType }}
             </div>
           </div>
           
@@ -163,13 +163,13 @@
         >
         <div class="row align-items-center">
           <div class="col-1">
-            <img src="../../../../../../assets/img/medical-type/location.png" alt="" width="30">
+            <img [src]="medicals[0].medicalimg" alt="" width="30" class="img-fluid">
           </div>
           <div class="col-11">
-    
+  
             {{ item.AppountmentDate }}
             <br>
-              {{ MedicalType }}
+              {{ medicals[0].medicalType }}
           </div>
         </div>
         
@@ -256,7 +256,7 @@
               <div class="modal fade" [id]="'exampleModal1'+i" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
-                     <img  [src]="ImgeURL+doc?.DocumentUrl">              
+                     <img  [src]="ImgeURL+doc?.DocumentUrl" class="img-fluid">              
                   </div>
                 </div>
               </div>
@@ -313,7 +313,7 @@
               ></textarea>
             </div>
             <button class="btn upload-btn w-100" (click)=" postEmretails(title.value, description.value)  " type="reset">
-              <i class="fas fa-plus"></i
+              <i class="fas fa-plus mx-2"></i
               >{{ "mainModule.EMR.profile.AddDescription" | translate }}
             </button>
           </div>
@@ -334,7 +334,7 @@
               ></textarea>
             </div>
             <button class="btn upload-btn w-100" (click)=" postEmrInstructions(instructions.value)" type="reset">
-              <i class="fas fa-plus"></i
+              <i class="fas fa-plus mx-2"></i
               >{{ "mainModule.EMR.profile.AddInstructions" | translate }}
             </button>
           </div>
@@ -347,7 +347,6 @@
               <div class="input-group mb-3">
                 <input
                   type="file"
-                  accept="image/png, image/gif, image/jpeg"
                   class="form-control"
                   id="inputGroupFile02"
                   placeholder="Choose file"
@@ -355,7 +354,7 @@
                 />
               </div>
               <button class="btn upload-btn w-100" (click)="preview(file.files)" type="reset">
-                <i class="fas fa-upload"></i>
+                <i class="fas fa-upload mx-2"></i>
                 {{
                   "mainModule.EMR.profile.UploadDocumentorReport" | translate
                 }}

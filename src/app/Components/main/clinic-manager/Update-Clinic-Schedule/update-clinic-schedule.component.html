@@ -17,7 +17,7 @@
     <div *ngFor="let item of ClinicSchedule;let i=index" class="col-12">
         <div class="row Schedule-block ">
           <div class="col" style="position: relative;">
-            <hr>
+            <hr style=" background-color: #03BBB4;">
           </div>
           <div id="Saturday" class="col-12">
                   <!--header  -->
@@ -65,7 +65,7 @@
                                   <div class="row">
                                     <div class="col-12 col-md-6 ">
                                       <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                        <label >
+                                        <label class="greenText">
                                           {{ "mainModule.Schedule.Period1" | translate }}
                                         </label>
                                       </div>
@@ -214,7 +214,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
@@ -396,7 +396,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
@@ -576,7 +576,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
@@ -757,7 +757,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
@@ -940,7 +940,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}} 
                                           </label>
                                         </div>
@@ -1119,7 +1119,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                              {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
@@ -1301,7 +1301,7 @@
                                     <div class="row">
                                       <div class="col-12 col-md-6 ">
                                         <div class="d-flex  justify-content-center justify-content-sm-start ">
-                                          <label >
+                                          <label class="greenText">
                                             {{'mainModule.Schedule.Period' | translate}} {{i+1}}  
                                           </label>
                                         </div>
@@ -1427,9 +1427,8 @@
 
                                                 <div *ngIf="ClinicScheduleDayList[item.DayId][i].SchedualId != -1 ;else UpdateBlock">
 
-                                                        <button class="blue-btn btn"
-                                                                style="background-color:#198754;"  
-                                                                (click)="UpdateNewPeriod( item.DayId,i)">
+                                                        <button class="blue-btn btn mb-2"
+                                                                 (click)="UpdateNewPeriod( item.DayId,i)">
                                                            {{'mainModule.Schedule.Update' | translate}}
                                                         </button>
 
@@ -1437,7 +1436,7 @@
 
                                                   <ng-template  #UpdateBlock>
 
-                                                        <button class="blue-btn btn" 
+                                                        <button class="blue-btn btn mb-2" 
                                                                 (click)="SubmitNewPeriod( item.DayId,i)">
                                                            {{'mainModule.Schedule.Submit' | translate}}
                                                         </button>
@@ -1470,7 +1469,7 @@
 
 <div class="row" style="margin-bottom: 15px;">
     <div class="col-12 d-flex justify-content-center justify-content-sm-end">
-        <button class="blue-btn btn"
+        <button class="blue-btn btn "
                 (click)="Back()">
                 {{'mainModule.DoctorInfo.back' | translate}}
         </button>

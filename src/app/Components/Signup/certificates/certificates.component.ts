@@ -125,6 +125,11 @@ export class CertificatesComponent implements OnInit {
     (err)=>{
       // console.log(err)
       this.SpinnerService.hide();
+      Swal.fire(
+        this.translation.Error,
+        err.error.Message,
+        'error'
+      )
     })
   }
 
@@ -148,11 +153,11 @@ export class CertificatesComponent implements OnInit {
       return;
       }
 
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   this.message = "Only images are supported.";
+    //   return;
+    // }
 
     var reader = new FileReader();
       this.imagePath = files;
@@ -226,10 +231,16 @@ export class CertificatesComponent implements OnInit {
   }
 
   resetForm(){
-    this.CertificateForm.reset()
-    if(this.imageName !='Upload Certificate'){
-      this.DeleteImg()
-    }
+    this.CertificateForm = this.fb.group(
+      {
+        title:['',[Validators.required , Validators.minLength(3)]],
+        titleAr:['',[Validators.required , Validators.minLength(3)]],
+        year:['',[Validators.required ]],
+        Description:['',[Validators.required , Validators.minLength(3)]],
+        DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
+        ImageCertificate:['',[Validators.required ]]
+      }
+    )
   }
 
 
@@ -266,6 +277,11 @@ export class CertificatesComponent implements OnInit {
     (err)=>{
       // console.log(err)
       this.SpinnerService.hide();
+      Swal.fire(
+        this.translation.Error,
+        err.error.Message,
+        'error'
+      )
     })
   }
 

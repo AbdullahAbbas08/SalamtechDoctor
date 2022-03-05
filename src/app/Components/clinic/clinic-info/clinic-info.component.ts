@@ -177,11 +177,11 @@ export class ClinicInfoComponent implements OnInit {
     return;
     }
 
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
-      return;
-    }
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   this.message = 'Only images are supported.';
+    //   return;
+    // }
 
     var reader = new FileReader();
     this.imagePath = files;
@@ -276,6 +276,11 @@ export class ClinicInfoComponent implements OnInit {
       (err) => {
         // console.log(err)
         this.SpinnerService.hide();
+        Swal.fire(
+          this.translation.Error,
+          err.error.Message,
+          'error'
+        )
       })
   }
   //#endregion

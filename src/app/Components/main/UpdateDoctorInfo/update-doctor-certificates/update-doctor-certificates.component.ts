@@ -57,6 +57,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
     )
 
     this.getTranslitation()
+    console.log(this.editableCertificate);
   }
   //#endregion
 
@@ -111,6 +112,11 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
     },
     (err)=>{
       // console.log(err)
+      Swal.fire(
+        this.translation.Error,
+        err.error.Message,
+        'error'
+      )
     })
   }
 
@@ -133,11 +139,11 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       this.message = "image size is larger than 3mb.";
       return;
     }
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
+    // var mimeType = files[0].type;
+    // if (mimeType.match(/image\/*/) == null) {
+    //   this.message = "Only images are supported.";
+    //   return;
+    // }
 
     var reader = new FileReader();
       this.imagePath = files;
@@ -205,10 +211,16 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   }
 
   resetForm(){
-    this.CertificateForm.reset()
-    if(this.imageName !='Upload Certificate'){
-      this.DeleteImg()
-    }
+    this.CertificateForm = this.fb.group(
+      {
+        title:['',[Validators.required , Validators.minLength(3)]],
+        titleAr:['',[Validators.required , Validators.minLength(3)]],
+        year:['',[Validators.required ]],
+        Description:['',[Validators.required , Validators.minLength(3)]],
+        DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
+        ImageCertificate:['',[Validators.required ]]
+      }
+    )
   }
 
 
@@ -216,6 +228,8 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   Edit(id:number){
     this.editableCertificate= this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
+    console.log(this.editableCertificate);
+    
   }
 
   SaveCertificate(){
@@ -239,6 +253,11 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
     },
     (err)=>{
       // console.log(err)
+      Swal.fire(
+        this.translation.Error,
+        err.error.Message,
+        'error'
+      )
     })
   }
 

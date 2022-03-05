@@ -46,6 +46,10 @@ import { DocumentsComponent } from './Components/Signup/documents/documents.comp
 import { OtpComponent } from './Components/Signup/otp/otp.component';
 import { SignUpMainComponent } from './Components/Signup/sign-up-main.component';
 import { SignupComponent } from './Components/Signup/signup/signup.component';
+import { AboutUsComponent } from './Components/without-signin/about-us/about-us.component';
+import { ContactUsComponent } from './Components/without-signin/contact-us/contact-us.component';
+import { HelpComponent } from './Components/without-signin/help/help.component';
+import { HomeComponent } from './Components/without-signin/home/home.component';
 
 //#endregion
 
@@ -134,6 +138,26 @@ const routes: Routes = [
     {path:'register',component:RegisterPageComponent}
     ]
   },
+  {
+    path:'home',
+    component: HomeComponent
+  },
+  {
+    path:'about-us',
+    component: AboutUsComponent
+  },
+  {
+    path:'contact-us',
+    component: ContactUsComponent
+  },
+  {
+    path:'help',
+    component: HelpComponent
+  },
+  {
+    path:'otp',
+    component: OtpComponent
+  }
  
 ];
 
