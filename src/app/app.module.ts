@@ -72,6 +72,7 @@ import { HomeComponent } from './Components/without-signin/home/home.component';
 import { AboutUsComponent } from './Components/without-signin/about-us/about-us.component';
 import { ContactUsComponent } from './Components/without-signin/contact-us/contact-us.component';
 import { HelpComponent } from './Components/without-signin/help/help.component';
+import { ForgetPasswordComponent } from './Components/SignIn/forget-password/forget-password.component';
  
 
 
@@ -135,6 +136,7 @@ export function CreateTranslateLoader(http: HttpClient) {
     AboutUsComponent,
     ContactUsComponent,
     HelpComponent,
+    ForgetPasswordComponent,
   ],
   imports: [
     HttpClientModule,
