@@ -87,13 +87,13 @@ export class OtpComponent implements OnInit {
   verify() {
     this.SpinnerService.show();
     var NCODE = this.NCODE1.toString() + this.NCODE2.toString() + this.NCODE3.toString() + this.NCODE4.toString();
-   console.log(NCODE);
+  //  console.log(NCODE);
    
     if (this.SignupService.ResenderCodeObject.Code == NCODE) {
       // this.router.navigateByUrl("/doctor-profile");
       this.verifyCode=true
        
-    console.log(this.user);
+    // console.log(this.user);
     this.UserService.CreateUser( this.user).subscribe(
       (response)=>{
         // console.log(response.Data.Token);
@@ -124,7 +124,7 @@ export class OtpComponent implements OnInit {
         })
       }
     )
-      document.getElementById('cancelbtn').click();
+      // document.getElementById('cancelbtn').click();
     }
     else {
       this.SpinnerService.hide();
