@@ -43,4 +43,10 @@ export class SignupService implements OnInit {
   //#endregion
 
 
+  forgetpass(email){
+    return this.http.post(`${environment.URL}${this.culture}/User/ResetPassword`,email,this.httpOptions);
+  }
+  changepass(body){
+    return this.http.post(`${environment.URL}${this.culture}/User/UpdatePassword`,body,this.httpOptions);
+  }
 }

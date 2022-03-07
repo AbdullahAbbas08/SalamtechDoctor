@@ -35,6 +35,8 @@ import { UpdataDoctorDataComponent } from './Components/main/UpdateDoctorInfo/up
 import { UpdateDoctorCertificatesComponent } from './Components/main/UpdateDoctorInfo/update-doctor-certificates/update-doctor-certificates.component';
 import { UpdateDoctorDocsComponent } from './Components/main/UpdateDoctorInfo/update-doctor-docs/update-doctor-docs.component';
 import { UpdateDoctorInfoComponent } from './Components/main/UpdateDoctorInfo/update-doctor-info/update-doctor-info.component';
+import { ChangePasswordComponent } from './Components/SignIn/change-password/change-password.component';
+import { ForgetPasswordComponent } from './Components/SignIn/forget-password/forget-password.component';
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { LoginPageComponent } from './Components/SignIn/login-page/login-page.component';
 import { RegisterPageComponent } from './Components/SignIn/register-page/register-page.component';
@@ -155,8 +157,12 @@ const routes: Routes = [
     component: HelpComponent
   },
   {
-    path:'otp',
-    component: OtpComponent
+    path:'forget-password/:id',
+    component: ChangePasswordComponent
+  },
+  {
+    path:'forget-password',
+    component: ForgetPasswordComponent
   }
  
 ];

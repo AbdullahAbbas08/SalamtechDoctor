@@ -73,6 +73,8 @@ import { AboutUsComponent } from './Components/without-signin/about-us/about-us.
 import { ContactUsComponent } from './Components/without-signin/contact-us/contact-us.component';
 import { HelpComponent } from './Components/without-signin/help/help.component';
 import { ForgetPasswordComponent } from './Components/SignIn/forget-password/forget-password.component';
+import { OtpForgetpassComponent } from './Components/SignIn/otp-forgetpass/otp-forgetpass.component';
+import { ChangePasswordComponent } from './Components/SignIn/change-password/change-password.component';
  
 
 
@@ -137,6 +139,8 @@ export function CreateTranslateLoader(http: HttpClient) {
     ContactUsComponent,
     HelpComponent,
     ForgetPasswordComponent,
+    OtpForgetpassComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     HttpClientModule,

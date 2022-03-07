@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SignupService } from 'src/Service/signup/signup.service';
+import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forget-password',
@@ -6,10 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forget-password.component.css']
 })
 export class ForgetPasswordComponent implements OnInit {
-
-  constructor() { }
+  user
+  translation;
+ 
+  constructor(private signupService:SignupService,
+    private router:Router,  private translateSwal:TranslateSwalsService,private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.getTranslitation()
   }
-
+  //#endregion
+  
+  getTranslitation()  {
+    this.translateSwal.Translitation().subscribe((values) => {
+      // console.log(values);
+      this.translation =values 
+      });
+    }
+  
+ 
 }
