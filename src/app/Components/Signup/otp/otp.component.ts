@@ -48,6 +48,7 @@ export class OtpComponent implements OnInit {
   
     //#endregion
     console.log(this.timer);
+    console.log(this.SignupService.Phone);
     
     //#region Call Methods
     this.counter();

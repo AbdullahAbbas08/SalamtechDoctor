@@ -20,58 +20,55 @@ import { SignupService } from 'src/Service/signup/signup.service';
 export class RegisterPageComponent implements OnInit {
 
   //#region Declare Variables
-  RegisterForm:FormGroup;
-  CreateUser:CreateUser = new CreateUser();
-  passFormat= true;
+  RegisterForm: FormGroup;
+  CreateUser: CreateUser = new CreateUser();
+  passFormat = true;
   translation;
-  SignUp:Signup = new Signup();
-  ErrorMessege:string;
-  _Responsesignup:Responsesignup= new Responsesignup();
-  direction:any;
+  SignUp: Signup = new Signup();
+  ErrorMessege: string;
+  _Responsesignup: Responsesignup = new Responsesignup();
+  direction: any;
   Timer
   //#endregion
 
   //#region constructor
-  constructor(private fb:FormBuilder,
-              private toastr:ToastrService,
-              private router:Router, 
-              private SignupService:SignupService ,
-              private UserService:UserService,
-              private loginService:LoginService,
-              private translateSwal:TranslateSwalsService,
-              private SpinnerService: NgxSpinnerService) {
+  constructor(private fb: FormBuilder,
+    private toastr: ToastrService,
+    private router: Router,
+    private SignupService: SignupService,
+    private UserService: UserService,
+    private loginService: LoginService,
+    private translateSwal: TranslateSwalsService,
+    private SpinnerService: NgxSpinnerService) {
   }
   //#endregion
 
   //#region On Init Method
   ngOnInit() {
 
-
-     //#region  Register Form Section
-     this.RegisterForm = this.fb.group(
+    //#region  Register Form Section
+    this.RegisterForm = this.fb.group(
       {
-        FirstName:['',[Validators.required]],
-        MiddleName:['',[Validators.required]],
-        LastName:['',[Validators.required]],
-        Email:['',[Validators.required , Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)]],
-        PhoneNumber:['',[Validators.required , Validators.maxLength(11)]], 
-        checkboxcont:['',[Validators.required]],
-        Password:['',[Validators.required , Validators.minLength(6)]],
-        ReEnterPassword:['',[Validators.required , Validators.minLength(6)]  ],
-        });
+        FirstName: ['', [Validators.required]],
+        MiddleName: ['', [Validators.required]],
+        LastName: ['', [Validators.required]],
+        Email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)]],
+        PhoneNumber: ['', [Validators.required, Validators.maxLength(11)]],
+        checkboxcont: ['', [Validators.required]],
+        Password: ['', [Validators.required, Validators.minLength(6)]],
+        ReEnterPassword: ['', [Validators.required, Validators.minLength(6)]],
+      });
     //#endregion
     this.getTranslitation()
   }
   //#endregion
-  
-  getTranslitation()  {
+
+  getTranslitation() {
     this.translateSwal.Translitation().subscribe((values) => {
       // console.log(values);
-      this.translation =values 
-      });
-    }
-  
-
+      this.translation = values
+    });
+  }
 
   isFieldValid(field): boolean {
     return (
@@ -79,157 +76,155 @@ export class RegisterPageComponent implements OnInit {
     )
   }
 
-
-
-  checkPass(pass , rePass) {
-    if(pass === rePass){
-      this.passFormat=true
+  checkPass(pass, rePass) {
+    if (pass === rePass) {
+      this.passFormat = true
     }
-    else{
-      this.passFormat=false
-     }
+    else {
+      this.passFormat = false
+    }
   }
 
+  //#region Toggle Password Method
+  passwordIcon(id: string) {
+    const password = document.querySelector('#' + id);
 
-
-
-
-
-    //#region Toggle Password Method
-    passwordIcon(id:string){
-      const password = document.querySelector('#'+id);
-
-      // toggle the type attribute
-      const type = password?.getAttribute('type') === 'password' ? 'text' : 'password';
-      password?.setAttribute('type', type);
-      // toggle the eye slash icon
-      password?.classList.toggle('fa-eye-slash');
-    }
-    //#endregion
-
-    //#region  Check input Method
-Checkinput(){
-  var element = <HTMLInputElement> document.getElementById('checkboxTermsConditions');
-  
-  if(element.checked == false)
-    {
-      element.checked = false;
-      console.log('false');
-      
-     this.RegisterForm.get('checkboxcont').setValue(element.checked)
-    }
-  else
-   {
-    element.checked = true;
-    // console.log(true);
-    
-    this.RegisterForm.get('checkboxcont').setValue(element.checked)
-   }
-
-}
-//#endregion
-
-  //#region Submit
-  // Submit(){
-  //   this.SpinnerService.show();
-  //   if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true){
-  //     console.log(this.RegisterForm.value);
-      
-  //     let con=this.RegisterForm.get('PhoneNumber').value;
-  //     // this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
-      
-  //     this.CreateUser.Email = this.RegisterForm.controls.Email.value;
-  //     this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
-  //                             this.RegisterForm.controls.MiddleName.value+" "+
-  //                             this.RegisterForm.controls.LastName.value ;
-  
-  //     this.CreateUser.Password = this.RegisterForm.controls.Password.value;
-  //     this.CreateUser.Phone = '0'+this.RegisterForm.controls.PhoneNumber.value;
-  //     this.CreateUser.UserTypeId = 2;
-  //   this.UserService.CreateUser( this.CreateUser).subscribe(
-  //     (response)=>{
-  //       // console.log(response.Data.Token);
-  //       localStorage.setItem('Authorization',response.Data.Token)
-  //       localStorage.setItem('Name',response.Data.Name);
-  //       let auth=localStorage.getItem('Authorization')        
-  //       setTimeout(() => {
-  //         if(auth){
-  //           // console.log(auth);
-  //           this.SpinnerService.hide();
-  //           this.router.navigate(["/doctor-profile"]);          
-  //         }
-  //       }, 2000);
-  //       // window.location.reload();
-  //     },
-  //     (err)=>{
-  //       this.SpinnerService.hide();
-  //       Swal.fire({
-  //         title:this.translation.Error,
-  //         text: err.error.Message,
-  //         icon: 'error',
-  //         showCancelButton: true,
-  //         showConfirmButton:false,
-  //         cancelButtonColor:"#f00",
-  //         confirmButtonText:this.translation.Ok,
-  //         cancelButtonText:this.translation.Ok,
-  //         reverseButtons: true
-  //       })
-  //     }
-  //   )
-  //   }
-  //   else
-  //   {
-  //     this.SpinnerService.hide();
-  //     this.RegisterForm.markAllAsTouched()
-  //   }
-  // }
+    // toggle the type attribute
+    const type = password?.getAttribute('type') === 'password' ? 'text' : 'password';
+    password?.setAttribute('type', type);
+    // toggle the eye slash icon
+    password?.classList.toggle('fa-eye-slash');
+  }
   //#endregion
 
-  Submit(){
+
+  Checkinput() {
+    var element = <HTMLInputElement>document.getElementById('checkboxTermsConditions');
+
+    if (element.checked == false) {
+      element.checked = false;
+      console.log('false');
+
+      this.RegisterForm.get('checkboxcont').setValue(element.checked)
+    }
+    else {
+      element.checked = true;
+      // console.log(true);
+
+      this.RegisterForm.get('checkboxcont').setValue(element.checked)
+    }
+
+  }
+  //#endregion
+
+  Submit() {
     this.SpinnerService.show();
-    if(this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true){
+    if (this.RegisterForm.controls.Password.value == this.RegisterForm.controls.ReEnterPassword.value && this.RegisterForm.valid && this.RegisterForm.get('checkboxcont').value == true) {
       // console.log(this.RegisterForm.value);
-      
-      let con=this.RegisterForm.get('PhoneNumber').value;
+
+      let con = this.RegisterForm.get('PhoneNumber').value;
       // this.RegisterForm.get('PhoneNumber').setValue(`0${con}`)
-      
+
       this.CreateUser.Email = this.RegisterForm.controls.Email.value;
-      this.CreateUser.Name =  this.RegisterForm.controls.FirstName.value +" "+
-                              this.RegisterForm.controls.MiddleName.value+" "+
-                              this.RegisterForm.controls.LastName.value ;
-  
+      this.CreateUser.Name = this.RegisterForm.controls.FirstName.value + " " +
+        this.RegisterForm.controls.MiddleName.value + " " +
+        this.RegisterForm.controls.LastName.value;
+
       this.CreateUser.Password = this.RegisterForm.controls.Password.value;
-      this.CreateUser.Phone = '0'+this.RegisterForm.controls.PhoneNumber.value;
+      this.CreateUser.Phone = '0' + this.RegisterForm.controls.PhoneNumber.value;
       this.CreateUser.UserTypeId = 2;
-        this.SignupService.SignUp(this.CreateUser).subscribe(
-        (data)=> {
+      this.SignupService.SignUp(this.CreateUser).subscribe(
+        (data) => {
           this.SpinnerService.hide();
 
           this._Responsesignup.Data = data;
-          console.log(data['Data'].ReSendCounter);
-          this.Timer=data['Data'].ReSendCounter
-          
-              // this.router.navigateByUrl("otp");
-              this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
-              // console.log(this.SignupService.ResenderCodeObject);
-              this.SignupService.Phone = this.SignUp.Phone;
-            },
-        (err)=> {
-              this.SpinnerService.hide();
-              this.ErrorMessege = err.error['Message'];
-              console.log(err.error['Message']);
-            }
-    )
+          this.Timer = data['Data'].ReSendCounter
+
+          this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
+          this.SignupService.Phone = this.SignUp.Phone;
+          this.ShowPopup(data['Data'].ReSendCounter);
+        },
+        (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: err.error['Message'],
+            })
+            this.SpinnerService.hide();
+            this.ErrorMessege = err.error['Message'];
+        })
     }
-    else
-    {
+    else {
       this.SpinnerService.hide();
       this.RegisterForm.markAllAsTouched()
     }
   }
 
-  //#region Get Doctor Profile
+  ShowPopup(number:any){
+    Swal.fire({
+      title: 'Phone Verification : '+number,
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off',
+      },
+      showCancelButton: true,
+      confirmButtonText: 'تحقق',
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        return fetch(`//api.github.com/users/${login}`)
+          .then(response => {
+            if (!response.ok) { throw new Error(response.statusText)}
+            return response.json()
+          })
+          .catch(error => { Swal.showValidationMessage(`Request failed : ${error}` )
+          })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(number == result.value.login )
+        this.create(this.CreateUser); 
+        else
+        {
+          this.ShowPopup(number);
+          console.log("fdfd");
+        }
+      }
+    })
+  }
 
   //#endregion
+
+
+ create(user:any){
+  this.UserService.CreateUser( user).subscribe(
+    (response)=>{
+      // console.log(response.Data.Token);
+      this.SpinnerService.hide();
+      localStorage.setItem('Authorization',response.Data.Token)
+      localStorage.setItem('Name',response.Data.Name);
+      let auth=localStorage.getItem('Authorization')        
+      setTimeout(() => {
+        if(auth){
+          this.router.navigate(["/doctor-profile"]);          
+        }
+      }, 2000);
+    },
+    (err)=>{
+      this.SpinnerService.hide();
+      Swal.fire({
+        title:this.translation.Error,
+        text: err.error.Message,
+        icon: 'error',
+        showCancelButton: true,
+        showConfirmButton:false,
+        cancelButtonColor:"#f00",
+        confirmButtonText:this.translation.Ok,
+        cancelButtonText:this.translation.Ok,
+        reverseButtons: true
+      })
+    }
+  )
+ }
 
 }

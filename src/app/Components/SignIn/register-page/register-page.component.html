@@ -1,304 +1,226 @@
-
 <div style="min-height: 92%;">
   <app-nav></app-nav>
 
 
 
-  <div
-   
-  class="main-div container-fluid d-flex justify-content-center align-items-center "
- 
->
-  <div class="row my-4"  >
-    <div class="col-12 d-flex justify-content-center align-items-center mt-md-5 mt-0 mb-md-0 mb-5">
-      <div class="col-12 col-md-9">
-        <div class="card">
-          <h3 class="card-header text-center">
-            {{ "mainModule.RegisterPage.Signup" | translate }}
-          </h3>
+  <div class="main-div container-fluid d-flex justify-content-center align-items-center ">
+    <div class="row my-4">
+      <div class="col-12 d-flex justify-content-center align-items-center mt-md-5 mt-0 mb-md-0 mb-5">
+        <div class="col-12 col-md-9">
+          <div class="card">
+            <h3 class="card-header text-center">
+              {{ "mainModule.RegisterPage.Signup" | translate }}
+            </h3>
 
-          <form [formGroup]="RegisterForm" class="card-body">
-            <div class="row d-flex justify-content-center">
-              <div class="col-12 col-md-10">
-                <div class="row">
-                  <!-- First Name -->
-                  <div class="col-12 col-md-4 Name-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.FirstName" | translate }}
-                    </label>
+            <form [formGroup]="RegisterForm" class="card-body">
+              <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-10">
+                  <div class="row">
+                    <!-- First Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.FirstName" | translate }}
+                      </label>
 
-                    <div   class="form-group">
-                      <input
-                        type="text"
-                        formControlName="FirstName"
-                        class="form-control"
-                      />
-                      <app-fielderror 
-                      [displayError]="isFieldValid('FirstName')"
-                      errorMsg="{{'errorField.firstname' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Middle Name -->
-                  <div class="col-12 col-md-4 Name-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.MiddleName" | translate }}
-                    </label>
-
-                    <div   class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="MiddleName"
-                      />
-                      <app-fielderror 
-                      [displayError]="isFieldValid('MiddleName')"
-                      errorMsg="{{'errorField.secondname' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Last Name -->
-                  <div class="col-12 col-md-4 Name-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.LastName" | translate }}
-                    </label>
-
-                    <div   class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        formControlName="LastName"
-                      />
-
-                      <app-fielderror 
-                      [displayError]="isFieldValid('LastName')"
-                      errorMsg="{{'errorField.lastname' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Email -->
-                  <div class="col-12 col-md-6 Name-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.Email" | translate }}
-                    </label>
-
-                    <div   class="form-group">
-                      <input
-                        type="email"
-                        class="form-control"
-                        formControlName="Email"
-                      />
-                      <app-fielderror 
-                      [displayError]="isFieldValid('Email')"
-                      errorMsg="{{'errorField.email' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Phone Number -->
-                  <div class="col-12 col-md-6 PhoneNumber-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.PhoneNumber" | translate }}
-                    </label>
-
-                    <div   class="form-group">
-                      <input
-                        type="number"
-                        formControlName="PhoneNumber"
-                        class="form-control"
-                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                        maxlength="11"
-                        minlength="11"
-                        [class.icon]="1"
-                      />
-
-                      <span class="unit">+2</span>
-                      <app-fielderror 
-                      [displayError]="isFieldValid('PhoneNumber')"
-                      errorMsg="{{'errorField.phone' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Password -->
-                  <div class="col-12 col-md-6 Password-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{ "mainModule.RegisterPage.Password" | translate }}
-                    </label>
-
-                    <div class="form-group form-group-Password">
-                      <input
-                        type="password"
-                        formControlName="Password"
-                        class="form-control"
-                        placeholder="***********"
-                        id="PasswordLogin"
-                        #pass
-                      />
-
-                      <span
-                         
-                        class="eye"
-                        (click)="passwordIcon('PasswordLogin')"
-                      >
-                        <i class="far fa-eye text-end" id="togglePassword"></i>
-                      </span>
-                      <app-fielderror 
-                      [displayError]="isFieldValid('Password')"
-                      errorMsg="{{'errorField.password' | translate}}"
-                    ></app-fielderror>
-                    </div>
-                  </div>
-
-                  <!-- Re-Enter Password -->
-                  <div class="col-12 col-md-6 Password-col">
-                    <label class="label-input">
-                      <span class="star"> * </span>
-                      {{
-                        "mainModule.RegisterPage.ReEnterPassword" | translate
-                      }}
-                    </label>
-
-                    <div class="form-group form-group-Password">
-                      <input
-                      #rePass
-                        type="password"
-                        formControlName="ReEnterPassword"
-                        class="form-control"
-                        placeholder="***********"
-                        id="ReEnterPassword"
-                        (keyup)="checkPass(pass.value , rePass.value)"
-                      />
-
-                      <span
-                         
-                        class="eye"
-                        (click)="passwordIcon('ReEnterPassword')"
-                      >
-                        <i class="far fa-eye text-end" id="togglePassword"></i>
-                      </span>
-                      <app-fielderror *ngIf="passFormat== true"
-                      [displayError]="isFieldValid('ReEnterPassword')"
-                      errorMsg="{{'errorField.password' | translate}}"
-                    ></app-fielderror>
-                    <app-fielderror *ngIf="passFormat === false "
-                      [displayError]="true"
-                      errorMsg="{{'errorField.reenterpass' | translate}}"
-                    ></app-fielderror> 
-                    </div>
-                  </div>
-
-                  <!-- Terms & Condition  -->
-                  <div class="col-12">
-                    <label class="Create-account" >
-                      <input
-                      #checkTerms
-                        type="checkbox"
-                        formControlName="checkboxcont"
-                        id="checkboxTermsConditions"
-                        class="Checkbox-Condition"
-                        (change)="Checkinput()"
-                      />
-
-                      {{
-                        "mainModule.RegisterPage.Terms&Conditions" | translate
-                      }}
-                    </label>
-
-                      <button type="button" class="btn create-account-link shadow-none" data-toggle="modal" data-target="#exampleModal1">
-                        {{
-                          "mainModule.RegisterPage.Terms&ConditionsKeyword"
-                            | translate
-                        }}
-                      </button>
-                       
-                      <app-fielderror 
-                      [displayError]="isFieldValid('checkboxcont')"
-                      errorMsg="{{'errorField.checkboxcont' | translate}}"
-                    ></app-fielderror>
-                  </div>
-                  <!-- terms btn -->
-
-                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="close " data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         </div>
+                      <div class="form-group">
+                        <input type="text" formControlName="FirstName" class="form-control" />
+                        <app-fielderror [displayError]="isFieldValid('FirstName')"
+                          errorMsg="{{'errorField.firstname' | translate}}"></app-fielderror>
                       </div>
                     </div>
-                  </div>
-                  <!-- Create Account Button -->
-                  <div
-                    class="col-12 d-md-flex justify-content-end align-items-center text-center"
-                  >
-                    <label class="label-input" style="text-align: center">
-                      {{
-                        "mainModule.RegisterPage.AlreadyHaveAnAccount"
-                          | translate
-                      }}
-                      <span class="Login-link" routerLink="/Login">
-                        {{ "mainModule.RegisterPage.Signin" | translate }}
-                      </span>
-                    </label>
-                    <div>
-                      <button
-                       *ngIf="RegisterForm.invalid"
-                        class="btn mx-2 p-2 blue-btn"
-                        (click)="RegisterForm.markAllAsTouched()"
-                      >
+
+                    <!-- Middle Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.MiddleName" | translate }}
+                      </label>
+
+                      <div class="form-group">
+                        <input type="text" class="form-control" formControlName="MiddleName" />
+                        <app-fielderror [displayError]="isFieldValid('MiddleName')"
+                          errorMsg="{{'errorField.secondname' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-12 col-md-4 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.LastName" | translate }}
+                      </label>
+
+                      <div class="form-group">
+                        <input type="text" class="form-control" formControlName="LastName" />
+
+                        <app-fielderror [displayError]="isFieldValid('LastName')"
+                          errorMsg="{{'errorField.lastname' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-12 col-md-6 Name-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.Email" | translate }}
+                      </label>
+
+                      <div class="form-group">
+                        <input type="email" class="form-control" formControlName="Email" />
+                        <app-fielderror [displayError]="isFieldValid('Email')"
+                          errorMsg="{{'errorField.email' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="col-12 col-md-6 PhoneNumber-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.PhoneNumber" | translate }}
+                      </label>
+
+                      <div class="form-group">
+                        <input type="number" formControlName="PhoneNumber" class="form-control"
+                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                          maxlength="11" minlength="11" [class.icon]="1" />
+
+                        <span class="unit">+2</span>
+                        <app-fielderror [displayError]="isFieldValid('PhoneNumber')"
+                          errorMsg="{{'errorField.phone' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="col-12 col-md-6 Password-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
+                        {{ "mainModule.RegisterPage.Password" | translate }}
+                      </label>
+
+                      <div class="form-group form-group-Password">
+                        <input type="password" formControlName="Password" class="form-control" placeholder="***********"
+                          id="PasswordLogin" #pass />
+
+                        <span class="eye" (click)="passwordIcon('PasswordLogin')">
+                          <i class="far fa-eye text-end" id="togglePassword"></i>
+                        </span>
+                        <app-fielderror [displayError]="isFieldValid('Password')"
+                          errorMsg="{{'errorField.password' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Re-Enter Password -->
+                    <div class="col-12 col-md-6 Password-col">
+                      <label class="label-input">
+                        <span class="star"> * </span>
                         {{
-                          "mainModule.RegisterPage.CreateAccount" | translate
+                        "mainModule.RegisterPage.ReEnterPassword" | translate
+                        }}
+                      </label>
+
+                      <div class="form-group form-group-Password">
+                        <input #rePass type="password" formControlName="ReEnterPassword" class="form-control"
+                          placeholder="***********" id="ReEnterPassword"
+                          (keyup)="checkPass(pass.value , rePass.value)" />
+
+                        <span class="eye" (click)="passwordIcon('ReEnterPassword')">
+                          <i class="far fa-eye text-end" id="togglePassword"></i>
+                        </span>
+                        <app-fielderror *ngIf="passFormat== true" [displayError]="isFieldValid('ReEnterPassword')"
+                          errorMsg="{{'errorField.password' | translate}}"></app-fielderror>
+                        <app-fielderror *ngIf="passFormat === false " [displayError]="true"
+                          errorMsg="{{'errorField.reenterpass' | translate}}"></app-fielderror>
+                      </div>
+                    </div>
+
+                    <!-- Terms & Condition  -->
+                    <div class="col-12">
+                      <label class="Create-account">
+                        <input #checkTerms type="checkbox" formControlName="checkboxcont" id="checkboxTermsConditions"
+                          class="Checkbox-Condition" (change)="Checkinput()" />
+
+                        {{
+                        "mainModule.RegisterPage.Terms&Conditions" | translate
+                        }}
+                      </label>
+
+                      <button type="button" class="btn create-account-link shadow-none" data-toggle="modal"
+                        data-target="#exampleModal1">
+                        {{
+                        "mainModule.RegisterPage.Terms&ConditionsKeyword"
+                        | translate
                         }}
                       </button>
 
-                      <button class="btn mx-2  blue-btn" 
-                      (click)="Submit()"
-                    *ngIf="RegisterForm.valid" >
-                      <app-otp [timer]="Timer" [user]="CreateUser"></app-otp>
-                      </button>
+                      <app-fielderror [displayError]="isFieldValid('checkboxcont')"
+                        errorMsg="{{'errorField.checkboxcont' | translate}}"></app-fielderror>
+                    </div>
+                    <!-- terms btn -->
+
+                    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Create Account Button -->
+                    <div class="col-12 d-md-flex justify-content-end align-items-center text-center">
+                      <label class="label-input" style="text-align: center">
+                        {{
+                        "mainModule.RegisterPage.AlreadyHaveAnAccount"
+                        | translate
+                        }}
+                        <span class="Login-link" routerLink="/Login">
+                          {{ "mainModule.RegisterPage.Signin" | translate }}
+                        </span>
+                      </label>
+                      <div>
+                        <button *ngIf="RegisterForm.invalid" class="btn mx-2 p-2 blue-btn"
+                          (click)="RegisterForm.markAllAsTouched()">
+                          {{
+                          "mainModule.RegisterPage.CreateAccount" | translate
+                          }}
+                        </button>
+
+                        <button class="btn mx-2  blue-btn" (click)="Submit()" *ngIf="RegisterForm.valid">
+                          {{
+                            "mainModule.RegisterPage.CreateAccount" | translate
+                            }}
+                          <!-- <app-otp [timer]="Timer" [user]="CreateUser"></app-otp> -->
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- spinner -->
-  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white"> {{ 'spinner' | translate }} </p>  
-  </ngx-spinner> 
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white"> {{ 'spinner' | translate }} </p>
+  </ngx-spinner>
 
 
 </div>
-<div  >
+<div>
   <app-footer></app-footer>
 </div>
-
-
-
-
-
