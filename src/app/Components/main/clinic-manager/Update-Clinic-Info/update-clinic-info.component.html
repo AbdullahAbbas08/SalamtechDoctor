@@ -117,7 +117,7 @@
               </div>
             </div>
             <!-- country -->
-            <div class="col-12 col-md-6 mb-2">
+            <div class="col-12 col-md-4 mb-2">
               <span class="lbl-Register">{{ "mainModule.DoctorInfo.Egypt" | translate}}</span>
               <span class="star"> * </span>
               <select
@@ -133,7 +133,7 @@
              
             </div>
             <!-- city -->
-            <div class="col-12 col-md-6 mb-2">
+            <div class="col-12 col-md-4 mb-2">
               <span class="lbl-Register">{{ "mainModule.ClinicInfo.City" | translate}}</span>
               <span class="star"> * </span>
               <select
@@ -152,6 +152,26 @@
               [displayError]="isFieldValid('CityId')"
               errorMsg="{{'errorField.city' | translate}}"
             ></app-fielderror>
+            </div>
+             <!-- Area -->
+             <div class="col-12 col-md-4 mb-2">
+              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Area" | translate}} </span>
+              <span class="star"> * </span>
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                style="margin-bottom: 20px"
+                formControlName="AreaId"
+                type="number"
+              >
+                <option *ngFor="let item of Areas" value="{{ item.Id }}">
+                  {{ item.Name }}
+                </option>
+              </select>
+              <app-fielderror 
+                [displayError]="isFieldValid('AreaId')"
+                errorMsg="{{'errorField.Area' | translate}}"
+              ></app-fielderror>
             </div>
             <!-- address -->
             <div class="col-12 row  align-items-center">
@@ -263,28 +283,8 @@
                   </button>
               </div>
             </div>
-            <!-- Area -->
-            <div class="col-12 col-md-4 mb-2">
-              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Area" | translate}} </span>
-              <span class="star"> * </span>
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                style="margin-bottom: 20px"
-                formControlName="AreaId"
-                type="number"
-              >
-                <option *ngFor="let item of Areas" value="{{ item.Id }}">
-                  {{ item.Name }}
-                </option>
-              </select>
-              <app-fielderror 
-                [displayError]="isFieldValid('AreaId')"
-                errorMsg="{{'errorField.Area' | translate}}"
-              ></app-fielderror>
-            </div>
             <!-- Building Number -->
-            <div class="col-12 col-md-4 mb-2">
+            <div class="col-12 col-md-6 mb-2">
               <span class="lbl-Register">{{ "mainModule.ClinicInfo.BuildingNumber" | translate}}</span>
               <div   class="input-style">
                 <input
@@ -297,7 +297,7 @@
             </div>
       
             <!-- FloorNumber -->
-            <div class="col-12 col-md-4 mb-2">
+            <div class="col-12 col-md-6 mb-2">
               <span class="lbl-Register">{{ "mainModule.ClinicInfo.FloorNumber" | translate}}</span>
               <div   class="input-style">
                 <input
@@ -324,6 +324,25 @@
                 
               </div>
             </div>
+             <!-- Services -->
+          <!-- <div class="col-12 mb-3">
+            <span class="lbl-Register">
+                {{"mainModule.ClinicInfo.Services" | translate}}
+            </span>
+             <ng-multiselect-dropdown
+              formControlName="Services"
+              placeholder=" {{'mainModule.ClinicInfo.selectServices' | translate}}"
+              [settings]="dropdownSettings"
+              [data]="dropdownList"
+              [(ngModel)]="selectedItems"
+              (ngModelChange)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+            <app-fielderror 
+            [displayError]="isFieldValid('Services')"
+            errorMsg="{{'errorField.Services' | translate}}"
+          ></app-fielderror>
+          </div> -->
           </div>
         </div>
       </div>

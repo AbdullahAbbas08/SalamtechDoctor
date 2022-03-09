@@ -68,6 +68,9 @@ html, body, .sidebar-col {
 }
 /*------------------- Disable Select Text End    -------------------*/
 
+@-moz-document url-prefix() {
+  html,body{overflow: hidden !important;}
+}
 /*------------------ hide arrow in input number start ---------------*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

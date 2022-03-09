@@ -41,6 +41,13 @@ export class UpdateClinicInfoComponent implements OnInit {
   translation;
   lat;
   long
+  Services: IdNameList[]
+  dropdownList: any = [];
+  selectedItems: IdNameList[] = [];
+  selectedItemsIds: number[] = [];
+  dropdownSettings: IDropdownSettings = {};
+  selectedCities:any[];
+
   constructor(
     private modalService: NgbModal,
     private lookupService: LookupsService,
@@ -59,11 +66,20 @@ export class UpdateClinicInfoComponent implements OnInit {
 
     })
     this.coordinates = {} as Coordinates;
-
+    this.GetServices()
   }
 
   ngOnInit(): void {
-   
+     this.selectedCities = [];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'Id',
+      textField: 'Name',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
     this.getTranslitation()
   }
   //#endregion
@@ -74,7 +90,18 @@ export class UpdateClinicInfoComponent implements OnInit {
       this.translation =values 
       });
     }
-
+  //#region get Services
+  GetServices() {
+    this.lookupService.GetServices('en').subscribe(
+      (res) => {
+        this.Services = res.Data;
+        this.dropdownList = this.Services
+      },
+      (err) => {
+      }
+    );
+  }
+  //#endregion
   getClinicInfo(id){
     this.SpinnerService.show();
     this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
@@ -118,8 +145,8 @@ export class UpdateClinicInfoComponent implements OnInit {
       Address :[this.clinicInfo?.Address ||'' , Validators.required],
       Latitude:[this.clinicInfo?.Latitude||''],
       Longitude:[this.clinicInfo?.Longitude||''],
-      BlockNo:[this.clinicInfo?.BlockNo||'' ,[Validators.required, Validators.pattern(/^\d*$/)] ],
-      FloorNo:[this.clinicInfo?.FloorNo||'' ,[Validators.required, Validators.pattern(/^\d*$/)] ],
+      BlockNo:[this.clinicInfo?.BlockNo||'' ,[Validators.nullValidator, Validators.pattern(/^\d*$/)] ],
+      FloorNo:[this.clinicInfo?.FloorNo||'' ,[Validators.nullValidator, Validators.pattern(/^\d*$/)] ],
       FixedFee :[this.clinicInfo?.FixedFee ||'' , [Validators.required, Validators.pattern(/^\d*$/)]],
       clinicLogo:[this.clinicInfo?.Logo||''],
       HealthEntityServiceName:[this.clinicInfo?.HealthEntityServiceName || '']
@@ -242,7 +269,13 @@ getAreas(id){
   }
   //#endregion
 
+  onItemSelect(item: any) {
+    // console.log(this.selectedItems)
+  }
 
+  onSelectAll(items: any) {
+    // console.log(items);
+  }
 
 
   submitClinic(){

@@ -40,6 +40,8 @@ export class ClinicInfoComponent implements OnInit {
   translation;
   lat;
   long
+  countries
+  selectedCities:any[];
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +60,7 @@ export class ClinicInfoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.selectedCities = [];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'Id',
@@ -74,9 +77,23 @@ export class ClinicInfoComponent implements OnInit {
     this.GetCities(); 
     this.getTranslitation()
     this.GetServices()
+    this.getCountry()
+
+  }
+  SelectCountryChange(event:any){
+     console.log(+event.target.value);
+      event.target.value;
+    this.selectedCities = this.Cities.filter(x=>x.CountryId == +event.target.value)
 
   }
 
+  getCountry(){
+    this.lookupService.GetCountries('en').subscribe(
+      (response)=>{
+        this.countries =  response.Data;
+        // console.log(this.countries);
+    })
+  }
 
   getTranslitation()  {
   this.translateSwal.Translitation().subscribe((values) => {
@@ -110,8 +127,8 @@ export class ClinicInfoComponent implements OnInit {
           Address: ['', [Validators.required]],
           // Street: ['', [Validators.required]],
           Area: ['', [Validators.required]],
-          BuildingNumber: ['',  ],
-          FloorNumber: ['', ],
+          BuildingNumber: ['',Validators.nullValidator  ],
+          FloorNumber: ['',Validators.nullValidator ],
           // ApartmentNumber: ['', [Validators.required]],
           FixedFee: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
           Services: ['' ],

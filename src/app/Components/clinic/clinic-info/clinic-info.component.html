@@ -157,9 +157,25 @@
                     ></app-fielderror>
             </div>
           </div>
-
+          <!-- country -->
+          <div class="col-12 col-md-4 mb-2">
+            <span class="lbl-Register">{{ "mainModule.DoctorInfo.Egypt" | translate}}</span>
+            <span class="star"> * </span>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              style="margin-bottom: 20px"
+              (change)="SelectCountryChange($event)"
+              formControlName="CountryId"
+            >
+              <option *ngFor="let item of countries" value="{{ item.Id }}">
+                {{ item.Name }}
+              </option>
+            </select>
+          
+          </div>
           <!-- city -->
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-4 mb-3">
             <span class="lbl-Register">
               {{"mainModule.ClinicInfo.City" | translate}}
             </span>
@@ -174,7 +190,7 @@
             >
               <option value="" selected disabled>Select City</option>
 
-              <option  *ngFor="let item of Cities" value="{{ item.Id }}">
+              <option  *ngFor="let item of selectedCities" value="{{ item.Id }}">
                 {{ item.Name }}
               </option>
             </select>
@@ -185,7 +201,7 @@
           </div>
 
           <!-- Area -->
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-4 mb-3">
             <span class="lbl-Register">
                 {{"mainModule.ClinicInfo.Area" | translate}}
               </span>

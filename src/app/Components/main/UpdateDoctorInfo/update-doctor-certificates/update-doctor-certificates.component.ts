@@ -6,6 +6,7 @@ import { CertificateService } from 'src/Service/Certificate/certificate.service'
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { NullTemplateVisitor } from '@angular/compiler';
 
 @Component({
   selector: 'app-update-doctor-certificates',
@@ -17,6 +18,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   sendButton:boolean=false
   buttonAdd:boolean=false;
   showImgbox:boolean=false
+  ImageCer:any;
 
   submittedCertificate:CertificateResponse
 
@@ -52,12 +54,12 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
         year:['',[Validators.required ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
-        ImageCertificate:['',[Validators.required ]]
+        ImageCertificate:['',[Validators.nullValidator ]]
       }
     )
 
     this.getTranslitation()
-    console.log(this.editableCertificate);
+    // console.log(this.editableCertificate);
   }
   //#endregion
 
@@ -84,16 +86,28 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   //#endregion
 
   SubmitCertificate(){
-    const formData = new FormData();
+    if(this.ImageCer != null ){
+      const formData = new FormData();
 
-    formData.append('Title',this.CertificateForm.controls.title.value)
-    formData.append('Description',this.CertificateForm.controls.Description.value)
-    formData.append('TitleAr',this.CertificateForm.controls.titleAr.value)
-    formData.append('DescriptionAr',this.CertificateForm.controls.DescriptionAr.value)
-    formData.append('Year', +this.CertificateForm.controls.year.value as unknown as Blob)
-    formData.append('certificateImage',this.certificate.CertificateUrl)
-
-    this.CreateCertificate('en',formData)
+      formData.append('Title',this.CertificateForm.controls.title.value)
+      formData.append('Description',this.CertificateForm.controls.Description.value)
+      formData.append('TitleAr',this.CertificateForm.controls.titleAr.value)
+      formData.append('DescriptionAr',this.CertificateForm.controls.DescriptionAr.value)
+      formData.append('Year', +this.CertificateForm.controls.year.value as unknown as Blob)
+      formData.append('certificateImage',this.ImageCer)
+  
+      this.CreateCertificate('en',formData)
+      this.ImageCer = null
+    }
+    else
+    {
+      Swal.fire(
+        this.translation.Cancelled,
+        "Image Certificate Required",
+        'error'
+      );
+    }
+   
   }
 
 
@@ -152,11 +166,11 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
         this.imgURL = reader.result;
       }
 
-    this.certificate.CertificateUrl = files[0];
-    this.editableCertificate.CertificateUrl=files[0]
+    this.ImageCer = files[0];
     this.imageName=files[0].name
+    this.imgURL = files[0]
     this.showImgbox=true
-    // this.FormDataImage.append('EpisodeIamge', files[0]);
+    this.editableCertificate.CertificateUrl=null;
   }
   //#endregion
 
@@ -218,14 +232,16 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
         year:['',[Validators.required ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
-        ImageCertificate:['',[Validators.required ]]
+        ImageCertificate:['',[Validators.nullValidator ]]
       }
     )
+    this.editableCertificate.CertificateUrl=null;
   }
 
 
 
   Edit(id:number){
+    this.GetDoctorCertificate()
     this.editableCertificate= this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
     console.log(this.editableCertificate);
@@ -233,23 +249,42 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   }
 
   SaveCertificate(){
-    const formData = new FormData();
 
-    formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
-    formData.append('Title',this.editableCertificate.Title)
-    formData.append('Description',this.editableCertificate.Description)
-    formData.append('TitleAr',this.editableCertificate.TitleAr)
-    formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
-    formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
-    formData.append('certificateImage',this.editableCertificate.CertificateUrl)
-
-    this.UpdateCertificate('en',formData)
+    if(this.ImageCer !=null)
+    {
+      const formData = new FormData();
+      formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
+      formData.append('Title',this.editableCertificate.Title)
+      formData.append('Description',this.editableCertificate.Description)
+      formData.append('TitleAr',this.editableCertificate.TitleAr)
+      formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
+      formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
+      formData.append('certificateImage',this.ImageCer)
+      this.UpdateCertificate('en',formData)
+    }
+    else{
+      const formData = new FormData();
+      formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
+      formData.append('Title',this.editableCertificate.Title)
+      formData.append('Description',this.editableCertificate.Description)
+      formData.append('TitleAr',this.editableCertificate.TitleAr)
+      formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
+      formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
+      formData.append('certificateImage',this.editableCertificate.CertificateUrl)
+      this.UpdateCertificate('en',formData)
+    }
+   
   }
 
   UpdateCertificate(lang:string,certificate:FormData){
     this.certificateService.UpdateCertificate('en',certificate).subscribe((res)=>{
       this.GetDoctorCertificate()
       this.resetForm()
+      Swal.fire(
+        "Update",
+        "updated Sucessfully",
+        'success'
+      )
     },
     (err)=>{
       // console.log(err)

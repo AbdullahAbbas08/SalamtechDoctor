@@ -185,11 +185,11 @@ export class UpdateClinicGalaryComponent implements OnInit {
       })
        
       } else {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe',
-          'error'
-        );
+        // Swal.fire(
+        //   'Cancelled',
+        //   'Your imaginary file is safe',
+        //   'error'
+        // );
       }
     }); 
   }
