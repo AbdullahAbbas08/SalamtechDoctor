@@ -1,0 +1,29 @@
+.dashboard-stat
+{
+     background-color: white;
+     
+}
+.Total-Count
+{
+     font-size:16px;
+     padding:3px;
+     text-align: center;
+}
+.number-percent
+{
+     font-size: 26px;
+}
+
+.img-style
+{
+     width: 55px;
+     aspect-ratio: 1;
+     padding: 10px;
+     border-radius: 100%;
+     background-color: #fbeaea;
+}
+
+.putleftborder
+{
+     border-left: 3px solid #edefee;
+}

@@ -16,6 +16,8 @@ export class ClinicInfoService {
   culture:string = localStorage.getItem('lang') as string;
   auth:string =localStorage.getItem('Authorization') as string;
 
+  VisitFees:number;
+
   constructor(private http: HttpClient) { }
 
 

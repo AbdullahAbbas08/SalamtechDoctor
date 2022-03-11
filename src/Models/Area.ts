@@ -6,3 +6,5 @@ export class Area{
   Id: number
   CityName: string
 }
+
+

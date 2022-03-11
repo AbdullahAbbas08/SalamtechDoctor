@@ -10,6 +10,7 @@ import { Duration } from 'src/Models/duration';
 import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
 import { Login } from 'src/Models/Login';
+import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
@@ -43,6 +44,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region constructor
   constructor( private ClinicScheduleService:ClinicScheduleService ,
+               private clinicInfoService:ClinicInfoService,
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
                private route:ActivatedRoute,
@@ -95,7 +97,7 @@ export class ClinicSchedualComponent implements OnInit {
             {
                 DateFrom:['',[Validators.required]],
                 DateTo:['',[Validators.required]],
-                Fees:['',[Validators.required]],
+                Fees:[this.clinicInfoService?.VisitFees,[Validators.required]],
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion

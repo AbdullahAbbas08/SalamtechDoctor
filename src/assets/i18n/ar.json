@@ -6,13 +6,13 @@
     "ContactUs": "تواصل معنا",
     "Help": "مساعدة",
     "signup": {
-      "FirstName": "الأسم الأول",
-      "MiddleName": "الأسم الأوسط",
-      "LastName": "الأسم الأخير",
+      "FirstName": "الإسم الأول",
+      "MiddleName": "الإسم الثاني",
+      "LastName": "الإسم الأخير",
       "Email": "البريد الإلكترونى",
       "PhoneNumber": "الموبايل",
-      "Password": "كلمة السر",
-      "ConfirmPassword": "تأكيد كلمة السر",
+      "Password": "كلمة المرور",
+      "ConfirmPassword": "اعادة ادخال كلمة المرور",
       "Next": "التالى"
     },
     "ResendCode": {
@@ -29,25 +29,25 @@
     },
     "LoginPage": {
       "SignIn": "تسجيل الدخول",
-      "PhoneNumber": "رقم الموبايل",
+      "PhoneNumber": "رقم الهاتف",
       "Password": "كلمة المرور",
-      "ForgetPassword": "نسيت الباسورد ؟ ",
-      "SignInBtn": "سجل دخول "
+      "ForgetPassword": "نسيت كلمة المرور؟ ",
+      "SignInBtn": "تسجيل الدخول"
     },
     "RegisterPage": {
       "Signup": "سجل حساب جديد",
-      "FirstName": "الأسم الاول",
-      "MiddleName": "الاسم الثانى",
-      "LastName": " الاسم الاخير ",
+       "FirstName": "الإسم الأول",
+      "MiddleName": "الإسم الثاني",
+      "LastName": "الإسم الأخير",
       "PhoneNumber": "رقم الموبايل",
       "Email": "البريد الالكترونى",
       "Password": "كلمة المرور",
-      "ReEnterPassword": "أعد إدخال كلمة المرو",
-      "Terms&Conditions": " الموافقة على الشروط والاحكام",
+      "ReEnterPassword": "اعادة ادخال كلمة المرور",
+      "Terms&Conditions": " بالتسجيل انت توافق على الشروط والأحكام الخاصة بنا",
       "Terms&ConditionsKeyword": "الشروط والاحكام",
-      "AlreadyHaveAnAccount": "تمتلك حساب بالفعل ؟ ",
-      "Signin": "دخول",
-      "CreateAccount": "تسجيل "
+      "AlreadyHaveAnAccount": "لديك حساب بالفعل؟ ",
+      "Signin": "تسجيل الدخول",
+      "CreateAccount": "انشأ حساب"
     },
     "otp": {
       "verify": "تحقق",
@@ -80,16 +80,16 @@
       "Profile": "حسابى"
     },
     "DoctorInfo": {
-      "FirstNameAr": "First Name",
-      "MiddleNameAr": "Middle Name",
-      "LastNameAr": "Last Name",
+      "FirstNameAr": "الإسم الأول",
+      "MiddleNameAr": "الإسم الثاني",
+      "LastNameAr": "الإسم الأخير",
       "Gender": "أختر الجنس ",
       "Male": "ذكر",
       "Female": "أنثى",
       "Nationality": "الجنسية",
       "Egypt": "أختر بلد",
       "Date_of_birth": "تاريخ الميلاد",
-      "Speciality": "المجال",
+      "Speciality": "التخصص",
       "SubSpeciality": "التخصص الفرعي",
       "SelectSubSpeciality": " أختر التخصص الفرعي",
       "Seniority": "الدرجه العلمية",
@@ -97,17 +97,17 @@
       "Biography": "المعلومات الشخصية",
       "Update": "تعديل",
       "back": "رجوع",
-      "Leave a comment here":"Leave a comment here"
+      "Leave a comment here":"اكتب ملاحظاتك"
     },
     "Documents": {
       "UploadNationalIdFrontFace": " صورة  الرقم القومى من الوجه",
       "UploadNationalIdBackFace": "صورة  الرقم القومى من الخلف إن أمكن",
-      "UploadSyndicateFrontFace": "صورة من كارنيه النقابة من الوجه",
+      "UploadSyndicateFrontFace": "نصريح مزاولة المهنة(كارنية النقابة)",
       "UploadSyndicatebackFace": " صورة من كارنيه النقابة من الخلف أن أمكن",
       "Next": "التالى"
     },
     "Clinic": {
-      "clinic": "Clinics",
+      "clinic": "العيادات",
       "sidebarinfo": "بيانات العيادة",
       "sidebargalary": "صور العيادة",
       "sidebarschedule": "مواعيد العيادة",
@@ -118,7 +118,7 @@
       "NewCertificate": "شهادة جديدة",
       "Reset": "اعادة ضبط",
       "Delete": "حذف",
-      "CertificateTitle": "العنوان ",
+      "CertificateTitle": "عنوان الشهادة ",
       "CertificateTitleAr": "Certificate Title In Engilsh",
       "Description": "الوصف ",
       "DescriptionAr": "Certificate Description In Engilsh",
@@ -131,7 +131,7 @@
     "ClinicInfo": {
       "ChangeLogo": "تغيير صورة البروفايل",
       "Name": "الأسم",
-      "NameAr": "Name English",
+      "NameAr": "English Name",
       "PhoneNumber": "رقم الموبايل",
       "PhoneNumber2": "رقم موبايل أخر",
       "PhoneNumber3": "رقم موبايل أخر",
@@ -146,7 +146,7 @@
       "FloorNumber": "رقم الدور",
       "ApartmentNumber": "رقم ",
       "Services": "الخدمات",
-      "selectServices": "حدد الخدمات",
+      "selectServices": "اختر الخدمات",
       "Next": "التالى",
       "addphone":"اضف تليفون اخر "
     },
@@ -155,11 +155,11 @@
       "Periods": "فترات",
       "Period1": "فترة 1",
       "Reset": "إعادة",
-      "Operatinghours": "فترات العمل",
+      "Operatinghours": "ساعات العمل",
       "SelectDuration": "أختر الفترة",
       "Minutes": "دقائق",
       "Visitfee": "تكلفة الزيارة",
-      "EGP": "ج.م",
+      "EGP": "جم",
       "Submit": "تسجيل",
       "AddNewPeriod": "أضف فترة",
       "Period": "فترة",
@@ -174,19 +174,19 @@
     "clinicmanager": {
       "main": {
         "AddNewClinic": "أضف عيادة جديدة",
-        "Therearenoaddedclinicyet": "لا توجد عيادات أضيفت حتى الان",
+        "Therearenoaddedclinicyet": "أضيفت حتى الان",
         "ManageyourallClinicsbyadd": "إدارة العيادات",
-        "Themthrowonepress": "Them throw one press ",
+        "Themthrowonepress": "حفظ الكل ",
         "ClinicName": "أسم العيادة",
         "ClinicNumber": "رقم العيادة",
         "Appointments": "المواعيد",
-        "Location": "المكان",
+        "Location": "العنوان",
         "Actions": "إعدادات"
       }
     },
     "appointment": {
       "Current": "الحالى",
-      "History": "الماضى",
+      "History": "السابق",
       "Appointment_status":"حالة الموعد",
       "current": {
         "Name": "الاسم",
@@ -194,53 +194,53 @@
         "Time": "الوقت",
         "Type": "النوع",
         "Actions": "اعدادات",
-        "Consultation Type":"Consultation Type"
+        "Consultation Type":"نوع الخدمة"
       },
       "Call":"مكالمة",
       "EMR":"EMR",
       "Cancel":"أنهاء",
       "Cancelled":"ملغي",
-      "Filter":"Filter",
-      "ShowMore":"Show More",
-      "ShowLess":"Show Less",
-      "APPLYFILTER":"APPLY FILTER"
+      "Filter":"تصنيف",
+      "ShowMore":"اظهر المزيد",
+      "ShowLess":"عرض أقل",
+      "APPLYFILTER":"تطبيق الاختيار"
 
     },
     "EMR": {
       "PatientProfile": "ملف المريض",
-      "EMRProfile": "EMR Profile",
+      "EMRProfile": "الملف الطبي",
       "Patient": {
         "PatientName": "أسم المريض",
-        "Basicdata": "بيانات أساسية",
+        "Basicdata": "البيانات الأساسية",
         "PatientAge": "عمر المريض ",
         "PhoneNumber": "رقم الموبايل",
         "Location": "الموقع ( من الخريطة)",
         "PatientComplain": "مشكلة المريض",
         "Attachedfiles": "الاوراق المطلوبة",
         "ChangePhoto":"تغيير الصورة",
-        "Leave Complain Here":"Leave Complain Here",
-        "PostReport":"Post Report"
+        "Leave Complain Here":"اترك الشكوى (الأعراض) ",
+        "PostReport":"ارسل تقرير"
       },
       "profile":{
         "EMRHistory":"تاريخ السجلات الطبية الإلكترونية",
         "Description":"وصف",
-        "RXTitle":"RX Title",
-        "RXDescription":"RX Description",
+        "RXTitle":"االدواء",
+        "RXDescription":"وصف الدواء",
         "Instructions":"تعليمات",
         "Documents":"ملفات",
         "View":"معاينة",
         "Download":"تحميل",
-        "CurrentEMR":"EMR الحالي",
+        "CurrentEMR":"السجل الطبي الحالي",
         "AddDescription":"اضف وصفا",
-        "AddInstructions":"Add Instructions",
+        "AddInstructions":"التعليمات",
         "UploadDocumentorReport":"تحميل ملف أو تقرير"
       }
     },
     "Services":{
       "services":"الخدمات",
-      "HomeVisits":"زيارة منزل",
+      "HomeVisits":"زيارة منزلية",
       "VideoCall":"مكالمة فيديو",
-      "Call":"مكالمة",
+      "Call":"مكالملة تليفون",
       "Chat":"دردشة",
       "Home_Visit":{
         "Schedule":"مواعيد",
@@ -251,7 +251,7 @@
         "SelectDuration":"أختر المدة",
         "Minutes":"دقيقة",
         "HomeVisitFees":"سعر الكشف",
-        "EGP":"ج.م",
+        "EGP":"جم",
         "AddNewPeriod":"أضف فترة",
         "Period":"فترة",
         "Period1":"فترة 1",
@@ -266,13 +266,13 @@
   },
   "errorField": {
     "phone": "من فضلك أدخل رقم موبايل صحيح مكون من 11 رقم",
-    "password": "من فضلك أدخل كلمة مرور مكونة من 6 ارقام وحروف",
+    "password": "من فضلك أدخل كلمة مرور ممكونة من 6 ارقام وحروف",
     "email": "من فضلك ادخل بريد الكترونى صحيح ",
     "reenterpass":"كلمة المرور غير مطابقة من فضلك اعد ادخال كلمة المرور",
-    "firstname":"من فضلك ادخل الاوسم الاول",
-    "secondname":"من فضلك ادخل الاوسم الاوسط",
-    "lastname":"من فضلك ادخل الاوسم الاخير",
-    "checkboxcont":"برجاء الموافقة على الشروط",
+    "firstname":"من فضلك أدخل الأسم الأول",
+    "secondname":"من فضلك أدخل الأسم الثاني",
+    "lastname":"من فضلك أدخل الأسم الأخير",
+    "checkboxcont":"برجاء الموافقة على الشروط والأحكام",
     "Fees":"برجاء إدخال سعر الكشف",
     "DurationExamination":"برجاء إدخال مدة الكشف",
     "DateFrom":"برجاء إدخال وقت بداية الفترة",
@@ -288,12 +288,12 @@
   "Swals":{
     "Error!":"خطأ!",
     "imagesize":"حجم الصورة أكبر من 3 ميغا بايت",
-    "imagesize2mb":"image size is larger than 2mb",
+    "imagesize2mb":"حجم الصورة اكبر من 2 ميجابايت",
     "UpdatedSuccessfully":"تم التحديث بنجاح",
     "endtime":"يجب أن يكون وقت الانتهاء أقل من وقت البدء",
     "areusure":"هل أنت واثق؟",
     "cancelapp":"تريد إلغاء هذا الموعد",
-    "Cancelled":"ألغيت!",
+    "Cancelled":"تم الألغاء بنجاح!",
     "errocur":"حدث خطأ",
     "appointmentactive":"موعدك لا يزال ساريًا",
     "wontrevert":"لن تتمكن من التراجع عن هذا!",
@@ -302,20 +302,20 @@
     "filesafe":"ملفك التخيلي آمن",
     "fileDeleted":"تم حذف ملفك.",
     "Great":"رائع",
-    "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
+    "welcome":"مرحبا بكم في Salamtech. سنراجع طلبك ونحدث حسابك قريبًا",
     "Done":"تم",
     "AddClinic":"اضافة عيادة جديدة",
     "Ok":"نعم",
     "DocInfo":"تم تحديث معلومات الطبيب بنجاح",
     "Cancel":"أنهاء",
-    "cannotaddYear":"Cannot add this year",
-    "AddDocs":"You have to add these documents first"
+    "cannotaddYear":"لا يمكن اضافة السنة",
+    "AddDocs":"لابد من اضافة ملفات أولا"
     },
     "spinner":"برجاء الإنتظار.",
     "toaster":{
-      "iternetoff":"The internet has been successfully restored",
-      "success":"Success",
-      "checkInternet":"Please make sure you have internet",
-      "NoInternet":"No Internet"
+      "iternetoff":"تمت استعادة الإنترنت بنجاح",
+      "success":"تم بنجاح",
+      "checkInternet":"من فضلك تأكد من أن لديك الإنترنت",
+      "NoInternet":"الانترنت غير فعال"
     }
 }

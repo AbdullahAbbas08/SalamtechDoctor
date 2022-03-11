@@ -75,7 +75,8 @@ import { HelpComponent } from './Components/without-signin/help/help.component';
 import { ForgetPasswordComponent } from './Components/SignIn/forget-password/forget-password.component';
 import { OtpForgetpassComponent } from './Components/SignIn/otp-forgetpass/otp-forgetpass.component';
 import { ChangePasswordComponent } from './Components/SignIn/change-password/change-password.component';
- 
+import { CdTimerModule } from 'angular-cd-timer';
+
 
 
 // AoT requires an exported function for factories
@@ -169,7 +170,8 @@ export function CreateTranslateLoader(http: HttpClient) {
        MatFormFieldModule,
        MatInputModule,
        MatSelectModule,
-       NgxSpinnerModule
+       NgxSpinnerModule,
+       CdTimerModule
     ],
     
   providers: [InterceptorsProvider],

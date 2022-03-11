@@ -124,6 +124,7 @@ export class ClinicInfoComponent implements OnInit {
             [   Validators.maxLength(11)],
           ],
           City: ['', [Validators.required]],
+          CountryId: ['', [Validators.required]],
           Address: ['', [Validators.required]],
           // Street: ['', [Validators.required]],
           Area: ['', [Validators.required]],
@@ -281,11 +282,7 @@ export class ClinicInfoComponent implements OnInit {
   //#region Create Clinic
   CreateClinic(lang: string, ClinicForm: FormData) {
     this.ClinicService.CreateClinic(lang, ClinicForm).subscribe((res) => {
-      // console.log("ClinicId : ",this.ClinicId.ClinicId)
-      // this.ClinicService.ClinicID = res.Data.ClinicId;
-      //  this.Router.navigateByUrl("clinic/gallary")/ClinicId
-      // localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
-      // console.log(" res.Data.ClinicId : ", res.Data.ClinicId)
+     this.ClinicService.VisitFees = +ClinicForm.get('FixedFee');
       this.SpinnerService.hide();
       this.Router.navigate(['/clinic/gallary/', res.Data.ClinicId]);
       this.ClinicInfoForm.reset()

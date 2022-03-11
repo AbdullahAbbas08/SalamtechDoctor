@@ -142,7 +142,9 @@ export class RegisterPageComponent implements OnInit {
 
           this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
           this.SignupService.Phone = this.SignUp.Phone;
-          this.ShowPopup(data['Data'].ReSendCounter);
+          this.counter = data['Data'].ReSendCounter;
+
+          this.ShowPopup(data['Data'].Code);
         },
         (err) => {
             Swal.fire({
@@ -159,10 +161,15 @@ export class RegisterPageComponent implements OnInit {
       this.RegisterForm.markAllAsTouched()
     }
   }
-
-  ShowPopup(number:any){
+  counter
+  ShowPopup(code:any){
+    let intervalId = setInterval(() => {
+      this.counter = this.counter - 1;
+      console.log(this.counter)
+      if(this.counter === 0) clearInterval(intervalId)
+  }, 1000)
     Swal.fire({
-      title: 'Phone Verification : '+number,
+      title: 'Phone Verification : '+code,
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off',
@@ -173,6 +180,7 @@ export class RegisterPageComponent implements OnInit {
       preConfirm: (login) => {
         return fetch(`//api.github.com/users/${login}`)
           .then(response => {
+            "ghjg"
             if (!response.ok) { throw new Error(response.statusText)}
             return response.json()
           })
@@ -182,11 +190,11 @@ export class RegisterPageComponent implements OnInit {
       allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
-        if(number == result.value.login )
+        if(code == result.value.login )
         this.create(this.CreateUser); 
         else
         {
-          this.ShowPopup(number);
+          this.ShowPopup(code);
           console.log("fdfd");
         }
       }
