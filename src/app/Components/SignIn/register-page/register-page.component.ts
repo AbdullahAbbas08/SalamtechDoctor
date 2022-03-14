@@ -195,7 +195,7 @@ export class RegisterPageComponent implements OnInit {
         else
         {
           this.ShowPopup(code);
-          console.log("fdfd");
+          this.toastr.error('Please make sure that the code sent is correct' , 'Incorrect Code');
         }
       }
     })

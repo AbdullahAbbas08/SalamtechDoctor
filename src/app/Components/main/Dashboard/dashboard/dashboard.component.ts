@@ -50,6 +50,8 @@ export class DashboardComponent implements OnInit {
       (data) => {
         this.response=data.Data;
         this.response.UpComingAppointmentCount
+        console.log(data.Data);
+        
       },
       (err) => {
 

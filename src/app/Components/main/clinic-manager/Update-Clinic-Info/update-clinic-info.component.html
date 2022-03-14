@@ -51,10 +51,11 @@
                 <input
                   type="text"
                   class="form-control"
-                  formControlName="Name"
-                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                  minlength="3"
-                />
+                  formControlName="Name" />
+                  
+                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  minlength="3" -->
+
                 <app-fielderror 
                 [displayError]="isFieldValid('Name')"
                 errorMsg="{{'errorField.firstname' | translate}}"
@@ -69,10 +70,11 @@
                 <input
                   type="text"
                   class="form-control textForArabic"
-                  formControlName="NameAr"
-                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                  minlength="3"
-                />
+                  formControlName="NameAr"/>
+
+                  <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  minlength="3" -->
+
                 <app-fielderror 
                 [displayError]="isFieldValid('NameAr')"
                 errorMsg="{{'errorField.firstname' | translate}}"

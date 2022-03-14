@@ -1,6 +1,6 @@
 .dashboard-stat
 {
-     background-color: white;
+     background-color: rgb(231 231 231);
      
 }
 .Total-Count
@@ -20,7 +20,7 @@
      aspect-ratio: 1;
      padding: 10px;
      border-radius: 100%;
-     background-color: #fbeaea;
+     background-color: #e3e3e3;
 }
 
 .putleftborder
