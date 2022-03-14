@@ -87,7 +87,7 @@ export class ClinicGalaryComponent implements OnInit {
       },
       (err) => {
         this.SpinnerService.hide();
-        console.log(err);
+        // console.log(err);
       }
     )
   }

@@ -25,6 +25,7 @@ export class EmrProfileComponent implements OnInit {
   imageDoc
  ImgeURL = environment.ImagesURL;
  translation;
+  formData = new FormData();
 
   constructor(private route:ActivatedRoute ,
      private emrService : EmrService ,
@@ -99,7 +100,7 @@ export class EmrProfileComponent implements OnInit {
         
         this.medicals.push(this.getMedicalTYpe(item.MedicalExaminationTypeId))
       })
-      console.log( this.medicals);
+      // console.log( "------",this.medicals);
       // console.log(this.profileHistory);
       
     })
@@ -160,15 +161,16 @@ export class EmrProfileComponent implements OnInit {
    public message: string;
 
    preview(files:any ) { 
+     
     this.SpinnerService.show();
-     const formData = new FormData();
+    
      if (files.length === 0)
        return ;
 
        if (files[0].size > 2000000)
        {
        this.message = "image size is larger than 2mb.";
-       this.SpinnerService.hide();
+      //  this.SpinnerService.hide();
        Swal.fire(
         this.translation.Error,
         this.translation.imagesize2mb,
@@ -176,7 +178,7 @@ export class EmrProfileComponent implements OnInit {
        )
        return;
      }
-
+     this.SpinnerService.hide();
     //  var mimeType = files[0].type;
     //  if (mimeType.match(/image\/*/) == null) {
     //    this.message = "Only images are supported.";
@@ -185,30 +187,41 @@ export class EmrProfileComponent implements OnInit {
      var reader = new FileReader();
      reader.readAsDataURL(files[0]);
     
-     formData.append('document',files[0] );
-     formData.append('AppointmentId',  this.appointmentID  );
+     this.formData.append('document',files[0] );
+     this.formData.append('AppointmentId',  this.appointmentID  );
  
-     this.PostEmrDocs(formData ) 
+    //  this.PostEmrDocs(formData ) 
 
    }
 
-   PostEmrDocs(formData :FormData ){ 
+   PostEmrDocs(){ 
     
-    this.emrService.PostEmrDocs(formData).subscribe(res=>{
-      // console.log(res);
-      this.GetEmrHistory(this.id)
-      this.SpinnerService.hide();
-    }, 
-    err=>{
-      // console.log(err);
-      this.GetEmrHistory(this.id)
-      this.SpinnerService.hide();
+    if(this.formData.has("document") && this.formData.has("AppointmentId") ){
+      this.SpinnerService.show();
+      this.emrService.PostEmrDocs(this.formData).subscribe(res=>{
+        // console.log(res);
+        this.GetEmrHistory(this.id)
+        this.SpinnerService.hide();
+      }, 
+      err=>{
+        // console.log(err);
+        this.GetEmrHistory(this.id)
+        this.SpinnerService.hide();
+        Swal.fire(
+          this.translation.Error,
+          err.error.Message,
+          'error'
+        )
+      })
+    }
+    else
+    {
       Swal.fire(
         this.translation.Error,
-        err.error.Message,
+        "Invalid Data Please try again",
         'error'
       )
-    })
+    }
    }
 
 

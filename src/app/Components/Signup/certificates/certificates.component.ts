@@ -18,25 +18,26 @@ export class CertificatesComponent implements OnInit {
   sendButton:boolean=false
   buttonAdd:boolean=false;
   showImgbox:boolean=false
+  ImageCer:any;
 
   submittedCertificate:CertificateResponse
 
   certificate:Certificate;
   CertificateForm:FormGroup
   imageName:string='Upload Certificate'
-  translation;
 
   editableCertificate:Certificate
+  translation;
+
 
   constructor(private fb:FormBuilder ,
     private certificateService:CertificateService ,
      private loginService:LoginService,
-     private translateSwal:TranslateSwalsService,
-     private SpinnerService: NgxSpinnerService) { }
+     private translateSwal:TranslateSwalsService) { }
 
   ngOnInit(): void {
 
-
+    this.GetDoctorCertificate();
     //#region Sidebar style
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');
@@ -53,31 +54,20 @@ export class CertificatesComponent implements OnInit {
         year:['',[Validators.required ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
-        ImageCertificate:['',[Validators.required ]]
+        ImageCertificate:['',[Validators.nullValidator ]]
       }
     )
-    this.getCertificate()
+
     this.getTranslitation()
+    // console.log(this.editableCertificate);
   }
   //#endregion
 
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
-      // console.log(values);
-      this.translation =values 
+       this.translation =values 
       });
     }
-
-
-  getCertificate(){
-    this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-      this.submittedCertificate= res as CertificateResponse
-      // console.log(this.submittedCertificate);
-      
-      this.resetForm()
-    })
-  }
-
   changeStyle()
   {
   //  document.getElementById('Signup')?.classList.remove('OnClick-Style');
@@ -96,35 +86,45 @@ export class CertificatesComponent implements OnInit {
   //#endregion
 
   SubmitCertificate(){
-    this.SpinnerService.show();
-    const formData = new FormData();
+    if(this.ImageCer != null ){
+      const formData = new FormData();
 
-    if(   +this.CertificateForm.controls.year.value >1000){
       formData.append('Title',this.CertificateForm.controls.title.value)
       formData.append('Description',this.CertificateForm.controls.Description.value)
       formData.append('TitleAr',this.CertificateForm.controls.titleAr.value)
       formData.append('DescriptionAr',this.CertificateForm.controls.DescriptionAr.value)
       formData.append('Year', +this.CertificateForm.controls.year.value as unknown as Blob)
-      formData.append('certificateImage',this.certificate.CertificateUrl)
+      formData.append('certificateImage',this.ImageCer)
   
       this.CreateCertificate('en',formData)
+      this.ImageCer = null
     }
-    else{
-      this.SpinnerService.hide();
-      Swal.fire( this.translation.Error,  this.translation.cannotaddYear,  'error')
+    else
+    {
+      Swal.fire(
+        this.translation.Cancelled,
+        "Image Certificate Required",
+        'error'
+      );
     }
+   
   }
 
+  GetDoctorCertificate(){
+    this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
+      this.submittedCertificate= res as CertificateResponse
+     
+    })
+  }
 
   //#region review AND File FormData image from input file
   CreateCertificate(lang:string,certificate:FormData){
     this.certificateService.CreateCertificate('en',certificate).subscribe((res)=>{
-      this.getCertificate()
-      this.SpinnerService.hide();
+      this.GetDoctorCertificate()
+      this.resetForm()
     },
     (err)=>{
       // console.log(err)
-      this.SpinnerService.hide();
       Swal.fire(
         this.translation.Error,
         err.error.Message,
@@ -141,18 +141,17 @@ export class CertificatesComponent implements OnInit {
 
     if (files.length === 0)
       return;
-    
-    if (files[0].size > 3000000)
+
+      if (files[0].size > 3000000)
       {
-      this.message = "image size is larger than 3mb.";
-      Swal.fire(
-        this.translation.Error,
+        Swal.fire(
+          this.translation.Error,
           this.translation.imagesize,
           'error'
-      )
+        )
+      this.message = "image size is larger than 3mb.";
       return;
-      }
-
+    }
     // var mimeType = files[0].type;
     // if (mimeType.match(/image\/*/) == null) {
     //   this.message = "Only images are supported.";
@@ -166,17 +165,16 @@ export class CertificatesComponent implements OnInit {
         this.imgURL = reader.result;
       }
 
-    this.certificate.CertificateUrl = files[0];
-    this.editableCertificate.CertificateUrl=files[0]
+    this.ImageCer = files[0];
     this.imageName=files[0].name
+    this.imgURL = files[0]
     this.showImgbox=true
-    // this.FormDataImage.append('EpisodeIamge', files[0]);
+    this.editableCertificate.CertificateUrl=null;
   }
   //#endregion
 
   //#region Delete Certificate
     DeleteCertificate(id:number){
-
       Swal.fire({
         title:  this.translation.areusure,
         text: this.translation.wontrevert,
@@ -190,8 +188,12 @@ export class CertificatesComponent implements OnInit {
       .then((result) => {
 
         if (result.isConfirmed) {
-           this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
-            this.getCertificate()
+          this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
+            this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
+              this.submittedCertificate= res as CertificateResponse
+              // console.log(this.submittedCertificate)
+            }
+            )
             Swal.fire(
               this.translation.Deleted,
               this.translation.fileDeleted,
@@ -211,16 +213,7 @@ export class CertificatesComponent implements OnInit {
           );
         }
       }); 
-
-
-
-      // this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
-      //   this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-      //     this.submittedCertificate= res as CertificateResponse
-      //     console.log(this.submittedCertificate)}
-      //   )},
-      //   (err)=>{console.log(err)})
-      }
+    }
   //#endregion
 
 
@@ -238,45 +231,61 @@ export class CertificatesComponent implements OnInit {
         year:['',[Validators.required ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
-        ImageCertificate:['',[Validators.required ]]
+        ImageCertificate:['',[Validators.nullValidator ]]
       }
     )
+    this.editableCertificate.CertificateUrl=null;
+    this.sendButton = false;
   }
 
-
-
   Edit(id:number){
-    this.editableCertificate= this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
+    this.GetDoctorCertificate()
+    this.editableCertificate = this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
+    // console.log("trtgd : ",this.editableCertificate );
+    
   }
 
   SaveCertificate(){
-    const formData = new FormData();
-    this.SpinnerService.show();
 
-    formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
-    formData.append('Title',this.editableCertificate.Title)
-    formData.append('Description',this.editableCertificate.Description)
-    formData.append('TitleAr',this.editableCertificate.TitleAr)
-    formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
-    formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
-    formData.append('certificateImage',this.editableCertificate.CertificateUrl)
-
-    this.UpdateCertificate('en',formData)
+    if(this.ImageCer !=null)
+    {
+      const formData = new FormData();
+      formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
+      formData.append('Title',this.editableCertificate.Title)
+      formData.append('Description',this.editableCertificate.Description)
+      formData.append('TitleAr',this.editableCertificate.TitleAr)
+      formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
+      formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
+      formData.append('certificateImage',this.ImageCer)
+      this.UpdateCertificate('en',formData)
+    }
+    else{
+      const formData = new FormData();
+      formData.append('CertificateId',+this.editableCertificate.Id as unknown as Blob)
+      formData.append('Title',this.editableCertificate.Title)
+      formData.append('Description',this.editableCertificate.Description)
+      formData.append('TitleAr',this.editableCertificate.TitleAr)
+      formData.append('DescriptionAr',this.editableCertificate.DescriptionAr)
+      formData.append('Year', +this.editableCertificate.Year as unknown as Blob)
+      formData.append('certificateImage',this.editableCertificate.CertificateUrl)
+      this.UpdateCertificate('en',formData)
+    }
+   
   }
 
   UpdateCertificate(lang:string,certificate:FormData){
     this.certificateService.UpdateCertificate('en',certificate).subscribe((res)=>{
-      this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-        this.submittedCertificate= res as CertificateResponse
-        this.resetForm()
-        this.SpinnerService.hide();
-
-      })
+      this.GetDoctorCertificate()
+      this.resetForm()
+      Swal.fire(
+        "Update",
+        "updated Sucessfully",
+        'success'
+      )
     },
     (err)=>{
       // console.log(err)
-      this.SpinnerService.hide();
       Swal.fire(
         this.translation.Error,
         err.error.Message,
@@ -285,5 +294,4 @@ export class CertificatesComponent implements OnInit {
     })
   }
 
- 
 }

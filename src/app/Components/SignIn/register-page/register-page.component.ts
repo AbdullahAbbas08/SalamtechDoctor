@@ -191,7 +191,10 @@ export class RegisterPageComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         if(code == result.value.login )
-        this.create(this.CreateUser); 
+        {
+          this.toastr.success('Code Success ' , 'Success');
+          this.create(this.CreateUser); 
+        }
         else
         {
           this.ShowPopup(code);

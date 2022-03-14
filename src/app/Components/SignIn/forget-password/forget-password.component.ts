@@ -13,12 +13,14 @@ import Swal from 'sweetalert2';
 export class ForgetPasswordComponent implements OnInit {
   user
   translation;
+  emailTyped:string;
  
   constructor(private signupService:SignupService,
     private router:Router,  private translateSwal:TranslateSwalsService,private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getTranslitation()
+    this.emailTyped="";
   }
   //#endregion
   

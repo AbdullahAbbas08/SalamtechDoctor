@@ -71,7 +71,7 @@ export class ClinicSchedualComponent implements OnInit {
         DayId                       :-1,
         TimeFrom                    :"",
         TimeTo                      :"",
-        Fees                        :-1,
+        Fees                        :this.clinicInfoService.VisitFees,
         DurationMedicalExaminationId:-1,
         Inactive                    :true
       }
@@ -380,7 +380,7 @@ export class ClinicSchedualComponent implements OnInit {
       this.CreateClinicSchedule.Inactive                      = Active;
       // console.log(this.CreateClinicSchedule.ClinicId)
       // console.log(this.CreateClinicSchedule.Fees    );
-      console.log(this.CreateClinicSchedule.TimeFrom ,this.CreateClinicSchedule.TimeTo);
+      // console.log(this.CreateClinicSchedule.TimeFrom ,this.CreateClinicSchedule.TimeTo);
   
       if(this.CreateClinicSchedule.TimeFrom <this.CreateClinicSchedule.TimeTo ){
         this.CreateDoctorClinicSchedual(this.CreateClinicSchedule)
@@ -482,7 +482,7 @@ export class ClinicSchedualComponent implements OnInit {
           DayId:DayId ,
           TimeFrom: '',
           TimeTo: '',
-          Fees: 0,
+          Fees: this.clinicInfoService.VisitFees,
           DurationMedicalExaminationId: 1,
           Inactive:false
         } as ClinicScheduleDay;

@@ -8,6 +8,7 @@ import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
 import { Duration } from 'src/Models/duration';
 import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
+import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
 import { ClinicScheduleService } from 'src/Service/ClinicSchedule/clinic-schedule.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
@@ -43,6 +44,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
                private router:Router,
+               private ClinicService: ClinicInfoService,
                private route:ActivatedRoute ,
                private translateSwal:TranslateSwalsService,
                private SpinnerService: NgxSpinnerService) { }
@@ -71,7 +73,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
         DayId                       :-1,
         TimeFrom                    :"",
         TimeTo                      :"",
-        Fees                        :-1,
+        Fees                        :this.ClinicService.VisitFees,
         DurationMedicalExaminationId:-1,
         Inactive                    :false
       }
@@ -97,7 +99,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
             {
                 DateFrom:['',[Validators.required]],
                 DateTo:['',[Validators.required]],
-                Fees:['',[Validators.required]],
+                Fees:[this.ClinicService.VisitFees,[Validators.required]],
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
@@ -216,6 +218,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
           },
           (err)=>{
             // console.log(err)
+            this.ClinicScheduleDayList[NewPeriod.DayId].pop();
             this.SpinnerService.hide();
 
             Swal.fire( this.translation.Error, err.error.Message,'error')
@@ -278,7 +281,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
     this.CreateClinicSchedule.DayId = DayId;
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
-    this.CreateClinicSchedule.Fees=0;
+    this.CreateClinicSchedule.Fees=this.ClinicService.VisitFees;
     this.CreateClinicSchedule.Inactive=false;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";
@@ -416,7 +419,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
           DayId:DayId ,
           TimeFrom: '',
           TimeTo: '',
-          Fees: 0,
+          Fees: this.ClinicService.VisitFees,
           DurationMedicalExaminationId: 1,
           Inactive:false
         } as ClinicScheduleDay;

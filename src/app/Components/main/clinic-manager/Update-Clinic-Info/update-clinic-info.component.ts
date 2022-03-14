@@ -330,6 +330,7 @@ getAreas(id){
    
       if(this.FormInfo.valid){
         this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
+          this.ClinicService.VisitFees = this.FormInfo.get('FixedFee').value;
           // console.log(res);
           this.getClinicInfo( this.clinicId)
           this.toaster.success(this.translation.UpdatedSuccessfully,this.translation.Great);

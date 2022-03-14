@@ -119,12 +119,14 @@ constructor(
       
               if (result.isConfirmed) {
                 this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
-                  this.GetDocuments('en')
+                 
                   Swal.fire(
                     this.translation.Deleted,
                     this.translation.fileDeleted,
                     'success'
                   )
+                  this.GetDocuments('en')
+                  window.location.reload();
               },
               (err)=>{
                 this.GetDocuments('en')

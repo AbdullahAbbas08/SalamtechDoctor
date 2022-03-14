@@ -39,6 +39,7 @@ import { ChangePasswordComponent } from './Components/SignIn/change-password/cha
 import { ForgetPasswordComponent } from './Components/SignIn/forget-password/forget-password.component';
 import { LoginMainComponent } from './Components/SignIn/login-main.component';
 import { LoginPageComponent } from './Components/SignIn/login-page/login-page.component';
+import { OtpForgetpassComponent } from './Components/SignIn/otp-forgetpass/otp-forgetpass.component';
 import { RegisterPageComponent } from './Components/SignIn/register-page/register-page.component';
 import { TermsComponent } from './Components/SignIn/terms/terms.component';
 import { CertificatesComponent } from './Components/Signup/certificates/certificates.component';
@@ -131,6 +132,7 @@ const routes: Routes = [
     path:'Login',
     component:LoginPageComponent
   },
+
   { canActivate: [LoginGuardService],
     path:'',component:LoginMainComponent,
     children:[
@@ -140,29 +142,35 @@ const routes: Routes = [
     {path:'register',component:RegisterPageComponent}
     ]
   },
+
   {
     path:'home',
     component: HomeComponent
   },
+
   {
     path:'about-us',
     component: AboutUsComponent
   },
+
   {
     path:'contact-us',
     component: ContactUsComponent
   },
+
   {
     path:'help',
     component: HelpComponent
   },
+
   {
     path:'forget-password/:id',
     component: ChangePasswordComponent
   },
+
   {
     path:'forget-password',
-    component: ForgetPasswordComponent
+    component: OtpForgetpassComponent
   }
  
 ];

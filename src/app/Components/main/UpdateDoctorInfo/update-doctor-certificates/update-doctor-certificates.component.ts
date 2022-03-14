@@ -110,7 +110,6 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
    
   }
 
-
   GetDoctorCertificate(){
     this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
       this.submittedCertificate= res as CertificateResponse
@@ -238,13 +237,11 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
     this.editableCertificate.CertificateUrl=null;
   }
 
-
-
   Edit(id:number){
     this.GetDoctorCertificate()
     this.editableCertificate= this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
-    console.log(this.editableCertificate);
+    // console.log(this.editableCertificate);
     
   }
 

@@ -13,6 +13,7 @@ export class SignupService implements OnInit {
   auth:string =localStorage.getItem('Authorization') as string;
   culture:string = localStorage.getItem('lang') as string;
 
+  email:string;
 
   constructor(private http: HttpClient) { }
 
@@ -46,7 +47,9 @@ export class SignupService implements OnInit {
   forgetpass(email){
     return this.http.post(`${environment.URL}${this.culture}/User/ResetPassword`,email,this.httpOptions);
   }
+
   changepass(body){
     return this.http.post(`${environment.URL}${this.culture}/User/UpdatePassword`,body,this.httpOptions);
   }
+  
 }

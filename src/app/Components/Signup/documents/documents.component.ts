@@ -133,6 +133,7 @@ constructor(
                     this.translation.fileDeleted,
                     'success'
                   )
+                  window.location.reload();
               },
               (err)=>{
                 // console.log(err)

@@ -350,10 +350,11 @@
                   class="form-control"
                   id="inputGroupFile02"
                   placeholder="Choose file"
+                  (change)="preview(file.files)"
                   #file
                 />
               </div>
-              <button class="btn upload-btn w-100" (click)="preview(file.files)" type="reset">
+              <button class="btn upload-btn w-100" (click)="PostEmrDocs()" type="reset">
                 <i class="fas fa-upload mx-2"></i>
                 {{
                   "mainModule.EMR.profile.UploadDocumentorReport" | translate

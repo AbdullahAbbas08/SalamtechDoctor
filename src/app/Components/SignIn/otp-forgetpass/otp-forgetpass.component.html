@@ -1,12 +1,70 @@
+<div class="container-fluid" style="min-height: 92%;">
+  <app-nav></app-nav>
+
+  
+
+    <!-- Login Form -->
+      <div class="offset-md-4 col-md-4 mt-md-5 my-3" >
+        <div class="" style="background: #FFFFFF;
+        border-radius: 20px;margin-top: 60px;">
+        <h5 class="text-center py-3" style="background: #00D2CA;
+        border-radius: 20px 20px 0px 0px;">
+          {{ 'mainModule.login.ForgetPassword' | translate }}
+        </h5>
+          <form   class="p-5" autocomplete="off">
+
+              <!-- Email -->
+              <div class="">
+                  <label class="label-input">
+                    <span class="star"> * </span>
+                    {{ "mainModule.RegisterPage.Email" | translate }}
+                  </label>
+
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      [(ngModel)]="useremail"
+                      class="form-control"
+                      name="something"
+                       #email />
+                   
+                  </div> 
+                </div>
+
+            <!-- forget Password -->
+            <div class="forgetPassword mt-2"> 
+              <button (click)="checkemail( )" type="button" class="btn blue-btn  text-white" data-toggle="modal" data-target="#staticBackdrop">
+                {{ 'mainModule.login.ForgetPassword' | translate }}
+              </button>
+            </div>
+             
+      
+          </form>
+        </div>
+      </div>
+
+      <!-- spinner -->
+      <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+        <p style="color: white"> {{ 'spinner' | translate }} </p>  
+        </ngx-spinner> 
+
+
+</div>
+<div  >
+  <app-footer></app-footer>
+</div>
+
+
+
 
 
   <!-- Button trigger modal -->
-  <button (click)="checkemail( )" type="button" class="btn blue-btn  text-white" data-toggle="modal" data-target="#staticBackdrop">
+  <!-- <button (click)="checkemail( )" type="button" class="btn blue-btn  text-white" data-toggle="modal" data-target="#staticBackdrop">
     {{ 'mainModule.login.ForgetPassword' | translate }}
-  </button>
+  </button> -->
   
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header d-none">
@@ -24,15 +82,7 @@
                             {{"mainModule.otp.EntertheVerificationCode" | translate }}
                         </h3>
                     </div>
-                    <!-- <div class=" ">
-                        <div class="CodeSent-style">
-                            {{"mainModule.otp.Codesentto" | translate }} <span class="phone-style">{{PhoneNumber}}</span>
-                        </div> 
-                        <div class="expired-style">
-                                {{"mainModule.otp.Thiscodewillbeexpiredwithin" | translate }}
-                            <span class="couter-style">{{timer}}</span>
-                        </div>   
-                    </div> -->
+                   
                     <div class=" code-block-main">
                         <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE1" id="codeBox1" type="number" maxlength="1" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)"></div>
                         <div class="code-block"> <input class="code-color" [(ngModel)]="NCODE2" id="codeBox2" type="number" maxlength="1" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)"></div>
@@ -44,14 +94,12 @@
                             <button class="Resend-block" [disabled]="EnableResendLink"  > {{ 'mainModule.otp.ResendAgain' | translate }}</button>
                             </span>
                     </div>
-                        <!-- Next Button Block -->
                             <div class="text-center" >
                             <button (click)="verify()" 
                                     class="btn next-btn">
                                 
                                 {{ 'mainModule.otp.verify' | translate }}
                             </button>
-                            <!-- [disabled]="signupform.invalid"   -->
                         </div>
                     </div> 
                  </div>
@@ -61,4 +109,4 @@
         
       </div>
     </div>
-  </div>
+  </div> -->
