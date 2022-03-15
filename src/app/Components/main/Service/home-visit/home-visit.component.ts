@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class HomeVisitComponent implements OnInit {
   //#region constructor
   constructor( private DoctorServiceService:DoctorService ,
                private LookupsService:LookupsService ,
+               private clinicInfoService:ClinicInfoService,
                private fb:FormBuilder,
                private route:ActivatedRoute,
                private router:Router,
@@ -71,7 +73,7 @@ export class HomeVisitComponent implements OnInit {
         DayId                       :-1,
         TimeFrom                    :"",
         TimeTo                      :"",
-        Fees                        :-1,
+        Fees                        :this.clinicInfoService.VisitFees,
         DurationMedicalExaminationId:-1,
         Inactive                    :true
       }
@@ -98,7 +100,7 @@ export class HomeVisitComponent implements OnInit {
             {
                 DateFrom:['',[Validators.required]],
                 DateTo:['',[Validators.required]],
-                Fees:['',[Validators.required]],
+                Fees:[this.clinicInfoService.VisitFees,[Validators.required]],
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
@@ -339,8 +341,8 @@ export class HomeVisitComponent implements OnInit {
     this.CreateClinicSchedule.DayId = DayId;
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
-    this.CreateClinicSchedule.Fees=0;
-    this.CreateClinicSchedule.Inactive=false;
+    this.CreateClinicSchedule.Fees=this.clinicInfoService.VisitFees;
+    this.CreateClinicSchedule.Inactive=true;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";
 

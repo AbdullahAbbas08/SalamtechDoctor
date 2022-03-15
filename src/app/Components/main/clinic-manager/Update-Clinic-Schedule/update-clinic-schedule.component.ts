@@ -421,7 +421,7 @@ export class UpdateClinicScheduleComponent implements OnInit {
           TimeTo: '',
           Fees: this.ClinicService.VisitFees,
           DurationMedicalExaminationId: 1,
-          Inactive:false
+          Inactive:true
         } as ClinicScheduleDay;
 
         // Push this.Empty period Into List

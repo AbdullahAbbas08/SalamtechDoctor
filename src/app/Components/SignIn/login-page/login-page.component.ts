@@ -71,7 +71,7 @@ isFieldValid(field): boolean {
 //#region Login Method
 LoginDoctor(){
   this.SpinnerService.show();
-  console.log('show');
+  // console.log('show');
   
  if(this.LoginForm.valid){
    this.loginDoctorForm.Phone ='0'+(this.LoginForm.controls.PhoneNumber.value).toString();

@@ -45,18 +45,21 @@ export class DashboardComponent implements OnInit {
     //#endregion
   }
 
-  getData() {
-    this.ApiService.GetDashboardData().subscribe(
+  getData() {    
+    let res = this.ApiService.GetDashboardData().subscribe(
       (data) => {
         this.response=data.Data;
-        this.response.UpComingAppointmentCount
-        console.log(data.Data);
+        // this.response.UpComingAppointmentCount
+        // console.log(data.Data);
         
       },
       (err) => {
+      // console.log("--- : ",err.error['Message']);
 
       }
     )
+    // console.log("--- : ",res);
+    
   }
 
 }

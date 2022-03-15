@@ -234,8 +234,18 @@ constructor(
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            this.router.navigate(['/main'])
+            this.SpinnerService.show();
+            window.setInterval(() => {
+              window.location.reload();
+              this.SpinnerService.hide();
+             }, 2000);
+             this.router.navigate(["/main"]);
           } else   {
+            this.SpinnerService.show();
+            window.setInterval(() => {
+              // window.location.reload();
+              this.SpinnerService.hide();
+             }, 2000);
             this.router.navigate(['/clinic'])
           }
         })

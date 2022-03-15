@@ -183,7 +183,7 @@
 
     <div class="row align-items-center">
       <!-- Speciality -->
-      <div class="col-md-12 col-lg-4  ">
+      <div class="col-md-12 col-lg-6  ">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Speciality" | translate
           }}</span>
@@ -192,27 +192,9 @@
           <input type="text " class="form-control"  [placeholder]="specialist" disabled>
         </div>
       </div>
-
-      <!-- SubSpeciality -->
-      <div class="col-md-12 col-lg-4 ">
-        <span class="lbl-Register">{{
-          "mainModule.DoctorInfo.SubSpeciality" | translate
-          }}</span>
-        <span class="star"> * </span>
-       <div>
-        <mat-form-field appearance="fill" >
-          <mat-select formControlName="SubSpeciality" multiple class="form-select w-100">
-           <mat-option *ngFor="let item of DropDownList_SubSpeciality" [value]="item?.Id">
-             {{item?.Name}}
-           </mat-option>
-         </mat-select>
-       </mat-form-field>
-       </div>
-      </div>  
-    
-
+ 
       <!-- Seniority -->
-      <div class="col-md-12 col-lg-4  ">
+      <div class="col-md-12 col-lg-6  ">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Seniority" | translate
           }}</span>
@@ -222,6 +204,25 @@
              <input type="text" class="form-control"  [placeholder]="Seniority" disabled>
         </div>
       </div>
+    </div>
+    <div class="row align-items-center py-2">
+            <!-- SubSpeciality -->
+            <div class="col-12">
+              <span class="lbl-Register">{{
+                "mainModule.DoctorInfo.SubSpeciality" | translate
+                }}</span>
+              <span class="star"> * </span>
+             <div>
+              <input type="text " class="form-control"  [placeholder]="subspecialist" disabled>
+              <!-- <mat-form-field appearance="fill" aria-disabled="true" >
+                <mat-select  formControlName="SubSpeciality" multiple class="form-select w-100">
+                 <mat-option *ngFor="let item of DropDownList_SubSpeciality" [value]="item?.Id">
+                   {{item?.Name}}
+                 </mat-option>
+               </mat-select>
+             </mat-form-field> -->
+             </div>
+            </div> 
     </div>
 
     <div class="row align-items-center">

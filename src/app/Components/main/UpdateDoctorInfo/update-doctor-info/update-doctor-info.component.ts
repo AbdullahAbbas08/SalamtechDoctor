@@ -36,6 +36,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
   date:string;
   Seniority:string;
   specialist:string;
+  subspecialist:string;
   //#endregion
   selectedItems= [];
   dropdownSettings = {
@@ -64,6 +65,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
+
     //#region Init Values
     document.getElementById("Doctorinfo")?.classList.add("OnClick-Style");
     document.getElementById("Signup")?.classList.add("OnClick-Style");
@@ -71,8 +73,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorInfoModel = new DoctorInfoModel();
    
     this.DoctorSubSpecial = [];
-    // this.DoctorInfoForm.controls.ImageDoctor.value = "";
-    // this.DropDownModel.Data = [];
+   this.subspecialist = "";
     //#endregion
 
     //#region  Register Form Section
@@ -104,10 +105,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
       ImageDoctor: [this.DoctorProfile.Image, [Validators.nullValidator]],
      
       Speciality: [this.DoctorProfile.SpecialistId, [Validators.nullValidator]],
-      SubSpeciality: [
-        this.DoctorProfile.DoctorSubSpecialist ,
-        [Validators.required],
-      ],
+    
       BiographyAr: [this.DoctorProfile.DoctorInfo,  ],
       Biography: [this.DoctorProfile.DoctorInfoAr, ],
     });
@@ -143,6 +141,9 @@ export class UpdateDoctorInfoComponent implements OnInit {
     this.DoctorService.GetSubSpecialistIdName(lang, specialListId).subscribe(
       (response) => {
         this.DropDownList_SubSpeciality = response.Data;
+        response.Data.forEach(element => {
+          this.subspecialist +=element.Name+" ";
+        });
         // console.log( this.DropDownList_SubSpeciality);
         this.initForm();
         // console.log(this.url_img);
@@ -238,20 +239,20 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   //#region Doctor Info Submit Method
   DoctorInfoSubmit() {
-    let arr=[]
-    this.DoctorInfoForm.get('SubSpeciality').value.map(item=>{
-     if(item.Id){
-      arr.push(item.Id)
-     }
-     else{
-       arr.push(item)
-     }
-    })
+    // let arr=[]
+    // this.DoctorInfoForm.get('SubSpeciality').value.map(item=>{
+    //  if(item.Id){
+    //   arr.push(item.Id)
+    //  }
+    //  else{
+    //    arr.push(item)
+    //  }
+    // })
     
     let obj = {
       "DoctorInfo":this.DoctorInfoForm.controls.Biography.value,
       "DoctorInfoAr":this.DoctorInfoForm.controls.BiographyAr.value,
-      "DoctorSubSpecialist": arr
+      // "DoctorSubSpecialist": arr
     } as UpdateProfile;
    
  

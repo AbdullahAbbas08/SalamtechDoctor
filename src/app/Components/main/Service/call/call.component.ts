@@ -13,6 +13,7 @@ import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
 
 @Component({
   selector: 'app-call',
@@ -42,6 +43,7 @@ export class CallComponent implements OnInit {
 
   //#region constructor
   constructor( private DoctorServiceService:DoctorService ,
+                private clinicInfoService:ClinicInfoService,
                private LookupsService:LookupsService ,
                private fb:FormBuilder,
                private route:ActivatedRoute,
@@ -70,7 +72,7 @@ export class CallComponent implements OnInit {
         DayId                       :-1,
         TimeFrom                    :"",
         TimeTo                      :"",
-        Fees                        :-1,
+        Fees                        :this.clinicInfoService.VisitFees,
         DurationMedicalExaminationId:-1,
         Inactive                    :true
       }
@@ -99,7 +101,7 @@ export class CallComponent implements OnInit {
             {
                 DateFrom:['',[Validators.required]],
                 DateTo:['',[Validators.required]],
-                Fees:['',[Validators.required]],
+                Fees:[this.clinicInfoService.VisitFees,[Validators.required]],
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
@@ -361,7 +363,7 @@ export class CallComponent implements OnInit {
     this.CreateClinicSchedule.DayId = DayId;
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
-    this.CreateClinicSchedule.Fees=0;
+    this.CreateClinicSchedule.Fees=this.clinicInfoService.VisitFees;
     this.CreateClinicSchedule.Inactive=false;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";
@@ -385,7 +387,7 @@ export class CallComponent implements OnInit {
     if(this.PeriodForm.valid){
       this.SpinnerService.show();
       
-        if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
+        if(this.PeriodForm.controls.DateFrom.value < this.PeriodForm.controls.DateTo.value ){
           this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
           this.CreateClinicSchedule.DayId                         = DayId;
           this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;
@@ -497,7 +499,7 @@ export class CallComponent implements OnInit {
           DayId:DayId ,
           TimeFrom: '',
           TimeTo: '',
-          Fees: 0,
+          Fees: this.clinicInfoService.VisitFees,
           DurationMedicalExaminationId: 1,
           Inactive:true
         } as ClinicScheduleDay;

@@ -9,6 +9,7 @@ import { CreateClinicSchedule } from 'src/Models/create-clinic-schedule';
 import { Duration } from 'src/Models/duration';
 import { GeneralResponse } from 'src/Models/general-response';
 import { IdNameList } from 'src/Models/id-name-list';
+import { ClinicInfoService } from 'src/Service/ClinicInfo/clinic-info.service';
 import { DoctorService } from 'src/Service/DoctorService/doctor-service.service';
 import { LookupsService } from 'src/Service/Lockups/lookups.service';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
@@ -43,6 +44,7 @@ export class ChatComponent implements OnInit {
   //#region constructor
   constructor( private DoctorServiceService:DoctorService ,
                private LookupsService:LookupsService ,
+               private clinicInfoService:ClinicInfoService,
                private fb:FormBuilder,
                private route:ActivatedRoute,
                private router:Router,
@@ -71,7 +73,7 @@ export class ChatComponent implements OnInit {
         DayId                       :-1,
         TimeFrom                    :"",
         TimeTo                      :"",
-        Fees                        :-1,
+        Fees                        :this.clinicInfoService.VisitFees,
         DurationMedicalExaminationId:-1,
         Inactive                    :true
       }
@@ -99,7 +101,7 @@ export class ChatComponent implements OnInit {
             {
                 DateFrom:['',[Validators.required]],
                 DateTo:['',[Validators.required]],
-                Fees:['',[Validators.required]],
+                Fees:[this.clinicInfoService.VisitFees,[Validators.required]],
                 DurationExamination:['',[Validators.required]],
               });
       //#endregion
@@ -351,7 +353,7 @@ export class ChatComponent implements OnInit {
     this.CreateClinicSchedule.DayId = DayId;
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
-    this.CreateClinicSchedule.Fees=0;
+    this.CreateClinicSchedule.Fees=this.clinicInfoService.VisitFees;
     this.CreateClinicSchedule.Inactive=false;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";
@@ -487,7 +489,7 @@ export class ChatComponent implements OnInit {
           DayId:DayId ,
           TimeFrom: '',
           TimeTo: '',
-          Fees: 0,
+          Fees: this.clinicInfoService.VisitFees,
           DurationMedicalExaminationId: 1,
           Inactive:true
         } as ClinicScheduleDay;

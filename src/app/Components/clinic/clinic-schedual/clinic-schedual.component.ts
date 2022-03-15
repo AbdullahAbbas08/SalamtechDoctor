@@ -348,7 +348,7 @@ export class ClinicSchedualComponent implements OnInit {
     this.CreateClinicSchedule.DayId = DayId;
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
-    this.CreateClinicSchedule.Fees=0;
+    this.CreateClinicSchedule.Fees=this.clinicInfoService.VisitFees;
     this.CreateClinicSchedule.Inactive=false;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";

@@ -296,7 +296,7 @@ export class VideoCallComponent implements OnInit {
               reverseButtons: true
             })
           },
-        )
+        )        
       }
       //#endregion
 
@@ -355,7 +355,7 @@ export class VideoCallComponent implements OnInit {
     this.CreateClinicSchedule.ClinicId= this.ClinicId;
     this.CreateClinicSchedule.DurationMedicalExaminationId=1;
     this.CreateClinicSchedule.Fees=0;
-    this.CreateClinicSchedule.Inactive=false;
+    this.CreateClinicSchedule.Inactive=true;
     this.CreateClinicSchedule.TimeFrom="";
     this.CreateClinicSchedule.TimeTo="";
 
@@ -377,7 +377,7 @@ export class VideoCallComponent implements OnInit {
 
     if(this.PeriodForm.valid){
       this.SpinnerService.show();
-      if(this.CreateClinicSchedule.TimeFrom  < this.CreateClinicSchedule.TimeTo ){
+      if(this.PeriodForm.controls.DateFrom.value < this.PeriodForm.controls.DateTo.value ){
         this.CreateClinicSchedule.ClinicId                      = +this.ClinicId;
         this.CreateClinicSchedule.DayId                         = DayId;
         this.CreateClinicSchedule.TimeFrom                      = this.PeriodForm.controls.DateFrom.value ;

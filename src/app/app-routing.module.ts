@@ -77,7 +77,8 @@ const routes: Routes = [
     component:TermsComponent
   },
 
-  { canActivate: [LogoutGuardService] , path:'clinic',component:ClinicInfoMainComponent ,
+  // canActivate: [LogoutGuardService] ,
+  {  path:'clinic',component:ClinicInfoMainComponent ,
     children:[
         {path:'',component:ClinicInfoComponent },
         {path:'gallary/:ClinicId',component:ClinicGalaryComponent , resolve:{Galary:GalaryResolver}},
