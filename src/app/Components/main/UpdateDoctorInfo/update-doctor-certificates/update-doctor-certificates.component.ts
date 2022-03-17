@@ -19,6 +19,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   buttonAdd:boolean=false;
   showImgbox:boolean=false
   ImageCer:any;
+  count:number;
 
   submittedCertificate:CertificateResponse
 
@@ -113,6 +114,9 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   GetDoctorCertificate(){
     this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
       this.submittedCertificate= res as CertificateResponse
+      this.count = this.submittedCertificate.Data.length;
+      // console.log(this.count);
+      
      
     })
   }
@@ -175,44 +179,55 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
 
   //#region Delete Certificate
     DeleteCertificate(id:number){
-      Swal.fire({
-        title:  this.translation.areusure,
-        text: this.translation.wontrevert,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: this.translation.yes,
-        cancelButtonText: this.translation.Cancel
-      })
-      .then((result) => {
-
-        if (result.isConfirmed) {
-          this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
-            this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
-              this.submittedCertificate= res as CertificateResponse
-              // console.log(this.submittedCertificate)
-            }
-            )
-            Swal.fire(
-              this.translation.Deleted,
-              this.translation.fileDeleted,
-              'success'
-            )
-        },
-        (err)=>{
-          // console.log(err)
-          Swal.fire( this.translation.errocur);
+      this.GetDoctorCertificate()
+      if( this.count >1){
+        Swal.fire({
+          title:  this.translation.areusure,
+          text: this.translation.wontrevert,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: this.translation.yes,
+          cancelButtonText: this.translation.Cancel
         })
-         
-        } else {
-          Swal.fire(
-            this.translation.Cancelled,
-            this.translation.filesafe,
-            'error'
-          );
-        }
-      }); 
+        .then((result) => {
+  
+          if (result.isConfirmed) {
+            this.certificateService.DeleteCertificate('en',id).subscribe((res)=>{
+              this.certificateService.GetDoctorCertificate('en').subscribe((res)=>{
+                this.submittedCertificate= res as CertificateResponse
+                // console.log(this.submittedCertificate)
+              }
+              )
+              Swal.fire(
+                this.translation.Deleted,
+                this.translation.fileDeleted,
+                'success'
+              )
+          },
+          (err)=>{
+            // console.log(err)
+            Swal.fire( this.translation.errocur);
+          })
+           
+          } else {
+            Swal.fire(
+              this.translation.Cancelled,
+              this.translation.filesafe,
+              'error'
+            );
+          }
+        }); 
+      }
+      else
+      {
+        Swal.fire({
+          icon: 'error',
+          title: 'Warning',
+          text: 'It is not possible to delete all required certificates',
+        })
+      }
     }
   //#endregion
 
@@ -235,6 +250,8 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
       }
     )
     this.editableCertificate.CertificateUrl=null;
+    this.sendButton = false
+    
   }
 
   Edit(id:number){

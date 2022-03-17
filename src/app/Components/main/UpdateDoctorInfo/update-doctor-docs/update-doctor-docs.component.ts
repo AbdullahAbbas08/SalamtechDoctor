@@ -24,6 +24,7 @@ export class UpdateDoctorDocsComponent implements OnInit {
   translation;
   idDocs=null;
   proffDocs=null;
+  count:number
   //#endregion
 
   //#region Constructor
@@ -84,6 +85,7 @@ constructor(
            this.DocumentService.GetDocuments(lang ).subscribe(
              (response)=>{
                this.Documents = response.Data;
+               this.count = response.Data.length
               //  console.log(this.Documents)
                this.Documents.map(item=>{
                  if(item.LegalDocumentTypeId == 1){
@@ -104,45 +106,54 @@ constructor(
           //#region delete Document Method
           DeleteDocument(lang:string , id)
           {
-
-            Swal.fire({
-              title:  this.translation.areusure,
-              text: this.translation.wontrevert,
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: this.translation.yes,
-              cancelButtonText: this.translation.Cancel
-            })
-            .then((result) => {
-      
-              if (result.isConfirmed) {
-                this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
-                 
-                  Swal.fire(
-                    this.translation.Deleted,
-                    this.translation.fileDeleted,
-                    'success'
-                  )
-                  this.GetDocuments('en')
-                  window.location.reload();
-              },
-              (err)=>{
-                this.GetDocuments('en')
-
-                // console.log(err)
-                Swal.fire( this.translation.errocur);
+            if(this.count >1){
+              Swal.fire({
+                title:  this.translation.areusure,
+                text: this.translation.wontrevert,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: this.translation.yes,
+                cancelButtonText: this.translation.Cancel
               })
-               
-              } else {
-                Swal.fire(
-                  this.translation.Cancelled,
-                  this.translation.filesafe,
-                  'error'
-                );
-              }
-            }); 
+              .then((result) => {
+        
+                if (result.isConfirmed) {
+                  this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
+                   
+                    Swal.fire(
+                      this.translation.Deleted,
+                      this.translation.fileDeleted,
+                      'success'
+                    )
+                    this.GetDocuments('en')
+                    window.location.reload();
+                },
+                (err)=>{
+                  this.GetDocuments('en')
+  
+                  // console.log(err)
+                  Swal.fire( this.translation.errocur);
+                })
+                 
+                } else {
+                  Swal.fire(
+                    this.translation.Cancelled,
+                    this.translation.filesafe,
+                    'error'
+                  );
+                }
+              }); 
+            }else
+            {
+              Swal.fire({
+                icon: 'error',
+                title: 'Warning',
+                text: 'It is not possible to delete all required Documents',
+              })
+            }
+
           
            
           }
