@@ -243,6 +243,15 @@ export class CertificatesComponent implements OnInit {
     this.editableCertificate = this.submittedCertificate.Data.find((item)=>item.Id==id) as Certificate
     this.sendButton=true
     // console.log("trtgd : ",this.editableCertificate );
+
+    this.CertificateForm.patchValue({
+      'title':this.editableCertificate.Title,
+      'titleAr':this.editableCertificate.TitleAr,
+      'year':this.editableCertificate.Year,
+      'Description':this.editableCertificate.Description,
+      'DescriptionAr':this.editableCertificate.DescriptionAr,
+      'ImageCertificate':this.editableCertificate.CertificateUrl,
+})
     
   }
 
