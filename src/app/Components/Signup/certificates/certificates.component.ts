@@ -7,6 +7,7 @@ import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-certificates',
@@ -33,7 +34,8 @@ export class CertificatesComponent implements OnInit {
   constructor(private fb:FormBuilder ,
     private certificateService:CertificateService ,
      private loginService:LoginService,
-     private translateSwal:TranslateSwalsService) { }
+     private translateSwal:TranslateSwalsService,
+     private router:Router) { }
 
   ngOnInit(): void {
 
@@ -301,6 +303,20 @@ export class CertificatesComponent implements OnInit {
         'error'
       )
     })
+  }
+
+  Next(){
+    
+    if( this.submittedCertificate.Data.length >0 ){
+      this.router.navigateByUrl("/doctor-profile/documents");
+    }
+    else{
+      Swal.fire(
+        this.translation.Error,
+        "At least one certificate must be added",
+        'error'
+      )
+    }
   }
 
 }

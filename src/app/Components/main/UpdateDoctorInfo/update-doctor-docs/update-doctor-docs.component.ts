@@ -20,7 +20,7 @@ export class UpdateDoctorDocsComponent implements OnInit {
   DocumentsForm:FormGroup
   // Upload_Image:boolean;
   LegalDocumentList;
-  Documents;
+  Documents:any[];
   translation;
   idDocs=null;
   proffDocs=null;
@@ -70,7 +70,7 @@ constructor(
         this.DocumentService.GetLegalDocument(lang ).subscribe(
           (response)=>{
             this.LegalDocumentList = response.Data;
-            // console.log(this.LegalDocumentList)
+            // console.log("LegalDocumentList : ",this.LegalDocumentList)
           },
           (err)=>{ }
         )
@@ -85,8 +85,9 @@ constructor(
            this.DocumentService.GetDocuments(lang ).subscribe(
              (response)=>{
                this.Documents = response.Data;
-               this.count = response.Data.length
-              //  console.log(this.Documents)
+                             
+              //  this.count = response.Data.length
+              //  console.log(this.Documents[0])
                this.Documents.map(item=>{
                  if(item.LegalDocumentTypeId == 1){
                    this.idDocs=item                   
@@ -104,9 +105,12 @@ constructor(
          //#endregion
 
           //#region delete Document Method
-          DeleteDocument(lang:string , id)
+          DeleteDocument(lang:string , id,LegalDocumentTypeId:any)
           {
-            if(this.count >1){
+            let count = this.Documents.filter(c=>c["LegalDocumentTypeId"] == LegalDocumentTypeId);
+            // console.log( count.length > 1);
+            
+            if( count.length > 1 ){
               Swal.fire({
                 title:  this.translation.areusure,
                 text: this.translation.wontrevert,

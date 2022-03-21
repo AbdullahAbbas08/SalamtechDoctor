@@ -93,8 +93,14 @@ export class MainNavComponent implements OnInit {
     localStorage.removeItem('Authorization')
     localStorage.removeItem('Name')
     localStorage.removeItem('logo')
-    window.location.reload();
+    localStorage.removeItem("ProfileStatus")
+    // window.location.reload();
     this.router.navigate(['/Login']);
+  }
+
+  GoToMain(){
+    if( localStorage.getItem("ProfileStatus") =='3' )
+    this.router.navigateByUrl("/main");
   }
 
 }

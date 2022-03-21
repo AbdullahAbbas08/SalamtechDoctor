@@ -78,12 +78,33 @@ LoginDoctor(){
    this.loginDoctorForm.Password = this.LoginForm.controls.Password.value;
    this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
      this.AuthenticatedUser= res  
-    //  console.log(res);
+     console.log(res.Data["ProfileStatus"]);
     localStorage.setItem('Authorization',this.AuthenticatedUser.Data.Token)
     localStorage.setItem('Name',this.AuthenticatedUser.Data.Name);
     localStorage.setItem("logo",this.AuthenticatedUser.Data.Image);
+    localStorage.setItem("ProfileStatus",res.Data["ProfileStatus"]);
     this.toastr.success("Login Successfully ", 'Successfully');
-    this.router.navigate(["/main"]);
+    //0 profile
+    //1 certificate 
+    // 2 doc
+    //3 dash
+    if(localStorage.getItem("ProfileStatus") == '0'){
+      this.router.navigate(["/doctor-profile"]); 
+    }
+    else if(localStorage.getItem("ProfileStatus") == '1'){
+      this.router.navigateByUrl('/doctor-profile/certificates');
+    }
+    else if(localStorage.getItem("ProfileStatus") == '2'){
+      this.router.navigateByUrl('/doctor-profile/documents');
+
+    }
+    else if(localStorage.getItem("ProfileStatus") == '3'){
+      this.router.navigate(["/main"]);
+    }
+    else{
+      this.router.navigate(['/Login']);
+    }
+
     window.setInterval(() => {
       window.location.reload();
       this.SpinnerService.hide();

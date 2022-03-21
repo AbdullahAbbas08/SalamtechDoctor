@@ -34,7 +34,7 @@
               <img class="img-fluid w-75 mx-auto my-1"
               src="https://salamtech.azurewebsites.net/{{ idDocs.DocumentUrl }}"
             />
-            <div class="btn" (click)="DeleteDocument('en', idDocs.Id)">
+            <div class="btn" (click)="DeleteDocument('en', idDocs.Id , idDocs.LegalDocumentTypeId)">
               <span  class="text-danger">
                 <i class="far fa-trash-alt mx-1"></i>
               </span>
@@ -70,7 +70,7 @@
               <img class="img-fluid w-75 mx-auto my-1"
               src="https://salamtech.azurewebsites.net/{{ proffDocs.DocumentUrl }}"
             />
-            <div class="btn" (click)="DeleteDocument('en', proffDocs.Id)">
+            <div class="btn" (click)="DeleteDocument('en', proffDocs.Id , proffDocs.LegalDocumentTypeId)">
               <span  class="text-danger">
                 <i class="far fa-trash-alt mx-1"></i>
               </span>

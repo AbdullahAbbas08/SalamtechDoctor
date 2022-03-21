@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light px-md-5 " id="scrolltop">
   <div class="container-fluid">
-    <a class="navbar-brand " routerLink="/main"><img src="./assets/img/logo.webp" class="logo"></a>
+    <a class="navbar-brand " style="cursor: pointer;" (click)="GoToMain()" ><img src="./assets/img/logo.webp" class="logo"></a>
 
     <div
       class=" d-md-flex d-none align-baseline" [ngClass]="{'ml-md-auto': DefaultLang=='en' , 'mr-md-auto': DefaultLang=='ar'}"

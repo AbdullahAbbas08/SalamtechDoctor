@@ -232,7 +232,7 @@
     <!-- End Submit Form -->
     <div class="col-12 d-md-flex justify-content-md-end justify-content-center d-block text-center mt-5">
       <div class="col-md-3">
-        <button class="btn blue-btn" [routerLink]="['/doctor-profile/documents']">
+        <button class="btn blue-btn" (click)="Next()">
           {{ "mainModule.Certificate.Next" | translate }}
         </button>
       </div>

@@ -168,6 +168,7 @@ export class RegisterPageComponent implements OnInit {
       console.log(this.counter)
       if(this.counter === 0) clearInterval(intervalId)
   }, 1000)
+  
     Swal.fire({
       title: 'Phone Verification : '+code,
       input: 'text',
