@@ -128,11 +128,58 @@
           </div>
         </div>
      
+        <div class="row align-items-center">
+          <!-- email  -->
+          <div class="col-md-8 col-12 mb-2">
+            <div class="input-style">
+              <label class="label-input">
+                <span class="star"> * </span>
+                {{ "mainModule.DoctorInfo.Email" | translate }}
+              </label>
+  
+              <div class="form-group">
+                <input type="email" 
+                      class="form-control" 
+                      formControlName="Email" 
+                      placeholder="Example123@example.com"
+                      [class.is-valid]="  
+                                          DoctorInfoForm.controls['Email'].valid &&
+                                          DoctorInfoForm.controls['Email'].touched"
+                      [class.is-invalid]="
+                                          DoctorInfoForm.controls['Email'].invalid &&
+                                          DoctorInfoForm.controls['Email'].touched" />
+              </div>
+  
+            </div>
+          </div>
+  
+          <!-- Date_of_birth -->
+          <div class="col-12 col-md-4 mb-2 ">
+            <div class="">
+              <span class="lbl-Register">{{
+                "mainModule.DoctorInfo.Date_of_birth" | translate
+                }}</span>
+              <span class="star"> * </span>
+              <div class=" ">
+                <input type="date" id="birthOfDay" formControlName="DateOfBirth" class="form-control" [class.is-valid]="
+                  DoctorInfoForm.controls['DateOfBirth'].valid &&
+                  DoctorInfoForm.controls['DateOfBirth'].touched
+                " [class.is-invalid]="
+                  DoctorInfoForm.controls['DateOfBirth'].invalid &&
+                  DoctorInfoForm.controls['DateOfBirth'].touched
+                " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="10" minlength="3" />
+              </div>
+            </div>
+          </div>
+  
+        </div>
+
       <div class="row align-items-center">
     
    
       <!-- Gender -->
-      <div class="col-lg-4 col-md-12 mb-2 ">
+      <div class="col-lg-6 col-md-12 mb-2 ">
         <span class="lbl-Register">{{
           "mainModule.DoctorInfo.Gender" | translate
           }}</span>
@@ -152,7 +199,7 @@
       </div>
 
       <!-- Nationality -->
-      <div class=" col-lg-4 col-md-12 mb-2">
+      <div class=" col-lg-6 col-md-12 mb-2">
         <span class="lbl-Register">
           {{ "mainModule.DoctorInfo.Nationality" | translate }}
         </span>
@@ -165,7 +212,7 @@
       </div>
 
       <!-- Date_of_birth -->
-      <div class=" col-lg-4 col-md-12 mb-2">
+      <!-- <div class=" col-lg-4 col-md-12 mb-2">
         <div class="">
           <span class="lbl-Register">{{
             "mainModule.DoctorInfo.Date_of_birth" | translate
@@ -178,7 +225,7 @@
 
         </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row align-items-center">

@@ -76,7 +76,7 @@ import { ForgetPasswordComponent } from './Components/SignIn/forget-password/for
 import { OtpForgetpassComponent } from './Components/SignIn/otp-forgetpass/otp-forgetpass.component';
 import { ChangePasswordComponent } from './Components/SignIn/change-password/change-password.component';
 import { CdTimerModule } from 'angular-cd-timer';
-
+import { DatePipe } from '@angular/common';
 
 
 // AoT requires an exported function for factories
@@ -173,8 +173,7 @@ export function CreateTranslateLoader(http: HttpClient) {
        NgxSpinnerModule,
        CdTimerModule
     ],
-    
-  providers: [InterceptorsProvider],
+  providers: [InterceptorsProvider,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

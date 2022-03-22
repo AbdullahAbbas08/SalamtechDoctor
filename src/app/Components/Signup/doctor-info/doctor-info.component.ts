@@ -110,10 +110,16 @@ export class DoctorInfoComponent implements OnInit {
             SubSpeciality:[[],[Validators.required]],
             Seniority:['',[Validators.required]],
             BiographyAr:['' ],
-            Biography:['' ]
+            Biography:['' ],
+            Email:['',[Validators.required ,Validators.email]]
           });
     }
-    
+
+    isFieldValid(field): boolean {
+      return (
+        !this.DoctorInfoForm.get(field).valid && this.DoctorInfoForm.get(field).touched
+      )
+    }
 //#region Definition API's
 
   //#region GetSubSpecialistIdName
@@ -234,6 +240,7 @@ GetSpecialistIdName(lang:string)
     formData.append("MiddelNameAr", this.DoctorInfoModel.MiddelNameAr);
     formData.append("LastName", this.DoctorInfoModel.LastName);
     formData.append("LastNameAr", this.DoctorInfoModel.LastNameAr);
+    formData.append("Email", this.DoctorInfoModel.LastNameAr);
     formData.append("GenderId", this.DoctorInfoModel.GenderId as unknown as Blob);
     formData.append("NationalityId", this.DoctorInfoModel.NationalityId as unknown as Blob);
     formData.append("SeniorityLevelId", this.DoctorInfoModel.SeniorityLevelId as unknown as Blob);

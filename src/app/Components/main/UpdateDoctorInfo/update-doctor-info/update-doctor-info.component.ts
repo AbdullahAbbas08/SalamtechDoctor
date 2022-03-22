@@ -14,6 +14,7 @@ import { SignupService } from "src/Service/signup/signup.service";
 import Swal from "sweetalert2"; 
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: "app-update-doctor-info",
@@ -59,7 +60,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     private DoctorService: DoctorService,
     private toaster:ToastrService,
     private translateSwal:TranslateSwalsService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
+    private datePipe: DatePipe
   ) {}
   //#endregion
 
@@ -107,6 +109,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
       Speciality: [this.DoctorProfile.SpecialistId, [Validators.nullValidator]],
     
       BiographyAr: [this.DoctorProfile.DoctorInfo,  ],
+      Email: [this.DoctorProfile.Email,[Validators.required , Validators.email]  ],
+      DateOfBirth: [this.DoctorProfile.Birthday,[Validators.required ]  ],
       Biography: [this.DoctorProfile.DoctorInfoAr, ],
     });
 
@@ -252,6 +256,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
     let obj = {
       "DoctorInfo":this.DoctorInfoForm.controls.Biography.value,
       "DoctorInfoAr":this.DoctorInfoForm.controls.BiographyAr.value,
+      "Email":this.DoctorInfoForm.controls.Email.value,
+      "Birthday":this.DoctorInfoForm.controls.DateOfBirth.value,
       // "DoctorSubSpecialist": arr
     } as UpdateProfile;
    
@@ -344,9 +350,9 @@ export class UpdateDoctorInfoComponent implements OnInit {
         this.url_img = environment.ImagesURL+this.DoctorProfile.Image;
         this.GetSubSpecialistIdName('en',this.DoctorProfile.SpecialistId)
         this.date =  response.Data.Birthday.substring(0, 10)
-      //  console.log( this.DropDownList_SubSpeciality);
-       
-        
+       console.log( "-- : ",response.Data);
+       this.DoctorProfile.Birthday =  this.datePipe.transform(this.DoctorProfile.Birthday, 'yyyy-MM-dd')
+      //  document.getElementById("birthOfDay").value = "2014-02-09"; 
       },
       (err) => {
         this.SpinnerService.hide();

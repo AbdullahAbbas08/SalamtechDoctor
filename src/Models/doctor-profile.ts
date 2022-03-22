@@ -19,4 +19,6 @@ export class DoctorProfile {
     DoctorInfoAr: string;
     NationalityId: number;
     DoctorSubSpecialist: any;
+    Email:string;
+    
 }
