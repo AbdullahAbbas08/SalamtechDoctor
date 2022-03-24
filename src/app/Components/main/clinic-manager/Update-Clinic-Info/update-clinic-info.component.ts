@@ -33,7 +33,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   coordinates;
   ClinicToUpdate: any;
   clinicId;
-  clinicInfo;
+  clinicInfo: UpdateClinic;
   Cities;
   Areas;
   countries
@@ -46,7 +46,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   selectedItems: IdNameList[] = [];
   selectedItemsIds: number[] = [];
   dropdownSettings: IDropdownSettings = {};
-  selectedCities:any[];
+  selectedCities: any[];
 
   constructor(
     private modalService: NgbModal,
@@ -54,15 +54,15 @@ export class UpdateClinicInfoComponent implements OnInit {
     private ClinicService: ClinicInfoService,
     private Router: Router,
     private route: ActivatedRoute,
-    private builder:FormBuilder,
-    private toaster:ToastrService,
-    private translateSwal:TranslateSwalsService,
+    private builder: FormBuilder,
+    private toaster: ToastrService,
+    private translateSwal: TranslateSwalsService,
     private SpinnerService: NgxSpinnerService,
-    private locationService:LocationService
+    private locationService: LocationService
   ) {
-    this.route.paramMap.subscribe(param=>{
-      this.clinicId=param.get('ID');
-      this.getClinicInfo( this.clinicId)
+    this.route.paramMap.subscribe(param => {
+      this.clinicId = param.get('ID');
+      this.getClinicInfo(this.clinicId)
 
     })
     this.coordinates = {} as Coordinates;
@@ -70,7 +70,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.selectedCities = [];
+    this.selectedCities = [];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'Id',
@@ -84,76 +84,75 @@ export class UpdateClinicInfoComponent implements OnInit {
   }
   //#endregion
 
-  getTranslitation()  {
+  getTranslitation() {
     this.translateSwal.Translitation().subscribe((values) => {
       // console.log(values);
-      this.translation =values 
-      });
-    }
-  //#region get Services
-  GetServices() {
-    this.lookupService.GetServices('en').subscribe(
-      (res) => {
-        this.Services = res.Data;
-        this.dropdownList = this.Services
-      },
-      (err) => {
-      }
-    );
+      this.translation = values
+    });
   }
-  //#endregion
-  getClinicInfo(id){
+
+  getClinicInfo(id) {
     this.SpinnerService.show();
-    this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res=>{
-      this.clinicInfo=res.Data
-      this.lat=res.Data.Latitude;
-      this.long=res.Data.Longitude;
+    this.ClinicService.GetDoctorClinicByClinicId(id).subscribe(res => {
+      this.clinicInfo = res.Data;
+      
+      for (let index = 0; index < res.Data.HealthEntityServiceName.length; index++) {
+        this.selectedItems.push({
+          Name: res.Data.HealthEntityServiceName[index],
+          Id: res.Data.HealthEntityServices[index]
+        } as IdNameList);
+
+      }
+      // console.log("this.clinicInfo : ",this.clinicInfo);
+
+      this.lat = res.Data.Latitude;
+      this.long = res.Data.Longitude;
       this.SpinnerService.hide();
-      this.clinicInfo.Logo? this.imgURL = 'https://salamtech.azurewebsites.net'+this.clinicInfo.Logo :  this.imgURL =  '../../../../assets/img/DoctorImg/avatar.png';
+      this.clinicInfo.Logo ? this.imgURL = 'https://salamtech.azurewebsites.net' + this.clinicInfo.Logo : this.imgURL = '../../../../assets/img/DoctorImg/avatar.png';
       this.initForm()
       this.getCity()
-       this.getCountry()
-       this.getAreas(this.clinicInfo?.CityId)
+      this.getCountry()
+      this.getAreas(this.clinicInfo?.CityId)
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
       // console.log(this.phones);
 
-        this.locationService.lat.next(this.lat)
-        this.locationService.long.next(this.long)
-      
-      if(this.phones){
+      this.locationService.lat.next(this.lat)
+      this.locationService.long.next(this.long)
+
+      if (this.phones) {
         for (let num of this.phones) {
           this.addPhone(num)
         }
       }
-      else{
+      else {
         this.addPhone()
       }
     })
   }
 
-  initForm(){
+  initForm() {
 
-    this.FormInfo=this.builder.group({
-      ClinicId :[this.clinicId , Validators.required],
-      HealthEntityPhoneDtos: new FormArray([] , Validators.required),
-      Name :[this.clinicInfo?.Name||'' , Validators.required],
-      NameAr:[this.clinicInfo?.NameAr||'' , Validators.required],
-      Email:[this.clinicInfo?.Email||'' , Validators.required],
-      CountryId :[this.clinicInfo?.CountryId ||'' , Validators.required],
-      CityId :[parseInt(this.clinicInfo?.CityId) ||'' , Validators.required],
-      AreaId :[parseInt(this.clinicInfo?.AreaId) ||'' , Validators.required],
-      Address :[this.clinicInfo?.Address ||'' , Validators.required],
-      Latitude:[this.clinicInfo?.Latitude||''],
-      Longitude:[this.clinicInfo?.Longitude||''],
-      BlockNo:[this.clinicInfo?.BlockNo||'' ,[Validators.nullValidator, Validators.pattern(/^\d*$/)] ],
-      FloorNo:[this.clinicInfo?.FloorNo||'' ,[Validators.nullValidator, Validators.pattern(/^\d*$/)] ],
-      FixedFee :[this.clinicInfo?.FixedFee ||'' , [Validators.required, Validators.pattern(/^\d*$/)]],
-      clinicLogo:[this.clinicInfo?.Logo||''],
-      HealthEntityServiceName:[this.clinicInfo?.HealthEntityServiceName || '']
+    this.FormInfo = this.builder.group({
+      ClinicId: [this.clinicId, Validators.required],
+      HealthEntityPhoneDtos: new FormArray([], Validators.required),
+      Name: [this.clinicInfo?.Name || '', Validators.required],
+      NameAr: [this.clinicInfo?.NameAr || '', Validators.required],
+      Email: [this.clinicInfo?.Email || '', Validators.required],
+      CountryId: [this.clinicInfo?.CountryId || '', Validators.required],
+      CityId: [this.clinicInfo?.CityId || '', Validators.required],
+      AreaId: [this.clinicInfo?.AreaId || '', Validators.required],
+      Address: [this.clinicInfo?.Address || '', Validators.required],
+      Latitude: [this.clinicInfo?.Latitude || ''],
+      Longitude: [this.clinicInfo?.Longitude || ''],
+      BlockNo: [this.clinicInfo?.BlockNo || '', [Validators.nullValidator, Validators.pattern(/^\d*$/)]],
+      FloorNo: [this.clinicInfo?.FloorNo || '', [Validators.nullValidator, Validators.pattern(/^\d*$/)]],
+      FixedFee: [this.clinicInfo?.FixedFee || '', [Validators.required, Validators.pattern(/^\d*$/)]],
+      clinicLogo: [this.clinicInfo?.Logo || ''],
+      Services: [this.selectedItems]
     })
   }
 
-  
+
   isFieldValid(field): boolean {
     return (
       !this.FormInfo.get(field)?.valid && this.FormInfo.get(field)?.touched
@@ -176,37 +175,30 @@ export class UpdateClinicInfoComponent implements OnInit {
     del.removeAt(index);
   }
 
-
-  getCountry(){
+  getCountry() {
     this.lookupService.GetCountries('en').subscribe(
-      (response)=>{
-        this.countries =  response.Data;
+      (response) => {
+        this.countries = response.Data;
         // console.log(this.countries);
-    })
+      })
   }
-  
-getCity(){
-  this.lookupService.GetCities('en').subscribe(
-    (response)=>{
-      this.Cities =  response.Data;
-      // console.log(this.Cities);
-  })
-}
- 
-getAreas(id){
-  this.lookupService.GetAreaByCityId(id).subscribe(
-    (response)=>{
-      this.Areas =  response.Data;
-      // console.log(this.Areas);
-      // console.log("id : ",id);
-  })
-}
 
+  getCity() {
+    this.lookupService.GetCities('en').subscribe(
+      (response) => {
+        this.Cities = response.Data;
+        // console.log(this.Cities);
+      })
+  }
 
-
-
-
-
+  getAreas(id) {
+    this.lookupService.GetAreaByCityId(id).subscribe(
+      (response) => {
+        this.Areas = response.Data;
+        // console.log(this.Areas);
+        // console.log("id : ",id);
+      })
+  }
 
   //#region openGoogelMapsModal
   openGoogelMapsModal() {
@@ -225,14 +217,14 @@ getAreas(id){
     modalRef.result.then(
       (result) => {
         // this.ClinicToUpdate.Address = result.address;        
-        this.FormInfo.get("Address").setValue(result.address);        
-        this.FormInfo.get("Latitude").setValue(result.latitude);        
-        this.FormInfo.get("Longitude").setValue(result.longitude);        
+        this.FormInfo.get("Address").setValue(result.address);
+        this.FormInfo.get("Latitude").setValue(result.latitude);
+        this.FormInfo.get("Longitude").setValue(result.longitude);
       },
-      (reason) => {}
+      (reason) => { }
     );
   }
-
+//#endregion
 
   //#region review AND File FormData image from input file
   public imagePath: any;
@@ -242,16 +234,15 @@ getAreas(id){
   preview(files: any) {
     if (files.length === 0) return;
 
-    if (files[0].size > 3000000)
-    {
+    if (files[0].size > 3000000) {
       Swal.fire(
         'Error!',
         'image size is larger than 3mb',
         'error'
       )
-    this.message = "image size is larger than 3mb.";
-    return;
-  }
+      this.message = "image size is larger than 3mb.";
+      return;
+    }
     // var mimeType = files[0].type;
     // if (mimeType.match(/image\/*/) == null) {
     //   this.message = "Only images are supported.";
@@ -277,12 +268,12 @@ getAreas(id){
     // console.log(items);
   }
 
-
-  submitClinic(){
+  submitClinic() {
+    
     this.SpinnerService.show();
     let arr = [];
     // console.log(this.addressForm.value);
-    this.phones_control.map((phone , index) => {
+    this.phones_control.map((phone, index) => {
       if (phone.value !== null) {
         arr.push(phone.value)
       }
@@ -291,67 +282,85 @@ getAreas(id){
       }
     })
     // console.log(arr);
-    
 
-   this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
-   this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
-   this.FormInfo.get('CityId').setValue(parseInt(this.FormInfo.get('CityId').value))
-   this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
-   this.FormInfo.get('AreaId').setValue(parseInt(this.FormInfo.get('AreaId').value))
-   
+
+    this.FormInfo.get('HealthEntityPhoneDtos').setValue(arr)
+    this.FormInfo.get('ClinicId').setValue(parseInt(this.FormInfo.get('ClinicId').value))
+    this.FormInfo.get('CityId').setValue(parseInt(this.FormInfo.get('CityId').value))
+    this.FormInfo.get('CountryId').setValue(parseInt(this.FormInfo.get('CountryId').value))
+    this.FormInfo.get('AreaId').setValue(parseInt(this.FormInfo.get('AreaId').value))
+
     // console.log(this.FormInfo.value);
- 
 
-  //     //#region Create Form Data
-      let formData = new FormData();   
-      formData.set("ClinicId",this.FormInfo.get('ClinicId').value as unknown as Blob)
-      formData.set("CityId",  this.FormInfo.get('CityId').value as unknown as Blob)
-      formData.set("CountryId", this.FormInfo.get('CountryId').value as unknown as Blob)
-      formData.set("AreaId",  this.FormInfo.get('AreaId').value as unknown as Blob)
-      formData.set("Name",  this.FormInfo.get('Name').value as unknown as Blob)
-      formData.set("NameAr",  this.FormInfo.get('NameAr').value as unknown as Blob)
-      formData.set("Email",  this.FormInfo.get('Email').value as unknown as Blob)
-      formData.set("Address",  this.FormInfo.get('Address').value as unknown as Blob)
-      formData.set("FixedFee",  this.FormInfo.get('FixedFee').value as unknown as Blob)
-      formData.set("clinicLogo",  this.FormInfo.get('clinicLogo').value as unknown as Blob)
-      formData.set("Latitude",  this.FormInfo.get('Latitude').value as unknown as Blob)
-      formData.set("Longitude",  this.FormInfo.get('Longitude').value as unknown as Blob)
-      formData.set("BlockNo",  this.FormInfo.get('BlockNo').value as unknown as Blob)
-      formData.set("FloorNo",  this.FormInfo.get('FloorNo').value as unknown as Blob)
-      formData.append('Latitude',this.FormInfo.get('Latitude').value)
-      formData.append('Longitude', this.FormInfo.get('Longitude').value) 
-      // formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
-      for (const index in arr) 
-      {
-          // instead of passing this.arrayValues.toString() iterate for each item and append it to form.
-          formData.append(`HealthEntityPhoneDtos[${index}]`,arr[index].toString());
-      }
-      //#endregion
-   
-      if(this.FormInfo.valid){
-        this.ClinicService.UpdateDoctorClinic(formData).subscribe((res)=>{
-          this.ClinicService.VisitFees = this.FormInfo.get('FixedFee').value;
-          // console.log(res);
-          this.getClinicInfo( this.clinicId)
-          this.toaster.success(this.translation.UpdatedSuccessfully,this.translation.Great);
-          // this.Router.navigate(['clinic/gallary/',this.clinicId]);
+
+    //     //#region Create Form Data
+    let formData = new FormData();
+    formData.set("ClinicId", this.FormInfo.get('ClinicId').value as unknown as Blob)
+    formData.set("CityId", this.FormInfo.get('CityId').value as unknown as Blob)
+    formData.set("CountryId", this.FormInfo.get('CountryId').value as unknown as Blob)
+    formData.set("AreaId", this.FormInfo.get('AreaId').value as unknown as Blob)
+    formData.set("Name", this.FormInfo.get('Name').value as unknown as Blob)
+    formData.set("NameAr", this.FormInfo.get('NameAr').value as unknown as Blob)
+    formData.set("Email", this.FormInfo.get('Email').value as unknown as Blob)
+    formData.set("Address", this.FormInfo.get('Address').value as unknown as Blob)
+    formData.set("FixedFee", this.FormInfo.get('FixedFee').value as unknown as Blob)
+    formData.set("clinicLogo", this.FormInfo.get('clinicLogo').value as unknown as Blob)
+    formData.set("Latitude", this.FormInfo.get('Latitude').value as unknown as Blob)
+    formData.set("Longitude", this.FormInfo.get('Longitude').value as unknown as Blob)
+    formData.set("BlockNo", this.FormInfo.get('BlockNo').value as unknown as Blob)
+    formData.set("FloorNo", this.FormInfo.get('FloorNo').value as unknown as Blob)
+    formData.append('Latitude', this.FormInfo.get('Latitude').value)
+    formData.append('Longitude', this.FormInfo.get('Longitude').value)
+    // formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)
+    for (const index in arr) {
+      // instead of passing this.arrayValues.toString() iterate for each item and append it to form.
+      formData.append(`HealthEntityPhoneDtos[${index}]`, arr[index].toString());
+    }
+    //#endregion
+
+    for(const index in  this.selectedItems){
+      formData.append(`HealthEntityServiceDtos[${index}]`,this.selectedItems[index].Id.toString());
+    }
+
+    if (this.FormInfo.valid) {
+      this.ClinicService.UpdateDoctorClinic(formData).subscribe((res) => {
+        this.ClinicService.VisitFees = this.FormInfo.get('FixedFee').value;
+        // console.log(res);
+        this.getClinicInfo(this.clinicId)
+        this.toaster.success(this.translation.UpdatedSuccessfully, this.translation.Great);
+        // this.Router.navigate(['clinic/gallary/',this.clinicId]);
+        this.SpinnerService.hide();
+        this.Router.navigate(['main/updateclinic/UpdateClinicGalary', this.clinicId]);
+      },
+        (err) => {
           this.SpinnerService.hide();
-          this.Router.navigate(['main/updateclinic/UpdateClinicGalary',this.clinicId]);
-         },
-         (err)=>{
-       this.SpinnerService.hide();
           //  console.log(err)
           Swal.fire(
             this.translation.Error,
             err.error.Message,
             'error'
           )
-         })
-      }
-      else{
-        this.FormInfo.markAllAsTouched()
-       this.SpinnerService.hide();
-        
-      }
+        })
+    }
+    else {
+      this.FormInfo.markAllAsTouched()
+      this.SpinnerService.hide();
+
+    }
   }
+
+  //#region get Services
+  GetServices() {
+    this.lookupService.GetServices('en').subscribe(
+      (res) => {
+        this.Services = res.Data;
+        this.dropdownList = this.Services
+        // console.log("this.Services : ",this.Services);
+
+      },
+      (err) => {
+      }
+    );
+  }
+  //#endregion
 }

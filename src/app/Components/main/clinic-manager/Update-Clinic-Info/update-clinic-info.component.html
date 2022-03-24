@@ -1,20 +1,21 @@
 <div class="row">
   <div class="col-12" style="padding-left: 0px; padding-bottom: 20px">
     <div class="greenText" style="font-size: 16px; font-weight: 500">
-      {{ "mainModule.Clinic.clinic" | translate}} > {{ "mainModule.Clinic.sidebarinfo"| translate }}
+      {{ "mainModule.Clinic.clinic" | translate }} >
+      {{ "mainModule.Clinic.sidebarinfo" | translate }}
     </div>
   </div>
 </div>
 
 <div class="row update-Clinic-style">
-  <div class="col-12 d-block"  >
+  <div class="col-12 d-block">
     <form [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
       <div class="row">
         <!-- Picture Doctor -->
         <div class="col-lg-4 col-md-12 col-sm-12 mb-2">
           <div class="row img-block just">
             <div class="col img-col-block">
-              <img src="{{imgURL}}" />
+              <img src="{{ imgURL }}" />
             </div>
           </div>
 
@@ -35,7 +36,7 @@
                 onclick="document.getElementById('getFile').click()"
                 class="upload-btn btn mt-2"
               >
-              {{ "mainModule.ClinicInfo.ChangeLogo" | translate}}
+                {{ "mainModule.ClinicInfo.ChangeLogo" | translate }}
               </button>
             </div>
           </div>
@@ -45,40 +46,47 @@
           <div class="row">
             <!-- Name -->
             <div class="col-12 col-md-6 mb-2">
-              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Name" | translate}}</span>
+              <span class="lbl-Register">
+                {{ "mainModule.ClinicInfo.Name" | translate }}</span
+              >
               <span class="star"> * </span>
               <div class="input-style">
                 <input
                   type="text"
                   class="form-control"
-                  formControlName="Name" />
-                  
+                  formControlName="Name"
+                />
+
                 <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                   minlength="3" -->
 
-                <app-fielderror 
-                [displayError]="isFieldValid('Name')"
-                errorMsg="{{'errorField.firstname' | translate}}"
-              ></app-fielderror>
+                <app-fielderror
+                  [displayError]="isFieldValid('Name')"
+                  errorMsg="{{ 'errorField.firstname' | translate }}"
+                >
+                </app-fielderror>
               </div>
             </div>
             <!-- NameAr -->
             <div class="col-12 col-md-6 textForArabic mb-2">
-              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.NameAr" | translate}}</span>
+              <span class="lbl-Register">
+                {{ "mainModule.ClinicInfo.NameAr" | translate }}</span
+              >
               <span class="star"> * </span>
               <div class="input-style">
                 <input
                   type="text"
                   class="form-control textForArabic"
-                  formControlName="NameAr"/>
+                  formControlName="NameAr"
+                />
 
-                  <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                <!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                   minlength="3" -->
 
-                <app-fielderror 
-                [displayError]="isFieldValid('NameAr')"
-                errorMsg="{{'errorField.firstname' | translate}}"
-              ></app-fielderror>
+                <app-fielderror
+                  [displayError]="isFieldValid('NameAr')"
+                  errorMsg="{{ 'errorField.firstname' | translate }}"
+                ></app-fielderror>
               </div>
             </div>
             <!-- Email -->
@@ -87,7 +95,7 @@
                 "mainModule.signup.Email" | translate
               }}</span>
               <span class="star"> * </span>
-              <div   class="input-style">
+              <div class="input-style">
                 <input
                   type="email"
                   formControlName="Email"
@@ -95,32 +103,38 @@
                   maxlength="50"
                   minlength="5"
                 />
-                <app-fielderror 
-                      [displayError]="isFieldValid('Email')"
-                      errorMsg="{{'errorField.email' | translate}}"
-                    ></app-fielderror>
+                <app-fielderror
+                  [displayError]="isFieldValid('Email')"
+                  errorMsg="{{ 'errorField.email' | translate }}"
+                >
+                </app-fielderror>
               </div>
             </div>
             <!-- FixedFee -->
             <div class="col-12 col-md-6 mb-2">
-              <span class="lbl-Register">{{ "mainModule.ClinicInfo.FixedFee" | translate}}</span>
+              <span class="lbl-Register">{{
+                "mainModule.ClinicInfo.FixedFee" | translate
+              }}</span>
               <span class="star"> * </span>
-              <div   class="input-style">
+              <div class="input-style">
                 <input
                   type="number"
                   formControlName="FixedFee"
                   style="border-width: 1px; outline: none; display: block"
                   class="form-control"
                 />
-                <app-fielderror 
-                [displayError]="isFieldValid('FixedFee')"
-                errorMsg="{{'errorField.Fees' | translate}}"
-              ></app-fielderror>
+                <app-fielderror
+                  [displayError]="isFieldValid('FixedFee')"
+                  errorMsg="{{ 'errorField.Fees' | translate }}"
+                >
+                </app-fielderror>
               </div>
             </div>
             <!-- country -->
             <div class="col-12 col-md-4 mb-2">
-              <span class="lbl-Register">{{ "mainModule.DoctorInfo.Egypt" | translate}}</span>
+              <span class="lbl-Register">{{
+                "mainModule.DoctorInfo.Egypt" | translate
+              }}</span>
               <span class="star"> * </span>
               <select
                 class="form-select"
@@ -132,11 +146,12 @@
                   {{ item.Name }}
                 </option>
               </select>
-             
             </div>
             <!-- city -->
             <div class="col-12 col-md-4 mb-2">
-              <span class="lbl-Register">{{ "mainModule.ClinicInfo.City" | translate}}</span>
+              <span class="lbl-Register">{{
+                "mainModule.ClinicInfo.City" | translate
+              }}</span>
               <span class="star"> * </span>
               <select
                 class="form-select"
@@ -150,14 +165,17 @@
                   {{ item.Name }}
                 </option>
               </select>
-              <app-fielderror 
-              [displayError]="isFieldValid('CityId')"
-              errorMsg="{{'errorField.city' | translate}}"
-            ></app-fielderror>
+              <app-fielderror
+                [displayError]="isFieldValid('CityId')"
+                errorMsg="{{ 'errorField.city' | translate }}"
+              >
+              </app-fielderror>
             </div>
-             <!-- Area -->
-             <div class="col-12 col-md-4 mb-2">
-              <span class="lbl-Register"> {{ "mainModule.ClinicInfo.Area" | translate}} </span>
+            <!-- Area -->
+            <div class="col-12 col-md-4 mb-2">
+              <span class="lbl-Register">
+                {{ "mainModule.ClinicInfo.Area" | translate }}
+              </span>
               <span class="star"> * </span>
               <select
                 class="form-select"
@@ -170,37 +188,42 @@
                   {{ item.Name }}
                 </option>
               </select>
-              <app-fielderror 
+              <app-fielderror
                 [displayError]="isFieldValid('AreaId')"
-                errorMsg="{{'errorField.Area' | translate}}"
-              ></app-fielderror>
+                errorMsg="{{ 'errorField.Area' | translate }}"
+              >
+              </app-fielderror>
             </div>
             <!-- address -->
-            <div class="col-12 row  align-items-center">
+            <div class="col-12 row align-items-center">
               <!-- Address -->
               <div class="col-12 col-md-8 mb-2">
-                <span class="lbl-Register">{{ "mainModule.ClinicInfo.Location" | translate}}</span>
+                <span class="lbl-Register">{{
+                  "mainModule.ClinicInfo.Location" | translate
+                }}</span>
                 <!-- <span class="star"> * </span> -->
                 <div class="input-style">
                   <input
                     formControlName="Address"
                     type="text"
-                     
                     class="form-control textForArabic"
                   />
-                  <app-fielderror 
-                  [displayError]="isFieldValid('Address')"
-                  errorMsg="{{'errorField.Address' | translate}}"
-                ></app-fielderror>
+                  <app-fielderror
+                    [displayError]="isFieldValid('Address')"
+                    errorMsg="{{ 'errorField.Address' | translate }}"
+                  ></app-fielderror>
                 </div>
               </div>
-      
-              <div class="col-12 col-md-4 mb-2 "  >
-                 <div
-                  class="d-flex justify-content-center "
+
+              <div class="col-12 col-md-4 mb-2">
+                <div
+                  class="d-flex justify-content-center"
                   style="align-items: center"
                 >
-                  <button class="btn locationButton" (click)="openGoogelMapsModal()">
+                  <button
+                    class="btn locationButton"
+                    (click)="openGoogelMapsModal()"
+                  >
                     <svg
                       class="mb-1"
                       width="21"
@@ -226,69 +249,79 @@
                         </clipPath>
                       </defs>
                     </svg>
-                    {{ "mainModule.ClinicInfo.PickLocation" | translate}}
+                    {{ "mainModule.ClinicInfo.PickLocation" | translate }}
                   </button>
                 </div>
               </div>
             </div>
             <!-- phone -->
-            <div class="col-12  row mb-2" formArrayName="HealthEntityPhoneDtos">
-              <span class="lbl-Register">{{ "mainModule.ClinicInfo.PhoneNumber" | translate}} <span class="star"> * </span></span>
-              
-              <div class="col-12 col-md-6 mb-2  "   *ngFor="let phone of phones_control; let i = index"   >
+            <div class="col-12 row mb-2" formArrayName="HealthEntityPhoneDtos">
+              <span class="lbl-Register"
+                >{{ "mainModule.ClinicInfo.PhoneNumber" | translate }}
+                <span class="star"> * </span></span
+              >
+
+              <div
+                class="col-12 col-md-6 mb-2"
+                *ngFor="let phone of phones_control; let i = index"
+              >
                 <div class="row align-items-center">
-                      <div class="col-10 ">
-                        <div   class="input-style  ">
-                          <input
-                            type="text"
-                            style="  border-width: 1px;
-                                      outline: none;
-                                      display: block;
-                                      padding-left: 59px; 
-                                      margin-bottom: 20px"
-      
-                            class="form-control mb-0"
-                            [formControlName]="i"
-                            [class.icon]="1"
-                            maxlength="11"
-                            minlength="8"
-                            required
-      
-                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                          />
-                          <app-fielderror 
-                          [displayError]="isFieldValid('HealthEntityPhoneDtos')"
-                          errorMsg="{{'errorField.phone' | translate}}"
-                        ></app-fielderror>
-                          <span class="unit">+2</span>
-                        </div>
-                      </div> 
-                      <div class="col-2  ">
-                        <button
-                          class="btn btn-outline-danger input-group-append"
-                          type="button"
-                          id="button-addon2"
-                          (click)="deleteFromGroup(i)"
-                          *ngIf="i>0"
-                          style="margin-bottom: 20px"
-                        >
-                          <i class="fas fa-trash-alt"></i>
-                        
-                        </button>
-                      </div>
+                  <div class="col-10">
+                    <div class="input-style">
+                      <input
+                        type="text"
+                        style="
+                          border-width: 1px;
+                          outline: none;
+                          display: block;
+                          padding-left: 59px;
+                          margin-bottom: 20px;
+                        "
+                        class="form-control mb-0"
+                        [formControlName]="i"
+                        [class.icon]="1"
+                        maxlength="11"
+                        minlength="8"
+                        required
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                      />
+                      <app-fielderror
+                        [displayError]="isFieldValid('HealthEntityPhoneDtos')"
+                        errorMsg="{{ 'errorField.phone' | translate }}"
+                      ></app-fielderror>
+                      <span class="unit">+2</span>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <button
+                      class="btn btn-outline-danger input-group-append"
+                      type="button"
+                      id="button-addon2"
+                      (click)="deleteFromGroup(i)"
+                      *ngIf="i > 0"
+                      style="margin-bottom: 20px"
+                    >
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
-        
+
               <div class="col-md-3" style="margin-bottom: 20px">
-                  <button class="locationButton mb-2 border-0" (click)="addPhone()">
-                    {{ "mainModule.ClinicInfo.addphone" | translate}}
-                  </button>
+                <button
+                  class="locationButton mb-2 border-0"
+                  (click)="addPhone()"
+                >
+                  {{ "mainModule.ClinicInfo.addphone" | translate }}
+                </button>
               </div>
             </div>
             <!-- Building Number -->
             <div class="col-12 col-md-6 mb-2">
-              <span class="lbl-Register">{{ "mainModule.ClinicInfo.BuildingNumber" | translate}}</span>
-              <div   class="input-style">
+              <span class="lbl-Register">{{
+                "mainModule.ClinicInfo.BuildingNumber" | translate
+              }}</span>
+              <div class="input-style">
                 <input
                   type="number"
                   formControlName="BlockNo"
@@ -297,11 +330,13 @@
                 />
               </div>
             </div>
-      
+
             <!-- FloorNumber -->
             <div class="col-12 col-md-6 mb-2">
-              <span class="lbl-Register">{{ "mainModule.ClinicInfo.FloorNumber" | translate}}</span>
-              <div   class="input-style">
+              <span class="lbl-Register">{{
+                "mainModule.ClinicInfo.FloorNumber" | translate
+              }}</span>
+              <div class="input-style">
                 <input
                   type="number"
                   formControlName="FloorNo"
@@ -311,23 +346,32 @@
               </div>
             </div>
             <!-- service -->
-            <div class="col-12  mb-2">
+            <div class="col-12 mb-2">
               <span class="lbl-Register">
-                {{"mainModule.ClinicInfo.Services" | translate}}
-            </span>
-              <div   class="input-style">
-                <input
-                  type="text"
-                  style="border-width: 1px; outline: none; display: block"
-                  class="form-control" 
-                  formControlName="HealthEntityServiceName"
-                  readonly
-                />
-                
-              </div>
+                {{ "mainModule.ClinicInfo.Services" | translate }}
+              </span>
+              <!-- Services -->
+
+              <ng-multiselect-dropdown
+                formControlName="Services"
+                placeholder=" {{
+                  'mainModule.ClinicInfo.selectServices' | translate
+                }}"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (ngModelChange)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+              <app-fielderror
+                [displayError]="isFieldValid('Services')"
+                errorMsg="{{ 'errorField.Services' | translate }}"
+              >
+              </app-fielderror>
             </div>
-             <!-- Services -->
-          <!-- <div class="col-12 mb-3">
+            <!-- Services -->
+            <!-- <div class="col-12 mb-3">
             <span class="lbl-Register">
                 {{"mainModule.ClinicInfo.Services" | translate}}
             </span>
@@ -348,26 +392,21 @@
           </div>
         </div>
       </div>
-
-
-
     </form>
   </div>
 
-     <div class=" d-flex justify-content-end">
-      
-        <button
-          (click)="submitClinic()"
-          class="blue-btn btn"
-        >
-        {{ "mainModule.ClinicInfo.Next" | translate}}
-        </button>
-      </div>
-     
+  <div class="d-flex justify-content-end">
+    <button (click)="submitClinic()" class="blue-btn btn">
+      {{ "mainModule.ClinicInfo.Next" | translate }}
+    </button>
+  </div>
 </div>
 
-
-  <!-- spinner -->
-  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-    <p style="color: white"> {{ 'spinner' | translate }} </p>  
-  </ngx-spinner> 
+<!-- spinner -->
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">{{ "spinner" | translate }}</p>
+</ngx-spinner>

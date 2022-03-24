@@ -14,4 +14,6 @@ export class UpdateClinic {
     FloorNo                 :number;
     FixedFee                :number;
     Inactive                :boolean;
+    HealthEntityServiceName :string[];
+    HealthEntityServices    :number[];
 }
