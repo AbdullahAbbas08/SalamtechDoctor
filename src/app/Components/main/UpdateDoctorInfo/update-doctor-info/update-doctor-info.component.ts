@@ -102,6 +102,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
   //#endregion
 
   initForm() {
+    console.log("date : ",this.DoctorProfile.Birthday);
+    
     this.DoctorInfoForm = this.fb.group({
  
       ImageDoctor: [this.DoctorProfile.Image, [Validators.nullValidator]],
