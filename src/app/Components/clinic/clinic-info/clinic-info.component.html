@@ -275,12 +275,12 @@
         <div class="col-12 row">
 
           <!-- Building Number -->
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-4 mb-3">
             <span class="lbl-Register">
               {{"mainModule.ClinicInfo.BuildingNumber" | translate}}
             </span>
             <div class="input-style">
-              <input formControlName="BuildingNumber" type="number"
+              <input formControlName="BuildingNumber" type="text"
                 style="border-width: 1px; outline: none; display: block" class="form-control" [class.is-valid]="
                       ClinicInfoForm.controls['BuildingNumber'].valid &&
                       ClinicInfoForm.controls['BuildingNumber'].touched
@@ -294,7 +294,7 @@
           </div>
 
           <!-- FloorNumber -->
-          <div class="col-12 col-md-6 mb-3">
+          <div class="col-12 col-md-4 mb-3">
             <span class="lbl-Register">
               {{"mainModule.ClinicInfo.FloorNumber" | translate}}
             </span>
@@ -309,6 +309,25 @@
                     " />
               <app-fielderror [displayError]="isFieldValid('FloorNumber')"
                 errorMsg="{{'errorField.FloorNumber' | translate}}"></app-fielderror>
+            </div>
+          </div>
+
+          <!-- ApartmentNo -->
+          <div class="col-12 col-md-4 mb-3">
+            <span class="lbl-Register">
+              {{"mainModule.ClinicInfo.ApartmentNo" | translate}}
+            </span>
+            <div class="input-style">
+              <input formControlName="ApartmentNo" type="text"
+                style="border-width: 1px; outline: none; display: block" class="form-control" [class.is-valid]="
+                      ClinicInfoForm.controls['ApartmentNo'].valid &&
+                      ClinicInfoForm.controls['ApartmentNo'].touched
+                    " [class.is-invalid]="
+                      ClinicInfoForm.controls['ApartmentNo'].invalid &&
+                      ClinicInfoForm.controls['ApartmentNo'].touched
+                    " />
+              <app-fielderror [displayError]="isFieldValid('ApartmentNo')"
+                errorMsg="{{'errorField.ApartmentNo' | translate}}"></app-fielderror>
             </div>
           </div>
 

@@ -144,8 +144,8 @@ export class UpdateClinicInfoComponent implements OnInit {
       Address: [this.clinicInfo?.Address || '', Validators.required],
       Latitude: [this.clinicInfo?.Latitude || ''],
       Longitude: [this.clinicInfo?.Longitude || ''],
-      BlockNo: [this.clinicInfo?.BlockNo || '', [Validators.nullValidator, Validators.pattern(/^\d*$/)]],
-      FloorNo: [this.clinicInfo?.FloorNo || '', [Validators.nullValidator, Validators.pattern(/^\d*$/)]],
+      BlockNo: [this.clinicInfo?.BlockNo || '', [Validators.nullValidator]],
+      FloorNo: [this.clinicInfo?.FloorNo || '', [Validators.nullValidator]],
       FixedFee: [this.clinicInfo?.FixedFee || '', [Validators.required, Validators.pattern(/^\d*$/)]],
       clinicLogo: [this.clinicInfo?.Logo || ''],
       Services: [this.selectedItems]

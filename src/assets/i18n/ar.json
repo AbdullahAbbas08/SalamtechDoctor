@@ -145,6 +145,7 @@
       "Street": "الشارع",
       "BuildingNumber": "رقم المبنى",
       "FloorNumber": "رقم الدور",
+      "ApartmentNo":"رقم الشقة ",
       "ApartmentNumber": "رقم ",
       "Services": "الخدمات",
       "selectServices": "اختر الخدمات",

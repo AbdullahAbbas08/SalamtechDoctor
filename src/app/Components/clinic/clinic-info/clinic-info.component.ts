@@ -129,6 +129,7 @@ export class ClinicInfoComponent implements OnInit {
           // Street: ['', [Validators.required]],
           Area: ['', [Validators.required]],
           BuildingNumber: ['',Validators.nullValidator  ],
+          ApartmentNo: ['',Validators.nullValidator  ],
           FloorNumber: ['',Validators.nullValidator ],
           // ApartmentNumber: ['', [Validators.required]],
           FixedFee: ['', [Validators.required , Validators.pattern(/^\d*$/)]],
@@ -340,8 +341,9 @@ export class ClinicInfoComponent implements OnInit {
     formData.append('AreaId', this.ClinicInfoForm.controls.Area as unknown as Blob)
     formData.append('FixedFee', +this.ClinicInfoForm.controls.FixedFee.value as unknown as Blob)
     formData.append('Address', this.ClinicInfoForm.controls.Address.value)
-    formData.append('BlockNo', +this.ClinicInfoForm.controls.BuildingNumber.value as unknown as Blob)
-    formData.append('FloorNo', +this.ClinicInfoForm.controls.FloorNumber.value as unknown as Blob)
+    formData.append('BlockNo', this.ClinicInfoForm.controls.BuildingNumber.value)
+    formData.append('ApartmentNo', this.ClinicInfoForm.controls.ApartmentNo.value)
+    formData.append('FloorNo', +this.ClinicInfoForm.controls.FloorNumber.value as unknown as Blob )
     formData.append('Inactive', "true")
     formData.append('clinicLogo', this.ClinicInfoModel.clinicLogo)
     formData.append('Latitude', this.lat)

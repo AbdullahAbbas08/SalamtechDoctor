@@ -145,6 +145,7 @@
       "Street": "Street",
       "BuildingNumber": "Building Number",
       "FloorNumber": "Floor Number",
+      "ApartmentNo": "Apartment Number",
       "ApartmentNumber": "Apartment Number",
       "Services": "Services",
       "selectServices": "Select Services",

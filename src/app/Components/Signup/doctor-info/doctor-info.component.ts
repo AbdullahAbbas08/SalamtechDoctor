@@ -111,7 +111,7 @@ export class DoctorInfoComponent implements OnInit {
             Seniority:['',[Validators.required]],
             BiographyAr:['' ],
             Biography:['' ],
-            Email:['',[Validators.required ,Validators.email]]
+            // Email:['',[Validators.required ,Validators.email]]
           });
     }
 
