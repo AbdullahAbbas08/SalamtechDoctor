@@ -185,7 +185,7 @@ export class ClinicInfoComponent implements OnInit {
   preview(files: any) {
     if (files.length === 0) return;
 
-    if (files[0].size > 3000000)
+    if (files[0].size > 5000000)
     {
     this.message = "image size is larger than 3mb.";
     Swal.fire(

@@ -12,6 +12,7 @@ export class UpdateClinic {
     Longitude               :any;
     BlockNo                 :number;
     FloorNo                 :number;
+    ApartmentNo                 :string;
     FixedFee                :number;
     Inactive                :boolean;
     HealthEntityServiceName :string[];

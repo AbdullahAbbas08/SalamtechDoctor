@@ -146,6 +146,7 @@ export class UpdateClinicInfoComponent implements OnInit {
       Longitude: [this.clinicInfo?.Longitude || ''],
       BlockNo: [this.clinicInfo?.BlockNo || '', [Validators.nullValidator]],
       FloorNo: [this.clinicInfo?.FloorNo || '', [Validators.nullValidator]],
+      ApartmentNo: [this.clinicInfo?.ApartmentNo || '', [Validators.nullValidator]],
       FixedFee: [this.clinicInfo?.FixedFee || '', [Validators.required, Validators.pattern(/^\d*$/)]],
       clinicLogo: [this.clinicInfo?.Logo || ''],
       Services: [this.selectedItems]
@@ -234,7 +235,7 @@ export class UpdateClinicInfoComponent implements OnInit {
   preview(files: any) {
     if (files.length === 0) return;
 
-    if (files[0].size > 3000000) {
+    if (files[0].size > 5000000) {
       Swal.fire(
         'Error!',
         'image size is larger than 3mb',
@@ -309,6 +310,7 @@ export class UpdateClinicInfoComponent implements OnInit {
     formData.set("Longitude", this.FormInfo.get('Longitude').value as unknown as Blob)
     formData.set("BlockNo", this.FormInfo.get('BlockNo').value as unknown as Blob)
     formData.set("FloorNo", this.FormInfo.get('FloorNo').value as unknown as Blob)
+    formData.set("ApartmentNo", this.FormInfo.get('ApartmentNo').value as unknown as Blob)
     formData.append('Latitude', this.FormInfo.get('Latitude').value)
     formData.append('Longitude', this.FormInfo.get('Longitude').value)
     // formData.set("HealthEntityPhoneDtos", this.FormInfo.get('HealthEntityPhoneDtos') as unknown as Blob)

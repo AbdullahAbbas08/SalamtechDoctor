@@ -110,7 +110,7 @@ export class UpdateClinicGalaryComponent implements OnInit {
     if (files.length === 0)
       return;
 
-      if (files[0].size > 3000000)
+      if (files[0].size > 5000000)
       {
         this.SpinnerService.hide();
         Swal.fire(
