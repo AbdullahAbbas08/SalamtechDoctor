@@ -192,16 +192,18 @@ constructor(
        { return ;
        }
 
-        if (files[0].size > 2000000)
-        {
-        this.message = "image size is larger than 2mb.";
-        Swal.fire(
-          this.translation.Error,
-          this.translation.imagesize2mb,
-          'error'
-        )
-        return;
-      }
+       if (files[0].size / 1024 / 1024 >= 5)
+       {
+         this.SpinnerService.hide();
+         Swal.fire(
+           'Error!',
+           'File size should not be more than 5 MB',
+           'error'
+         )
+         files = null
+       this.message = "File size should not be more than 5 MB.";
+       return;
+     }
 
       // var mimeType = files[0].type;
       // if (mimeType.match(/image\/*/) == null) {

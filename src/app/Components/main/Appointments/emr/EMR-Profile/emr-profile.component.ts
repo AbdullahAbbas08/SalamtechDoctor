@@ -167,15 +167,16 @@ export class EmrProfileComponent implements OnInit {
      if (files.length === 0)
        return ;
 
-       if (files[0].size > 2000000)
+       if (files[0].size / 1024 / 1024 >= 5)
        {
-       this.message = "image size is larger than 2mb.";
-      //  this.SpinnerService.hide();
-       Swal.fire(
-        this.translation.Error,
-        this.translation.imagesize2mb,
-        'error'
-       )
+         this.SpinnerService.hide();
+         Swal.fire(
+           'Error!',
+           'File size should not be more than 5 MB',
+           'error'
+         )
+         files = null
+       this.message = "File size should not be more than 5 MB.";
        return;
      }
      this.SpinnerService.hide();

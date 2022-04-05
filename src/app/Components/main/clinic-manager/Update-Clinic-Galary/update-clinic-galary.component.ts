@@ -110,15 +110,19 @@ export class UpdateClinicGalaryComponent implements OnInit {
     if (files.length === 0)
       return;
 
-      if (files[0].size > 5000000)
+      console.log("files.length ",files.length );
+      console.log("files[0].size ",files[0].size );
+      
+      if (files[0].size / 1024 / 1024 >= 5)
       {
         this.SpinnerService.hide();
         Swal.fire(
           'Error!',
-          'image size is larger than 3mb',
+          'File size should not be more than 5 MB',
           'error'
         )
-      this.message = "image size is larger than 3mb.";
+        files = null
+      this.message = "File size should not be more than 5 MB.";
       return;
     }
     this.SpinnerService.hide();

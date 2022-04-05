@@ -82,15 +82,17 @@ export class PatientProfileComponent implements OnInit {
   
       preview(files:any) {
         this.SpinnerService.show();
-        if (files[0].size > 3000000)
+
+        if (files[0].size / 1024 / 1024 >= 5)
         {
           this.SpinnerService.hide();
           Swal.fire(
-            this.translation.Error,
-            this.translation.imagesize,
+            'Error!',
+            'File size should not be more than 5 MB',
             'error'
           )
-        this.message = "image size is larger than 3mb.";
+          files = null
+        this.message = "File size should not be more than 5 MB.";
         return;
       }
 

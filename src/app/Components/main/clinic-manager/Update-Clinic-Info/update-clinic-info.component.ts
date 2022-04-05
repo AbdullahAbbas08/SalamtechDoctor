@@ -235,15 +235,18 @@ export class UpdateClinicInfoComponent implements OnInit {
   preview(files: any) {
     if (files.length === 0) return;
 
-    if (files[0].size > 5000000) {
+    if (files[0].size / 1024 / 1024 >= 5)
+    {
+      this.SpinnerService.hide();
       Swal.fire(
         'Error!',
-        'image size is larger than 3mb',
+        'File size should not be more than 5 MB',
         'error'
       )
-      this.message = "image size is larger than 3mb.";
-      return;
-    }
+      files = null
+    this.message = "File size should not be more than 5 MB.";
+    return;
+  }
     // var mimeType = files[0].type;
     // if (mimeType.match(/image\/*/) == null) {
     //   this.message = "Only images are supported.";
