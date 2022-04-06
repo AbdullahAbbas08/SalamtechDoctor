@@ -1,0 +1,92 @@
+/* .modal-dialog{
+  width: 460px;
+  height: 573px;
+  margin-top: 60px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  border-radius: 15px;
+} */
+
+.Login-As-Doctor {
+  height: 62px;
+  font-family: SFUIText;
+  font-size: 20px;
+  color: #01d2ca;
+}
+.Login-As-Patient {
+  /* width: 165px; */
+  height: 62px;
+  font-family: SFUIText;
+  font-size: 20px;
+  text-align: center;
+  color: #01d2ca;
+}
+/* .modal-content{
+  border: none!important;
+} */
+.nav-tabs {
+  border-bottom: none!important;
+}
+.nav-tabs .nav-link {
+  margin-bottom: -1px;
+  background: 0 0;
+  color: rgb(243, 243, 243);
+  background-color: #00d2ca;
+  border: none!important;
+  transition: all .85s;
+  border-bottom-left-radius: 15px!important;
+  border-bottom-right-radius: 15px!important;
+  box-shadow: inset 8px -8px 10px 0 rgba(139, 144, 160, 0.3);
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #00d2ca;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  box-shadow:none;
+}
+
+.forgetPassword a{
+  font-family: SFUIText;
+  font-size: 16px;
+  text-align: left;
+  color: #2d2570;
+}
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 15%);
+}
+
+.Dont-have-an-account-create-account {
+  width: 100%;
+  height: 19px;
+  /* margin: 24px 80px 0 38px; */
+  font-family: SFUIText;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  color: #97999a;
+}
+.Dont-have-an-account-create-account a{
+  text-decoration: none;
+}
+
+/* .modal-dialog
+{
+  max-width: 600px;
+} */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

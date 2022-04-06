@@ -94,8 +94,9 @@ export class MainNavComponent implements OnInit {
     localStorage.removeItem('Name')
     localStorage.removeItem('logo')
     localStorage.removeItem("ProfileStatus")
-    // window.location.reload();
+    localStorage.clear();
     this.router.navigate(['/Login']);
+    window.location.reload();
   }
 
   GoToMain(){

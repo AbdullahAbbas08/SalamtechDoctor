@@ -318,5 +318,39 @@
       "success":"Success",
       "checkInternet":"Please make sure you have internet",
       "NoInternet":"Internet not connected"
-    }
+    },
+    "AboutUs":{
+    "AboutUsTitle":"About Us",
+    "AboutUs_1":"Salamtech application is designed to raise the level of health care services and establish a link between health care seekers and providers in a manner that ensures high efficiency while saving time, effort and cost.",
+    "AboutUs_2":"Why Salamtech?",
+    "AboutUs_3":"Enhanced system and applications leading to higher efficiency, productivity and profitability.",
+    "AboutUs_4":"Follow your progress any time anywhere.",
+    "AboutUs_5":"Improved patient’s satisfaction and focus on quality.",
+    "AboutUs_6":"Keep patients’ historical information and records.",
+    "AboutUs_7":"Organized appointment and better time management."
+    },
+    "ContactUs":{
+    "ContactUsTitle":"Contact Us",
+    "ContactUs":"For inquiries, please contact us at the number "
+  },
+  "Help":{
+    "HelpTitle":"Help",
+    "Help_0":"Terms of limitation of liability for your safety The Company, its officers, directors, employees or representatives shall not be liable for any direct, indirect, incidental, special, punitive or consequential damages arising from:",
+    "Help_1":"1- Any error or inaccuracy of the content",
+    "Help_2":"2- Injury or loss of personal property of any kind resulting from your access to the Site and Application and your use of your safety services",
+    "Help_3":"3- Any unauthorized access by third parties for the purpose of exploiting our computer servers to obtain your personal data entered on the application",
+    "Help_4":"4- Any interruption or suspension of the company's services",
+    "Help_5":"5- Any errors, viruses or the like that may be transmitted to or through our services by third parties",
+    "Help_6":"6- Any errors or omissions in any Content or for any loss or damage of any kind suffered by the User as a result of the use of any Content posted, emailed, transmitted or otherwise made available through the Services and regardless of whether such damage is based on liability Contract, tort, or any other guarantee provided by the company to the user or any other legal document, all of which changes a breach of the laws, provisions and regulations in force within the competent court department.",
+    "Help_7":"The user also acknowledges in particular his full responsibility for any defamatory, abusive or illegal conduct of third parties or any danger, harm or damage arising from the foregoing.",
+    "Help_8":"The Service is controlled and provided by the Korashi Group of its facilities and Salameh makes no representation that the Service is appropriate or available for use in other locations.",
+    "Help_9":"Those who access or use the Service from other jurisdictions do so voluntarily and are responsible for compliance with local law.",
+    "Help_10":"Salama also does not provide any guarantees or responsibilities that the services provided by Salama are located in your place of residence and that you do so of your own volition and without any liability to the company, and that users residing in other places must comply with the laws, rules, regulations and local decisions in force within their district of residence.",
+    "Help_11":"The user acknowledges, within the provisions of the law, to defend, protect and discharge your safety, its representatives, directors, officers or agents from any damages, losses, costs or expenses, including but not limited to attorney fees incurred by your safety as a result of any claims or suits brought or filed against any of the parties payable for compensation arising from:",
+    "Help_12":"1- Your use of and access to the Company’s services",
+    "Help_13":"2- Your violation of these terms and conditions",
+    "Help_14":"3- Any claims you make in violation of these terms and conditions, including any violation of laws and regulations or any claim of violation of your privacy or your intellectual property rights related to your files and personal data that you entered on the application or files created by the company",
+    "Help_15":"4- Disputes arising out of, related to or related to your violation of the intellectual property rights owned or the privacy of others through your access to and use of the company’s website or services, third party entry and use of your personal account and entering the password, and in the event that you are obligated to compensate pursuant to the previous paragraph, the company is entitled according to its absolute discretion Dispose of claims or claims at your own expense, and without prejudice to the foregoing, you shall not be entitled to settle any disputes without your prior written consent."
+},
+"PrivacyPolicy":"Privacy Policy"
 }

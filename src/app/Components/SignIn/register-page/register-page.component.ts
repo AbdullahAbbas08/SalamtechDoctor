@@ -103,17 +103,12 @@ export class RegisterPageComponent implements OnInit {
 
     if (element.checked == false) {
       element.checked = false;
-      console.log('false');
-
       this.RegisterForm.get('checkboxcont').setValue(element.checked)
     }
     else {
       element.checked = true;
-      // console.log(true);
-
       this.RegisterForm.get('checkboxcont').setValue(element.checked)
     }
-
   }
   //#endregion
 

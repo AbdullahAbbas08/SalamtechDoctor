@@ -53,6 +53,7 @@ import { AboutUsComponent } from './Components/without-signin/about-us/about-us.
 import { ContactUsComponent } from './Components/without-signin/contact-us/contact-us.component';
 import { HelpComponent } from './Components/without-signin/help/help.component';
 import { HomeComponent } from './Components/without-signin/home/home.component';
+import { PrivacyComponent } from './Components/without-signin/privacy/privacy.component';
 
 //#endregion
 
@@ -172,6 +173,14 @@ const routes: Routes = [
   {
     path:'forget-password',
     component: OtpForgetpassComponent
+  },
+  {
+    path:'Terms',
+    component: TermsComponent
+  },
+  {
+    path:'privacy',
+    component: PrivacyComponent
   }
  
 ];

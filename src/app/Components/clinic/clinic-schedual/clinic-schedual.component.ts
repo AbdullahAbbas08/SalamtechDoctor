@@ -541,9 +541,13 @@ export class ClinicSchedualComponent implements OnInit {
 
       //#region Next to Update Clinic Schedule Component
       Back() {
-        window.location.reload();
+       this.SpinnerService.show();
         // this.router.navigate(['main/updateclinic/UpdateClinicGalary/',this.ClinicId]);
-        this.router.navigateByUrl('/main/updateclinic');
+        window.setInterval(()=>{
+          this.router.navigateByUrl('/main/updateclinic');
+          this.SpinnerService.hide();
+        },3000)
+        
       }
       //#endregion
 }

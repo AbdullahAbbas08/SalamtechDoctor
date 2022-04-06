@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('Authorization')
     localStorage.removeItem('name')
     localStorage.removeItem('email')
+    localStorage.clear();
     this.router.navigate(['/Login']);
     window.location.reload();
   }
