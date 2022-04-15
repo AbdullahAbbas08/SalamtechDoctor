@@ -39,7 +39,9 @@ export class DoctorService {
     //#endregion
 
     //#region Update Profile
-    UpdateProfile(DoctorInfoModel:UpdateProfile):Observable<any>{
+    UpdateProfile(DoctorInfoModel:any):Observable<any>{
+      console.log("DoctorInfoModel : ",DoctorInfoModel["Keys"]);
+      
       return this.http.post(`${environment.URL}${this.culture}/Doctor/UpdateProfile`,DoctorInfoModel,this.httpOptions);
     }
     //#endregion

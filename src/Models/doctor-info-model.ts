@@ -17,4 +17,9 @@ export class DoctorInfoModel {
     DoctorInfoAr: string;
     profileImage: File;
     Image:string;
+    Email:string;
+    LicenseNumber:string;
+    NationalId:string;
+    SyndicateId:string;
+    FacebookAccount:string;
 }

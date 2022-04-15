@@ -12,13 +12,19 @@ export class DoctorProfile {
     LastNameAr: string;
     GenderId: number;
     SpecialistId: number;
+    SpecialistName:string;
     Birthday: string;
     SeniorityLevelId: number;
     Website: any;
     DoctorInfo: string;
     DoctorInfoAr: string;
     NationalityId: number;
-    DoctorSubSpecialist: any;
+    DoctorSubSpecialist: any[];
+    SubSpecialistName: any[];
     Email:string;
+    LicenseNumber:string;
+    NationalId:string;
+    SyndicateId:string;
+    FacebookAccount:string;
     
 }

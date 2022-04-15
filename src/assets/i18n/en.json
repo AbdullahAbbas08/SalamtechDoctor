@@ -13,7 +13,12 @@
       "PhoneNumber": "Phone Number",
       "Password": "Password",
       "ConfirmPassword": "Confirm Password",
-      "Next": "Next"
+      "Next": "Next",
+      "NationalId":"National Id",
+      "SyndicateId":"Syndicate Id",
+      "LicenseNumber":"License Number",
+      "FacebookAccount":"Facebook Account",
+      "Website":"Website"
     },
     "ResendCode": {
       "verify": "verify"
@@ -352,5 +357,10 @@
     "Help_14":"3- Any claims you make in violation of these terms and conditions, including any violation of laws and regulations or any claim of violation of your privacy or your intellectual property rights related to your files and personal data that you entered on the application or files created by the company",
     "Help_15":"4- Disputes arising out of, related to or related to your violation of the intellectual property rights owned or the privacy of others through your access to and use of the company’s website or services, third party entry and use of your personal account and entering the password, and in the event that you are obligated to compensate pursuant to the previous paragraph, the company is entitled according to its absolute discretion Dispose of claims or claims at your own expense, and without prejudice to the foregoing, you shall not be entitled to settle any disputes without your prior written consent."
 },
-"PrivacyPolicy":"Privacy Policy"
+"PrivacyPolicy":"Privacy Policy",
+"Dashboard":{
+"Today_Appointment_Count":"Today Appointment Count",
+"UpComing_Appointment_Count":"UpComing Appointment Count",
+"Total_Appointment_Count":" Total Appointment Count"
+}
 }
