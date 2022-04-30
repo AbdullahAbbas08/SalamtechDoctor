@@ -7,6 +7,7 @@ import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class DocumentsComponent implements OnInit {
 
   idDocs=null;
   proffDocs=null;
+  url:string;
   //#endregion
 
   //#region Constructor
@@ -40,6 +42,7 @@ constructor(
 
   //#region On Init Method
   ngOnInit(): void {
+    this.url = environment.ImagesURL
       //#region Init variables
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');

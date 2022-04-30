@@ -24,7 +24,7 @@
           
            <div class="card w-75 mt-2 ">
             <img class="img-fluid w-75 mx-auto my-1"
-            src="https://salamtech.azurewebsites.net/{{ idDocs.DocumentUrl }}"
+            src="{{url}}{{ idDocs.DocumentUrl }}"
           />
           <div class="btn" (click)="DeleteDocument('en', idDocs.Id)">
             <span  class="text-danger">
@@ -60,7 +60,7 @@
           
            <div class="card w-75 mt-2  ">
             <img class="img-fluid w-75 mx-auto my-1"
-            src="https://salamtech.azurewebsites.net/{{ proffDocs.DocumentUrl }}"
+            src="{{url}}{{ proffDocs.DocumentUrl }}"
           />
           <div class="btn" (click)="DeleteDocument('en', proffDocs.Id)">
             <span  class="text-danger">

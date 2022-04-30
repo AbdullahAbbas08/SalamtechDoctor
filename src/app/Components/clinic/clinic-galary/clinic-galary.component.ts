@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 import { Galary } from 'src/Models/galary';
 import { GeneralResponse } from 'src/Models/general-response';
 import { GalaryService } from 'src/Service/ClinicGalary/galary.service';
@@ -21,6 +22,7 @@ export class ClinicGalaryComponent implements OnInit {
   ClinicId:any;
   //#endregion
   translation;
+  url:string;
 
 
   //#region Constructor
@@ -33,7 +35,7 @@ export class ClinicGalaryComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
-
+this.url = environment.ImagesURL
     //#region Init Values
 
      //#region Change Active Component In Sidebar 

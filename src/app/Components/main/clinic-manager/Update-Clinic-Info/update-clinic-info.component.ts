@@ -108,7 +108,7 @@ export class UpdateClinicInfoComponent implements OnInit {
       this.lat = res.Data.Latitude;
       this.long = res.Data.Longitude;
       this.SpinnerService.hide();
-      this.clinicInfo.Logo ? this.imgURL = 'https://salamtech.azurewebsites.net' + this.clinicInfo.Logo : this.imgURL = '../../../../assets/img/DoctorImg/avatar.png';
+      this.clinicInfo.Logo ? this.imgURL = environment.ImagesURL + this.clinicInfo.Logo : this.imgURL = '../../../../assets/img/DoctorImg/avatar.png';
       this.initForm()
       this.getCity()
       this.getCountry()

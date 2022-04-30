@@ -7,6 +7,7 @@ import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NullTemplateVisitor } from '@angular/compiler';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-doctor-certificates',
@@ -20,6 +21,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   showImgbox:boolean=false
   ImageCer:any;
   count:number;
+  url:string
 
   submittedCertificate:CertificateResponse
 
@@ -37,7 +39,7 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
      private translateSwal:TranslateSwalsService) { }
 
   ngOnInit(): void {
-
+this.url = environment.ImagesURL
     this.GetDoctorCertificate();
     //#region Sidebar style
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');

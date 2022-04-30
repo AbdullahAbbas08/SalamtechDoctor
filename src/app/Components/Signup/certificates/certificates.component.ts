@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-certificates',
@@ -20,6 +21,7 @@ export class CertificatesComponent implements OnInit {
   buttonAdd:boolean=false;
   showImgbox:boolean=false
   ImageCer:any;
+  url:string;
 
   submittedCertificate:CertificateResponse
 
@@ -38,7 +40,7 @@ export class CertificatesComponent implements OnInit {
      private router:Router) { }
 
   ngOnInit(): void {
-
+    this.url = environment.ImagesURL;
     this.GetDoctorCertificate();
     //#region Sidebar style
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');

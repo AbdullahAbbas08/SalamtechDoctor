@@ -7,6 +7,7 @@ import { DocumentService } from 'src/Service/Documents/document.service';
 import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-doctor-docs',
@@ -25,6 +26,7 @@ export class UpdateDoctorDocsComponent implements OnInit {
   idDocs=null;
   proffDocs=null;
   count:number
+  url:string
   //#endregion
 
   //#region Constructor
@@ -39,6 +41,7 @@ constructor(
 
   //#region On Init Method
   ngOnInit(): void {
+    this.url = environment.ImagesURL
       //#region Init variables
     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
     document.getElementById('Signup')?.classList.add('OnClick-Style');

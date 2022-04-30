@@ -8,6 +8,7 @@ import { EmrService } from 'src/Service/emr/emr.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class PatientProfileComponent implements OnInit {
   PatientProfileForm : FormGroup ;
   patientProfile
   translation;
+  url:string
 
   //#endregion
 
@@ -46,7 +48,7 @@ export class PatientProfileComponent implements OnInit {
               }
 
   ngOnInit(): void {
-
+this.url = environment.ImagesURL
      //#region Init Values
      document.getElementById('EMRProfile')?.classList.remove('visited-appointemt-component');
      document.getElementById('PatientProfile')?.classList.add('visited-appointemt-component');

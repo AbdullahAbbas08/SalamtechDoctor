@@ -259,7 +259,7 @@ export class ClinicInfoComponent implements OnInit {
     this.lookupService.GetServices('en').subscribe(
       (res) => {
         this.Services = res.Data;
-        this.dropdownList = this.Services
+        this.dropdownList = this.Services        
       },
       (err) => {
       }
