@@ -271,8 +271,8 @@
     }
   },
   "errorField": {
-    "phone": "Please enter valid phone number",
-    "password": "Please enter valid password with min length 6 digits",
+    "phone": "Please enter a valid phone number",
+    "password": "Please enter a valid password with a min length of 6 digits",
     "email": "Please enter valid email",
     "reenterpass":"They Don't match Please Renter your password",
     "firstname":"Please enter your first name",
@@ -308,7 +308,7 @@
     "filesafe":"Your imaginary file is safe",
     "fileDeleted":"Your file has been deleted.",
     "Great":"Great",
-    "welcome":"Welcome to Salamtech. We will review your request and update your account soon",
+    "welcome":"Welcome to Salamtak. We will review your request and update your account soon",
     "Done":"Done",
     "AddClinic":"Add New Clinic",
     "Ok":"Ok",
@@ -326,8 +326,8 @@
     },
     "AboutUs":{
     "AboutUsTitle":"About Us",
-    "AboutUs_1":"Salamtech application is designed to raise the level of health care services and establish a link between health care seekers and providers in a manner that ensures high efficiency while saving time, effort and cost.",
-    "AboutUs_2":"Why Salamtech?",
+    "AboutUs_1":"Salamtak application is designed to raise the level of health care services and establish a link between health care seekers and providers in a manner that ensures high efficiency while saving time, effort and cost.",
+    "AboutUs_2":"Why Salamtak?",
     "AboutUs_3":"Enhanced system and applications leading to higher efficiency, productivity and profitability.",
     "AboutUs_4":"Follow your progress any time anywhere.",
     "AboutUs_5":"Improved patient’s satisfaction and focus on quality.",

@@ -20,7 +20,7 @@ export class AppComponent {
   IsOffline(event:any){this.toastr.error('Please make sure you have internet ' , 'No Internet'); }
   //#endregion
 
-  title = 'SalamtechDoctor';
+  title = 'SalamtakDoctor';
 
 //#region Constructor
 constructor(private toastr:ToastrService){
