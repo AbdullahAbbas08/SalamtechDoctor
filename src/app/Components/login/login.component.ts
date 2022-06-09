@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   Login(){
     this.loginService.login(this.loginDoctorForm).subscribe((res)=>{
       // this.buttonEnable=true;
-      console.log("suc")
+      // console.log("suc")
     },
     (err)=>{
       this.errorMsg=err.error.Message
