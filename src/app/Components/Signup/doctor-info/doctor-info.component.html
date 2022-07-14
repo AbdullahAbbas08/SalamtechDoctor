@@ -198,7 +198,13 @@
             }}</span>
           <span class="star"> * </span>
           <div class=" ">
-            <input type="date" formControlName="DateOfBirth" class="form-control" [class.is-valid]="
+            <input type="date" 
+                    id="DateOfBirth" 
+                    min="{{dt_min}}"
+                    max="{{dt_max}}"
+                    formControlName="DateOfBirth" 
+                    class="form-control"     
+                    [class.is-valid]="
                 DoctorInfoForm.controls['DateOfBirth'].valid &&
                 DoctorInfoForm.controls['DateOfBirth'].touched
               " [class.is-invalid]="

@@ -1,11 +1,25 @@
-<app-nav></app-nav>
+<div class="container-fluid" style="height:100% ;">
+    <!-- <div style="min-height: 92%;position: relative;overflow-y: auto;overflow-x: hidden;"> -->
+    <div class="d-flex align-items-start" style="height:10% ;">
+        <app-nav></app-nav>
+    </div>
+    <div class="d-flex align-items-center  justify-content-center" style="height:80% ;">
+        <div class="about-section d-flex justify-content-center">
+            <div class="inner-container">
+                <h1>{{ "ContactUs.ContactUsTitle" | translate }}</h1>
+                <p class="text">
+                    <label>{{ "ContactUs.ContactUs" | translate }} <b style="padding-left: 10px;padding-right: 10px;">02
+                            21256299</b> </label><br><br>
+                </p>
 
-    <div class="about-section d-flex justify-content-center">
-        <div class="inner-container">
-            <h1>{{ "ContactUs.ContactUsTitle" | translate }}</h1>
-            <p class="text"> 
-                 <label>{{ "ContactUs.ContactUs" | translate }} <b style="padding-left: 10px;padding-right: 10px;">02 21256299</b> </label><br><br>
-               </p>
-
+            </div>
         </div>
     </div>
+    <!-- </div> -->
+    <!-- <div class="d-flex align-items-end">
+       
+    </div> -->
+    <div class="d-flex align-items-end" style="height:10% ;">
+        <app-footer></app-footer>
+    </div>
+</div>

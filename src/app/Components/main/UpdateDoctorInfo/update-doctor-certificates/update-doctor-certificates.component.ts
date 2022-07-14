@@ -32,13 +32,13 @@ export class UpdateDoctorCertificatesComponent implements OnInit {
   editableCertificate:Certificate
   translation;
 
-
   constructor(private fb:FormBuilder ,
     private certificateService:CertificateService ,
      private loginService:LoginService,
      private translateSwal:TranslateSwalsService) { }
 
-  ngOnInit(): void {
+    
+  ngOnInit(): void {    
 this.url = environment.ImagesURL
     this.GetDoctorCertificate();
     //#region Sidebar style
@@ -54,7 +54,7 @@ this.url = environment.ImagesURL
       {
         title:['',[Validators.required , Validators.minLength(3)]],
         titleAr:['',[Validators.required , Validators.minLength(3)]],
-        year:['',[Validators.required ]],
+        year:['',[Validators.required,Validators.max(new Date().getFullYear()-1) ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
         ImageCertificate:['',[Validators.nullValidator ]]

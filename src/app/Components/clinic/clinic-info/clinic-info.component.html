@@ -171,14 +171,15 @@
             </span>
             <!-- <span class="star"> * </span> -->
             <div class="input-style">
-              <input [(ngModel)]="address" type="text" class="form-control textForArabic" formControlName="Address"
-                [class.is-valid]="
-                    ClinicInfoForm.controls['Address'].valid &&
-                    ClinicInfoForm.controls['Address'].touched
-                  " [class.is-invalid]="
-                    ClinicInfoForm.controls['Address'].invalid &&
-                    ClinicInfoForm.controls['Address'].touched
-                  " />
+              <input [(ngModel)]="address" 
+                    type="text" 
+                    class="form-control textForArabic" 
+                    formControlName="Address"
+                    [class.is-valid]="
+                                      ClinicInfoForm.controls['Address'].valid 
+                                    " [class.is-invalid]="
+                                      ClinicInfoForm.controls['Address'].invalid 
+                                    " />
               <app-fielderror [displayError]="isFieldValid('Address')" errorMsg="{{'errorField.Address' | translate}}">
               </app-fielderror>
             </div>

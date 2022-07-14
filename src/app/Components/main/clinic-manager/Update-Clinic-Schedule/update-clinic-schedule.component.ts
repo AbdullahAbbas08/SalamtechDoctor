@@ -483,5 +483,26 @@ export class UpdateClinicScheduleComponent implements OnInit {
     }
     //#endregion
 
+    setDayId:number = -1;
+    PeriodReserved:any[]=[];
+    SelectedTimeFrom:string = '';
+    SelectedTimeTo:string = '';
+
+    set_Day_Id(id:number){
+      console.log(id);
+      
+      this.setDayId = id;
+    }
+    valuechangeFrom(newValue) {
+      console.log("dd : ",newValue)
+      this.SelectedTimeFrom = newValue;
+     this.PeriodReserved =  this.ClinicScheduleDayList[this.setDayId].filter(x=>x.TimeFrom == newValue);    
+    }
+ 
+    valuechangeTo(newValue) {
+      console.log("dd : ",newValue)
+      this.SelectedTimeTo = newValue;
+     this.PeriodReserved =  this.ClinicScheduleDayList[this.setDayId].filter(x=>x.TimeTo == newValue);    
+    }
 
 }

@@ -8,7 +8,7 @@
     <!-- Schedule Body -->
     <div style="min-height: 100%;">
       <div *ngFor="let item of ClinicSchedule;let i=index" class="col-12">
-          <div class="row Schedule-block ">
+          <div class="row Schedule-block " (click)="set_Day_Id(item.DayId)">
             <div class="col" style="position: relative;">
               <hr style=" background-color: #03BBB4;">
             </div>
@@ -292,6 +292,7 @@
                                                       <!-- TimeFrom col -->
                                                       <div class="col-12 col-md-5 ">
                                                         <input type="time"
+                                                        (ngModelChange)="valuechange($event)"
                                                               class="form-control input-style-period"
                                                               style="padding-right: 15px;"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
@@ -309,6 +310,9 @@
                                                                 class="form-control input-style-period"
                                                                 style="padding-right: 15px;"
                                                                 [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo" >
+                                                          <!-- <div class="alert alert-danger mt-1" [hidden]="PeriodReserved.length == 0">
+                                                            Period {{SelectedTime}} is in valid
+                                                          </div> -->
                                                       </div>
 
                                                 </div>

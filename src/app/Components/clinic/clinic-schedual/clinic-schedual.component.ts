@@ -39,9 +39,16 @@ export class ClinicSchedualComponent implements OnInit {
   CreateClinicSchedule:CreateClinicSchedule;
   ClinicId:any;
   translation;
+  setDayId:number = -1;
+  PeriodCorrect:boolean = true;
+  
 
   //#endregion
-
+  set_Day_Id(id:number){
+    console.log(id);
+    
+    this.setDayId = id;
+  }
   //#region constructor
   constructor( private ClinicScheduleService:ClinicScheduleService ,
                private clinicInfoService:ClinicInfoService,
@@ -53,6 +60,15 @@ export class ClinicSchedualComponent implements OnInit {
                private SpinnerService: NgxSpinnerService) { }
   //#endregion
 
+  PeriodReserved:any[]=[];
+  SelectedTime:string = '';
+  valuechange(newValue) {
+    console.log("dd : ",newValue)
+    this.SelectedTime = newValue;
+   this.PeriodReserved =  this.ClinicScheduleDayList[this.setDayId].filter(x=>x.TimeFrom == newValue);    
+  }
+
+  
   //#region OnInit Method
   ngOnInit(): void {
 
@@ -204,7 +220,7 @@ export class ClinicSchedualComponent implements OnInit {
         this.ClinicScheduleService.GetClinicSchedualByClinicDayId(lang,ClinicId,DayId).subscribe(
           (response)=>{
             this.ClinicScheduleDayList[DayId] = response.Data;
-            // console.log(response.Data);
+            console.log("-- : ",response.Data);
             
           },
           (err)=>{

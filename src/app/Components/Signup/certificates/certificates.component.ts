@@ -55,7 +55,7 @@ export class CertificatesComponent implements OnInit {
       {
         title:['',[Validators.required , Validators.minLength(3)]],
         titleAr:['',[Validators.required , Validators.minLength(3)]],
-        year:['',[Validators.required ]],
+        year:['',[Validators.required,Validators.max(new Date().getFullYear()-1) ]],
         Description:['',[Validators.required , Validators.minLength(3)]],
         DescriptionAr:['',[Validators.required , Validators.minLength(3)]],
         ImageCertificate:['',[Validators.nullValidator ]]

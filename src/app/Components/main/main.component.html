@@ -1,253 +1,262 @@
-<div style="min-height: 92%;position: relative;overflow-x: hidden; background-color: #F9F9F9;">
+<!-- <div style="min-height: 92%;position: relative;overflow-x: hidden; background-color: #F9F9F9;">
   <div class="" style="height:100% ;position: absolute;overflow-x: hidden;width: 100%;">
     <div class="" style="height:100% ;position: absolute;overflow-x: hidden;width: 100%;">
       <app-main-nav></app-main-nav>
-      <div class="row main-sidebar">
-
-
-        <div class="col-md-2  d-lg-block  d-none  " style="padding: 0px;">
-          <div class="  sidebar-col">
-            <div class="sidebar-item">
-              <!-- <div class="logo">
-                <img src="../../../assets/img/logo.webp">
-              </div> -->
-
-              <div class="sidebar-content">
-
-                <div class="menu-sidebar">
-                  <ul>
-                    <li id="menu" class="li-Content sub-group-title">
-                      <span>{{ "mainModule.main.menu" | translate }}</span>
-                    </li>
-
-                    <li id="Dashboard" class="li-Content" routerLink="dashboard">
-                      <span>
-                       
-                        <i id="DashboardIcon" class="fas fa-align-justify"></i>
-                      </span>
-                      <span class="li-item">
-                        {{ "mainModule.main.Dashboard" | translate }}
-                      </span>
-                    </li>
-
-                    <li id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic">
-                      <span class="">
-                        <img id="ClinicsIcon" src="../../../assets/img/Vector.png">
-                      </span>
-                      <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
-                    </li>
-
-                    <li id="Appointments" class="li-Content" routerLink="appointment">
-                      <span>
-                       
-                        <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i>
-                      </span>
-                      <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
-                    </li>
-
-                    <li id="Services" class="li-Content" routerLink="service">
-                      <span>
-                       
-                        <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i>
-                      </span>
-                      <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
-                    </li>
-
-                    <li id="Profile" type="button" class="li-Content" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <span>
-                          <i id="ProfileIcon" class="fas fa-user-md" style="font-size: 23px;"></i>
-                        </span>
-                        <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
-                    </li>
-
-                    <div  class="collapse" id="collapseExample">
-                        <ul>
-                         <li class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
-                         <li class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
-                         <li class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
-                        </ul> 
-                     </div>
-
-                  </ul> 
-                </div>
-
-                <hr class="hr-sidebar-main" />
-
-                <div class="option-sidebar">
-                  <ul>
-                    <li id="Signup" class="li-Content sub-group-title">
-                      <span>{{ "mainModule.main.option" | translate }}</span>
-                    </li>
-                    <!-- <li id="Signup" class="li-Content">
-                      <span>
-                        <img src="../../../assets/img/settings/Group 2.png">
-                      </span>
-                      <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
-                    </li>
-                    <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
-                      <span>
-                        <img src="../../../assets/img/helpIcon/Group 17.png">
-                      </span>
-                     
-                      <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
-                    </li> -->
-                    <li id="Certificates" class="li-Content">
-                      <span>
-                        <img src="../../../assets/img/logoutIcon/Group 18.png">
-                      </span>
-                    
-                      <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
-                    </li>
-                  </ul>
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
-         
-        </div>
-
-
-        <!-- small screen -->
-
-        <div class="col-12 col-md-12 col-lg-10 var-component d-md-none">
-
-          <div class=" row col-6 my-2" >
-            <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-              Button with data-bs-target
-            </button> -->
-
-            <button #navbarToggler class="navbar-toggler navbar-light " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"   aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            
-            <div class="offcanvas offcanvas-start w-75 pb-0" style="overflow-y: scroll; height: 100%;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-              <div class="sidebar-col " style="  height: 100%;" >
-                <div class="sidebar-item">
-          
-                  <!-- <div class="logo">
-                    <img src="../../../assets/img/logo.webp">
-                  </div> -->
-          
-                  <div class="sidebar-content">
-          
-                    <div class="menu-sidebar">
-                      <ul>
-                        <li id="menu" class="li-Content sub-group-title">
-                          <span>{{ "mainModule.main.menu" | translate }}</span>
-                        </li>
-          
-                        <li (click)="collapseNav()" id="Dashboard" class="li-Content" routerLink="dashboard"  [routerLinkActive]="'OnClick-Style'">
-                          <span>
-                            <!-- <img  src="../../../assets/img/Group 1.png" > -->
-                            <!-- <i id="DashboardIcon" class="fas fa-align-justify"></i> -->
-                          </span>
-                          <span class="li-item" >
-                            {{ "mainModule.main.Dashboard" | translate }}
-                          </span>
-                        </li>
-          
-                        <li (click)="collapseNav()" id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic" [routerLinkActive]="'OnClick-Style'">
-                          <span class="">
-                            <!-- <img id="ClinicsIcon" src="../../../assets/img/Vector.png"> -->
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
-                        </li>
-          
-                        <li (click)="collapseNav()" id="Appointments" class="li-Content" routerLink="appointment" [routerLinkActive]="'OnClick-Style'">
-                          <span>
-                            <!-- <img  src="../../../assets/img/appointments/Vector.png" > -->
-                            <!-- <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i> -->
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
-                        </li>
-          
-                        <li (click)="collapseNav()" id="Services" class="li-Content" routerLink="service" [routerLinkActive]="'OnClick-Style'">
-                          <span>
-                            <!-- <img src="../../../assets/img/ServiceIcon/Vector.png" > -->
-                            <!-- <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i> -->
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
-                        </li>
-          
-                        <!-- <li id="Profile" class="li-Content" routerLink="/update-doctor-profile">
-                          <span>
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
-                        </li> -->
-
-                        <li id="Profile" class="li-Content dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" >
-                          
-                          <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
-                      </li>
-  
-                      <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                           <ul>
-                            <li (click)="collapseNav()"  class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
-                            <li (click)="collapseNav()"  class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
-                            <li (click)="collapseNav()"  class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
-                        </ul>
-                       </div>
-          
-                      </ul>
-                    </div>
-          
-                    <hr class="hr-sidebar-main" />
-          
-                    <div class="option-sidebar">
-                      <ul>
-                        <li id="Signup" class="li-Content sub-group-title">
-                          <span>{{ "mainModule.main.option" | translate }}</span>
-                        </li>
-                        <!-- <li id="Signup" class="li-Content">
-                          <span>
-                            <img src="../../../assets/img/settings/Group 2.png">
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
-                        </li>
-                        <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
-                          <span>
-                            <img src="../../../assets/img/helpIcon/Group 17.png">
-                          </span>
-                          <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
-                        </li> -->
-                        <li id="Certificates" class="li-Content">
-                          <span>
-                            <img src="../../../assets/img/logoutIcon/Group 18.png">
-                          </span>
-                          <!-- Logout -->
-                          <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
-                        </li>
-                      </ul>
-                    </div>
-          
-                  </div>
-          
-                </div>
-              </div>
-            </div>
-          </div>
-        
-
-
-        </div>
-
-         <!-- <div class="container" > -->
-          <div class="col-md-10 col-12 px-auto  ">
-            <router-outlet></router-outlet>
-          </div>
-        <!-- </div> -->
-
-      </div>
+    
     </div>
 
   </div>
 
-</div>
-<div style="min-height: 8%;background-color: #14183a" >
-  <!-- style="height: 10%;" -->
-  <app-footer></app-footer>
+</div> -->
+
+
+
+
+
+
+
+
+
+<div class="container-fluid" style="height:100% ;background-color: #F9F9F9;">
+  <div class="d-flex align-items-start" style="height:10% ;">
+    <app-main-nav></app-main-nav>
+  </div>
+  <div class="" style="min-height:80% ;">
+    <div class="row main-sidebar">
+      <div class="col-md-2  d-lg-block  d-none  " style="padding: 0px;">
+        <div class="  sidebar-col">
+          <div class="sidebar-item">
+            <!-- <div class="logo">
+              <img src="../../../assets/img/logo.webp">
+            </div> -->
+
+            <div class="sidebar-content">
+
+              <div class="menu-sidebar">
+                <ul>
+                  <li id="menu" class="li-Content sub-group-title">
+                    <span>{{ "mainModule.main.menu" | translate }}</span>
+                  </li>
+
+                  <li id="Dashboard" class="li-Content" routerLink="dashboard">
+                    <span>
+                     
+                      <i id="DashboardIcon" class="fas fa-align-justify"></i>
+                    </span>
+                    <span class="li-item">
+                      {{ "mainModule.main.Dashboard" | translate }}
+                    </span>
+                  </li>
+
+                  <li id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic">
+                    <span class="">
+                      <img id="ClinicsIcon" src="../../../assets/img/Vector.png">
+                    </span>
+                    <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
+                  </li>
+
+                  <li id="Appointments" class="li-Content" routerLink="appointment">
+                    <span>
+                     
+                      <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i>
+                    </span>
+                    <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
+                  </li>
+
+                  <li id="Services" class="li-Content" routerLink="service">
+                    <span>
+                     
+                      <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i>
+                    </span>
+                    <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
+                  </li>
+
+                  <li id="Profile" type="button" class="li-Content" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      <span>
+                        <i id="ProfileIcon" class="fas fa-user-md" style="font-size: 23px;"></i>
+                      </span>
+                      <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
+                  </li>
+
+                  <div  class="collapse" id="collapseExample">
+                      <ul>
+                       <li class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
+                       <li class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
+                       <li class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
+                      </ul> 
+                   </div>
+
+                </ul> 
+              </div>
+
+              <hr class="hr-sidebar-main" />
+
+              <div class="option-sidebar">
+                <ul>
+                  <li id="Signup" class="li-Content sub-group-title">
+                    <span>{{ "mainModule.main.option" | translate }}</span>
+                  </li>
+                  <!-- <li id="Signup" class="li-Content">
+                    <span>
+                      <img src="../../../assets/img/settings/Group 2.png">
+                    </span>
+                    <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
+                  </li>
+                  <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
+                    <span>
+                      <img src="../../../assets/img/helpIcon/Group 17.png">
+                    </span>
+                   
+                    <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
+                  </li> -->
+                  <li id="Certificates" class="li-Content">
+                    <span>
+                      <img src="../../../assets/img/logoutIcon/Group 18.png">
+                    </span>
+                  
+                    <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+       
+      </div>
+      <!-- small screen -->
+      <div class="col-12 col-md-12 col-lg-10 var-component d-md-none">
+
+        <div class=" row col-6 my-2" >
+          <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            Button with data-bs-target
+          </button> -->
+
+          <button #navbarToggler class="navbar-toggler navbar-light " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample"   aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          
+          <div class="offcanvas offcanvas-start w-75 pb-0" style="overflow-y: scroll; height: 100%;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="sidebar-col " style="  height: 100%;" >
+              <div class="sidebar-item">
+        
+                <!-- <div class="logo">
+                  <img src="../../../assets/img/logo.webp">
+                </div> -->
+        
+                <div class="sidebar-content">
+        
+                  <div class="menu-sidebar">
+                    <ul>
+                      <li id="menu" class="li-Content sub-group-title">
+                        <span>{{ "mainModule.main.menu" | translate }}</span>
+                      </li>
+        
+                      <li (click)="collapseNav()" id="Dashboard" class="li-Content" routerLink="dashboard"  [routerLinkActive]="'OnClick-Style'">
+                        <span>
+                          <!-- <img  src="../../../assets/img/Group 1.png" > -->
+                          <!-- <i id="DashboardIcon" class="fas fa-align-justify"></i> -->
+                        </span>
+                        <span class="li-item" >
+                          {{ "mainModule.main.Dashboard" | translate }}
+                        </span>
+                      </li>
+        
+                      <li (click)="collapseNav()" id="Clinics" #DoctorinfoRef class="li-Content" routerLink="updateclinic" [routerLinkActive]="'OnClick-Style'">
+                        <span class="">
+                          <!-- <img id="ClinicsIcon" src="../../../assets/img/Vector.png"> -->
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.Clinics" | translate }}</span>
+                      </li>
+        
+                      <li (click)="collapseNav()" id="Appointments" class="li-Content" routerLink="appointment" [routerLinkActive]="'OnClick-Style'">
+                        <span>
+                          <!-- <img  src="../../../assets/img/appointments/Vector.png" > -->
+                          <!-- <i id="AppointmentIcon" class="far fa-calendar-alt calender" style="font-size: 20px;"></i> -->
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.Appointments" | translate }}</span>
+                      </li>
+        
+                      <li (click)="collapseNav()" id="Services" class="li-Content" routerLink="service" [routerLinkActive]="'OnClick-Style'">
+                        <span>
+                          <!-- <img src="../../../assets/img/ServiceIcon/Vector.png" > -->
+                          <!-- <i id="ServiceIcon" class="fas fa-folder-plus" style="font-size: 20px;"></i> -->
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.Services" | translate }}</span>
+                      </li>
+        
+                      <!-- <li id="Profile" class="li-Content" routerLink="/update-doctor-profile">
+                        <span>
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
+                      </li> -->
+
+                      <li id="Profile" class="li-Content dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" >
+                        
+                        <span class="li-item">{{ "mainModule.main.Profile" | translate }}</span>
+                    </li>
+
+                    <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         <ul>
+                          <li (click)="collapseNav()"  class="li-Content  " routerLink="/main/update-doctor-profile"><span >{{'mainModule.sideBar.DoctorInfo' | translate}}</span></li>
+                          <li (click)="collapseNav()"  class="li-Content " routerLink="/main/update-doctor-certificates"><span  >{{'mainModule.sideBar.Certificates' | translate}}</span></li>
+                          <li (click)="collapseNav()"  class="li-Content " routerLink="/main/update-doctor-documents"><span >{{'mainModule.sideBar.LegalDocuments' | translate}}</span></li>
+                      </ul>
+                     </div>
+        
+                    </ul>
+                  </div>
+        
+                  <hr class="hr-sidebar-main" />
+        
+                  <div class="option-sidebar">
+                    <ul>
+                      <li id="Signup" class="li-Content sub-group-title">
+                        <span>{{ "mainModule.main.option" | translate }}</span>
+                      </li>
+                      <!-- <li id="Signup" class="li-Content">
+                        <span>
+                          <img src="../../../assets/img/settings/Group 2.png">
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.settings" | translate }}</span>
+                      </li>
+                      <li id="Doctorinfo" #DoctorinfoRef class="li-Content">
+                        <span>
+                          <img src="../../../assets/img/helpIcon/Group 17.png">
+                        </span>
+                        <span class="li-item">{{ "mainModule.main.Help" | translate }}</span>
+                      </li> -->
+                      <li id="Certificates" class="li-Content">
+                        <span>
+                          <img src="../../../assets/img/logoutIcon/Group 18.png">
+                        </span>
+                        <!-- Logout -->
+                        <span class="li-item" (click)=" RemoveAuth()">{{ "mainModule.main.Logout" | translate }}</span>
+                      </li>
+                    </ul>
+                  </div>
+        
+                </div>
+        
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+
+      </div>
+       <!-- <div class="container" > -->
+        <div class="col-md-10 col-12 px-auto  ">
+          <router-outlet></router-outlet>
+        </div>
+      <!-- </div> -->
+    </div> 
+  </div>
+  <div class="d-flex align-items-end" style="height:10% ;">
+      <app-footer></app-footer>
+  </div>
 </div>

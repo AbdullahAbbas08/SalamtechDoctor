@@ -39,6 +39,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
   specialist:string;
   subspecialist:string;
   formData:FormData;
+  dt_min:any =  this.subtractYears(100).toString();
+  dt_max:any =  this.subtractYears(22).toString();
   //#endregion
   selectedItems= [];
   dropdownSettings = {
@@ -68,8 +70,12 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
+    console.log("min : ", this.subtractYears(100).toString());
+    console.log("max : ", this.subtractYears(22).toString());
+    
     this.formData = new FormData();
     //#region Init Values
+
     document.getElementById("Doctorinfo")?.classList.add("OnClick-Style");
     document.getElementById("Signup")?.classList.add("OnClick-Style");
     this.DropDownList_Speciality = [];
@@ -94,6 +100,11 @@ export class UpdateDoctorInfoComponent implements OnInit {
   }
   //#endregion
 
+  subtractYears(numOfYears, date = new Date()) {
+    date.setFullYear(date.getFullYear() - numOfYears);
+    return date.toISOString().slice(0, -14);
+  }
+
   getTranslitation()  {
     this.translateSwal.Translitation().subscribe((values) => {
       // console.log(values);
@@ -117,16 +128,18 @@ export class UpdateDoctorInfoComponent implements OnInit {
           Country:[this.DoctorProfile.NationalityId,[Validators.required ]],
           LicenseNumber:[this.DoctorProfile.LicenseNumber,[Validators.required ]],
           FacebookAccount:[this.DoctorProfile.FacebookAccount,[Validators.nullValidator ]],
-          Website:[this.DoctorProfile.Website,[Validators.nullValidator ]],
+          Website:[this.DoctorProfile.Website,[Validators.nullValidator, Validators.pattern('https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}') ]],
           SyndicateId:[this.DoctorProfile.SyndicateId,[Validators.required ]],
           NationalId:[this.DoctorProfile.NationalId,[Validators.required ]],
           DateOfBirth: [this.DoctorProfile.Birthday,[Validators.required ]  ],
           Speciality:[this.DoctorProfile.SpecialistName,[Validators.required]],
           SubSpeciality:[this.selectedItems,[Validators.required]],
-          Seniority:[this.DoctorProfile.SeniorityLevelId,[Validators.required]],
-          BiographyAr: [this.DoctorProfile.DoctorInfo,  ],
-          Biography: [this.DoctorProfile.DoctorInfoAr, ],
-          Email:[this.DoctorProfile.Email,[Validators.required ,Validators.email]]
+          Seniority:[this.DropDownList_SeniorityLevel.find(
+            (x) => x.Id == this.DoctorProfile.SeniorityLevelId
+          ).Name,[Validators.required]],
+          BiographyAr: [this.DoctorProfile.DoctorInfoAr,  ],
+          Biography: [this.DoctorProfile.DoctorInfo, ],
+          Email:[this.DoctorProfile.Email,[Validators.required ,Validators.email , Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{2,3}')]]
         });
 
     this.url_img = environment.ImagesURL+this.DoctorProfile.Image;

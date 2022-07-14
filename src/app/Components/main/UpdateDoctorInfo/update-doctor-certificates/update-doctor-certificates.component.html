@@ -91,8 +91,11 @@
               <!-- TitltAr Input -->
               <div class="col-md-6 mt-3">
                 <div class="input-group">
-                  <label for="titleAr" class="text-muted">{{ "mainModule.Certificate.CertificateTitleAr" | translate
-                    }}<span class="text-danger">*</span></label>
+                  <label for="titleAr" dir="ltr"
+                          class="text-muted" style="width:100% ;text-align:right ;">
+                          {{ "mainModule.Certificate.CertificateTitleAr" | translate}}
+                          <span class="text-danger">*</span>
+                  </label>
                   <input id="titleAr" type="text" class="form-control w-100 mt-2 input-style text-right"
                     formControlName="titleAr" [class.is-valid]="
                       CertificateForm.controls['titleAr'].valid &&
@@ -126,9 +129,12 @@
               <!--  DescriptionAr Input -->
               <div class="col-md-6">
                 <div class="form-floating">
-                  <label for="floatingTextarea2" class="position-relative px-0 py-2 text-muted">{{
-                    "mainModule.Certificate.DescriptionAr" | translate }}
-                    <span class="text-danger">*</span></label>
+                  <label for="floatingTextarea2" 
+                          class="position-relative px-0 py-2 text-muted"
+                          style="float: right;">
+                          {{"mainModule.Certificate.DescriptionAr" | translate }}
+                    <span class="text-danger">*</span>
+                  </label>
                   <textarea formControlName="DescriptionAr" [class.is-valid]="
                       CertificateForm.controls['DescriptionAr'].valid &&
                       CertificateForm.controls['DescriptionAr'].touched
@@ -136,7 +142,7 @@
                       CertificateForm.controls['DescriptionAr'].invalid &&
                       CertificateForm.controls['DescriptionAr'].touched
                     " class="form-control" id="floatingTextarea2" [(ngModel)]="editableCertificate.DescriptionAr"
-                    style="height: 120px"></textarea>
+                    style="height: 120px;text-align: right;"></textarea>
                 </div>
               </div>
             </div>

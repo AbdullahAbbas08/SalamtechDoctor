@@ -65,7 +65,7 @@
               </span>
               <span class="star"> * </span>
               <div class="input-style">
-                <input  class="form-control" formControlName="FirstName" />
+                <input  class="form-control" formControlName="FirstName" readonly />
                     
               </div>
             </div>
@@ -78,7 +78,7 @@
               <span class="star"> * </span>
               <div class="input-style">
                   <div class="input-style">
-                      <input class="form-control" formControlName="MiddleName">
+                      <input class="form-control" formControlName="MiddleName" readonly >
                         
                     </div>
               </div>
@@ -92,7 +92,7 @@
               <span class="star"> * </span>
               <div class="input-style">
                   <div class="input-style">
-                      <input class="form-control" formControlName="LastName">
+                      <input class="form-control" formControlName="LastName" readonly>
                       
                     </div>
               </div>
@@ -110,7 +110,7 @@
             <span class="star"> * </span>
             <div class="input-style">
                 <div class="input-style">
-                    <input class="form-control" formControlName="FirstNameAr">
+                    <input class="form-control" formControlName="FirstNameAr" readonly>
                       
                   </div>
             </div>
@@ -124,7 +124,7 @@
             <span class="star"> * </span>
             <div class="input-style">
                 <div class="input-style">
-                    <input class="form-control" formControlName="MiddleNameAr">
+                    <input class="form-control" formControlName="MiddleNameAr" readonly>
                       
                   </div>
             </div>
@@ -138,7 +138,7 @@
             <span class="star"> * </span>
             <div class="input-style">
                 <div class="input-style">
-                    <input class="form-control" formControlName="LastNameAr">     
+                    <input class="form-control" formControlName="LastNameAr" readonly>     
                   </div>
             </div>
           </div>
@@ -154,7 +154,9 @@
               </span>
               <span class="star"> * </span>
               <div class="input-style">
-                <input  class="form-control" formControlName="NationalId" />
+                <input type="number" class="form-control" formControlName="NationalId"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                maxlength="14" minlength="14" />
                     
               </div>
             </div>
@@ -167,7 +169,12 @@
               <span class="star"> * </span>
               <div class="input-style">
                   <div class="input-style">
-                      <input class="form-control" formControlName="SyndicateId">
+                      <input type="number" 
+                            class="form-control" 
+                            formControlName="SyndicateId" 
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxlength="10" 
+                            minlength="10">
                         
                     </div>
               </div>
@@ -181,7 +188,12 @@
               <span class="star"> * </span>
               <div class="input-style">
                   <div class="input-style">
-                      <input class="form-control" formControlName="LicenseNumber">
+                      <input class="form-control" 
+                              type="number"
+                              formControlName="LicenseNumber"
+                              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                              maxlength="10" 
+                              minlength="10">
                       
                     </div>
               </div>
@@ -253,14 +265,20 @@
                 }}</span>
               <span class="star"> * </span>
               <div class=" ">
-                <input type="date" id="birthOfDay" formControlName="DateOfBirth" class="form-control" [class.is-valid]="
-                  DoctorInfoForm.controls['DateOfBirth'].valid &&
-                  DoctorInfoForm.controls['DateOfBirth'].touched
-                " [class.is-invalid]="
-                  DoctorInfoForm.controls['DateOfBirth'].invalid &&
-                  DoctorInfoForm.controls['DateOfBirth'].touched
-                " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                  maxlength="10" minlength="3" />
+                <input type="date" 
+                        id="birthOfDay_update" 
+                        min="{{dt_min}}"
+                        max="{{dt_max}}"
+                        formControlName="DateOfBirth" 
+                        class="form-control" 
+                        [class.is-valid]="
+                        DoctorInfoForm.controls['DateOfBirth'].valid &&
+                        DoctorInfoForm.controls['DateOfBirth'].touched
+                      " [class.is-invalid]="
+                        DoctorInfoForm.controls['DateOfBirth'].invalid &&
+                        DoctorInfoForm.controls['DateOfBirth'].touched
+                      " oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="10" minlength="3" />
               </div>
             </div>
           </div>
@@ -276,16 +294,18 @@
                 "mainModule.DoctorInfo.Gender" | translate
                 }}</span>
               <span class="star"> * </span>
-              <select formControlName="Gender"
+              <!-- <select formControlName="Gender" 
                       (change)="SelectGender($event)"
-                      class="form-select">
-                <option value="1" [selected]="DoctorProfile.GenderId == 1">
+                      class="form-select" 
+                      >
+                      <option value="1"  [selected]="DoctorProfile.GenderId == 1">
                   {{ "mainModule.DoctorInfo.Male" | translate }}
                 </option>
                 <option value="2" [selected]="DoctorProfile.GenderId == 2">
                   {{ "mainModule.DoctorInfo.Female" | translate }}
                 </option>
-              </select>
+              </select> -->
+              <input class="form-control" formControlName="Gender" readonly>
             </div>
 
 
@@ -314,7 +334,7 @@
                 "mainModule.DoctorInfo.Speciality" | translate
                 }}</span>
               <span class="star"> * </span>
-              <select formControlName="Speciality"
+              <!-- <select formControlName="Speciality"
                       (change)="SelectSpeciality($event)"
                       class="form-select" aria-label="Default select example">
                       <option> {{this.DoctorProfile.SpecialistName}} </option>
@@ -322,21 +342,10 @@
                               value={{item.Id}} [selected]="item.Id == DoctorProfile.SpecialistId">
                         {{item.Name}}
                         </option>
-              </select>
+              </select> -->
+              <input class="form-control" formControlName="Speciality" readonly>
             </div>
 
- 
-      <!-- Seniority -->
-      <!-- <div class="col-md-12 col-lg-6  ">
-        <span class="lbl-Register">{{
-          "mainModule.DoctorInfo.Seniority" | translate
-          }}</span>
-        <span class="star"> * </span>
-        <div class="input-style">
-           
-             <input type="text" class="form-control"  [placeholder]="Seniority" disabled>
-        </div>
-      </div> -->
 
             <!-- Seniority -->
             <div class="col-md-12 col-lg-6 mb-2">
@@ -344,7 +353,7 @@
                 "mainModule.DoctorInfo.Seniority" | translate
                 }}</span>
               <span class="star"> * </span>
-              <select formControlName="Seniority"
+              <!-- <select formControlName="Seniority"
                       (change)="SelectSeniority($event)"
                       class="form-select"
                       aria-label="Default select example">
@@ -354,24 +363,12 @@
                         [selected]="this.DoctorProfile.SpecialistId == item.Id">
                   {{item.Name}}
                   </option>
-              </select>
+              </select> -->
+              <input class="form-control" formControlName="Seniority" readonly>
             </div>
 
 
     </div>
-
-     <!-- SubSpeciality -->    
-    <!-- <div class="row align-items-center py-2 mb-2">
-            <div class="col-12">
-              <span class="lbl-Register">{{
-                "mainModule.DoctorInfo.SubSpeciality" | translate
-                }}</span>
-              <span class="star"> * </span>
-             <div>
-              <input type="text " class="form-control"  [placeholder]="subspecialist" disabled>
-             </div>
-            </div> 
-    </div> -->
 
           <!-- SubSpeciality -->
           <div class="row align-items-center py-2 mb-2">
@@ -379,7 +376,7 @@
               "mainModule.DoctorInfo.SubSpeciality" | translate
               }}</span>
             <span class="star"> * </span>
-            <ng-multiselect-dropdown
+            <ng-multiselect-dropdown [disabled]="true"
             formControlName="SubSpeciality"
             placeholder="{{'mainModule.DoctorInfo.SelectSubSpeciality' | translate}}"
             [settings]="dropdownSettings"

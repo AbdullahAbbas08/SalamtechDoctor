@@ -1,123 +1,122 @@
-<div class="container-fluid" style="min-height: 92%;">
-  <app-nav></app-nav>
-
-  
-<div class="row">
-  <div class="col-12 col-md-6">
- <!-- Login Form -->
- <div class="d-flex justify-content-center mx-auto  mt-md-5 my-3" >
-  <div class="" style="background: #FFFFFF;
-  border-radius: 20px;margin-top: 60px;">
-  <h5 class="text-center py-3" style="background: #00D2CA;
-  border-radius: 20px 20px 0px 0px;">
-    {{ 'mainModule.LoginPage.SignIn' | translate }}
-  </h5>
-    <form [formGroup]="LoginForm" class="p-5" autocomplete="off">
-
-      <!-- phone Phone -->
-      <div class="form-group ">
-        <label for="Phone"
-        style="color: #727685;">
-                <span class="text-danger">* </span>
-                {{ 'mainModule.login.PhoneNumber' | translate }}
-        </label>
-
-        <!-- [(ngModel)]="loginDoctorForm.Phone"  -->
-        <input id="Phone"
-              formControlName="PhoneNumber"
-              class="form-control "
-              style="border-color: #8b90a0!important;"
-              type="number"
-              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-              maxlength="11"
-              minlength="11"
-              [class.icon]="1"
-              name="Phone"
-              placeholder="Please Enter your Mobile Number ... "
-              required >
-              <app-fielderror 
-                    [displayError]="isFieldValid('PhoneNumber')"
-                    errorMsg="{{'errorField.phone' | translate}}"
-                  ></app-fielderror>
-            </div>
-
-      <!-- Password -->
-      <div class="form-group mt-3">
-        <div class="input-group mb-3 w-100">
-          <label for="Phone" style="color: #727685;" class=" w-100">
-            <span class="text-danger  "> * </span>
-                {{  "mainModule.RegisterPage.Password" | translate }}
-              </label>
-              <!-- [(ngModel)]="loginDoctorForm.Password"  -->
-                  <input class="form-control "
-                          id="Pass"
-                          formControlName="Password"
-                          type="password"
-                          placeholder="*******"
-                          name="Password"
-                          required>
-
-                  <span (click)="passwordIcon()"
-                        class="input-group-text border-rounded"
-                        style="background-color: white!important; cursor: pointer;">
-                        <i
-                        class="far  text-end "
-                        [ngClass]="{'fa-eye-slash' : !toggle , 'fa-eye' : toggle}"
-                        id="togglePassword"></i>
-                  </span>
+<div class="container-fluid" style="height:100% ;">
+  <div class="d-flex align-items-start" style="height:10% ;">
+      <app-nav></app-nav>
+  </div>
+  <div class="d-flex align-items-center  justify-content-center" style="min-height:80% ;">
+    <div class="row">
+      <div class="col-12 col-md-6 d-flex align-items-center justify-content-start" >
+        <img src="../../../../assets/img/website/web p.png" width="80%" height="80%" >
+      </div>
+      <div class="col-12 col-md-6">
+     <!-- Login Form -->
+     <div class="d-flex justify-content-center mx-auto  mt-md-5 my-3" >
+      <div class="" style="background: #FFFFFF;
+      border-radius: 20px;margin-top: 60px;">
+      <h5 class="text-center py-3" style="background: #00D2CA;
+      border-radius: 20px 20px 0px 0px;">
+        {{ 'mainModule.LoginPage.SignIn' | translate }}
+      </h5>
+        <form [formGroup]="LoginForm" class="p-5" autocomplete="off">
+    
+          <!-- phone Phone -->
+          <div class="form-group ">
+            <label for="Phone"
+            style="color: #727685;">
+                    <span class="text-danger">* </span>
+                    {{ 'mainModule.login.PhoneNumber' | translate }}
+            </label>
+    
+            <!-- [(ngModel)]="loginDoctorForm.Phone"  -->
+            <input id="Phone"
+                  formControlName="PhoneNumber"
+                  class="form-control "
+                  style="border-color: #8b90a0!important;"
+                  type="number"
+                  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                  maxlength="11"
+                  minlength="11"
+                  [class.icon]="1"
+                  name="Phone"
+                  placeholder="Please Enter your Mobile Number ... "
+                  required >
+                  <app-fielderror 
+                        [displayError]="isFieldValid('PhoneNumber')"
+                        errorMsg="{{'errorField.phone' | translate}}"
+                      ></app-fielderror>
                 </div>
-                <app-fielderror 
-                  [displayError]="isFieldValid('Password')"
-                  errorMsg="{{'errorField.password' | translate}}"
-                ></app-fielderror>
+    
+          <!-- Password -->
+          <div class="form-group mt-3">
+            <div class="input-group mb-3 w-100">
+              <label for="Phone" style="color: #727685;" class=" w-100">
+                <span class="text-danger  "> * </span>
+                    {{  "mainModule.RegisterPage.Password" | translate }}
+                  </label>
+                  <!-- [(ngModel)]="loginDoctorForm.Password"  -->
+                      <input class="form-control "
+                              id="Pass"
+                              formControlName="Password"
+                              type="password"
+                              placeholder="*******"
+                              name="Password"
+                              required>
+    
+                      <span (click)="passwordIcon()"
+                            class="input-group-text border-rounded"
+                            style="background-color: white!important; cursor: pointer;">
+                            <i
+                            class="far  text-end "
+                            [ngClass]="{'fa-eye-slash' : !toggle , 'fa-eye' : toggle}"
+                            id="togglePassword"></i>
+                      </span>
+                    </div>
+                    <app-fielderror 
+                      [displayError]="isFieldValid('Password')"
+                      errorMsg="{{'errorField.password' | translate}}"
+                    ></app-fielderror>
+          </div>
+    
+          <!-- forget Password -->
+          <div class="forgetPassword mt-2">
+            <a routerLink="/forget-password">{{ 'mainModule.login.ForgetPassword' | translate }}</a>
+          </div>
+    
+          <!-- Login Btn -->
+          <button (click)="LoginDoctor()"
+                  
+                  type="submit"
+                  class="btn w-100 text-white mt-5"
+                  style="background-color: #262d70;">
+    
+                  {{ 'mainModule.login.SignIn' | translate }}
+          </button>
+    
+          <!-- create Account Link -->
+          <label class="Dont-have-an-account-create-account mt-2" data-bs-dismiss="modal" aria-label="Close">
+                {{ 'mainModule.login.DontHaveAnAccount?' | translate }}
+                <a  [routerLink]="['/register']"
+                    style="color: #262d70;">
+                    {{ 'mainModule.login.createAccount' | translate }}
+                </a>
+            </label>
+    
+        </form>
       </div>
-
-      <!-- forget Password -->
-      <div class="forgetPassword mt-2">
-        <a routerLink="/forget-password">{{ 'mainModule.login.ForgetPassword' | translate }}</a>
+    </div>
       </div>
-
-      <!-- Login Btn -->
-      <button (click)="LoginDoctor()"
-              
-              type="submit"
-              class="btn w-100 text-white mt-5"
-              style="background-color: #262d70;">
-
-              {{ 'mainModule.login.SignIn' | translate }}
-      </button>
-
-      <!-- create Account Link -->
-      <label class="Dont-have-an-account-create-account mt-2" data-bs-dismiss="modal" aria-label="Close">
-            {{ 'mainModule.login.DontHaveAnAccount?' | translate }}
-            <a  [routerLink]="['/register']"
-                style="color: #262d70;">
-                {{ 'mainModule.login.createAccount' | translate }}
-            </a>
-        </label>
-
-    </form>
+     
+    </div>
+       
+    
+          <!-- spinner -->
+          <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+            <p style="color: white"> {{ 'spinner' | translate }} </p>  
+            </ngx-spinner>  
+  </div>
+  <div class="d-flex align-items-end" style="height:10% ;">
+      <app-footer></app-footer>
   </div>
 </div>
-  </div>
-  <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-    <img src="../../../../assets/img/website/web p.png" width="80%" height="80%" >
-  </div>
-</div>
-   
-
-      <!-- spinner -->
-      <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-        <p style="color: white"> {{ 'spinner' | translate }} </p>  
-        </ngx-spinner> 
-
-
-</div>
-<div style="min-height: 8%; background-color: #14183a">
-  <app-footer></app-footer>
-</div>
-
-
 
 
 

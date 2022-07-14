@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -27,6 +27,8 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_SubSpeciality:IdNameList[];
   DropDownList_SeniorityLevel:IdNameList[];
   DropDownList_GetCountries:IdNameList[]; 
+  dt_min:any =  this.subtractYears(100).toString();
+  dt_max:any =  this.subtractYears(22).toString();
   //#endregion
   translation;
 
@@ -43,7 +45,10 @@ export class DoctorInfoComponent implements OnInit {
   //#endregion
 
   //#region On Init Method
-    ngOnInit(): void {
+    ngOnInit(): void { 
+      document.getElementById("DateOfBirth").setAttribute("min", this.subtractYears(21).toString());
+      document.getElementById("DateOfBirth").setAttribute("max",  new Date().toLocaleDateString());
+
       this.dropdownSettings = {
         singleSelection: false,
         idField: 'Id',
@@ -54,6 +59,7 @@ export class DoctorInfoComponent implements OnInit {
         allowSearchFilter: true
       };
   
+     
 
       this.initForm()
       //#region Init Values
@@ -153,6 +159,12 @@ export class DoctorInfoComponent implements OnInit {
     )
   }
   //#endregion
+
+
+   subtractYears(numOfYears, date = new Date()) {
+    date.setFullYear(date.getFullYear() - numOfYears);
+    return date;
+  }
 
   //#region  GetSpecialistIdName
 GetSpecialistIdName(lang:string)

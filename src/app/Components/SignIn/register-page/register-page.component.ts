@@ -165,7 +165,7 @@ export class RegisterPageComponent implements OnInit {
   }, 1000)
   
     Swal.fire({
-      title: 'Phone Verification : '+code,
+      title: 'Phone Verification Sent ',
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off',

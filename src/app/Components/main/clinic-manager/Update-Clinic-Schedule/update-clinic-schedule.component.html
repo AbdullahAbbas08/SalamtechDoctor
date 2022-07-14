@@ -15,7 +15,7 @@
     </div>
     <!-- Schedule Body -->
     <div *ngFor="let item of ClinicSchedule;let i=index" class="col-12">
-        <div class="row Schedule-block ">
+        <div class="row Schedule-block " (click)="set_Day_Id(item.DayId)">
           <div class="col" style="position: relative;">
             <hr style=" background-color: #03BBB4;">
           </div>
@@ -274,8 +274,12 @@
                                                       <input type="time" 
                                                             class="form-control input-style-period" 
                                                             style="padding-right: 15px;"
+                                                            (ngModelChange)="valuechangeFrom($event)"
                                                             [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeFrom"
-                                                      >    
+                                                      >  
+                                                      <!-- <div class="alert alert-danger mt-1" [hidden]="!(PeriodReserved.length != 0 && setDayId == item.DayId)">
+                                                        Period {{SelectedTimeFrom}} is in valid
+                                                      </div>   -->
                                                     </div>
     
                                                     <!-- To label col -->
@@ -286,10 +290,14 @@
                                                     <!-- TimeTo col -->
                                                     <div class="col-12 col-md-5 ">
                                                       <input type="time" 
+                                                      (ngModelChange)="valuechangeTo($event)"
                                                               class="form-control input-style-period" 
                                                               style="padding-right: 15px;"
                                                               [(ngModel)]="ClinicScheduleDayList[item.DayId][i].TimeTo" >
-                                                    </div>
+                                                              <!-- <div class="alert alert-danger mt-1" [hidden]="!(PeriodReserved.length != 0 && setDayId == item.DayId )">
+                                                                Period {{SelectedTimeTo}} is in valid
+                                                              </div>   -->
+                                                            </div>
     
                                               </div>
                                             </div>
