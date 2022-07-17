@@ -29,6 +29,7 @@ export class DoctorInfoComponent implements OnInit {
   DropDownList_GetCountries:IdNameList[]; 
   dt_min:any =  this.subtractYears(100).toString();
   dt_max:any =  this.subtractYears(22).toString();
+  
   //#endregion
   translation;
 
@@ -46,8 +47,8 @@ export class DoctorInfoComponent implements OnInit {
 
   //#region On Init Method
     ngOnInit(): void { 
-      document.getElementById("DateOfBirth").setAttribute("min", this.subtractYears(21).toString());
-      document.getElementById("DateOfBirth").setAttribute("max",  new Date().toLocaleDateString());
+      // document.getElementById("DateOfBirth").setAttribute("min", this.subtractYears(21).toString());
+      // document.getElementById("DateOfBirth").setAttribute("max",  new Date().toLocaleDateString());
 
       this.dropdownSettings = {
         singleSelection: false,
@@ -59,10 +60,11 @@ export class DoctorInfoComponent implements OnInit {
         allowSearchFilter: true
       };
   
-     
 
       this.initForm()
       //#region Init Values
+      console.log(this.DoctorInfoForm);
+      
       document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
       document.getElementById('Signup')?.classList.add('OnClick-Style');
       this.DropDownList_Speciality = [];
@@ -161,9 +163,9 @@ export class DoctorInfoComponent implements OnInit {
   //#endregion
 
 
-   subtractYears(numOfYears, date = new Date()) {
+  subtractYears(numOfYears, date = new Date()) {
     date.setFullYear(date.getFullYear() - numOfYears);
-    return date;
+    return date.toISOString().slice(0, -14);
   }
 
   //#region  GetSpecialistIdName

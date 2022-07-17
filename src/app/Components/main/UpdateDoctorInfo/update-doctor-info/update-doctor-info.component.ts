@@ -70,8 +70,8 @@ export class UpdateDoctorInfoComponent implements OnInit {
 
   //#region On Init Method
   ngOnInit(): void {
-    console.log("min : ", this.subtractYears(100).toString());
-    console.log("max : ", this.subtractYears(22).toString());
+    // console.log("min : ", this.subtractYears(100).toString());
+    // console.log("max : ", this.subtractYears(22).toString());
     
     this.formData = new FormData();
     //#region Init Values
