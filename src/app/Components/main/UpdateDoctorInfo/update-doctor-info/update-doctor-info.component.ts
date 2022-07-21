@@ -131,7 +131,7 @@ export class UpdateDoctorInfoComponent implements OnInit {
           Website:[this.DoctorProfile.Website,[Validators.nullValidator, Validators.pattern('https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,}') ]],
           SyndicateId:[this.DoctorProfile.SyndicateId,[Validators.required ]],
           NationalId:[this.DoctorProfile.NationalId,[Validators.required ]],
-          DateOfBirth: [this.DoctorProfile.Birthday,[Validators.required ]  ],
+          DateOfBirth: [this.DoctorProfile.Birthday,[Validators.required, ]  ],
           Speciality:[this.DoctorProfile.SpecialistName,[Validators.required]],
           SubSpeciality:[this.selectedItems,[Validators.required]],
           Seniority:[this.DropDownList_SeniorityLevel.find(

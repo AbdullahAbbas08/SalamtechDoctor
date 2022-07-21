@@ -8,6 +8,7 @@ import { LoginService } from 'src/Service/login.service';
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { environment } from 'src/environments/environment';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-update-doctor-docs',
@@ -20,13 +21,17 @@ export class UpdateDoctorDocsComponent implements OnInit {
   //#region Declare variables
   DocumentsForm:FormGroup
   // Upload_Image:boolean;
-  LegalDocumentList;
-  Documents:any[];
+  LegalDocumentList :any[]=[];
+  Documents:any[]=[];
   translation;
   idDocs=null;
   proffDocs=null;
   count:number
   url:string
+  Input_Documents:{[Id:number]:{url:string,id:number}} = {}
+  image_path:string = environment.ImagesURL ;
+  idDocument:number=-1;
+  Doc_id_To_Delete = -1;
   //#endregion
 
   //#region Constructor
@@ -35,7 +40,8 @@ constructor(
   private DocumentService:DocumentService,
   private loginService:LoginService,
   private router:Router,
-  private translateSwal:TranslateSwalsService
+  private translateSwal:TranslateSwalsService,
+  private SpinnerService: NgxSpinnerService
 ) { }
 //#endregion
 
@@ -72,7 +78,7 @@ constructor(
       {
         this.DocumentService.GetLegalDocument(lang ).subscribe(
           (response)=>{
-            this.LegalDocumentList = response.Data;
+            this.LegalDocumentList = response.Data;            
             // console.log("LegalDocumentList : ",this.LegalDocumentList)
           },
           (err)=>{ }
@@ -80,7 +86,15 @@ constructor(
       }
       //#endregion
 
-         
+      DocumentExist(id:number):boolean{
+        // console.log(this.image_path+this.Input_Documents[id]);
+        // let res = this.Documents.filter(x=>x.LegalDocumentTypeId == id)
+        // return res.length > 0 ?true:false;
+        // console.log(id);
+        
+        return this.Documents.find(x=>x.LegalDocumentTypeId == id);
+      }
+     
 
          //#region  Document Method
          GetDocuments(lang:string)
@@ -88,27 +102,45 @@ constructor(
            this.DocumentService.GetDocuments(lang ).subscribe(
              (response)=>{
                this.Documents = response.Data;
-                             
+                // console.log("xxx : ",response.Data)
+
+                response.Data.forEach(element => {
+                  this.Input_Documents[element.LegalDocumentTypeId] ={url:element.DocumentUrl , id:element.Id} ;
+                // console.log(this.Input_Documents[element.LegalDocumentTypeId]);
+                
+                });
               //  this.count = response.Data.length
-              //  console.log(this.Documents[0])
-               this.Documents.map(item=>{
-                 if(item.LegalDocumentTypeId == 1){
-                   this.idDocs=item                   
-                 }
-                 if(item.LegalDocumentTypeId == 2){
-                  this.proffDocs=item
-                  // console.log(this.proffDocs);
+              //  this.Documents.map(item=>{
+              //    if(item.LegalDocumentTypeId == 1){
+              //      this.idDocs=item                   
+              //    }
+              //    if(item.LegalDocumentTypeId == 2){
+              //     this.proffDocs=item
+              //     // console.log(this.proffDocs);
                   
-                }
-               })
+              //   }
+              //  })
              },
              (err)=>{ }
            )
          }
          //#endregion
 
+         DeleteDocumentToUpdate(id:number){
+          this.SpinnerService.show();
+          this.DocumentService.DeleteDocuments( "",id).subscribe((res)=>{        
+          // console.log("success");
+          
+        },
+        (err)=>{
+          // console.log("failed");
+        })
+        this.SpinnerService.hide();
+         }
+
+
           //#region delete Document Method
-          DeleteDocument(lang:string , id,LegalDocumentTypeId:any)
+          DeleteDocument( id,LegalDocumentTypeId:any)
           {
             let count = this.Documents.filter(c=>c["LegalDocumentTypeId"] == LegalDocumentTypeId);
             // console.log( count.length > 1);
@@ -127,7 +159,7 @@ constructor(
               .then((result) => {
         
                 if (result.isConfirmed) {
-                  this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
+                  this.DocumentService.DeleteDocuments( "",id).subscribe((res)=>{
                    
                     Swal.fire(
                       this.translation.Deleted,
@@ -173,7 +205,7 @@ constructor(
     
     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
       (response)=>{
-      // console.log(response);
+      // console.log("create : ",response);
       // this. GetLegalDocument('en')
       this.GetDocuments('en')
      
@@ -195,46 +227,46 @@ constructor(
 
   //#region review AND File FormData image from input file
     public message: string;
-
-    preview(files:any  , id) { 
-      
-      
-      if (files[0].size / 1024 / 1024 >= 5)
+   
+    preview(event) { 
+     
+      const files:File = event.target.files[0];      
+      if (files.size / 1024 / 1024 >= 5)
       {
         Swal.fire(
           'Error!',
           'File size should not be more than 5 MB',
           'error'
         )
-        files = null
+        // files = null
       this.message = "File size should not be more than 5 MB.";
       return;
     }
       const formData = new FormData();
-      if (files.length === 0)
+      if (files.size === 0)
         return ;
 
-      // var mimeType = files[0].type;
-      // if (mimeType.match(/image\/*/) == null) {
-      //   this.message = "Only images are supported.";
-      //   return ;
-      // }
+      var mimeType = files.type;
+      if (mimeType.match(/image\/*/) == null) {
+        this.message = "Only images are supported.";
+        return ;
+      }
       var reader = new FileReader();
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(files);
      
-      formData.append('LegalDocumentTypeId', id );
-      formData.append('document',files[0] );
+      formData.append('LegalDocumentTypeId',  this.idDocument as unknown as Blob );
+      formData.append('document',files );
+      this.DeleteDocumentToUpdate(this.Doc_id_To_Delete);
        this.CreateDoctorDocuments('en',formData)
-      this.GetDocuments('en')
+      // this.GetDocuments('en')
+     
 
     }
     //#endregion
 
 
     next(){
-
-      
-      
+ 
       Swal.fire({
         title: this.translation.Great,
         text: this.translation.UpdatedSuccessfully,
@@ -243,5 +275,12 @@ constructor(
           this.router.navigate(['/main'])
       })
     }
+
+
+    setidDocument(DocTypeId:number,id:any){
+      this.idDocument = DocTypeId;
+      this.Doc_id_To_Delete = id?.id;
+     }
+   
 
 }

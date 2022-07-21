@@ -45,14 +45,15 @@
       "MiddleName": "Second Name",
       "LastName": "Last Name",
       "PhoneNumber": "Phone Number",
-      "Email": "Email",
-      "Password": "Password",
+      "Email": "Enter Email",
+      "Password": "New Password",
       "ReEnterPassword": "ReEnter Password",
       "Terms&Conditions": " By signing up you approve on our",
       "Terms&ConditionsKeyword": "Terms & Conditions",
       "AlreadyHaveAnAccount": "Already have an account ?",
       "Signin": "Signin",
-      "CreateAccount": "Create Account"
+      "CreateAccount": "Create Account",
+      "phone":"Enter Phone Number"
     },
     "otp": {
       "verify": "verify",

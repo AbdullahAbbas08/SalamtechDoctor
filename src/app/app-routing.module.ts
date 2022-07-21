@@ -64,8 +64,8 @@ const routes: Routes = [
     path:'doctor-profile',
     component:SignUpMainComponent ,
     children:[
-      {path:'OTP',component:OtpComponent },
       {path:'',component:DoctorInfoComponent },
+      {path:'OTP',component:OtpComponent },
       {path:'certificates',component:CertificatesComponent },
       {path:'documents',component:DocumentsComponent },
       {path:'Congratulations',component:CongratulationsComponent },

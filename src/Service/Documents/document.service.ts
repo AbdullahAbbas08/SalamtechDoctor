@@ -36,7 +36,7 @@ export class DocumentService {
         }
        
            //#region delete Document
-           DeleteDocuments(lang:string , DocumentId:number):Observable<any>{
+           DeleteDocuments(lang, DocumentId:number):Observable<any>{
             return this.http.delete(`${environment.URL}${this.culture}/Doctor/DeleteDoctorDocument?DocumentId=${DocumentId}` ,this.httpOptions);
           }
 

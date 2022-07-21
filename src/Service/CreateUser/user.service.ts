@@ -27,4 +27,10 @@ export class UserService {
     return this.http.post(`${environment.URL}${this.culture}/User/CreateUser`,CreateUser);
   }
   //#endregion
+
+  //#region Create User
+   ResetPassword( obj:any):Observable<any>{
+    return this.http.post(`${environment.URL}${this.culture}/User/ResetPassword`,obj);
+  }
+  //#endregion
 }

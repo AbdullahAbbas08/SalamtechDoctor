@@ -175,9 +175,8 @@
               </div>
               <div class="col-md-6">
                 <img *ngIf="editableCertificate.CertificateUrl" height="100" style="aspect-ratio: 1;"
-                src="{{url}}{{
-                  editableCertificate.CertificateUrl
-                }}"
+                src="{{url}}{{ editableCertificate.CertificateUrl}}"
+                onerror="this.onerror=null; this.src='assets/img/not_found.png'"
               />
               </div>
             </div>
@@ -205,7 +204,7 @@
                       aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                          <img src="{{ imgURL }}" />
+                          <img src="{{ imgURL }}"  onerror="this.onerror=null; this.src='assets/img/not_found.png'"/>
                         </div>
                       </div>
                     </div>

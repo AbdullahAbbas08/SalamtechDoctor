@@ -27,3 +27,20 @@ img.linkedin {
   margin-right: 8px;
   /* background-color: #232227; */
 }
+
+
+.row-terms
+{
+    /* height: 10%; */
+}
+.Terms-Condition-style
+{
+    /* height: 50px; */
+    color: #727685;
+    text-align: center;
+}
+.termsCondition-style
+{
+    color:#00d2ca;
+    cursor: pointer;
+}

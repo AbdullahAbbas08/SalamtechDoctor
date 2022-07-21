@@ -14,200 +14,132 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class OtpForgetpassComponent implements OnInit {
   useremail:string;
-  //#region Declare Variables
-  // count: number = 4;
-   verifyCode=false;
-  EnableResendLink: boolean;
-  NCODE1: any;
-  NCODE2: any;
-  NCODE3: any;
-  NCODE4: any;
-  iterate: number;
   PhoneNumber:any;
-  translation;
-    //#endregion
-    user
+  PhoneCheck:boolean=true;
+  EmailCheck:boolean=false;
+
+
 
   //#region Constructor
-  constructor(private SignupService: SignupService ,
-              private SpinnerService: NgxSpinnerService,
-              private translateSwal:TranslateSwalsService,
+  constructor(private translateSwal:TranslateSwalsService,
+               private toastr: ToastrService,
               private UserService:UserService,
-              private toastr:ToastrService ,
-              private router:Router) { }
+              private SpinnerService: NgxSpinnerService,
+              private router:Router) {  
+               
+            }
   //#endregion
 
   //#region OnInit Method
   ngOnInit(): void {
-
+   
     this.useremail = "";
-    //#region Init Values
-    this.EnableResendLink = true; 
-    this.PhoneNumber = this.SignupService.Phone;
-
-  
-  
-    this.getTranslitation()
   }
   //#endregion
-  
-  getTranslitation()  {
-    this.translateSwal.Translitation().subscribe((values) => {
-      // console.log(values);
-      this.translation =values 
-      });
-    }
-  
-  checkemail(){
-// setTimeout(() => {
 
-let userid;
-  let body={
-    "Email":this.useremail,
-    "UserTypeId": 2
-  }
   
-  this.SignupService.forgetpass(body).subscribe(res=>{
-    this.user=res['Data']  
-    // code here - -----------------------------
-    this.ShowPopup(res['Data'].Code,res['Data'].UserId);
-    // end code here ---------------------------
-  },
-  err=>{
-    // document.getElementById('cancelbtn').click();
-     Swal.fire({
-      title:this.translation.Error,
-      text: err.error.Message,
-      icon: 'error',
-      showCancelButton: true,
-      showConfirmButton:false,
-      cancelButtonColor:"#f00",
-      confirmButtonText:this.translation.Ok,
-      cancelButtonText:this.translation.Ok,
-      reverseButtons: true
-    })
- 
-  })
-// }, 2000);
+  ValidProccessemail(){
+      this.UserService.ResetPassword({
+        "ResetMethod": 1,
+        "Phone":this.PhoneNumber ,
+        "Email": this.useremail,
+        "UserTypeId": 2
+      }).subscribe(
+        (res)=>{
+            this.ShowPopup( res['Data'].Code,res['Data'].UserId);
+        },
+        (err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.error["Message"],
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
+          
+        })
+    }
+
+    ValidProccessphone(){
+      this.SpinnerService.show();
+      this.UserService.ResetPassword({
+        "ResetMethod": 2,
+        "Phone":this.PhoneNumber ,
+        "Email": this.useremail,
+        "UserTypeId": 2
+      }).subscribe(
+        (res)=>{
+            this.ShowPopup( res['Data'].Code,res['Data'].UserId);
+        },
+        (err)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err.error["Message"],
+            // footer: '<a href="">Why do I have this issue?</a>'
+          })
+         })
+         this.SpinnerService.hide();
+    }
+
+    onphoneChange(event){
+      this.PhoneCheck = true;
+      this.EmailCheck = false;
+    }
     
-  }
-
-  ShowPopup(code:any,userid:any){
-    Swal.fire({
-      title: 'Phone Verification : '+code,
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off',
-      },
-      showCancelButton: true,
-      confirmButtonText: 'تحقق',
-      showLoaderOnConfirm: true,
-      preConfirm: (login) => {
-        return fetch(`//api.github.com/users/${login}`)
-          .then(response => {
-            "ghjg"
-            if (!response.ok) { throw new Error(response.statusText)}
-            return response.json()
-          })
-          .catch(error => { Swal.showValidationMessage(`Request failed : ${error}` )
-          })
-      },
-      allowOutsideClick: () => !Swal.isLoading()
-    }).then((result) => {
-      if (result.isConfirmed) {
-        if(code == result.value.login )
-        {
-          this.toastr.success('Code Success ' , 'Success');
-          // this.create(this.CreateUser); 
-          this.updatePassword(userid);
-        }
-        else
-        {
-          this.ShowPopup(code,userid);
-          this.toastr.error('Please make sure that the code sent is correct' , 'Incorrect Code');
-        }
-      }
-    })
-  }
-
-  //#region  Verify Code
-  verify() {
-
-    this.SpinnerService.show();
-    var NCODE = this.NCODE1.toString() + this.NCODE2.toString() + this.NCODE3.toString() + this.NCODE4.toString();
-  //  console.log(NCODE);
-   
-    if (this.user.Code == NCODE) {
-      // this.router.navigateByUrl("/doctor-profile");
-      this.verifyCode=true
-      this.SpinnerService.hide();
-        
-      this.router.navigate(['/forget-password' , this.user.UserId])
-      document.getElementById('cancelbtn').click();
-
+    onemailChange(event){
+      this.PhoneCheck = false;
+      this.EmailCheck = true;
     }
-    else {
-      this.SpinnerService.hide();
-      document.getElementById('cancelbtn').click();
 
-      this.toastr.error("الكود الذى أدخلته غير صحيح ","خطأ")
-    }
-  }
-  //#endregion
-
-
-  updatePassword(userid:any){
-   
-    Swal.fire({
-      title: 'Enter New Password',
-      input: 'text',
-      inputAttributes: {
-        autocapitalize: 'off'
-      },
-      showCancelButton: false,
-      confirmButtonText: 'Update',
-      showLoaderOnConfirm: true,
-      preConfirm: (login) => {
-        return fetch(`//api.github.com/users/${login}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(response.statusText)
-            }
-            return response.json()
-          })
-          .catch(error => {
-            Swal.showValidationMessage(
-              `Request failed: ${error}`
-            )
-          })
-      },
-      allowOutsideClick: () => !Swal.isLoading()
-    }).then((result) => {
-      if (result.isConfirmed) {
-        let sernderObj = {
-          "UserId": userid,
-          "Password": result.value.login
-        }
-
-        this.SignupService.changepass(sernderObj).subscribe(
-          (response)=>{
-            this.router.navigateByUrl("/Login");
-          },
-          (err)=>{
-            console.log(err);
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: err.error,
+    
+    ShowPopup(code,userid){
+      Swal.fire({
+        title: 'Enter the sent code ',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: false,
+        confirmButtonText: 'Confirm',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
             })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // console.log(result.value.login);
+          
+          if( code == result.value.login )
+          {
+            this.router.navigate(["forget-password/",userid]); 
+            this.toastr.success('Code Success ' , 'Success');
+           
+            // this.create(this.CreateUser); 
           }
-        )
-        // Swal.fire({
-        //   title: `${result.value.login}'s avatar`,
-        //   imageUrl: result.value.avatar_url
-        // })
-      }
-    })
-  }
+          else
+          {
+            this.ShowPopup(code,userid);
+            this.toastr.error('Please make sure that the code sent is correct' , 'Incorrect Code');
+          }
+        }
+      })
+    }
+
+
+
+
+
 
 }

@@ -13,12 +13,16 @@ export class ChangePasswordComponent implements OnInit {
   toggle=false;
   param
   translation
-  constructor(private signupService:SignupService,  private translateSwal:TranslateSwalsService,private activateroute:ActivatedRoute,
+  newpass
+  constructor(private signupService:SignupService,
+    private route: ActivatedRoute,
+      private translateSwal:TranslateSwalsService,private activateroute:ActivatedRoute,
     private router:Router) {
     this.activateroute.paramMap.subscribe(param=>{
       this.param=param.get('id')
     })
    }
+
 
    ngOnInit(): void {
     this.getTranslitation()
@@ -47,12 +51,12 @@ passwordIcon(){
  //#endregion
 
 
- changepass(pass){
-   let body={
-    "UserId": parseInt(this.param),
-    "Password": pass
-   }
-   this.signupService.changepass(body).subscribe(res=>{
+ changepass(){
+
+   this.signupService.changepass({
+    "UserId": +this.route.snapshot.paramMap.get('id'),
+    "Password": this.newpass
+   }).subscribe(res=>{
      Swal.fire({
       title:this.translation.UpdatedSuccessfully, 
       icon: 'success',  
