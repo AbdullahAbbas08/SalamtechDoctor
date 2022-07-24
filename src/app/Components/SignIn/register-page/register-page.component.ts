@@ -138,7 +138,7 @@ export class RegisterPageComponent implements OnInit {
           this.SignupService.ResenderCodeObject = this._Responsesignup.Data["Data"];
           this.SignupService.Phone = this.SignUp.Phone;
           this.counter = data['Data'].ReSendCounter;
-
+          
           this.ShowPopup(data['Data'].Code);
         },
         (err) => {

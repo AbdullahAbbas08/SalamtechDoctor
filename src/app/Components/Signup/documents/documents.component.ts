@@ -17,254 +17,6 @@ import { environment } from 'src/environments/environment';
 })
 export class DocumentsComponent implements OnInit {
 
-//   //#region Declare variables
-//   DocumentsForm:FormGroup
-//   // Upload_Image:boolean;
-//   LegalDocumentList;
-//   Documents;
-//   translation;
-
-//   idDocs=null;
-//   proffDocs=null;
-//   url:string;
-//   //#endregion
-
-//   //#region Constructor
-// constructor(
-//   private fb:FormBuilder ,
-//   private DocumentService:DocumentService,
-//   private loginService:LoginService,
-//   private router:Router,
-//   private translateSwal:TranslateSwalsService,
-//   private SpinnerService: NgxSpinnerService
-// ) { }
-// //#endregion
-
-//   //#region On Init Method
-//   ngOnInit(): void {
-//     this.url = environment.ImagesURL
-//       //#region Init variables
-//     document.getElementById('Doctorinfo')?.classList.add('OnClick-Style');
-//     document.getElementById('Signup')?.classList.add('OnClick-Style');
-//     document.getElementById('Certificates')?.classList.add('OnClick-Style');
-//     document.getElementById('LegalDocuments')?.classList.add('OnClick-Style');
-
-
-
-//       //#region Invoke Method's
-//     this.GetLegalDocument('en');
-//     this.GetDocuments('en')
-//     //#endregion
-//     this.getTranslitation()
-//   }
-//   //#endregion
-
-//   getTranslitation()  {
-//     this.translateSwal.Translitation().subscribe((values) => {
-//       // console.log(values);
-//       this.translation =values 
-//       });
-//     }
-
-
-//   //#region Consume API's
-
-
-
-//     //#region Legal Document Method
-//       GetLegalDocument(lang:string)
-//       {
-//         this.DocumentService.GetLegalDocument(lang ).subscribe(
-//           (response)=>{
-//             this.LegalDocumentList = response.Data;
-//             // console.log(this.LegalDocumentList)
-//           },
-//           (err)=>{ }
-//         )
-//       }
-//       //#endregion
-
-         
-
-//          //#region  Document Method
-//          GetDocuments(lang:string)
-//          {
-//            this.DocumentService.GetDocuments(lang ).subscribe(
-//              (response)=>{
-//                this.Documents = response.Data;
-//               //  console.log(this.Documents)
-//               this.Documents.map(item=>{
-//                 if(item.LegalDocumentTypeId == 1){
-//                   this.idDocs=item                   
-//                 }
-//                 if(item.LegalDocumentTypeId == 2){
-//                  this.proffDocs=item
-//                  // console.log(this.proffDocs);
-                 
-//                }
-//               })
-//              },
-//              (err)=>{ }
-//            )
-//          }
-//          //#endregion
-
-//           //#region delete Document Method
-//           DeleteDocument(lang:string , id)
-//           {
-//             // console.log(id);
-            
-           
-
-//             Swal.fire({
-//               title:  this.translation.areusure,
-//               text: this.translation.wontrevert,
-//               icon: 'warning',
-//               showCancelButton: true,
-//               confirmButtonColor: '#3085d6',
-//               cancelButtonColor: '#d33',
-//               confirmButtonText: this.translation.yes,
-//               cancelButtonText: this.translation.Cancel
-//             })
-//             .then((result) => {
-        
-//               if (result.isConfirmed) {
-//                 this.DocumentService.DeleteDocuments(lang , id).subscribe((res)=>{
-//                   this.GetDocuments('en')
-//                   Swal.fire(
-//                     this.translation.Deleted,
-//                     this.translation.fileDeleted,
-//                     'success'
-//                   )
-//                   window.location.reload();
-//               },
-//               (err)=>{
-//                 // console.log(err)
-//                 Swal.fire( this.translation.errocur);
-//               })
-               
-//               } else {
-//                 Swal.fire(
-//                   this.translation.Cancelled,
-//                   this.translation.filesafe,
-//                   'error'
-//                 );
-//               }
-//             }); 
-//           }
-//           //#endregion
-
-
-//   //#region Doctor Documents
-//   CreateDoctorDocuments(lang:string , Model:FormData)
-//   {
-//     this.SpinnerService.show();
-//     this.DocumentService.CreateDoctorDocuments(lang ,Model ).subscribe(
-//       (response)=>{
-//       // console.log(response);
-//       this. GetLegalDocument('en')
-//       this.GetDocuments('en')
-//       this.SpinnerService.hide();
-//       },
-//       (err)=>{
-//         // console.log(err);
-//         this.GetDocuments('en')
-//         this.SpinnerService.hide();
-//         Swal.fire(
-//           this.translation.Error,
-//           err.error.Message,
-//           'error'
-//         )
-//       }
-//     )
-//   }
-//   //#endregion
-
-// //#endregion
-
-//   //#region review AND File FormData image from input file
-//     public message: string;
-
-//     preview(files:any  , id) {
-//       // console.log(id);
-//       // console.log(files);
-      
-      
-//       const formData = new FormData();
-//       if (files.length === 0)
-//        { return ;
-//        }
-
-//        if (files[0].size / 1024 / 1024 >= 5)
-//        {
-//          this.SpinnerService.hide();
-//          Swal.fire(
-//            'Error!',
-//            'File size should not be more than 5 MB',
-//            'error'
-//          )
-//          files = null
-//        this.message = "File size should not be more than 5 MB.";
-//        return;
-//      }
-
-//       // var mimeType = files[0].type;
-//       // if (mimeType.match(/image\/*/) == null) {
-//       //   this.message = "Only images are supported.";
-//       //   return ;
-//       // }
-//       var reader = new FileReader();
-//       reader.readAsDataURL(files[0]);
-     
-//       formData.append('LegalDocumentTypeId', id );
-//       formData.append('document',files[0] );
-//       // console.log(formData)
-//       this.CreateDoctorDocuments('en',formData)
-//       this.GetDocuments('en')
-
-//     }
-//     //#endregion
-
-
-//     next(){
-
-//       if(this.Documents[1]){
-//         Swal.fire({
-//           title: this.translation.Great,
-//         text: this.translation.welcome,
-//         icon: 'success',
-//           showCancelButton: true,
-//           confirmButtonText: this.translation.Done,
-//           cancelButtonText: this.translation.AddClinic,
-//           reverseButtons: true
-//         }).then((result) => {
-//           if (result.isConfirmed) {
-//             this.SpinnerService.show();
-//             window.setInterval(() => {
-//               window.location.reload();
-//               this.SpinnerService.hide();
-//              }, 2000);
-//              this.router.navigate(["/main"]);
-//           } else   {
-//             this.SpinnerService.show();
-//             window.setInterval(() => {
-//               // window.location.reload();
-//               this.SpinnerService.hide();
-//              }, 2000);
-//             this.router.navigate(['/clinic'])
-//           }
-//         })
-//       }
-//       else{
-//         Swal.fire({
-//           title:  this.translation.Error,
-//           text:  this.translation.AddDocs,
-//           icon: 'warning',
-//         })
-//       }
-//       }
-
-
  
   //#region Declare variables
   DocumentsForm:FormGroup
@@ -455,8 +207,8 @@ constructor(
       (response)=>{
       // console.log("create : ",response);
       // this. GetLegalDocument('en')
-      this.GetDocuments('en')
-     
+      this.GetLegalDocument('en')
+      window.location.reload();
       },
       (err)=>{
         // console.log(err);
@@ -475,9 +227,11 @@ constructor(
 
   //#region review AND File FormData image from input file
     public message: string;
-   
+    counter = 1;
     preview(event) { 
      
+     if(this.Doc_id_To_Delete)
+     this.DeleteDocumentToUpdate(this.Doc_id_To_Delete);
       const files:File = event.target.files[0];      
       if (files.size / 1024 / 1024 >= 5)
       {
@@ -504,58 +258,30 @@ constructor(
      
       formData.append('LegalDocumentTypeId',  this.idDocument as unknown as Blob );
       formData.append('document',files );
-      this.DeleteDocumentToUpdate(this.Doc_id_To_Delete);
        this.CreateDoctorDocuments('en',formData)
-      // this.GetDocuments('en')
+      // this.GetDocuments('en')      
      
 
     }
     //#endregion
 
 
+    next(){
+ 
+      Swal.fire({
+        title: this.translation.Great,
+        text: this.translation.UpdatedSuccessfully,
+        icon: 'success',
+      }).then((result) => {
+          this.router.navigate(['/main'])
+      })
+    }
+
+
     setidDocument(DocTypeId:number,id:any){
       this.idDocument = DocTypeId;
-      this.Doc_id_To_Delete = id?.id;
+      this.Doc_id_To_Delete = id;
      }
-
-
-         next(){
-
-      if(this.Documents.length == this.LegalDocumentList.length){
-        Swal.fire({
-          title: this.translation.Great,
-        text: this.translation.welcome,
-        icon: 'success',
-          showCancelButton: true,
-          confirmButtonText: this.translation.Done,
-          cancelButtonText: this.translation.AddClinic,
-          reverseButtons: true
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.SpinnerService.show();
-            window.setInterval(() => {
-              window.location.reload();
-              this.SpinnerService.hide();
-             }, 2000);
-             this.router.navigate(["/main"]);
-          } else   {
-            this.SpinnerService.show();
-            window.setInterval(() => {
-              // window.location.reload();
-              this.SpinnerService.hide();
-             }, 2000);
-            this.router.navigate(['/clinic'])
-          }
-        })
-      }
-      else{
-        Swal.fire({
-          title:  this.translation.Error,
-          text:  this.translation.AddDocs,
-          icon: 'warning',
-        })
-      }
-      }
    
 
 }

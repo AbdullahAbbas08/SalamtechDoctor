@@ -26,7 +26,7 @@ export class DocumentService {
 
     //#region Get Legal Document
     GetLegalDocument(lang:string):Observable<any>{
-      return this.http.get<any>(`${environment.URL}${this.culture}/LookUp/GetLegalDocument`,this.httpOptions);
+      return this.http.get<any>(`${environment.URL}${this.culture}/Doctor/GetDoctorLegalDocuments`,this.httpOptions);
     }
 
 

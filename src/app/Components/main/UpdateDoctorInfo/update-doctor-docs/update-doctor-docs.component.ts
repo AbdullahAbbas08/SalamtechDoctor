@@ -207,8 +207,8 @@ constructor(
       (response)=>{
       // console.log("create : ",response);
       // this. GetLegalDocument('en')
-      this.GetDocuments('en')
-     
+      this.GetLegalDocument('en')
+      window.location.reload();
       },
       (err)=>{
         // console.log(err);
@@ -227,9 +227,10 @@ constructor(
 
   //#region review AND File FormData image from input file
     public message: string;
-   
     preview(event) { 
      
+     if(this.Doc_id_To_Delete)
+     this.DeleteDocumentToUpdate(this.Doc_id_To_Delete);
       const files:File = event.target.files[0];      
       if (files.size / 1024 / 1024 >= 5)
       {
@@ -256,9 +257,9 @@ constructor(
      
       formData.append('LegalDocumentTypeId',  this.idDocument as unknown as Blob );
       formData.append('document',files );
-      this.DeleteDocumentToUpdate(this.Doc_id_To_Delete);
        this.CreateDoctorDocuments('en',formData)
       // this.GetDocuments('en')
+      
      
 
     }
@@ -278,8 +279,10 @@ constructor(
 
 
     setidDocument(DocTypeId:number,id:any){
+
+      
       this.idDocument = DocTypeId;
-      this.Doc_id_To_Delete = id?.id;
+      this.Doc_id_To_Delete = id;
      }
    
 

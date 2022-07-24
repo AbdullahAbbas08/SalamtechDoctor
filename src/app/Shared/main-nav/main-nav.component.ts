@@ -46,7 +46,7 @@ export class MainNavComponent implements OnInit {
     }
     //#endregion
     this.logo = this.IamgeURL+localStorage.getItem("logo")
-    console.log(this.logo);
+    // console.log(this.logo);
     
   }
   //#endregion
@@ -82,9 +82,10 @@ export class MainNavComponent implements OnInit {
 
   GetDoctorProfile(){
    
-     
-        this.name=localStorage.getItem('Name');
-        this.logo=localStorage.getItem('logo');
+    var re = /\*/gi; 
+    this.name=localStorage.getItem('Name');
+    this.name =  this.name.replace(re, "  ");        
+    
    
     
   }

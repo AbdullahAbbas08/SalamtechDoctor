@@ -1,9 +1,9 @@
 <div class="row ">
-  <div class="col-12" style="padding-left:0px;padding-bottom: 20px;">
-    <div class="greenText" style="font-size: 16px;font-weight: 500;">
-      {{ "mainModule.Clinic.clinic" | translate}} > {{ "mainModule.Clinic.sidebargalary"| translate }}
+  <div class="row">
+    <div class="col-12 path-row greenText mb-3">
+        {{ "mainModule.main.Profile" | translate }} >  {{ "mainModule.sideBar.LegalDocuments" | translate }}
     </div>
-  </div>
+</div>
 </div>
 
 <div class="row update-Clinic-style">
@@ -49,75 +49,49 @@
 
     </div>
         <div *ngFor="let item of LegalDocumentList;let i=index" class="col-12 col-md-4 col-lg-3 p-0">
-          <!-- <div class="Galary-unit-block">
-            <img class="image-style"  src="{{url}}{{item.ImageUrl}}">              
-          </div> -->
-          <!-- <div class="d-flex justify-content-center  view-delete-card-galary"> -->
-            <!--Modal   -->
-            <!-- <div class="btn" data-bs-toggle="modal" [attr.data-bs-target]="'#viewGalary'+i" >
-              <span  >
-                <i class="far fa-eye delete-view-btn" id="togglePassword"></i>
-              </span>
-            </div>
 
-            <div class="modal fade" id="viewGalary{{i}}" tabindex="-1" aria-labelledby="exampleModal2Label"
-              aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <img  src="{{url}}{{item.ImageUrl}}">              
-                </div>
-              </div>
-            </div> -->
-          <!-- End Modal -->
-          <!-- <i class="far fa-trash-alt delete-view-btn"
-              ></i> -->
-              <!-- (click)="DeleteGalary(item.Id)" -->
-
-          <!-- </div> -->
-          <!-- <div class="col-12 col-md-4 col-lg-3"> -->
             <div class="card mx-2 my-2">
               <div class="card-header">
-                <div class="text-center">{{item.Name}}</div>
+                <div class="text-center">{{item.LegalDocumentTypeName}}</div>
               </div>
-              <div class="card-body" *ngIf="!DocumentExist(item.Id);else addblock">
+
+              <div class="card-body" *ngIf="!DocumentExist(item.LegalDocumentTypeId);else addblock">
                 <div class="plus-block">
-                  <input  type='file'
+                  <!-- <input  type='file'
                   (change)="preview($event)"
                    id="getFile1{{i}}"
-                  style="display:none">
+                  style="display:none"> -->
     
                   <button data-bs-toggle="modal" 
                           [attr.data-bs-target]="'#inputDocument'" 
-                          (click)="setidDocument(item.Id,Input_Documents[item.Id])" 
+                          (click)="setidDocument(item.LegalDocumentTypeId,item.Id)" 
                           class="add-btn">
                     +
                   </button>
               </div>
               </div>
+
               <ng-template #addblock>
                   <img class="document_style" 
-                       src="{{image_path+Input_Documents[item.Id].url}}"
+                       src="{{image_path+Input_Documents[item.LegalDocumentTypeId].url}}"
                        onerror="this.onerror=null; this.src='assets/img/not_found.png'"/>
                   <div class="card-footer d-flex justify-content-center">
-                    <input type='file'
+                    <!-- <input type='file'
                            accept="image/*" 
                            (change)="preview($event)"
                            id="getFile{{i}}"
-                            style="display:none">
+                            style="display:none"> -->
 
                             <!-- onclick="document.getElementById('getFile'+i).click()" -->
                     <i data-bs-toggle="modal" 
                     [attr.data-bs-target]="'#inputDocument'" 
-                    (click)="setidDocument(item.Id,Input_Documents[item.Id])"
+                    (click)="setidDocument(item.LegalDocumentTypeId,item.Id)"
                        class="fa fa-edit mx-2 my-1 fs-4" style="cursor:pointer ;"></i>
                    
                       
                   </div>
               </ng-template>
             </div>
-           
-            
-          <!-- </div> -->
         </div>
 
         <!-- <div class="col-12 col-md-4 col-lg-3">
