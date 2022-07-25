@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-terms',
@@ -9,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class TermsComponent implements OnInit {
   DefaultLang:string |null;
 
-  constructor(private translate:TranslateService) { 
+  constructor(private translate:TranslateService,private _location: Location) { 
     if(localStorage.getItem("lang") !=null){
       this.DefaultLang = localStorage.getItem("lang");
     }else{
@@ -27,6 +28,10 @@ export class TermsComponent implements OnInit {
       document.getElementsByTagName('html')[0].setAttribute("dir","ltr");
       this.translate.use(this.DefaultLang);
     }
+  }
+
+  goback(){
+    this._location.back();
   }
 
 }

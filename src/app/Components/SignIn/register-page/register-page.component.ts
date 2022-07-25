@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Signup } from 'src/Models/signup';
 import { Responsesignup } from 'src/Service/signup/responsesignup';
 import { SignupService } from 'src/Service/signup/signup.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -39,7 +40,7 @@ export class RegisterPageComponent implements OnInit {
     private UserService: UserService,
     private loginService: LoginService,
     private translateSwal: TranslateSwalsService,
-    private SpinnerService: NgxSpinnerService) {
+    private SpinnerService: NgxSpinnerService,private _location: Location) {
   }
   //#endregion
 
@@ -203,35 +204,42 @@ export class RegisterPageComponent implements OnInit {
   //#endregion
 
 
- create(user:any){
-  this.UserService.CreateUser( user).subscribe(
-    (response)=>{
-      // console.log(response.Data.Token);
-      this.SpinnerService.hide();
-      localStorage.setItem('Authorization',response.Data.Token)
-      localStorage.setItem('Name',response.Data.Name);
-      let auth=localStorage.getItem('Authorization')        
-      setTimeout(() => {
-        if(auth){
-          this.router.navigate(["/doctor-profile"]);          
+    create(user:any){
+      this.UserService.CreateUser( user).subscribe(
+        (response)=>{
+          // console.log(response.Data.Token);
+          this.SpinnerService.hide();
+          localStorage.setItem('Authorization',response.Data.Token)
+          localStorage.setItem('Name',response.Data.Name);
+          let auth=localStorage.getItem('Authorization')        
+          setTimeout(() => {
+            if(auth){
+              this.router.navigate(["/doctor-profile"]);          
+            }
+          }, 2000);
+        },
+        (err)=>{
+          this.SpinnerService.hide();
+          Swal.fire({
+            title:this.translation.Error,
+            text: err.error.Message,
+            icon: 'error',
+            showCancelButton: true,
+            showConfirmButton:false,
+            cancelButtonColor:"#f00",
+            confirmButtonText:this.translation.Ok,
+            cancelButtonText:this.translation.Ok,
+            reverseButtons: true
+          })
         }
-      }, 2000);
-    },
-    (err)=>{
-      this.SpinnerService.hide();
-      Swal.fire({
-        title:this.translation.Error,
-        text: err.error.Message,
-        icon: 'error',
-        showCancelButton: true,
-        showConfirmButton:false,
-        cancelButtonColor:"#f00",
-        confirmButtonText:this.translation.Ok,
-        cancelButtonText:this.translation.Ok,
-        reverseButtons: true
-      })
+      )
     }
-  )
- }
+
+    goback(){
+        const url = this.router.serializeUrl(
+          this.router.createUrlTree([`/terms`])
+        );
+        window.open(url, '_blank');
+    }
 
 }

@@ -1,7 +1,10 @@
-<div style="min-height: 92%">
-  <app-nav></app-nav>
 
-  <div class="row">
+<div class="container-fluid" style="height:100% ;">
+  <div class="d-flex align-items-start" style="height:10% ;">
+      <app-nav></app-nav>
+  </div>
+  <div class="d-flex align-items-center  justify-content-center" style="height:80% ;">
+        <div class="row">
     <div class="col-12 col-md-4 d-flex align-items-center justify-content-center ">
       <img src="../../../../assets/img/website/web p2.png" width="90%" height="90%" >
     </div>
@@ -153,7 +156,7 @@
                 }}
               </label>
 
-              <button type="button" class="btn create-account-link shadow-none" routerLink="/Terms">
+              <button type="button" class="btn create-account-link shadow-none" (click)="goback()">
                 {{
                 "mainModule.RegisterPage.Terms&ConditionsKeyword"
                 | translate
@@ -233,9 +236,9 @@
     <p style="color: white"> {{ 'spinner' | translate }} </p>
   </ngx-spinner>
 
+  </div>
 
-</div>
-
-<div style="min-height: 8%; background-color: #14183a">
-  <app-footer></app-footer>
+  <div class="d-flex align-items-end" style="height:10% ;">
+      <app-footer></app-footer>
+  </div>
 </div>
