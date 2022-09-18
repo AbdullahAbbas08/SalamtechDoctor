@@ -45,7 +45,7 @@
     </div>
 
     <!-- Submit Form -->
-    <form #form="ngForm" class="col-12 d-flex justify-content-start" [formGroup]="CertificateForm"
+    <form (keydown.enter)="$event.preventDefault()" #form="ngForm" class="col-12 d-flex justify-content-start" [formGroup]="CertificateForm"
       *ngIf="CertificateForm">
       <div class="col-12">
         <div class="card">

@@ -43,6 +43,9 @@ export class ClinicInfoComponent implements OnInit {
   countries
   selectedCities:any[];
 
+  clicked:boolean;
+
+
   constructor(
     private fb: FormBuilder,
     private modalService: NgbModal,
@@ -283,11 +286,13 @@ export class ClinicInfoComponent implements OnInit {
 
   //#region Create Clinic
   CreateClinic(lang: string, ClinicForm: FormData) {
+    debugger
+    this.SpinnerService.show();
     this.ClinicService.CreateClinic(lang, ClinicForm).subscribe((res) => {
      this.ClinicService.VisitFees = +ClinicForm.get('FixedFee');
       this.SpinnerService.hide();
       this.Router.navigate(['/clinic/gallary/', res.Data.ClinicId]);
-      this.ClinicInfoForm.reset()
+      //this.ClinicInfoForm.reset()
     },
       (err) => {
         // console.log(err)
@@ -307,8 +312,8 @@ export class ClinicInfoComponent implements OnInit {
 
   //#region submit Clinic
   submitClinic() {
+    debugger
     this.SpinnerService.show();
-    
    if(this.ClinicInfoForm.valid){
     const formData = new FormData();
     this.selectedItems.forEach(element => {
@@ -367,6 +372,9 @@ export class ClinicInfoComponent implements OnInit {
 
   onSelectAll(items: any) {
     // console.log(items);
+  }
+  actionMethod(){
+    this.clicked = false;
   }
 
 }

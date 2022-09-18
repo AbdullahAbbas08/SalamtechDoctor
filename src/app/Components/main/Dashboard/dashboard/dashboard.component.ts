@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   imgURLvideo: any = '../../../../assets/img/dashboard/video.png';
   imgURLclinic: any = '../../../../assets/img/dashboard/clinic.png';
   imgURLchat: any = '../../../../assets/img/dashboard/chat.png';
+  Image: string;
   response : GetDoctorDashboard;
   constructor(private ApiService: DashboardApiService) { 
     this.getData()

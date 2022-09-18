@@ -80,6 +80,7 @@ this.url = environment.ImagesURL
 
   //#region CreateClinicGallery
   CreateClinicGallery(lang: string, formData: FormData) {
+    debugger
     this.SpinnerService.show();
     this.GalaryService.CreateClinicGallery(lang, formData).subscribe(
       (response) => {
@@ -107,6 +108,7 @@ this.url = environment.ImagesURL
   public message: string;
 
   preview(files: any) {
+    debugger
     const formData = new FormData();
     if (files.length === 0)
       return;

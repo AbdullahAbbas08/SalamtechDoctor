@@ -6,6 +6,8 @@ import { AppointmentService } from 'src/Service/Appointment/appointment.service'
 import Swal from 'sweetalert2';
 import { TranslateSwalsService } from 'src/Service/translateSwals/translate-swals.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { data } from 'jquery';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-current-appointment',
@@ -23,6 +25,7 @@ export class CurrentAppointmentComponent implements OnInit {
   actionImg=[] 
   actions=[]
   translation;
+  myDate:any = new Date();
 
    //#endregion
 
@@ -30,7 +33,10 @@ export class CurrentAppointmentComponent implements OnInit {
   constructor(private AppointmentService:AppointmentService,
     private router:Router,
     private translateSwal:TranslateSwalsService,
-    private SpinnerService: NgxSpinnerService) { }
+    private datePipe: DatePipe,
+    private SpinnerService: NgxSpinnerService) { 
+     this.myDate = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    }
   //#endregion
 
   //#region On Init Method
@@ -131,7 +137,17 @@ export class CurrentAppointmentComponent implements OnInit {
   //#endregion
 
   cancelAppointment(id){
-  
+    debugger
+
+    if(this.PatientList.filter(x=>x.AppointmentDate<this.myDate)){
+      console.log("youcan'tCancel")
+      Swal.fire({
+        title:'This Appointment cannot be Canceled because it is an old date',
+        icon:'warning',
+        confirmButtonText:'Ok',
+      }).then(()=>{
+      });
+    }else{
 
     Swal.fire({
       title: this.translation.areusure,
@@ -168,4 +184,5 @@ export class CurrentAppointmentComponent implements OnInit {
       }
     }); 
   }
+}
 }

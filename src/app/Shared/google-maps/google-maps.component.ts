@@ -36,10 +36,11 @@ export class GoogleMapsComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    debugger
     this.getLocFromApis()
      //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
+      debugger
       this.geoCoder = new google.maps.Geocoder;
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement);
         autocomplete.addListener("place_changed", () => {
@@ -70,6 +71,7 @@ export class GoogleMapsComponent implements OnInit {
 
   markerDragEnd($event: any) {
     // console.log("drag",$event);
+    debugger
     this.latitude = $event.coords.lat;
     this.longitude = $event.coords.lng;
     console.log(this.latitude , this.longitude)
@@ -77,6 +79,7 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   getAddress(latitude:any, longitude:any) {
+    debugger
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results:any, status:any) => {
       // console.log(results);
       // console.log(status);
@@ -99,6 +102,7 @@ export class GoogleMapsComponent implements OnInit {
   }
 
   saveLocation(){
+    debugger
     const data = {
       address: this.address,
       latitude: this.latitude,
@@ -110,9 +114,10 @@ export class GoogleMapsComponent implements OnInit {
   getLocFromApis(){
   
     this.locationService.long.subscribe(res=>{
+      debugger
       this.longitude=parseFloat(res);
       console.log(res);
-      console.log(   this.longitude);
+      console.log(this.longitude);
       
       this.locationService.lat.subscribe(res=>{
         

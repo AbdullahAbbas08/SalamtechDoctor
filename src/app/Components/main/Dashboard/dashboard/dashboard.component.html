@@ -79,7 +79,7 @@
         <div class="col-12 col-md-4 offset-md-1 p-3 " *ngFor="let item of response?.getMedicalEximationListDtos">
           <div class="row dashboard-stat">
             <div class="col-4 d-flex justify-content-center align-items-center" style="height: 190px">
-              <img src="{{ imgURLcall }}" class="img-style" />
+              <img src="https://salamtechapi.azurewebsites.net/{{ item.Image }}" class="img-style" />
             </div>
             <div class="col-6 py-5 d-flex justify-content-center align-items-center putleftborder">
               <div class="row">

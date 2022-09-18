@@ -75,6 +75,7 @@ export class ClinicSchedualComponent implements OnInit {
     //#region Init Values
 
     //#region Change Active Component In Sidebar 
+    debugger
     document.getElementById('sidebarinfo')?.classList.add('OnClick-Style');
     document.getElementById('sidebargalary')?.classList.add('OnClick-Style');
     document.getElementById('sidebarschedule')?.classList.add('OnClick-Style');
@@ -89,7 +90,7 @@ export class ClinicSchedualComponent implements OnInit {
         TimeTo                      :"",
         Fees                        :this.clinicInfoService.VisitFees,
         DurationMedicalExaminationId:-1,
-        Inactive                    :true
+        Inactive                    :false
       }
       this.ClinicId = this.route.snapshot.paramMap.get('ClinicId');
 
@@ -280,7 +281,7 @@ export class ClinicSchedualComponent implements OnInit {
       //#region Create Clinic Schedule
       CreateDoctorClinicSchedual(NewPeriod:CreateClinicSchedule){
         // console.log(NewPeriod);
-        
+        debugger
         this.ClinicScheduleService.CreateDoctorClinicSchedual(NewPeriod).subscribe(
           (respose)=>{
             // console.log(respose)
@@ -358,6 +359,7 @@ export class ClinicSchedualComponent implements OnInit {
   //#region Add Period
   AddPeriod(DayId:number)
   {
+    debugger
     // this.Counter+=1;
     // let object = this.ClinicScheduleDayList[DayId].find(x=>x.DayId == DayId);
 
@@ -384,6 +386,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region Create New Period =>  At First Time 
   SubmitPeriod(DayId:number,Active:boolean){
+    debugger
     
     if(this.PeriodForm.valid){
       this.SpinnerService.show();
@@ -418,6 +421,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region Create New Period On Schedule 
   SubmitNewPeriod(DayId:number,Index:number ){
+    debugger
 
      // Remove Seconds Block From TimeFrom , TimeTo 
      this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
@@ -461,6 +465,7 @@ export class ClinicSchedualComponent implements OnInit {
 
   //#region Update New Period
   UpdateNewPeriod( DayId:number ,Index:number ){
+    debugger
     this.SpinnerService.show();
     // Remove Seconds Block From TimeFrom , TimeTo 
     this.ClinicScheduleDayList[DayId][Index].TimeFrom = this.ClinicScheduleDayList[DayId][Index].TimeFrom.substring(0,5);
@@ -524,6 +529,7 @@ export class ClinicSchedualComponent implements OnInit {
   FlagActive(Index:number,DayId:number,ClinicScheduleDay:ClinicScheduleDay )
   {
 
+    debugger
      // Switch ClinicScheduleDay Inactive
      if(ClinicScheduleDay.Inactive == true){
 

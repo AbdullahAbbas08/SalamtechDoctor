@@ -13,6 +13,13 @@
     font-weight: 500;
     user-select: none;
 }
+.Clinic-Logo-Style
+{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
 
 .path-row
 {
@@ -47,6 +54,11 @@
 {
     padding: 15px;
 }
+.padding-row[_ngcontent-sih-c136]
+
+{
+    padding-top: 15px;
+}
 
 .Filter-Btn
 {
@@ -69,8 +81,9 @@
 .dropdown-menu{
     width: 400px;
     height: 550px;
-    overflow: scroll;
+    overflow:auto;
     background-color: #fff;
+    transform: translate3d(-200px, -226px, -30px);
 }
 @media(max-width:425px){
     .dropdown-menu{

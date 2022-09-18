@@ -6,7 +6,7 @@
     </div>
 </div>
 
-  <form class="d-block"  [formGroup]="DoctorInfoForm" *ngIf="DoctorInfoForm">
+  <form (keydown.enter)="$event.preventDefault()" class="d-block"  [formGroup]="DoctorInfoForm" *ngIf="DoctorInfoForm">
     <div class="row">
 
       <!-- Picture Doctor -->
@@ -166,7 +166,7 @@
               <span class="lbl-Register">{{
                 "mainModule.signup.SyndicateId" | translate
                 }}</span>
-              <span class="star"> * </span>
+              <!-- <span class="star"> * </span> -->
               <div class="input-style">
                   <div class="input-style">
                       <input type="number" 
@@ -185,7 +185,7 @@
               <span class="lbl-Register">{{
                 "mainModule.signup.LicenseNumber" | translate
                 }}</span>
-              <span class="star"> * </span>
+              <!-- <span class="star"> * </span> -->
               <div class="input-style">
                   <div class="input-style">
                       <input class="form-control" 
@@ -204,7 +204,7 @@
               <span class="lbl-Register">{{
                 "mainModule.signup.FacebookAccount" | translate
                 }}</span>
-              <span class="star"> * </span>
+              <!-- <span class="star"> * </span> -->
               <div class="input-style">
                   <div class="input-style">
                       <input class="form-control" formControlName="FacebookAccount">
@@ -218,7 +218,7 @@
               <span class="lbl-Register">{{
                 "mainModule.signup.Website" | translate
                 }}</span>
-              <span class="star"> * </span>
+              <!-- <span class="star"> * </span> -->
               <div class="input-style">
                   <div class="input-style">
                       <input class="form-control" formControlName="Website">
@@ -237,9 +237,10 @@
           <div class="col-md-8 col-12 mb-2">
             <div class="input-style">
               <label class="label-input">
-                <span class="star"> * </span>
                 {{ "mainModule.DoctorInfo.Email" | translate }}
               </label>
+              <span class="star"> * </span>
+
   
               <div class="form-group">
                 <input type="email" 

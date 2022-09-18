@@ -2,6 +2,7 @@
 export class MedicalType {
   MedicalTypeName: string;
   MedicalTypeCount: number;
+  Image: string;
 }
 
 export class GetDoctorDashboard {

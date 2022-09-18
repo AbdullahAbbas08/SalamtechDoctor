@@ -104,7 +104,7 @@ export class UpdateClinicInfoComponent implements OnInit {
 
       }
       // console.log("this.clinicInfo : ",this.clinicInfo);
-
+      
       this.lat = res.Data.Latitude;
       this.long = res.Data.Longitude;
       this.SpinnerService.hide();
@@ -116,6 +116,7 @@ export class UpdateClinicInfoComponent implements OnInit {
       this.phones = this.clinicInfo.HealthEntityPhoneDtos;
       // console.log(this.phones);
 
+      
       this.locationService.lat.next(this.lat)
       this.locationService.long.next(this.long)
 
@@ -203,6 +204,7 @@ export class UpdateClinicInfoComponent implements OnInit {
 
   //#region openGoogelMapsModal
   openGoogelMapsModal() {
+    debugger
     const modalRef = this.modalService.open(GoogleMapsComponent, {
       scrollable: true,
       modalDialogClass:

@@ -9,7 +9,7 @@
 
 <div class="row update-Clinic-style">
   <div class="col-12 d-block">
-    <form [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
+    <form (keydown.enter)="$event.preventDefault()" [formGroup]="FormInfo" *ngIf="FormInfo && clinicInfo">
       <div class="row">
         <!-- Picture Doctor -->
         <div class="col-lg-4 col-md-12 col-sm-12 mb-2">
@@ -230,7 +230,7 @@
                       height="21"
                       viewBox="0 0 21 21"
                       fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                     
                     >
                       <g clip-path="url(#clip0_147_2460)">
                         <path

@@ -1,4 +1,4 @@
-<form #form="ngForm" class="d-block" [formGroup]="ClinicInfoForm">
+<form (keydown.enter)="$event.preventDefault()"  #form="ngForm" class="d-block" [formGroup]="ClinicInfoForm">
 
   <div class="row">
     <!-- Picture Doctor -->
@@ -364,11 +364,10 @@
 </form>
 
 <div class="d-flex justify-content-end mt-4">
-  <button (click)="submitClinic()" class="btn blue-btn">
+  <button (click)="submitClinic()" [disabled]="clicked" (click)="actionMethod(); clicked = true;" class="btn blue-btn">
     {{"mainModule.ClinicInfo.Next" | translate}}
   </button>
 </div>
-
 
 
 <!-- spinner -->

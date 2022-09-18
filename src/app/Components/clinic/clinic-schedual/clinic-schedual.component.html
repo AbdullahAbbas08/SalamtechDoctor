@@ -252,7 +252,7 @@
                                                  {{'mainModule.Schedule.Reset' | translate}}
                                               </label>
 
-                                              <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                              <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                                       style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                       (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -458,7 +458,7 @@
                                                {{'mainModule.Schedule.Reset' | translate}}
                                             </label>
 
-                                              <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                              <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                               style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                               (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -650,7 +650,7 @@
                                                         (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
                                                     {{'mainModule.Schedule.Reset' | translate}}
                                                 </label>
-                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                                 style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                 (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -843,7 +843,7 @@
                                                {{'mainModule.Schedule.Reset' | translate}}
                                             </label>
 
-                                            <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                            <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                             style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                             (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -1038,7 +1038,7 @@
                                                         (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
                                                    {{'mainModule.Schedule.Reset' | translate}}
                                                 </label>
-                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                                 style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                 (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -1228,7 +1228,7 @@
                                                         (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
                                                    {{'mainModule.Schedule.Reset' | translate}}
                                                 </label>
-                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                                 style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                 (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 
@@ -1423,7 +1423,7 @@
                                                         (click)="ResetPeriod(item.DayId,i,ClinicScheduleDayList[item.DayId][i].SchedualId)">
                                                    {{'mainModule.Schedule.Reset' | translate}}
                                                 </label>
-                                                <label *ngIf="Period.Inactive == true;else InactiveBlock"
+                                                <label *ngIf="Period.Inactive == false;else InactiveBlock"
                                                 style="color: green;padding-left: 15px;padding-right: 15px;cursor: pointer;user-select: none;"
                                                 (click)="FlagActive(i,item.DayId,ClinicScheduleDayList[item.DayId][i])">
 

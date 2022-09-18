@@ -96,6 +96,7 @@ export class FilterAppointmentComponent implements OnInit {
   }
 
   submit() {
+    debugger
     if (this.searchForm.valid) {
       this.SpinnerService.show();
 
