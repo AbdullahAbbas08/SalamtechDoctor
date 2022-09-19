@@ -31,6 +31,11 @@
 html body{
   height: 100%; 
   /* overflow-x: hidden; */
+  background-image: url('../src/assets/img/back.png');
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
   font-family: 'Poppins', sans-serif !important;
   font-family: 'Cairo', sans-serif !important;
 }
@@ -38,10 +43,12 @@ html body{
 .container
 {
   min-height: 100%;
+  
 }
 html, body, .sidebar-col {
   height:100%;  
 /* overflow: hidden; */
+
 }
 
 /*-------------------validations input start-------------------*/
@@ -88,6 +95,7 @@ input[type=number] {
 html {
   /* overflow: scroll; */
   /* overflow-x: hidden; */
+  
 }
 ::-webkit-scrollbar {
   width: 0;  /* Remove scrollbar space */
