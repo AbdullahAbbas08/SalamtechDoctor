@@ -63,12 +63,12 @@ ul li span
     border-inline-start: 2px solid #262D70;
     color: #262D70;
 }
-.var-component
+/* .var-component
 {
     background-color: white;
     padding-top: 35px;
     
-}
+} */
 .container-outlet
 {
     height: 100%;

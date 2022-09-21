@@ -102,6 +102,7 @@ export class DoctorInfoComponent implements OnInit {
             FirstNameAr:['',[Validators.required , Validators.minLength(3)]],
             MiddleName:['',[Validators.minLength(3) , Validators.required]],
             MiddleNameAr:['',[Validators.minLength(3) , Validators.required]],
+            NationalId:['',[Validators.minLength(14) , Validators.required]],
             LastName:['',[Validators.minLength(3) , Validators.required]],
             LastNameAr:['',[Validators.minLength(3) , Validators.required]],
             ImageDoctor:['',[ Validators.required]],
@@ -119,6 +120,8 @@ export class DoctorInfoComponent implements OnInit {
             Seniority:['',[Validators.required]],
             BiographyAr:['' ],
             Biography:['' ],
+            SyndicateId:['' ],
+
             // Email:['',[Validators.required ,Validators.email]]
           });
     }
@@ -151,8 +154,9 @@ export class DoctorInfoComponent implements OnInit {
   {
     this.DoctorService.CreateProfile(lang ,_DoctorInfoModel ).subscribe(
       (response)=>{
+        debugger
         this.SpinnerService.hide();
-       this.router.navigateByUrl('/doctor-profile/certificates');
+      //  this.router.navigateByUrl('/doctor-profile/certificates');
       },
       (err)=>{
         // console.log(err);
@@ -244,6 +248,8 @@ GetSpecialistIdName(lang:string)
     this.DoctorInfoModel.Birthday = this.DoctorInfoForm.controls.DateOfBirth.value;
     this.DoctorInfoModel.DoctorSubSpecialist = Number(this.DoctorInfoForm.controls.SubSpeciality);
     this.DoctorInfoModel.DoctorInfo = this.DoctorInfoForm.controls.Biography.value;
+    this.DoctorInfoModel.NationalId = this.DoctorInfoForm.controls.NationalId.value;
+    this.DoctorInfoModel.SyndicateId = this.DoctorInfoForm.controls.SyndicateId.value;
     this.DoctorInfoModel.DoctorInfoAr = this.DoctorInfoForm.controls.BiographyAr.value;
 
     document.getElementById('Certificates')?.classList.add('OnClick-Style');
@@ -265,6 +271,8 @@ GetSpecialistIdName(lang:string)
     });
     // formData.append("DoctorSubSpecialist", this.DoctorInfoModel.DoctorSubSpecialist as unknown as Blob);
     formData.append("DoctorInfo", this.DoctorInfoModel.DoctorInfo);
+    formData.append("NationalId", this.DoctorInfoModel.NationalId);
+    formData.append("SyndicateId", this.DoctorInfoModel.SyndicateId);
     formData.append("DoctorInfoAr", this.DoctorInfoModel.DoctorInfoAr);
     formData.append("profileImage", this.DoctorInfoModel.profileImage);
 

@@ -24,8 +24,6 @@
       </div>
 
       <div class="col-lg-8 col-md-12">
-
-
         <div class="row align-items-center">
           <!-- First Name -->
           <div class="col-lg-4 col-md-12 mb-2">
@@ -42,7 +40,7 @@
                   DoctorInfoForm.controls['FirstName'].touched
                 "
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                maxlength="14" minlength="3" />
             </div>
           </div>
 
@@ -63,7 +61,7 @@
                   DoctorInfoForm.controls['MiddleName'].touched
                 "
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                maxlength="14" minlength="3" />
             </div>
           </div>
 
@@ -82,7 +80,7 @@
                   DoctorInfoForm.controls['LastName'].touched
                 "
                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="10" minlength="3" />
+                maxlength="14" minlength="3" />
             </div>
           </div>
 
@@ -283,6 +281,40 @@
         </select>
       </div>
     </div>
+    <div class="row align-items-center">
+      <!-- National Id -->
+      <div class="col-lg-4 col-md-12 mb-2">
+        <span class="lbl-Register">
+          {{"mainModule.signup.NationalId" | translate }}
+        </span>
+        <span class="star"> * </span>
+        <div class="input-style">
+          <input type="text" class="form-control" formControlName="NationalId" [class.is-valid]="
+              DoctorInfoForm.controls['NationalId'].valid &&
+              DoctorInfoForm.controls['NationalId'].touched
+            " [class.is-invalid]="
+              DoctorInfoForm.controls['NationalId'].invalid &&
+              DoctorInfoForm.controls['NationalId'].touched
+            "
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="14" minlength="14" />
+        </div>
+      </div>
+
+     
+
+      <!-- Syndicate Id -->
+      <div class="col-lg-4 col-md-12 mb-2">
+        <span class="lbl-Register">{{
+          "mainModule.signup.SyndicateId" | translate
+          }}</span>
+        <div class="input-style">
+          <input type="text" class="form-control" formControlName="SyndicateId"  />
+        </div>
+      </div>
+
+    </div>
+
 
     <div class="row align-items-center">
       <!-- Biography -->
@@ -314,7 +346,7 @@
   </form>
 
   <div class="d-flex justify-content-md-end justify-content-center my-4 ">
-       <button  class="btn blue-btn" (click)="DoctorInfoSubmit()" [disabled]="!DoctorInfoForm.valid">
+       <button  class="btn blue-btn" (click)="DoctorInfoSubmit()" >
         {{"mainModule.signup.Next" | translate }}
       </button>
    </div>
